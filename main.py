@@ -19,14 +19,17 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 # from google.cloud import storage
 from matplotlib.backends.backend_pdf import PdfPages
+from st_files_connection import FilesConnection
 
 
 import warnings
 warnings.filterwarnings('ignore')
 sys.modules['sklearn.externals.six'] = six
 
+conn = st.experimental_connection('gcs', type=FilesConnection)
+model_path = conn.read("model_churn/model.pkl", input_format="pkl")
 # Ganti dengan path file model yang telah Anda simpan
-model_path = 'model/randfor_new3resampled_mode1.pkl'
+# model_path = 'model/randfor_new3resampled_mode1.pkl'
 
 # Muat model
 model = joblib.load(model_path)
