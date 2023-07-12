@@ -42,7 +42,7 @@ def load_model(bucket_name, model_path):
     return model
 
 # Anda dapat menggunakan fungsi ini untuk meload model Anda
-model = load_model("model_churn", "model_churn/model.joblib")
+model = load_model("model_churn", "model_churn/model.pkl")
 
 # conn = st.experimental_connection('gcs', type=FilesConnection)
 # model_path = conn.read("model_churn/model.pkl", input_format="pkl")
