@@ -5,5 +5,5 @@ seaborn==0.12.2
 joblib==1.2.0
 scikit-learn==1.2.2
 gcsfs==2023.6.0
-
+google-cloud-storage==2.10.0
 git+https://github.com/streamlit/files-connection

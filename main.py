@@ -15,9 +15,10 @@ import six
 import joblib
 import sys
 import os
+import io
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-# from google.cloud import storage
+from google.cloud import storage
 from matplotlib.backends.backend_pdf import PdfPages
 from st_files_connection import FilesConnection
 
@@ -26,13 +27,30 @@ import warnings
 warnings.filterwarnings('ignore')
 sys.modules['sklearn.externals.six'] = six
 
-conn = st.experimental_connection('gcs', type=FilesConnection)
-model_path = conn.read("model_churn/model.pkl", input_format="pkl")
-# Ganti dengan path file model yang telah Anda simpan
-# model_path = 'model/randfor_new3resampled_mode1.pkl'
+@st.cache(allow_output_mutation=True)
+def load_model(bucket_name, model_path):
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(model_path)
 
-# Muat model
-model = joblib.load(model_path)
+    # Download as a string, then convert the string to BytesIO object
+    model_string = blob.download_as_text()
+    model_bytestream = io.BytesIO(model_string.encode())
+
+    model = joblib.load(model_bytestream)
+
+    return model
+
+# Anda dapat menggunakan fungsi ini untuk meload model Anda
+model = load_model("model_churn", "model_churn/model.joblib")
+
+# conn = st.experimental_connection('gcs', type=FilesConnection)
+# model_path = conn.read("model_churn/model.pkl", input_format="pkl")
+# # Ganti dengan path file model yang telah Anda simpan
+# # model_path = 'model/randfor_new3resampled_mode1.pkl'
+
+# # Muat model
+# model = joblib.load(model_path)
 
 area_dict = {'Tangerang': 0, 'Depok': 1, 'Cibubur': 2, 'Bekasi': 3, 'Surabaya': 4, 'Semarang': 5, 'Bogor': 6, 'Malang': 7, 'Palembang': 8, 'Jakarta': 9, 'Medan': 10, 'Bandung': 11, 'Bali': 12, 'Makassar': 13, 'Serang': 14, 'Pekanbaru': 15, 'Lampung': 16, 'Solo': 17, 'Cilegon': 18, 'Karawang': 19, 'Jambi': 20}
 
