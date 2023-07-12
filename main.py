@@ -33,11 +33,12 @@ def load_model(bucket_name, model_path):
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(model_path)
 
-    # Download as a string, then convert the string to BytesIO object
-    model_string = blob.download_as_text()
-    model_bytestream = io.BytesIO(model_string.encode())
+    # Download the model file to local file
+    local_model_path = 'local_model.pkl'
+    blob.download_to_file(open(local_model_path, 'wb'))
 
-    model = joblib.load(model_bytestream)
+    # Load the model from local file
+    model = joblib.load(local_model_path)
 
     return model
 
