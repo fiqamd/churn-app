@@ -230,9 +230,9 @@ def visualize_data_batch(data):
     st.pyplot(fig)
     pdf_pages.savefig(fig)
 
-    data = data[data['Churn'] == 'Churn']
+    data_churned = data[data['Churn'] == 'Churn']
     st.header('Churned Data')
-    st.table(data)
+    st.table(data_churned)
 
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
