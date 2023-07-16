@@ -102,7 +102,7 @@ def visualize_data_batch(data):
     st.header("Churn Distribution")
 
     fig, ax = plt.subplots()
-    palette_color = sns.color_palette('magma')
+    palette_color = sns.color_palette('rocket_r')
 
     churn_counts = data['Churn'].value_counts()
     ax = churn_counts.plot(kind='pie', autopct='%1.1f%%', colors=palette_color)
@@ -143,7 +143,7 @@ def visualize_data_batch(data):
             st.pyplot(fig)
 
         elif data[col].dtype in ['object'] and col != "Churn":
-            palette = sns.color_palette('magma')
+            palette = sns.color_palette('crest')
 
             top_val = data[col].value_counts().nlargest(5)
             fig = plt.figure(figsize=(10, 5))
