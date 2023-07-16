@@ -234,6 +234,10 @@ def visualize_data_batch(data):
     st.header('Churned Data')
     st.table(data_churned)
 
+    data_not_churned = data[data['Churn'] == 'Not Churn']
+    st.header('Churned Data')
+    st.table(data_not_churned)
+
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
