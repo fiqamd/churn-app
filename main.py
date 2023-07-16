@@ -207,7 +207,7 @@ def load_non_churned(data):
     return area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned
 
 
-def visualize_data_batch(data):
+def visualize_data_batch(data, data_churned):
     pdf_path = "Churn Predict.pdf"
     pdf_pages = PdfPages(pdf_path)
     
@@ -233,7 +233,7 @@ def visualize_data_batch(data):
     data_churned = data[data['Churn'] == 'Churn']
     st.header('Churned Data')
     st.table(data_churned)
-    
+
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
