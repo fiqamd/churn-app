@@ -238,7 +238,7 @@ def visualize_data_batch(data):
 
     #Area Data Churned
     area_data_churned = area_data_churned.reset_index(drop=True)
-    st.table(area_data_churned, index = False)
+    st.table(area_data_churned)
     data = data[data["Churn"] == "Churn"]
     columns = data.columns.to_list()
     
