@@ -211,9 +211,10 @@ def visualize_data_batch(data):
     pdf_path = "Churn Predict.pdf"
     pdf_pages = PdfPages(pdf_path)
     
+    st.header("Hasil Prediksi")
     st.table(data)
-    st.header("Churn Distribution")
 
+    st.header("Churn Distribution")
     fig, ax = plt.subplots()
     palette_color = sns.color_palette('rocket_r')
 
@@ -229,6 +230,10 @@ def visualize_data_batch(data):
     st.pyplot(fig)
     pdf_pages.savefig(fig)
 
+    data_churned = data[data['Churn'] == 'Churn']
+    st.header('Churned Data')
+    st.table(data_churned)
+    
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
