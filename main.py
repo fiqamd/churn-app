@@ -235,7 +235,7 @@ def visualize_data_batch(data):
     st.table(data_churned)
 
     data_not_churned = data[data['Churn'] == 'Not Churn']
-    st.header('Churned Data')
+    st.header('Not Churned Data')
     st.table(data_not_churned)
 
     area_data_churned, plan_data_churned, tvplan_data_churned, \
