@@ -211,6 +211,7 @@ def visualize_data_batch(data):
     pdf_path = "Churn Predict.pdf"
     pdf_pages = PdfPages(pdf_path)
     
+    st.table(data)
     st.header("Churn Distribution")
 
     fig, ax = plt.subplots()
