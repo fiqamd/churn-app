@@ -95,6 +95,118 @@ def predict_churn(data):
 
     return data
 
+def load_churned(data):
+    data = data[data['Churn'] == 'Churn']
+    # Area Name
+    unique_values_area_churned = data['Area Name'].unique()
+    count_area_churned = data['Area Name'].value_counts()[unique_values_area_churned]
+    area_data_churned = pd.DataFrame({'Area Name': unique_values_area_churned, 'Count': count_area_churned})
+
+    # Plan
+    unique_values_plan_churned = data['Plan'].unique()
+    count_plan_churned = data['Plan'].value_counts()[unique_values_plan_churned]
+    plan_data_churned = pd.DataFrame({'Plan': unique_values_plan_churned, 'Count': count_plan_churned})
+
+    # Tv Plan
+    unique_values_tvplan_churned = data['Tv Plan'].unique()
+    count_tvplan_churned = data['Tv Plan'].value_counts()[unique_values_tvplan_churned]
+    tvplan_data_churned = pd.DataFrame({'Tv Plan': unique_values_tvplan_churned, 'Count': count_tvplan_churned})
+
+    # Advance Promo
+    unique_values_adv_churned = data['Advance Promo'].unique()
+    count_adv_churned = data['Advance Promo'].value_counts()[unique_values_adv_churned]
+    adv_data_churned = pd.DataFrame({'Advance Promo': unique_values_adv_churned, 'Count': count_adv_churned})
+
+    # Complaint by Customer Service
+    unique_values_com_cs_churned = data['Complaint by Customer Service'].unique()
+    count_com_cs_churned = data['Complaint by Customer Service'].value_counts()[unique_values_com_cs_churned]
+    com_cs_data_churned = pd.DataFrame({'Complaint by Customer Service': unique_values_com_cs_churned, 'Count': count_com_cs_churned})
+
+    # Complaint by Email
+    unique_values_com_e_churned = data['Complaint by Email'].unique()
+    count_com_e_churned = data['Complaint by Email'].value_counts()[unique_values_com_e_churned]
+    com_e_data_churned = pd.DataFrame({'Complaint by Email': unique_values_com_e_churned, 'Count': count_com_e_churned})
+
+    # Complaint by Social Media
+    unique_values_com_socmed_churned = data['Complaint by Social Media'].unique()
+    count_com_socmed_churned = data['Complaint by Social Media'].value_counts()[unique_values_com_socmed_churned]
+    com_socmed_data_churned = pd.DataFrame({'Complaint by Social Media': unique_values_com_socmed_churned, 'Count': count_com_socmed_churned})
+
+    # Complaint by Telegram
+    unique_values_tele_churned = data['Complaint by Telegram'].unique()
+    count_tele_churned = data['Complaint by Telegram'].value_counts()[unique_values_tele_churned]
+    tele_data_churned = pd.DataFrame({'Complaint by Telegram': unique_values_tele_churned, 'Count': count_tele_churned})
+
+    # Complaint by Whatsapp
+    unique_values_wa_churned = data['Complaint by Whatsapp'].unique()
+    count_wa_churned = data['Complaint by Whatsapp'].value_counts()[unique_values_wa_churned]
+    wa_data_churned = pd.DataFrame({'Complaint by Whatsapp': unique_values_wa_churned, 'Count': count_wa_churned})
+
+    # Complaint by WIC
+    unique_values_wic_churned = data['Complaint by WIC'].unique()
+    count_wic_churned = data['Complaint by WIC'].value_counts()[unique_values_wic_churned]
+    wic_data_churned = pd.DataFrame({'Complaint by WIC': unique_values_wic_churned})
+
+    return area_data_churned, plan_data_churned, tvplan_data_churned, \
+           adv_data_churned, com_cs_data_churned, com_e_data_churned, \
+           com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned
+
+
+def load_non_churned(data):
+    data = data[data['Churn'] == 'Not Churn']
+    # Area Name
+    unique_values_area_non_churned = data['Area Name'].unique()
+    count_area_non_churned = data['Area Name'].value_counts()[unique_values_area_non_churned]
+    area_data_non_churned = pd.DataFrame({'Area Name': unique_values_area_non_churned, 'Count': count_area_non_churned})
+
+    # Plan
+    unique_values_plan_non_churned = data['Plan'].unique()
+    count_plan_non_churned = data['Plan'].value_counts()[unique_values_plan_non_churned]
+    plan_data_non_churned = pd.DataFrame({'Plan': unique_values_plan_non_churned, 'Count': count_plan_non_churned})
+
+    # Tv Plan
+    unique_values_tvplan_non_churned = data['Tv Plan'].unique()
+    count_tvplan_non_churned = data['Tv Plan'].value_counts()[unique_values_tvplan_non_churned]
+    tvplan_data_non_churned = pd.DataFrame({'Tv Plan': unique_values_tvplan_non_churned, 'Count': count_tvplan_non_churned})
+
+    # Advance Promo
+    unique_values_adv_non_churned = data['Advance Promo'].unique()
+    count_adv_non_churned = data['Advance Promo'].value_counts()[unique_values_adv_non_churned]
+    adv_data_non_churned = pd.DataFrame({'Advance Promo': unique_values_adv_non_churned, 'Count': count_adv_non_churned})
+
+    # Complaint by Customer Service
+    unique_values_com_cs_non_churned = data['Complaint by Customer Service'].unique()
+    count_com_cs_non_churned = data['Complaint by Customer Service'].value_counts()[unique_values_com_cs_non_churned]
+    com_cs_data_non_churned = pd.DataFrame({'Complaint by Customer Service': unique_values_com_cs_non_churned, 'Count': count_com_cs_non_churned})
+
+    # Complaint by Email
+    unique_values_com_e_non_churned = data['Complaint by Email'].unique()
+    count_com_e_non_churned = data['Complaint by Email'].value_counts()[unique_values_com_e_non_churned]
+    com_e_data_non_churned = pd.DataFrame({'Complaint by Email': unique_values_com_e_non_churned, 'Count': count_com_e_non_churned})
+
+    # Complaint by Social Media
+    unique_values_com_socmed_non_churned = data['Complaint by Social Media'].unique()
+    count_com_socmed_non_churned = data['Complaint by Social Media'].value_counts()[unique_values_com_socmed_non_churned]
+    com_socmed_data_non_churned = pd.DataFrame({'Complaint by Social Media': unique_values_com_socmed_non_churned, 'Count': count_com_socmed_non_churned})
+
+    # Complaint by Telegram
+    unique_values_tele_non_churned = data['Complaint by Telegram'].unique()
+    count_tele_non_churned = data['Complaint by Telegram'].value_counts()[unique_values_tele_non_churned]
+    tele_data_non_churned = pd.DataFrame({'Complaint by Telegram': unique_values_tele_non_churned, 'Count': count_tele_non_churned})
+
+    # Complaint by Whatsapp
+    unique_values_wa_non_churned = data['Complaint by Whatsapp'].unique()
+    count_wa_non_churned = data['Complaint by Whatsapp'].value_counts()[unique_values_wa_non_churned]
+    wa_data_non_churned = pd.DataFrame({'Complaint by Whatsapp': unique_values_wa_non_churned, 'Count': count_wa_non_churned})
+
+    # Complaint by WIC
+    unique_values_wic_non_churned = data['Complaint by WIC'].unique()
+    count_wic_non_churned = data['Complaint by WIC'].value_counts()[unique_values_wic_non_churned]
+    wic_data_non_churned = pd.DataFrame({'Complaint by WIC': unique_values_wic_non_churned, 'Count': count_wic_non_churned})
+
+    return area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned
+
+
 def visualize_data_batch(data):
     pdf_path = "Churn Predict.pdf"
     pdf_pages = PdfPages(pdf_path)
@@ -115,7 +227,16 @@ def visualize_data_batch(data):
 
     st.pyplot(fig)
     pdf_pages.savefig(fig)
-    
+
+    area_data_churned, plan_data_churned, tvplan_data_churned, \
+    adv_data_churned, com_cs_data_churned, com_e_data_churned, \
+    com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
+
+    area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, \
+    adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
+    com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
+
+    st.table(area_data_churned)
     data = data[data["Churn"] == "Churn"]
     columns = data.columns.to_list()
     
@@ -328,48 +449,6 @@ def visualize_data_batch(data):
     pdf_pages.savefig(fig)
     st.pyplot(fig)
 
-    # for col in columns:
-    #     if data[col].dtype in ["int64", "float64"] and col != "Churn":
-    #         fig = plt.figure(figsize=(10, 5))
-    #         top_val = data[col].value_counts().nlargest(10)
-
-    #         palette = sns.color_palette('viridis_r', n_colors=len(top_val.index))
-    #         ax = sns.countplot(x=col, data=data, order=top_val.index, palette=palette)
-
-    #         # Setting title, labels, and grid
-    #         plt.title(f"Top 10 {col} - Churned")
-    #         plt.xlabel("Value")
-    #         plt.ylabel("Count")
-    #         plt.grid(False)
-
-    #         # Membuat legenda dengan warna yang sama
-    #         handles = [plt.Rectangle((0, 0), 1, 1, fc=palette[i]) for i in range(len(top_val.index))]
-    #         labels = [value for value in top_val.index]
-    #         plt.legend(handles, labels)
-
-    #         plt.grid(False)
-
-    #         pdf_pages.savefig(fig)
-    #         st.pyplot(fig)
-
-    #     elif data[col].dtype in ['object'] and col != "Churn":
-    #         palette = sns.color_palette('crest')
-
-    #         top_val = data[col].value_counts().nlargest(5)
-    #         fig = plt.figure(figsize=(10, 5))
-    #         sns.barplot(x=data[col].value_counts().values, y=top_val.index, palette=palette)
-    #         plt.title(f"Top 10 {col} - Churned")
-    #         plt.xlabel("Total Customer")
-    #         plt.ylabel(col)
-
-    #         # Membuat legenda dengan warna yang sama
-    #         handles = [plt.Rectangle((0, 0), 1, 1, fc=palette[i % len(palette)]) for i in range(len(top_val.index))]
-    #         labels = [value for value in top_val.index]
-    #         plt.legend(handles, labels)
-
-    #         plt.grid(False)
-    #         pdf_pages.savefig(fig)
-    #         st.pyplot(fig)
     pdf_pages.close()
     st.success("PDF Report Created. Check your directory")
 
