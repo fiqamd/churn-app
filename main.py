@@ -118,48 +118,258 @@ def visualize_data_batch(data):
     
     data = data[data["Churn"] == "Churn"]
     columns = data.columns.to_list()
-    for col in columns:
-        if data[col].dtype in ["int64", "float64"] and col != "Churn":
-            fig = plt.figure(figsize=(10, 5))
-            top_val = data[col].value_counts().nlargest(10)
+    
+    #Area Name
+    palette_area = sns.color_palette('crest')
 
-            palette = sns.color_palette('magma', n_colors=len(top_val.index))
-            ax = sns.countplot(x=col, data=data, order=top_val.index, palette=palette)
+    top_val = data["Area Name"].value_counts().nlargest(5)
+    fig = plt.figure(figsize=(10, 5))
+    sns.barplot(x=data["Area Name"].value_counts().values, y=top_val.index, palette=palette_area)
+    plt.title(f"Top 10 Area Name - Churned")
+    plt.xlabel("Total Customer")
+    plt.ylabel("Area Name")
 
-            # Setting title, labels, and grid
-            plt.title(f"Top 10 {col} - Churned")
-            plt.xlabel("Value")
-            plt.ylabel("Count")
-            plt.grid(False)
+    # Membuat legenda dengan warna yang sama
+    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_area[i % len(palette_area)]) for i in range(len(top_val.index))]
+    labels = [value for value in top_val.index]
+    plt.legend(handles, labels)
 
-            # Membuat legenda dengan warna yang sama
-            handles = [plt.Rectangle((0, 0), 1, 1, fc=palette[i]) for i in range(len(top_val.index))]
-            labels = [value for value in top_val.index]
-            plt.legend(handles, labels)
+    plt.grid(False)
+    pdf_pages.savefig(fig)
+    st.pyplot(fig)
 
-            plt.grid(False)
+    #Plan
+    palette_plan = sns.color_palette('flare')
 
-            pdf_pages.savefig(fig)
-            st.pyplot(fig)
+    top_val = data["Plan"].value_counts().nlargest(5)
+    fig = plt.figure(figsize=(10, 5))
+    sns.barplot(x=data["Plan"].value_counts().values, y=top_val.index, palette=palette_plan)
+    plt.title(f"Top 10 Plan - Churned")
+    plt.xlabel("Total Customer")
+    plt.ylabel("Plan")
 
-        elif data[col].dtype in ['object'] and col != "Churn":
-            palette = sns.color_palette('crest')
+    # Membuat legenda dengan warna yang sama
+    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_plan[i % len(palette_plan)]) for i in range(len(top_val.index))]
+    labels = [value for value in top_val.index]
+    plt.legend(handles, labels)
 
-            top_val = data[col].value_counts().nlargest(5)
-            fig = plt.figure(figsize=(10, 5))
-            sns.barplot(x=data[col].value_counts().values, y=top_val.index, palette=palette)
-            plt.title(f"Top 10 {col} - Churned")
-            plt.xlabel("Total Customer")
-            plt.ylabel(col)
+    plt.grid(False)
+    pdf_pages.savefig(fig)
+    st.pyplot(fig)
 
-            # Membuat legenda dengan warna yang sama
-            handles = [plt.Rectangle((0, 0), 1, 1, fc=palette[i % len(palette)]) for i in range(len(top_val.index))]
-            labels = [value for value in top_val.index]
-            plt.legend(handles, labels)
+    #TV Plan
+    palette_tvplan = sns.color_palette(["#43C6AC", "#F8FFAE"], n_colors=10)
 
-            plt.grid(False)
-            pdf_pages.savefig(fig)
-            st.pyplot(fig)
+    top_val = data["Plan"].value_counts().nlargest(5)
+    fig = plt.figure(figsize=(10, 5))
+    sns.barplot(x=data["Plan"].value_counts().values, y=top_val.index, palette=palette_tvplan)
+    plt.title(f"Top 10 Plan - Churned")
+    plt.xlabel("Total Customer")
+    plt.ylabel("Plan")
+
+    # Membuat legenda dengan warna yang sama
+    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_tvplan[i % len(palette_tvplan)]) for i in range(len(top_val.index))]
+    labels = [value for value in top_val.index]
+    plt.legend(handles, labels)
+
+    plt.grid(False)
+    pdf_pages.savefig(fig)
+    st.pyplot(fig)
+
+
+    #Advance Promo
+    palette_advpromo = sns.color_palette(["#000C40", "#F0F2F0"], n_colors=10)
+
+    top_val = data["Plan"].value_counts().nlargest(5)
+    fig = plt.figure(figsize=(10, 5))
+    sns.barplot(x=data["Plan"].value_counts().values, y=top_val.index, palette=palette_advpromo)
+    plt.title(f"Top 10 Plan - Churned")
+    plt.xlabel("Total Customer")
+    plt.ylabel("Plan")
+
+    # Membuat legenda dengan warna yang sama
+    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_advpromo[i % len(palette_advpromo)]) for i in range(len(top_val.index))]
+    labels = [value for value in top_val.index]
+    plt.legend(handles, labels)
+
+    plt.grid(False)
+    pdf_pages.savefig(fig)
+    st.pyplot(fig)
+    
+    #Complaint by Customer Service
+    fig = plt.figure(figsize=(10, 5))
+    top_val = data["Complaint by Customer Service"].value_counts().nlargest(10)
+
+    palette_cs = sns.color_palette(["#C5796D", "#DBE6F6"], n_colors=10)
+    ax = sns.countplot(x="Complaint by Customer Service", data=data, order=top_val.index, palette=palette_cs)
+
+    # Setting title, labels, and grid
+    plt.title(f"Top 10 Complaint by Customer Service - Churned")
+    plt.xlabel("Value")
+    plt.ylabel("Count")
+    plt.grid(False)
+
+    # Membuat legenda dengan warna yang sama
+    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_cs[i]) for i in range(len(top_val.index))]
+    labels = [value for value in top_val.index]
+    plt.legend(handles, labels)
+    plt.grid(False)
+
+    pdf_pages.savefig(fig)
+    st.pyplot(fig)
+
+    #Complaint by Email
+    fig = plt.figure(figsize=(10, 5))
+    top_val = data["Complaint by Email"].value_counts().nlargest(10)
+
+    palette_e = sns.color_palette(["#67B26F", "#4ca2cd"], n_colors=10)
+    ax = sns.countplot(x="Complaint by Email", data=data, order=top_val.index, palette=palette_e)
+
+    # Setting title, labels, and grid
+    plt.title(f"Top 10 Complaint by Email - Churned")
+    plt.xlabel("Value")
+    plt.ylabel("Count")
+    plt.grid(False)
+
+    # Membuat legenda dengan warna yang sama
+    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_e[i]) for i in range(len(top_val.index))]
+    labels = [value for value in top_val.index]
+    plt.legend(handles, labels)
+    plt.grid(False)
+
+    pdf_pages.savefig(fig)
+    st.pyplot(fig)
+
+    #Complaint by Social Media
+    fig = plt.figure(figsize=(10, 5))
+    top_val = data["Complaint by Social Media"].value_counts().nlargest(10)
+
+    palette_sm = sns.color_palette(["#F3904F", "#3B4371"], n_colors=10)
+    ax = sns.countplot(x="Complaint by Social Media", data=data, order=top_val.index, palette=palette_sm)
+
+    # Setting title, labels, and grid
+    plt.title(f"Top 10 Complaint by Social Media - Churned")
+    plt.xlabel("Value")
+    plt.ylabel("Count")
+    plt.grid(False)
+
+    # Membuat legenda dengan warna yang sama
+    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_sm[i]) for i in range(len(top_val.index))]
+    labels = [value for value in top_val.index]
+    plt.legend(handles, labels)
+    plt.grid(False)
+
+    pdf_pages.savefig(fig)
+    st.pyplot(fig)
+
+    #Complaint by Telegram
+    fig = plt.figure(figsize=(10, 5))
+    top_val = data["Complaint by Telegram"].value_counts().nlargest(10)
+
+    palette_tele = sns.color_palette(["#A770EF", "#CF8BF3", "#FDB99B"], n_colors=10)
+    ax = sns.countplot(x="Complaint by Telegram", data=data, order=top_val.index, palette=palette_tele)
+
+    # Setting title, labels, and grid
+    plt.title(f"Top 10 Complaint by Telegram - Churned")
+    plt.xlabel("Value")
+    plt.ylabel("Count")
+    plt.grid(False)
+
+    # Membuat legenda dengan warna yang sama
+    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_tele[i]) for i in range(len(top_val.index))]
+    labels = [value for value in top_val.index]
+    plt.legend(handles, labels)
+    plt.grid(False)
+
+    pdf_pages.savefig(fig)
+    st.pyplot(fig)
+
+    #Complaint by Whatsapp
+    fig = plt.figure(figsize=(10, 5))
+    top_val = data["Complaint by Whatsapp"].value_counts().nlargest(10)
+
+    palette_wa = sns.color_palette(["#FF00CC", "#333399"], n_colors=10)
+    ax = sns.countplot(x="Complaint by Whatsapp", data=data, order=top_val.index, palette=palette_wa)
+
+    # Setting title, labels, and grid
+    plt.title(f"Top 10 Complaint by Whatsapp - Churned")
+    plt.xlabel("Value")
+    plt.ylabel("Count")
+    plt.grid(False)
+
+    # Membuat legenda dengan warna yang sama
+    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_wa[i]) for i in range(len(top_val.index))]
+    labels = [value for value in top_val.index]
+    plt.legend(handles, labels)
+    plt.grid(False)
+
+    pdf_pages.savefig(fig)
+    st.pyplot(fig)
+
+    #Complaint by WIC
+    fig = plt.figure(figsize=(10, 5))
+    top_val = data["Complaint by WIC"].value_counts().nlargest(10)
+
+    palette_wic = sns.color_palette(["#BE93C5", "#7BC6CC"], n_colors=10)
+    ax = sns.countplot(x="Complaint by WIC", data=data, order=top_val.index, palette=palette_wic)
+
+    # Setting title, labels, and grid
+    plt.title(f"Top 10 Complaint by WIC - Churned")
+    plt.xlabel("Value")
+    plt.ylabel("Count")
+    plt.grid(False)
+
+    # Membuat legenda dengan warna yang sama
+    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_wic[i]) for i in range(len(top_val.index))]
+    labels = [value for value in top_val.index]
+    plt.legend(handles, labels)
+    plt.grid(False)
+
+    pdf_pages.savefig(fig)
+    st.pyplot(fig)
+
+    # for col in columns:
+    #     if data[col].dtype in ["int64", "float64"] and col != "Churn":
+    #         fig = plt.figure(figsize=(10, 5))
+    #         top_val = data[col].value_counts().nlargest(10)
+
+    #         palette = sns.color_palette('viridis_r', n_colors=len(top_val.index))
+    #         ax = sns.countplot(x=col, data=data, order=top_val.index, palette=palette)
+
+    #         # Setting title, labels, and grid
+    #         plt.title(f"Top 10 {col} - Churned")
+    #         plt.xlabel("Value")
+    #         plt.ylabel("Count")
+    #         plt.grid(False)
+
+    #         # Membuat legenda dengan warna yang sama
+    #         handles = [plt.Rectangle((0, 0), 1, 1, fc=palette[i]) for i in range(len(top_val.index))]
+    #         labels = [value for value in top_val.index]
+    #         plt.legend(handles, labels)
+
+    #         plt.grid(False)
+
+    #         pdf_pages.savefig(fig)
+    #         st.pyplot(fig)
+
+    #     elif data[col].dtype in ['object'] and col != "Churn":
+    #         palette = sns.color_palette('crest')
+
+    #         top_val = data[col].value_counts().nlargest(5)
+    #         fig = plt.figure(figsize=(10, 5))
+    #         sns.barplot(x=data[col].value_counts().values, y=top_val.index, palette=palette)
+    #         plt.title(f"Top 10 {col} - Churned")
+    #         plt.xlabel("Total Customer")
+    #         plt.ylabel(col)
+
+    #         # Membuat legenda dengan warna yang sama
+    #         handles = [plt.Rectangle((0, 0), 1, 1, fc=palette[i % len(palette)]) for i in range(len(top_val.index))]
+    #         labels = [value for value in top_val.index]
+    #         plt.legend(handles, labels)
+
+    #         plt.grid(False)
+    #         pdf_pages.savefig(fig)
+    #         st.pyplot(fig)
     pdf_pages.close()
     st.success("PDF Report Created. Check your directory")
 
