@@ -236,6 +236,8 @@ def visualize_data_batch(data):
     adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
     com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
 
+    #Area Data Churned
+    area_data_churned = area_data_churned.reset_index(drop=True)
     st.table(area_data_churned, index = False)
     data = data[data["Churn"] == "Churn"]
     columns = data.columns.to_list()
