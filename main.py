@@ -245,6 +245,8 @@ def visualize_data_batch(data):
     data_counts = pd.DataFrame({'Jenis Churn': ['Churn', 'Not Churn'],
                             'Jumlah Data': [total_churn, total_not_churn]})
 
+    data_counts['Persentase'] = data_counts['Jumlah Data'].apply(lambda x: f"{(x / data.shape[0]) * 100:.2f}%")
+
     st.table(data_counts)
     pdf_pages.savefig(fig)
 
