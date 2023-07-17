@@ -102,32 +102,32 @@ def load_churned(data):
     # Area Name
     unique_values_area_churned = data['Area Name'].unique()
     count_area_churned = data['Area Name'].value_counts()[unique_values_area_churned]
-    area_data_churned = pd.DataFrame({'Area Name': unique_values_area_churned, 'Count': count_area_churned})
+    area_data_churned = pd.DataFrame({'Area Name': unique_values_area_churned, 'Count Churned': count_area_churned})
 
     # Plan
     unique_values_plan_churned = data['Plan'].unique()
     count_plan_churned = data['Plan'].value_counts()[unique_values_plan_churned]
-    plan_data_churned = pd.DataFrame({'Plan': unique_values_plan_churned, 'Count': count_plan_churned})
+    plan_data_churned = pd.DataFrame({'Plan': unique_values_plan_churned, 'Count Churned': count_plan_churned})
 
     # Tv Plan
     unique_values_tvplan_churned = data['Tv Plan'].unique()
     count_tvplan_churned = data['Tv Plan'].value_counts()[unique_values_tvplan_churned]
-    tvplan_data_churned = pd.DataFrame({'Tv Plan': unique_values_tvplan_churned, 'Count': count_tvplan_churned})
+    tvplan_data_churned = pd.DataFrame({'Tv Plan': unique_values_tvplan_churned, 'Count Churned': count_tvplan_churned})
 
     # Advance Promo
     unique_values_adv_churned = data['Advance Promo'].unique()
     count_adv_churned = data['Advance Promo'].value_counts()[unique_values_adv_churned]
-    adv_data_churned = pd.DataFrame({'Advance Promo': unique_values_adv_churned, 'Count': count_adv_churned})
+    adv_data_churned = pd.DataFrame({'Advance Promo': unique_values_adv_churned, 'Count Churned': count_adv_churned})
 
     # Complaint by Customer Service
     unique_values_com_cs_churned = data['Complaint by Customer Service'].unique()
     count_com_cs_churned = data['Complaint by Customer Service'].value_counts()[unique_values_com_cs_churned]
-    com_cs_data_churned = pd.DataFrame({'Complaint by Customer Service': unique_values_com_cs_churned, 'Count': count_com_cs_churned})
+    com_cs_data_churned = pd.DataFrame({'Complaint by Customer Service': unique_values_com_cs_churned, 'Count Churned': count_com_cs_churned})
 
     # Complaint by Email
     unique_values_com_e_churned = data['Complaint by Email'].unique()
     count_com_e_churned = data['Complaint by Email'].value_counts()[unique_values_com_e_churned]
-    com_e_data_churned = pd.DataFrame({'Complaint by Email': unique_values_com_e_churned, 'Count': count_com_e_churned})
+    com_e_data_churned = pd.DataFrame({'Complaint by Email': unique_values_com_e_churned, 'Count Churned': count_com_e_churned})
 
     # Complaint by Social Media
     unique_values_com_socmed_churned = data['Complaint by Social Media'].unique()
@@ -137,17 +137,17 @@ def load_churned(data):
     # Complaint by Telegram
     unique_values_tele_churned = data['Complaint by Telegram'].unique()
     count_tele_churned = data['Complaint by Telegram'].value_counts()[unique_values_tele_churned]
-    tele_data_churned = pd.DataFrame({'Complaint by Telegram': unique_values_tele_churned, 'Count': count_tele_churned})
+    tele_data_churned = pd.DataFrame({'Complaint by Telegram': unique_values_tele_churned, 'Count Churned': count_tele_churned})
 
     # Complaint by Whatsapp
     unique_values_wa_churned = data['Complaint by Whatsapp'].unique()
     count_wa_churned = data['Complaint by Whatsapp'].value_counts()[unique_values_wa_churned]
-    wa_data_churned = pd.DataFrame({'Complaint by Whatsapp': unique_values_wa_churned, 'Count': count_wa_churned})
+    wa_data_churned = pd.DataFrame({'Complaint by Whatsapp': unique_values_wa_churned, 'Count Churned': count_wa_churned})
 
     # Complaint by WIC
     unique_values_wic_churned = data['Complaint by WIC'].unique()
     count_wic_churned = data['Complaint by WIC'].value_counts()[unique_values_wic_churned]
-    wic_data_churned = pd.DataFrame({'Complaint by WIC': unique_values_wic_churned})
+    wic_data_churned = pd.DataFrame({'Complaint by WIC': unique_values_wic_churned, 'Count Churned': count_wic_churned})
 
     return area_data_churned, plan_data_churned, tvplan_data_churned, \
            adv_data_churned, com_cs_data_churned, com_e_data_churned, \
@@ -159,52 +159,52 @@ def load_non_churned(data):
     # Area Name
     unique_values_area_non_churned = data['Area Name'].unique()
     count_area_non_churned = data['Area Name'].value_counts()[unique_values_area_non_churned]
-    area_data_non_churned = pd.DataFrame({'Area Name': unique_values_area_non_churned, 'Count': count_area_non_churned})
+    area_data_non_churned = pd.DataFrame({'Area Name': unique_values_area_non_churned, 'Count Not Churned': count_area_non_churned})
 
     # Plan
     unique_values_plan_non_churned = data['Plan'].unique()
     count_plan_non_churned = data['Plan'].value_counts()[unique_values_plan_non_churned]
-    plan_data_non_churned = pd.DataFrame({'Plan': unique_values_plan_non_churned, 'Count': count_plan_non_churned})
+    plan_data_non_churned = pd.DataFrame({'Plan': unique_values_plan_non_churned, 'Count Not Churned': count_plan_non_churned})
 
     # Tv Plan
     unique_values_tvplan_non_churned = data['Tv Plan'].unique()
     count_tvplan_non_churned = data['Tv Plan'].value_counts()[unique_values_tvplan_non_churned]
-    tvplan_data_non_churned = pd.DataFrame({'Tv Plan': unique_values_tvplan_non_churned, 'Count': count_tvplan_non_churned})
+    tvplan_data_non_churned = pd.DataFrame({'Tv Plan': unique_values_tvplan_non_churned, 'Count Not Churned': count_tvplan_non_churned})
 
     # Advance Promo
     unique_values_adv_non_churned = data['Advance Promo'].unique()
     count_adv_non_churned = data['Advance Promo'].value_counts()[unique_values_adv_non_churned]
-    adv_data_non_churned = pd.DataFrame({'Advance Promo': unique_values_adv_non_churned, 'Count': count_adv_non_churned})
+    adv_data_non_churned = pd.DataFrame({'Advance Promo': unique_values_adv_non_churned, 'Count Not Churned': count_adv_non_churned})
 
     # Complaint by Customer Service
     unique_values_com_cs_non_churned = data['Complaint by Customer Service'].unique()
     count_com_cs_non_churned = data['Complaint by Customer Service'].value_counts()[unique_values_com_cs_non_churned]
-    com_cs_data_non_churned = pd.DataFrame({'Complaint by Customer Service': unique_values_com_cs_non_churned, 'Count': count_com_cs_non_churned})
+    com_cs_data_non_churned = pd.DataFrame({'Complaint by Customer Service': unique_values_com_cs_non_churned, 'Count Not Churned': count_com_cs_non_churned})
 
     # Complaint by Email
     unique_values_com_e_non_churned = data['Complaint by Email'].unique()
     count_com_e_non_churned = data['Complaint by Email'].value_counts()[unique_values_com_e_non_churned]
-    com_e_data_non_churned = pd.DataFrame({'Complaint by Email': unique_values_com_e_non_churned, 'Count': count_com_e_non_churned})
+    com_e_data_non_churned = pd.DataFrame({'Complaint by Email': unique_values_com_e_non_churned, 'Count Not Churned': count_com_e_non_churned})
 
     # Complaint by Social Media
     unique_values_com_socmed_non_churned = data['Complaint by Social Media'].unique()
     count_com_socmed_non_churned = data['Complaint by Social Media'].value_counts()[unique_values_com_socmed_non_churned]
-    com_socmed_data_non_churned = pd.DataFrame({'Complaint by Social Media': unique_values_com_socmed_non_churned, 'Count': count_com_socmed_non_churned})
+    com_socmed_data_non_churned = pd.DataFrame({'Complaint by Social Media': unique_values_com_socmed_non_churned, 'Count Not Churned': count_com_socmed_non_churned})
 
     # Complaint by Telegram
     unique_values_tele_non_churned = data['Complaint by Telegram'].unique()
     count_tele_non_churned = data['Complaint by Telegram'].value_counts()[unique_values_tele_non_churned]
-    tele_data_non_churned = pd.DataFrame({'Complaint by Telegram': unique_values_tele_non_churned, 'Count': count_tele_non_churned})
+    tele_data_non_churned = pd.DataFrame({'Complaint by Telegram': unique_values_tele_non_churned, 'Count Not Churned': count_tele_non_churned})
 
     # Complaint by Whatsapp
     unique_values_wa_non_churned = data['Complaint by Whatsapp'].unique()
     count_wa_non_churned = data['Complaint by Whatsapp'].value_counts()[unique_values_wa_non_churned]
-    wa_data_non_churned = pd.DataFrame({'Complaint by Whatsapp': unique_values_wa_non_churned, 'Count': count_wa_non_churned})
+    wa_data_non_churned = pd.DataFrame({'Complaint by Whatsapp': unique_values_wa_non_churned, 'Count Not Churned': count_wa_non_churned})
 
     # Complaint by WIC
     unique_values_wic_non_churned = data['Complaint by WIC'].unique()
     count_wic_non_churned = data['Complaint by WIC'].value_counts()[unique_values_wic_non_churned]
-    wic_data_non_churned = pd.DataFrame({'Complaint by WIC': unique_values_wic_non_churned, 'Count': count_wic_non_churned})
+    wic_data_non_churned = pd.DataFrame({'Complaint by WIC': unique_values_wic_non_churned, 'Count Not Churned': count_wic_non_churned})
 
     return area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned
 
@@ -313,17 +313,18 @@ def visualize_data_batch(data):
 
     #Area Data Churned
     area_data_churned = area_data_churned.reset_index(drop=True)
-    total = area_data_churned["Count"].sum()
+    total = area_data_churned["Count Churned"].sum()
     area_data_churned["Persentase Dari Data Churn"] = area_data_churned["Count"]/total*100
     st.table(area_data_churned)
 
     #Area Data Not Churned
     area_data_non_churned = area_data_non_churned.reset_index(drop=True)
-    total = area_data_non_churned["Count"].sum()
+    total = area_data_non_churned["Count Not Churned"].sum()
     area_data_non_churned["Persentase Dari Data Not Churn"] = area_data_non_churned["Count"]/total*100
     st.table(area_data_non_churned)
 
     area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
+    area_data_merge = area_data_merge.fillna(0)
     st.table(area_data_merge)
 
 
