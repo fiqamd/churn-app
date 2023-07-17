@@ -331,7 +331,7 @@ def visualize_data_batch(data):
     plan_data_churned = plan_data_churned.reset_index(drop=True)
     total = plan_data_churned["Count Churned"].sum()
     plan_data_churned["Persentase Dari Data Churn"] = plan_data_churned["Count Churned"]/total*100
-    st.table(area_data_churned)
+    st.table(plan_data_churned)
 
     #Plan Data Not Churned
     plan_data_non_churned = plan_data_non_churned.reset_index(drop=True)
@@ -347,7 +347,7 @@ def visualize_data_batch(data):
     tvplan_data_churned = tvplan_data_churned.reset_index(drop=True)
     total = tvplan_data_churned["Count Churned"].sum()
     tvplan_data_churned["Persentase Dari Data Churn"] = tvplan_data_churned["Count Churned"]/total*100
-    st.table(area_data_churned)
+    st.table(tvplan_data_churned)
 
     #Tv Plan Data Not Churned
     tvplan_data_non_churned = tvplan_data_non_churned.reset_index(drop=True)
@@ -363,7 +363,7 @@ def visualize_data_batch(data):
     adv_data_churned = adv_data_churned.reset_index(drop=True)
     total = adv_data_churned["Count Churned"].sum()
     adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Count Churned"]/total*100
-    st.table(area_data_churned)
+    st.table(adv_data_churned)
 
     #Advance Promo Data Not Churned
     adv_data_non_churned = adv_data_non_churned.reset_index(drop=True)
@@ -373,7 +373,7 @@ def visualize_data_batch(data):
 
     adv_data_merge = pd.merge(adv_data_churned, adv_data_non_churned, on="Area Name", how="outer")
     adv_data_merge = adv_data_merge.fillna(0)
-    st.table(tvplan_data_merge)
+    st.table(adv_data_merge)
 
 
     data = data[data["Churn"] == "Churn"]
