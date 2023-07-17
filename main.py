@@ -339,7 +339,7 @@ def visualize_data_batch(data):
     plan_data_non_churned["Persentase Dari Data Not Churn"] = plan_data_non_churned["Count Not Churned"]/total*100
     st.table(plan_data_non_churned)
 
-    plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Area Name", how="outer")
+    plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Plan", how="outer")
     plan_data_merge = plan_data_merge.fillna(0)
     st.table(plan_data_merge)
 
@@ -355,7 +355,7 @@ def visualize_data_batch(data):
     tvplan_data_non_churned["Persentase Dari Data Not Churn"] = tvplan_data_non_churned["Count Not Churned"]/total*100
     st.table(tvplan_data_non_churned)
 
-    tvplan_data_merge = pd.merge(tvplan_data_churned, tvplan_data_non_churned, on="Area Name", how="outer")
+    tvplan_data_merge = pd.merge(tvplan_data_churned, tvplan_data_non_churned, on="Tv Plan", how="outer")
     tvplan_data_merge = tvplan_data_merge.fillna(0)
     st.table(tvplan_data_merge)
 
@@ -371,7 +371,7 @@ def visualize_data_batch(data):
     adv_data_non_churned["Persentase Dari Data Not Churn"] = adv_data_non_churned["Count Not Churned"]/total*100
     st.table(adv_data_non_churned)
 
-    adv_data_merge = pd.merge(adv_data_churned, adv_data_non_churned, on="Area Name", how="outer")
+    adv_data_merge = pd.merge(adv_data_churned, adv_data_non_churned, on="Advance Promo", how="outer")
     adv_data_merge = adv_data_merge.fillna(0)
     st.table(adv_data_merge)
 
