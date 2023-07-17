@@ -218,7 +218,7 @@ def visualize_data_batch(data):
     st.table(data.head(10))
 
     # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here'):
+    if st.button('Download Here - ALL FILE', key = "download_all"):
         csv_data = data.to_csv(index=False)
         b64 = base64.b64encode(csv_data.encode()).decode()
         href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download File CSV</a>'
@@ -246,7 +246,7 @@ def visualize_data_batch(data):
     st.table(data_churned.head(10))
 
     # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here'):
+    if st.button('Download Here - FILE CHURNED', key="download_churned_data"):
         csv_data_churned = data_churned.to_csv(index=False)
         b64_churned = base64.b64encode(csv_data.encode()).decode()
         href_churned = f'<a href="data:file/csv;b64_churned,{b64}" download="data_churned.csv">Download File CSV</a>'
@@ -258,7 +258,7 @@ def visualize_data_batch(data):
     st.table(data_not_churned.head(10))
 
     # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here'):
+    if st.button('Download Here - FILE NOT CHURNED', key="download_not_churned_data"):
         csv_data_not_churned = data_not_churned.to_csv(index=False)
         b64_not_churned = base64.b64encode(csv_data.encode()).decode()
         href_not_churned = f'<a href="data:file/csv;base64_not_churned,{b64}" download="data_not_churned.csv">Download File CSV</a>'
