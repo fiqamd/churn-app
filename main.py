@@ -323,7 +323,7 @@ def visualize_data_batch(data):
     area_data_non_churned["Persentase Dari Data Not Churn"] = area_data_non_churned["Count"]/total*100
     st.table(area_data_non_churned)
 
-    area_data_merge = pd.merge(area_data_churned, area_data_non_churned)
+    area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
     st.table(area_data_merge)
 
 
