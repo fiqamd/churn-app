@@ -274,18 +274,18 @@ def visualize_data_batch(data):
 
     # Menghitung jumlah data Churn ##BARUU 18 JULI 2023
     churn_data = data[data['Churn'] == 'Churn']
-    churn_counts = churn_data.shape[0]
+    # churn_counts = churn_data.shape[0]
 
     # Menghitung persentase komposisi data Churn pada setiap kolom data
-    churn_composition = churn_data.apply(lambda x: (x.value_counts() / churn_counts) * 100)
+    # churn_composition = churn_data.apply(lambda x: (x.value_counts() / churn_counts) * 100)
 
     # Menampilkan jumlah data dan persentase komposisi data Churn pada setiap kolom data
     st.header("Data Churn")
     st.subheader("Jumlah Data Churn")
     st.table(churn_data.count())
 
-    st.subheader("Persentase Komposisi Data Churn")
-    st.table(churn_composition)
+    # st.subheader("Persentase Komposisi Data Churn")
+    # st.table(churn_composition)
 
     # Menghitung jumlah data Not Churn
     not_churn_data = data[data['Churn'] == 'Not Churn']
@@ -326,6 +326,54 @@ def visualize_data_batch(data):
     area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
     area_data_merge = area_data_merge.fillna(0)
     st.table(area_data_merge)
+
+    #Plan Data Churned
+    plan_data_churned = plan_data_churned.reset_index(drop=True)
+    total = plan_data_churned["Count Churned"].sum()
+    plan_data_churned["Persentase Dari Data Churn"] = plan_data_churned["Count Churned"]/total*100
+    st.table(area_data_churned)
+
+    #Plan Data Not Churned
+    plan_data_non_churned = plan_data_non_churned.reset_index(drop=True)
+    total = plan_data_non_churned["Count Not Churned"].sum()
+    plan_data_non_churned["Persentase Dari Data Not Churn"] = plan_data_non_churned["Count Not Churned"]/total*100
+    st.table(plan_data_non_churned)
+
+    plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Area Name", how="outer")
+    plan_data_merge = plan_data_merge.fillna(0)
+    st.table(plan_data_merge)
+
+    #Tv Plan Data Churned
+    tvplan_data_churned = tvplan_data_churned.reset_index(drop=True)
+    total = tvplan_data_churned["Count Churned"].sum()
+    tvplan_data_churned["Persentase Dari Data Churn"] = tvplan_data_churned["Count Churned"]/total*100
+    st.table(area_data_churned)
+
+    #Tv Plan Data Not Churned
+    tvplan_data_non_churned = tvplan_data_non_churned.reset_index(drop=True)
+    total = tvplan_data_non_churned["Count Not Churned"].sum()
+    tvplan_data_non_churned["Persentase Dari Data Not Churn"] = tvplan_data_non_churned["Count Not Churned"]/total*100
+    st.table(tvplan_data_non_churned)
+
+    tvplan_data_merge = pd.merge(tvplan_data_churned, tvplan_data_non_churned, on="Area Name", how="outer")
+    tvplan_data_merge = tvplan_data_merge.fillna(0)
+    st.table(tvplan_data_merge)
+
+    #Advance Promo Data Churned
+    adv_data_churned = adv_data_churned.reset_index(drop=True)
+    total = adv_data_churned["Count Churned"].sum()
+    adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Count Churned"]/total*100
+    st.table(area_data_churned)
+
+    #Advance Promo Data Not Churned
+    adv_data_non_churned = adv_data_non_churned.reset_index(drop=True)
+    total = adv_data_non_churned["Count Not Churned"].sum()
+    adv_data_non_churned["Persentase Dari Data Not Churn"] = adv_data_non_churned["Count Not Churned"]/total*100
+    st.table(adv_data_non_churned)
+
+    adv_data_merge = pd.merge(adv_data_churned, adv_data_non_churned, on="Area Name", how="outer")
+    adv_data_merge = adv_data_merge.fillna(0)
+    st.table(tvplan_data_merge)
 
 
     data = data[data["Churn"] == "Churn"]
