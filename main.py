@@ -242,8 +242,10 @@ def visualize_data_batch(data):
     total_churn = churn_counts['Churn']
     total_not_churn = churn_counts['Not Churn']
 
-    st.markdown(f"<span style='background-color: #F37651;'>Jumlah Data Churn: {total_churn}</span>", unsafe_allow_html=True)
-    st.markdown(f"<span style='background-color: #F6B48F;'>Jumlah Data Not Churn: {total_not_churn}</span>", unsafe_allow_html=True)
+    data_counts = pd.DataFrame({'Jenis Churn': ['Churn', 'Not Churn'],
+                            'Jumlah Data': [total_churn, total_not_churn]})
+
+    st.table(data_counts)
     pdf_pages.savefig(fig)
 
     data_churned = data[data['Churn'] == 'Churn']
