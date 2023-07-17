@@ -18,8 +18,10 @@ import os
 import io
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
-from google.cloud import storage
+import base64
+
 from matplotlib.backends.backend_pdf import PdfPages
+from google.cloud import storage
 from st_files_connection import FilesConnection
 
 
@@ -212,7 +214,16 @@ def visualize_data_batch(data):
     pdf_pages = PdfPages(pdf_path)
     
     st.header("Hasil Prediksi")
-    st.table(data)
+    # st.table(data)
+    st.table(data.head(10))
+
+    # Menampilkan tombol "Download File CSV"
+    if st.button('Download File CSV'):
+        csv_data = data.to_csv(index=False)
+        b64 = base64.b64encode(csv_data.encode()).decode()
+        href = f'<a href="data:file/csv;base64,{b64}" download="data.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href, unsafe_allow_html=True)
 
     st.header("Churn Distribution")
     fig, ax = plt.subplots()
