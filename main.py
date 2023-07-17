@@ -314,13 +314,13 @@ def visualize_data_batch(data):
     #Area Data Churned
     area_data_churned = area_data_churned.reset_index(drop=True)
     total = area_data_churned["Count Churned"].sum()
-    area_data_churned["Persentase Dari Data Churn"] = area_data_churned["Count"]/total*100
+    area_data_churned["Persentase Dari Data Churn"] = area_data_churned["Count Churned"]/total*100
     st.table(area_data_churned)
 
     #Area Data Not Churned
     area_data_non_churned = area_data_non_churned.reset_index(drop=True)
     total = area_data_non_churned["Count Not Churned"].sum()
-    area_data_non_churned["Persentase Dari Data Not Churn"] = area_data_non_churned["Count"]/total*100
+    area_data_non_churned["Persentase Dari Data Not Churn"] = area_data_non_churned["Count Not Churned"]/total*100
     st.table(area_data_non_churned)
 
     area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
