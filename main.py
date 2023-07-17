@@ -236,6 +236,12 @@ def visualize_data_batch(data):
     
     # Mengatur judul di tengah pie chart
     ax.set_title("Churn Distribution", loc='center')
+    churn_counts = data['Churn'].value_counts()
+    total_churn = churn_counts['Churn']
+    total_not_churn = churn_counts['Not Churn']
+
+    st.markdown(f"Jumlah Data Churn: {total_churn}")
+    st.markdown(f"Jumlah Data Not Churn: {total_not_churn}")
 
     st.pyplot(fig)
     pdf_pages.savefig(fig)
