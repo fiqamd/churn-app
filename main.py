@@ -236,14 +236,14 @@ def visualize_data_batch(data):
     
     # Mengatur judul di tengah pie chart
     ax.set_title("Churn Distribution", loc='center')
+
+    st.pyplot(fig)
     churn_counts = data['Churn'].value_counts()
     total_churn = churn_counts['Churn']
     total_not_churn = churn_counts['Not Churn']
 
-    st.markdown(f"Jumlah Data Churn: {total_churn}")
-    st.markdown(f"Jumlah Data Not Churn: {total_not_churn}")
-
-    st.pyplot(fig)
+    st.markdown(f"<span style='background-color: #F37651;'>Jumlah Data Churn: {total_churn}</span>", unsafe_allow_html=True)
+    st.markdown(f"<span style='background-color: #F6B48F;'>Jumlah Data Not Churn: {total_not_churn}</span>", unsafe_allow_html=True)
     pdf_pages.savefig(fig)
 
     data_churned = data[data['Churn'] == 'Churn']
