@@ -249,7 +249,7 @@ def visualize_data_batch(data):
     if st.button('Download Here - FILE CHURNED', key="download_churned_data"):
         csv_data_churned = data_churned.to_csv(index=False)
         b64_churned = base64.b64encode(csv_data_churned.encode()).decode()
-        href_churned = f'<a href="data:file/csv;b64_churned,{b64}" download="data_churned.csv">Download File CSV</a>'
+        href_churned = f'<a href="data:file/csv;b64_churned,{b64_churned}" download="data_churned.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href_churned, unsafe_allow_html=True)
 
@@ -261,7 +261,7 @@ def visualize_data_batch(data):
     if st.button('Download Here - FILE NOT CHURNED', key="download_not_churned_data"):
         csv_data_not_churned = data_not_churned.to_csv(index=False)
         b64_not_churned = base64.b64encode(csv_data_not_churned.encode()).decode()
-        href_not_churned = f'<a href="data:file/csv;base64_not_churned,{b64}" download="data_not_churned.csv">Download File CSV</a>'
+        href_not_churned = f'<a href="data:file/csv;base64_not_churned,{b64_not_churned}" download="data_not_churned.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href, unsafe_allow_html=True)
 
