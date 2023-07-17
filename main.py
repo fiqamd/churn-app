@@ -263,7 +263,7 @@ def visualize_data_batch(data):
         b64_not_churned = base64.b64encode(csv_data_not_churned.encode()).decode()
         href_not_churned = f'<a href="data:file/csv;base64_not_churned,{b64_not_churned}" download="data_not_churned.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href, unsafe_allow_html=True)
+        st.markdown(href_not_churned, unsafe_allow_html=True)
 
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
