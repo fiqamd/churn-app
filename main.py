@@ -272,6 +272,37 @@ def visualize_data_batch(data):
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href_not_churned, unsafe_allow_html=True)
 
+    # Menghitung jumlah data Churn ##BARUU 18 JULI 2023
+    churn_data = data[data['Churn'] == 'Churn']
+    churn_counts = churn_data.shape[0]
+
+    # Menghitung persentase komposisi data Churn pada setiap kolom data
+    churn_composition = churn_data.apply(lambda x: (x.value_counts() / churn_counts) * 100)
+
+    # Menampilkan jumlah data dan persentase komposisi data Churn pada setiap kolom data
+    st.header("Data Churn")
+    st.subheader("Jumlah Data Churn")
+    st.table(churn_data.count())
+
+    st.subheader("Persentase Komposisi Data Churn")
+    st.table(churn_composition)
+
+    # Menghitung jumlah data Not Churn
+    not_churn_data = data[data['Churn'] == 'Not Churn']
+    not_churn_counts = not_churn_data.shape[0]
+
+    # Menghitung persentase komposisi data Not Churn pada setiap kolom data
+    not_churn_composition = not_churn_data.apply(lambda x: (x.value_counts() / not_churn_counts) * 100)
+
+    # Menampilkan jumlah data dan persentase komposisi data Not Churn pada setiap kolom data
+    st.header("Data Not Churn")
+    st.subheader("Jumlah Data Not Churn")
+    st.table(not_churn_data.count())
+
+    st.subheader("Persentase Komposisi Data Not Churn")
+    st.table(not_churn_composition)
+    
+    
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
