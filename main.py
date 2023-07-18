@@ -299,8 +299,8 @@ def visualize_data_batch(data):
     st.subheader("Jumlah Data Not Churn")
     st.table(not_churn_data.count())
 
-    st.subheader("Persentase Komposisi Data Not Churn")
-    st.table(not_churn_composition)
+    # st.subheader("Persentase Komposisi Data Not Churn")
+    # st.table(not_churn_composition)
     
     
     area_data_churned, plan_data_churned, tvplan_data_churned, \
