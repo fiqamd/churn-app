@@ -292,7 +292,7 @@ def visualize_data_batch(data):
     not_churn_counts = not_churn_data.shape[0]
 
     # Menghitung persentase komposisi data Not Churn pada setiap kolom data
-    not_churn_composition = not_churn_data.apply(lambda x: (x.value_counts() / not_churn_counts) * 100)
+    # not_churn_composition = not_churn_data.apply(lambda x: (x.value_counts() / not_churn_counts) * 100)
 
     # Menampilkan jumlah data dan persentase komposisi data Not Churn pada setiap kolom data
     st.header("Data Not Churn")
