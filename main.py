@@ -287,10 +287,10 @@ def visualize_data_batch(data):
 
     # Membuat nested pie chart
     fig, ax = plt.subplots(figsize=(8, 8))
-    outer_pie, _ = ax.pie(outer_sizes, labels=outer_labels, autopct='%1.1f%%', startangle=90, colors=outer_colors)
+    _, outer_pie, _ = ax.pie(outer_sizes, labels=outer_labels, autopct='%1.1f%%', startangle=90, colors=outer_colors)
     circle = plt.Circle((0, 0), 0.6, color='white')
     ax.add_artist(circle)
-    inner_pie, _ = ax.pie(inner_sizes, radius=0.6, labels=inner_labels, labeldistance=0.4, autopct='%1.1f%%', startangle=90, colors=inner_colors)
+    _, inner_pie, _ = ax.pie(inner_sizes, radius=0.6, labels=inner_labels, labeldistance=0.4, autopct='%1.1f%%', startangle=90, colors=inner_colors)
 
     # Menambahkan legend untuk inner pie chart
     plt.legend(inner_pie, inner_labels, title='Area Name', loc='upper right', bbox_to_anchor=(1.3, 1))
