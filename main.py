@@ -411,7 +411,7 @@ def visualize_data_batch(data):
     adv_data_non_churned["Persentase Dari Data Not Churn"] = adv_data_non_churned["Count Not Churned"]/total*100
     st.table(adv_data_non_churned.head(10))
     # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - Plan Not Churned Data', key='download_tvplan_not_churned'):
+    if st.button('Download Here - Plan Not Churned Data', key='download_advpromo_not_churned'):
         csv_advpromo_not_churned = adv_data_non_churned.to_csv(index=False)
         href_not_churned = f'<a href="adv_data_non_churned:file/csv;charset=utf-8,{csv_advpromo_not_churned}" download="adv_data_non_churned.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
