@@ -318,7 +318,7 @@ def visualize_data_batch(data):
     st.table(area_data_churned.head(10))
     # Menampilkan tombol "Download File CSV"
     if st.button('Download Here - Area Name Churned Data', key='download__area_churned'):
-        csv_area_churned = data_churned.to_csv(index=False)
+        csv_area_data_churned = data_churned.to_csv(index=False)
         href_churned = f'<a href="area_data_churned:file/csv;charset=utf-8,{csv_data_churned}" download="area_data_churned.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href_churned, unsafe_allow_html=True)
@@ -329,7 +329,7 @@ def visualize_data_batch(data):
     plan_data_churned["Persentase Dari Data Churn"] = plan_data_churned["Count Churned"]/total*100
     st.table(plan_data_churned.head(10))
     # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - Plan Churned Data', key='download__area_churned'):
+    if st.button('Download Here - Plan Churned Data', key='download__plan_churned'):
         csv_plan_churned = plan_data_churned.to_csv(index=False)
         href_churned = f'<a href="plan_data_churned:file/csv;charset=utf-8,{csv_plan_churned}" download="plan_data_churned.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
@@ -341,7 +341,7 @@ def visualize_data_batch(data):
     tvplan_data_churned["Persentase Dari Data Churn"] = tvplan_data_churned["Count Churned"]/total*100
     st.table(tvplan_data_churned.head(10))
     # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - Tv Plan Churned Data', key='download__area_churned'):
+    if st.button('Download Here - Tv Plan Churned Data', key='download__tv_churned'):
         csv_tvplan_churned = tvplan_data_churned.to_csv(index=False)
         href_churned = f'<a href="tvplan_data_churned:file/csv;charset=utf-8,{csv_tvplan_churned}" download="tvplan_data_churned.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
@@ -353,7 +353,7 @@ def visualize_data_batch(data):
     adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Count Churned"]/total*100
     st.table(adv_data_churned.head(10))
     # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - Tv Plan Churned Data', key='download__area_churned'):
+    if st.button('Download Here - Tv Plan Churned Data', key='download__adv_promo_churned'):
         csv_adv_churned = adv_adv_churned.to_csv(index=False)
         href_churned = f'<a href="adv_adv_churned:file/csv;charset=utf-8,{csv_adv_churned}" download="adv_adv_churned.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
