@@ -272,14 +272,17 @@ def visualize_data_batch(data):
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href, unsafe_allow_html=True)
 
+    # Mengambil 10 data teratas berdasarkan jumlah churn
+    top_10_data = area_data_merge.nlargest(10, 'Count Churned')
+
     # Mengatur data untuk outer pie chart (Churned vs Not Churned)
     outer_labels = ['Churned', 'Not Churned']
-    outer_sizes = [area_data_merge['Count Churned'].sum(), area_data_merge['Count Not Churned'].sum()]
+    outer_sizes = [top_10_data['Count Churned'].sum(), top_10_data['Count Not Churned'].sum()]
     outer_colors = ['skyblue', 'lightcoral']
 
     # Mengatur data untuk inner pie chart (Area Name)
-    inner_labels = area_data_merge['Area Name']
-    inner_sizes = area_data_merge['Count Churned']
+    inner_labels = top_10_data['Area Name']
+    inner_sizes = top_10_data['Count Churned']
     inner_colors = plt.cm.Set3(range(len(inner_labels)))
 
     # Membuat nested pie chart
@@ -290,7 +293,7 @@ def visualize_data_batch(data):
     ax.pie(inner_sizes, labels=inner_labels, labeldistance=0.4, autopct='%1.1f%%', startangle=90, colors=inner_colors)
 
     # Menampilkan judul
-    ax.set_title('Nested Pie Chart: Churn vs Area Name')
+    ax.set_title('Nested Pie Chart: Churn vs Area Name (Top 10)')
 
     # Menampilkan legend
     plt.legend(title='Area Name', loc='upper right', bbox_to_anchor=(1.3, 1))
