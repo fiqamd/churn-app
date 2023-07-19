@@ -272,31 +272,45 @@ def visualize_data_batch(data):
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href, unsafe_allow_html=True)
 
-    # Mengambil 10 data teratas berdasarkan jumlah churn
-    top_10_data = area_data_merge.nlargest(3, 'Count Churned')
+    # Mengurutkan data berdasarkan jumlah Churned secara descending
+    area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
-    # Mengatur data untuk outer pie chart (Churned vs Not Churned)
-    outer_labels = ['Churned', 'Not Churned']
-    outer_sizes = [top_10_data['Count Churned'].sum(), top_10_data['Count Not Churned'].sum()]
-    outer_colors = ['skyblue', 'lightcoral']
+    # Mengambil 10 data teratas untuk inner pie chart
+    top_10_data = area_data_merge.head(10)
 
-    # Mengatur data untuk inner pie chart (Area Name)
-    inner_labels = top_10_data['Area Name']
-    inner_sizes = top_10_data['Count Churned']
-    inner_colors = plt.cm.Set3(range(len(inner_labels)))
+    # Mengatur ukuran, warna, dan label pada outer pie chart (Churned vs Not Churned)
+    outer_vals = np.array([[top_10_data['Count Churned'].sum(), 0]])
+    outer_valsnorm = outer_vals / np.sum(outer_vals) * 2 * np.pi
+    outer_valsleft = np.cumsum(np.append(0, outer_valsnorm.flatten()[:-1])).reshape(outer_vals.shape)
+    outer_colors = plt.cm.tab20c([0, 4])  # Menggunakan colormap tab20c
 
-    # Membuat nested pie chart
-    fig, ax = plt.subplots(figsize=(8, 8))
-    _, outer_pie, _ = ax.pie(outer_sizes, labels=outer_labels, autopct='%1.1f%%', startangle=90, colors=outer_colors)
-    circle = plt.Circle((0, 0), 0.6, color='white')
-    ax.add_artist(circle)
-    _, inner_pie, _ = ax.pie(inner_sizes, radius=0.8, labels=inner_labels, labeldistance=0.4, autopct='%1.1f%%', startangle=90, colors=inner_colors)
+    # Mengatur ukuran, warna, dan label pada inner pie chart (Area Name)
+    inner_vals = np.array(top_10_data['Count Churned'])
+    inner_valsnorm = inner_vals / np.sum(inner_vals) * 2 * np.pi
+    inner_valsleft = np.cumsum(np.append(0, inner_valsnorm.flatten()[:-1])).reshape(inner_vals.shape)
+    inner_colors = plt.cm.tab20c(range(len(inner_vals)))
 
-    # Menambahkan legend untuk inner pie chart
-    plt.legend(inner_pie, inner_labels, title='Area Name', loc='upper right', bbox_to_anchor=(1.3, 1))
+    # Membuat figure dan axis dengan proyeksi polar
+    fig, ax = plt.subplots(subplot_kw=dict(projection="polar"))
 
-    # Menampilkan judul
-    ax.set_title('Nested Pie Chart: Churn vs Area Name (Top 10)')
+    # Menggambar outer pie chart
+    ax.bar(x=outer_valsleft.flatten(),
+        width=outer_valsnorm.flatten(), bottom=1, height=0.3,
+        color=outer_colors, edgecolor='w', linewidth=1, align="edge")
+
+    # Menggambar inner pie chart
+    ax.bar(x=inner_valsleft.flatten(),
+        width=inner_valsnorm.flatten(), bottom=1-0.3, height=0.3,
+        color=inner_colors, edgecolor='w', linewidth=1, align="edge")
+
+    # Mengatur judul
+    ax.set(title="Nested Pie Chart: Churn vs Area Name (Top 10)")
+
+    # Menghilangkan axis
+    ax.set_axis_off()
+
+    # Menampilkan nested pie chart
+    plt.show()
 
     # Menampilkan nested pie chart menggunakan Streamlit
     st.pyplot(fig)
