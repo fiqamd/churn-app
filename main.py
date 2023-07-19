@@ -260,49 +260,6 @@ def visualize_data_batch(data):
     st.table(data_counts)
     pdf_pages.savefig(fig)
 
-    # Menghitung jumlah data pada kolom "Area Name", "Plan", "Tv Plan", dan "Advance Promo"
-    area_counts = data['Area Name'].value_counts()
-    plan_counts = data['Plan'].value_counts()
-    tv_plan_counts = data['Tv Plan'].value_counts()
-    advance_promo_counts = data['Advance Promo'].value_counts()
-
-    # Menghitung jumlah data Churn dan Not Churn
-    churn_counts = data['Churn'].value_counts()
-
-    # Menyiapkan data untuk outer pie chart
-    outer_labels = churn_counts.index
-    outer_sizes = churn_counts.values
-
-    # Menyiapkan data untuk inner pie chart
-    inner_labels = ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo']
-    inner_sizes = [area_counts.sum(), plan_counts.sum(), tv_plan_counts.sum(), advance_promo_counts.sum()]
-
-    # Mengatur ukuran figure
-    fig, ax = plt.subplots(figsize=(8, 8))
-
-    # Membuat outer pie chart
-    outer_colors = ['skyblue', 'lightcoral']
-    ax.pie(outer_sizes, labels=outer_labels, autopct='%1.1f%%', startangle=90, colors=outer_colors)
-
-    # Mengatur lingkaran dalam untuk membuat nested pie chart
-    circle = plt.Circle((0, 0), 0.6, color='white')
-    ax.add_artist(circle)
-
-    # Membuat inner pie chart
-    inner_colors = ['lightgreen', 'lightblue', 'lightyellow', 'lightpink']
-    ax.pie(inner_sizes, labels=inner_labels, labeldistance=0.4, autopct='%1.1f%%', startangle=90, colors=inner_colors)
-
-    # Menampilkan judul
-    ax.set_title('Nested Pie Chart: Churn vs Data Columns')
-
-    # Menampilkan legend
-    plt.legend(title='Churn', loc='upper right', bbox_to_anchor=(1.3, 1))
-
-    # Menampilkan layout chart
-    plt.tight_layout()
-    plt.show()
-    st.pyplot(fig)
-
     data_churned = data[data['Churn'] == 'Churn']
 
     #Area Name
@@ -314,6 +271,32 @@ def visualize_data_batch(data):
         href = f'<a href="area_data_merge:file/csv;charset=utf-8,{csv_area_name}" download="area_data_merge.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href, unsafe_allow_html=True)
+
+    # Mengatur data untuk outer pie chart (Churned vs Not Churned)
+    outer_labels = ['Churned', 'Not Churned']
+    outer_sizes = [area_data_merge['Count Churned'].sum(), area_data_merge['Count Not Churned'].sum()]
+    outer_colors = ['skyblue', 'lightcoral']
+
+    # Mengatur data untuk inner pie chart (Area Name)
+    inner_labels = area_data_merge['Area Name']
+    inner_sizes = area_data_merge['Count Churned']
+    inner_colors = plt.cm.Set3(range(len(inner_labels)))
+
+    # Membuat nested pie chart
+    fig, ax = plt.subplots(figsize=(8, 8))
+    ax.pie(outer_sizes, labels=outer_labels, autopct='%1.1f%%', startangle=90, colors=outer_colors)
+    circle = plt.Circle((0, 0), 0.6, color='white')
+    ax.add_artist(circle)
+    ax.pie(inner_sizes, labels=inner_labels, labeldistance=0.4, autopct='%1.1f%%', startangle=90, colors=inner_colors)
+
+    # Menampilkan judul
+    ax.set_title('Nested Pie Chart: Churn vs Area Name')
+
+    # Menampilkan legend
+    plt.legend(title='Area Name', loc='upper right', bbox_to_anchor=(1.3, 1))
+
+    # Menampilkan nested pie chart menggunakan Streamlit
+    st.pyplot(fig)
 
     #Plan
     plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Plan", how="outer")
