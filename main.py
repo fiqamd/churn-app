@@ -295,15 +295,16 @@ def visualize_data_batch(data):
     #Advance Promo
     adv_data_merge = pd.merge(adv_data_churned, adv_data_non_churned, on="Advance Promo", how="outer")
     adv_data_merge = adv_data_merge.fillna(0)
-    st.table(adv_data_merge)
-
-    st.header('Churned Data')
-    st.table(data_churned.head(10))
+    st.table(adv_data_merge.head(10))
     if st.button('Download Here - Advance Promo', key='download_adv_promo'):
         csv_adv_promo = adv_data_merge.to_csv(index=False)
         href = f'<a href="adv_data_merge:file/csv;charset=utf-8,{csv_adv_promo}" download="adv_data_merge.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href, unsafe_allow_html=True)
+
+    st.header('Churned Data')
+    st.table(data_churned)
+    
 
     # Menampilkan tombol "Download File CSV"
     if st.button('Download Here - Churned Data', key='download_churned'):
