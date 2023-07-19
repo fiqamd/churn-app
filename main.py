@@ -276,25 +276,31 @@ def visualize_data_batch(data):
     # Mengurutkan data berdasarkan jumlah Churned secara descending
     area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
-    # Menyiapkan nested pie chart
-    outer_labels = area_data_merge['Area Name']
-    inner_labels = ['Churned', 'Not Churned']
-    sizes = [area_data_merge['Count Churned'], area_data_merge['Count Not Churned']]
+    # Menggabungkan data menjadi satu list
+    data_combined = zip(area_data_merge['Area Name'], area_data_merge['Count Churned'], area_data_merge['Count Not Churned'])
+
+    # Mengurutkan data berdasarkan jumlah Data Churned secara menurun
+    sorted_data = sorted(data_combined, key=lambda x: x[1], reverse=True)
+
+    # Mengambil top 5 data
+    top_5_data = sorted_data[:5]
+
+    # Memisahkan data menjadi tiga list terpisah
+    top_5_area_names = [item[0] for item in top_5_data]
+    top_5_data_churned = [item[1] for item in top_5_data]
+    top_5_data_not_churned = [item[2] for item in top_5_data]
+
+    # Menyiapkan pie chart
+    labels = top_5_area_names
+    sizes = top_5_data_churned
 
     fig, ax = plt.subplots()
 
-    # Menambahkan pie chart luar
-    ax.pie(sizes[0], labels=outer_labels, radius=1, wedgeprops=dict(width=0.3, edgecolor='w'))
-
-    # Menambahkan pie chart dalam
-    ax.pie(sizes[1], radius=0.7, wedgeprops=dict(width=0.3, edgecolor='w'))
-
-    # Menandai persentase di dalam pie chart
+    # Menambahkan pie chart
+    ax.pie(sizes, labels=labels, autopct='%1.1f%%')
     ax.set(aspect="equal")
-    ax.set_title("Nested Pie Chart")
+    ax.set_title("Top 5 Area Churned")
 
-    # Menampilkan grafik
-    plt.show()
     st.pyplot(fig)
 
     #Plan
