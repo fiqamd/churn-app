@@ -295,6 +295,7 @@ def visualize_data_batch(data):
 
     # Menampilkan grafik
     plt.show()
+    st.pyplot(fig)
 
     #Plan
     plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Plan", how="outer")
