@@ -362,11 +362,10 @@ def visualize_data_batch(data):
     data_not_churned = data[data['Churn'] == 'Not Churn']
     st.header('Not Churned Data')
     st.table(data_not_churned.head(10))
-
     # Menampilkan tombol "Download File CSV"
     if st.button('Download Here - Not Churned Data', key='download_not_churned'):
         csv_data_not_churned = data_not_churned.to_csv(index=False)
-        href_not_churned = f'<a href="data:file/csv;charset=utf-8,{csv_data_not_churned}" download="data_not_churned.csv">Download File CSV</a>'
+        href_not_churned = f'<a href="data_not_churned:file/csv;charset=utf-8,{csv_data_not_churned}" download="data_not_churned.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href_not_churned, unsafe_allow_html=True)
 
@@ -374,25 +373,49 @@ def visualize_data_batch(data):
     area_data_non_churned = area_data_non_churned.reset_index(drop=True)
     total = area_data_non_churned["Count Not Churned"].sum()
     area_data_non_churned["Persentase Dari Data Not Churn"] = area_data_non_churned["Count Not Churned"]/total*100
-    st.table(area_data_non_churned)
+    st.table(area_data_non_churned.head(10))
+    # Menampilkan tombol "Download File CSV"
+    if st.button('Download Here - Area Not Churned Data', key='download_not_churned'):
+        csv_area_not_churned = area_data_non_churned.to_csv(index=False)
+        href_not_churned = f'<a href="area_data_non_churned:file/csv;charset=utf-8,{csv_area_not_churned}" download="area_data_non_churned.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href_not_churned, unsafe_allow_html=True)
 
     #Plan Data Not Churned
     plan_data_non_churned = plan_data_non_churned.reset_index(drop=True)
     total = plan_data_non_churned["Count Not Churned"].sum()
     plan_data_non_churned["Persentase Dari Data Not Churn"] = plan_data_non_churned["Count Not Churned"]/total*100
-    st.table(plan_data_non_churned)
+    st.table(plan_data_non_churned.head(10))
+    # Menampilkan tombol "Download File CSV"
+    if st.button('Download Here - Plan Not Churned Data', key='download_plan_not_churned'):
+        csv_plan_not_churned = plan_data_non_churned.to_csv(index=False)
+        href_not_churned = f'<a href="plan_data_non_churned:file/csv;charset=utf-8,{csv_plan_not_churned}" download="plan_data_non_churned.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href_not_churned, unsafe_allow_html=True)
 
     #Tv Plan Data Not Churned
     tvplan_data_non_churned = tvplan_data_non_churned.reset_index(drop=True)
     total = tvplan_data_non_churned["Count Not Churned"].sum()
     tvplan_data_non_churned["Persentase Dari Data Not Churn"] = tvplan_data_non_churned["Count Not Churned"]/total*100
-    st.table(tvplan_data_non_churned)
+    st.table(tvplan_data_non_churned.head(10))
+    # Menampilkan tombol "Download File CSV"
+    if st.button('Download Here - Plan Not Churned Data', key='download_tvplan_not_churned'):
+        csv_tvplan_not_churned = tvplan_data_non_churned.to_csv(index=False)
+        href_not_churned = f'<a href="tvplan_data_non_churned:file/csv;charset=utf-8,{csv_tvplan_not_churned}" download="tvplan_data_non_churned.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href_not_churned, unsafe_allow_html=True)
 
     #Advance Promo Data Not Churned
     adv_data_non_churned = adv_data_non_churned.reset_index(drop=True)
     total = adv_data_non_churned["Count Not Churned"].sum()
     adv_data_non_churned["Persentase Dari Data Not Churn"] = adv_data_non_churned["Count Not Churned"]/total*100
-    st.table(adv_data_non_churned)
+    st.table(adv_data_non_churned.head(10))
+    # Menampilkan tombol "Download File CSV"
+    if st.button('Download Here - Plan Not Churned Data', key='download_tvplan_not_churned'):
+        csv_advpromo_not_churned = adv_data_non_churned.to_csv(index=False)
+        href_not_churned = f'<a href="adv_data_non_churned:file/csv;charset=utf-8,{csv_advpromo_not_churned}" download="adv_data_non_churned.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href_not_churned, unsafe_allow_html=True)
 
     # Menghitung jumlah data Churn ##BARUU 18 JULI 2023
     churn_data = data[data['Churn'] == 'Churn']
