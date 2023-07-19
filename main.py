@@ -301,6 +301,7 @@ def visualize_data_batch(data):
     # Menampilkan layout chart
     plt.tight_layout()
     plt.show()
+    st.pyplot(fig)
 
     data_churned = data[data['Churn'] == 'Churn']
 
