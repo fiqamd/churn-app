@@ -273,7 +273,7 @@ def visualize_data_batch(data):
         st.markdown(href, unsafe_allow_html=True)
 
     # Mengambil 10 data teratas berdasarkan jumlah churn
-    top_10_data = area_data_merge.nlargest(5, 'Count Churned')
+    top_10_data = area_data_merge.nlargest(3, 'Count Churned')
 
     # Mengatur data untuk outer pie chart (Churned vs Not Churned)
     outer_labels = ['Churned', 'Not Churned']
