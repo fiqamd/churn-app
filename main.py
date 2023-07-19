@@ -19,6 +19,7 @@ import io
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 import base64
+import numpy as np
 
 from matplotlib.backends.backend_pdf import PdfPages
 from google.cloud import storage
