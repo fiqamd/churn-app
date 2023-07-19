@@ -304,8 +304,6 @@ def visualize_data_batch(data):
 
     st.header('Churned Data')
     st.table(data_churned)
-    
-
     # Menampilkan tombol "Download File CSV"
     if st.button('Download Here - Churned Data', key='download_churned'):
         csv_data_churned = data_churned.to_csv(index=False)
@@ -317,25 +315,49 @@ def visualize_data_batch(data):
     area_data_churned = area_data_churned.reset_index(drop=True)
     total = area_data_churned["Count Churned"].sum()
     area_data_churned["Persentase Dari Data Churn"] = area_data_churned["Count Churned"]/total*100
-    st.table(area_data_churned)
+    st.table(area_data_churned.head(10))
+    # Menampilkan tombol "Download File CSV"
+    if st.button('Download Here - Area Name Churned Data', key='download__area_churned'):
+        csv_area_churned = data_churned.to_csv(index=False)
+        href_churned = f'<a href="area_data_churned:file/csv;charset=utf-8,{csv_data_churned}" download="area_data_churned.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href_churned, unsafe_allow_html=True)
 
     #Plan Data Churned
     plan_data_churned = plan_data_churned.reset_index(drop=True)
     total = plan_data_churned["Count Churned"].sum()
     plan_data_churned["Persentase Dari Data Churn"] = plan_data_churned["Count Churned"]/total*100
-    st.table(plan_data_churned)
+    st.table(plan_data_churned.head(10))
+    # Menampilkan tombol "Download File CSV"
+    if st.button('Download Here - Plan Churned Data', key='download__area_churned'):
+        csv_plan_churned = plan_data_churned.to_csv(index=False)
+        href_churned = f'<a href="plan_data_churned:file/csv;charset=utf-8,{csv_plan_churned}" download="plan_data_churned.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href_churned, unsafe_allow_html=True)
 
     #Tv Plan Data Churned
     tvplan_data_churned = tvplan_data_churned.reset_index(drop=True)
     total = tvplan_data_churned["Count Churned"].sum()
     tvplan_data_churned["Persentase Dari Data Churn"] = tvplan_data_churned["Count Churned"]/total*100
-    st.table(tvplan_data_churned)
+    st.table(tvplan_data_churned.head(10))
+    # Menampilkan tombol "Download File CSV"
+    if st.button('Download Here - Tv Plan Churned Data', key='download__area_churned'):
+        csv_tvplan_churned = tvplan_data_churned.to_csv(index=False)
+        href_churned = f'<a href="tvplan_data_churned:file/csv;charset=utf-8,{csv_tvplan_churned}" download="tvplan_data_churned.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href_churned, unsafe_allow_html=True)
 
     #Advance Promo Data Churned
-    adv_data_churned = adv_data_churned.reset_index(drop=True)
+    adv_adv_churned = adv_data_churned.reset_index(drop=True)
     total = adv_data_churned["Count Churned"].sum()
     adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Count Churned"]/total*100
-    st.table(adv_data_churned)
+    st.table(adv_data_churned.head(10))
+    # Menampilkan tombol "Download File CSV"
+    if st.button('Download Here - Tv Plan Churned Data', key='download__area_churned'):
+        csv_adv_churned = adv_adv_churned.to_csv(index=False)
+        href_churned = f'<a href="adv_adv_churned:file/csv;charset=utf-8,{csv_adv_churned}" download="adv_adv_churned.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href_churned, unsafe_allow_html=True)
 
     data_not_churned = data[data['Churn'] == 'Not Churn']
     st.header('Not Churned Data')
