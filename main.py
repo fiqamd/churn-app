@@ -375,7 +375,7 @@ def visualize_data_batch(data):
     area_data_non_churned["Persentase Dari Data Not Churn"] = area_data_non_churned["Count Not Churned"]/total*100
     st.table(area_data_non_churned.head(10))
     # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - Area Not Churned Data', key='download_not_churned'):
+    if st.button('Download Here - Area Not Churned Data', key='download_area_not_churned'):
         csv_area_not_churned = area_data_non_churned.to_csv(index=False)
         href_not_churned = f'<a href="area_data_non_churned:file/csv;charset=utf-8,{csv_area_not_churned}" download="area_data_non_churned.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
