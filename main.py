@@ -265,17 +265,32 @@ def visualize_data_batch(data):
     #Area Name
     area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
     area_data_merge = area_data_merge.fillna(0)
-    st.table(area_data_merge)
+    st.table(area_data_merge.head(10))
+    if st.button('Download Here - Area Name', key='download_area_name'):
+        csv_area_name = area_data_merge.to_csv(index=False)
+        href = f'<a href="area_data_merge:file/csv;charset=utf-8,{csv_area_name}" download="area_data_merge.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href, unsafe_allow_html=True)
 
     #Plan
     plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Plan", how="outer")
     plan_data_merge = plan_data_merge.fillna(0)
-    st.table(plan_data_merge)
+    st.table(plan_data_merge.head(10))
+    if st.button('Download Here - Plan', key='download_plan'):
+        csv_plan = plan_data_merge.to_csv(index=False)
+        href = f'<a href="plan_data_merge:file/csv;charset=utf-8,{csv_plan}" download="plan_data_merge.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href, unsafe_allow_html=True)
 
     #Tv Plan
     tvplan_data_merge = pd.merge(tvplan_data_churned, tvplan_data_non_churned, on="Tv Plan", how="outer")
     tvplan_data_merge = tvplan_data_merge.fillna(0)
-    st.table(tvplan_data_merge)
+    st.table(tvplan_data_merge.head(10))
+    if st.button('Download Here - Tv Plan', key='download_tv_plan'):
+        csv_tv_plan = tvplan_data_merge.to_csv(index=False)
+        href = f'<a href="tvplan_data_merge:file/csv;charset=utf-8,{csv_tv_plan}" download="tvplan_data_merge.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href, unsafe_allow_html=True)
 
     #Advance Promo
     adv_data_merge = pd.merge(adv_data_churned, adv_data_non_churned, on="Advance Promo", how="outer")
@@ -284,6 +299,11 @@ def visualize_data_batch(data):
 
     st.header('Churned Data')
     st.table(data_churned.head(10))
+    if st.button('Download Here - Advance Promo', key='download_adv_promo'):
+        csv_adv_promo = adv_data_merge.to_csv(index=False)
+        href = f'<a href="adv_data_merge:file/csv;charset=utf-8,{csv_adv_promo}" download="adv_data_merge.csv">Download File CSV</a>'
+        st.markdown("Untuk mendownload file seluruh:")
+        st.markdown(href, unsafe_allow_html=True)
 
     # Menampilkan tombol "Download File CSV"
     if st.button('Download Here - Churned Data', key='download_churned'):
