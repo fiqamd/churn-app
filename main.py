@@ -261,13 +261,13 @@ def visualize_data_batch(data):
     pdf_pages.savefig(fig)
 
     # Menghitung jumlah data pada kolom "Area Name", "Plan", "Tv Plan", dan "Advance Promo"
-    area_counts = df['Area Name'].value_counts()
-    plan_counts = df['Plan'].value_counts()
-    tv_plan_counts = df['Tv Plan'].value_counts()
-    advance_promo_counts = df['Advance Promo'].value_counts()
+    area_counts = data['Area Name'].value_counts()
+    plan_counts = data['Plan'].value_counts()
+    tv_plan_counts = data['Tv Plan'].value_counts()
+    advance_promo_counts = data['Advance Promo'].value_counts()
 
     # Menghitung jumlah data Churn dan Not Churn
-    churn_counts = df['Churn'].value_counts()
+    churn_counts = data['Churn'].value_counts()
 
     # Menyiapkan data untuk outer pie chart
     outer_labels = churn_counts.index
