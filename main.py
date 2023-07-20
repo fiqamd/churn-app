@@ -276,10 +276,10 @@ def visualize_data_batch(data):
     # Mengurutkan data berdasarkan jumlah Churned secara descending
     area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
-    # Plot pie chart for Data Churned
+    # Plot pie chart untuk Data Churned berdasarkan Area Name
     plt.figure(figsize=(6, 6))
     plt.pie(area_data_merge['Count Churned'], labels=area_data_merge['Area Name'], autopct='%1.1f%%', startangle=140)
-    plt.title('Data Churned by Area Name')
+    plt.title('Data Churned berdasarkan Area Name')
     plt.axis('equal')
 
     # Display the pie chart
