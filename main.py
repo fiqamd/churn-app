@@ -96,10 +96,10 @@ def predict_churn(data):
     data = preprocess_input(data)
     predictions = model.predict(data)
     data["Churn"] = predictions
-    data = reverse(data)
-    return data
-    # reverse_data = reverse(data)
-    # return data, reverse_data
+    # data = reverse(data)
+    # return data
+    reverse_data = reverse(data)
+    return data, reverse_data
 
 def load_churned(data):
     data = data[data['Churn'] == 'Churn']
@@ -891,11 +891,12 @@ def run():
         input_df = pd.DataFrame(user_df_data,columns = user_df_colnames)
         
         if st.button("Predict"):
-            result_df = predict_churn(input_df)
-            if result_df.iloc[0]['Churn'] == 0:
+            data, reverse_data = predict_churn(data)
+            # result_df = predict_churn(input_df)
+            if data.iloc[0]['Churn'] == 0:
                 st.success(f' The customer will be Not Churn')
-            # elif result_df.iloc[0]['Churn']== 1:
-            else:
+            elif result_df.iloc[0]['Churn']== 1:
+            # else:
                 st.success(f'The customer will be Churn')
 
     elif add_selectbox == 'Batch':
