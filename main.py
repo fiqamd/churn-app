@@ -214,6 +214,7 @@ def load_non_churned(data):
 def visualize_data_batch(data):
     # reverse_data = predict_churn(data)
     # data = reverse_data
+    data = predict_churn(data)
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
@@ -472,9 +473,16 @@ def visualize_data_batch(data):
     st.table(area_data_merge.head(10))
     if st.button('Download Here - Area Name', key='download_area_name'):
         csv_area_name = area_data_merge.to_csv(index=False)
-        href = f'<a href="area_data_merge:file/csv;charset=utf-8,{csv_area_name}" download="area_data_merge.csv">Download File CSV</a>'
+        b64 = base64.b64encode(csv_area_name.encode()).decode()  # Encode the CSV data to base64.
+        href = f'<a href="data:file/csv;base64,{b64}" download="area_data_merge.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href, unsafe_allow_html=True)
+
+    # if st.button('Download Here - Area Name', key='download_area_name'):
+    #     csv_area_name = area_data_merge.to_csv(index=False)
+    #     href = f'<a href="area_data_merge:file/csv;charset=utf-8,{csv_area_name}" download="area_data_merge.csv">Download File CSV</a>'
+    #     st.markdown("Untuk mendownload file seluruh:")
+    #     st.markdown(href, unsafe_allow_html=True)
 
     # # Mengurutkan data berdasarkan jumlah Churned secara descending
     # area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
