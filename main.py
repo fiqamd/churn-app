@@ -214,7 +214,7 @@ def load_non_churned(data):
 def visualize_data_batch(data):
     # reverse_data = predict_churn(data)
     # data = reverse_data
-    data = predict_churn(data)
+    data, reverse_data = predict_churn(data)
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
@@ -233,7 +233,7 @@ def visualize_data_batch(data):
 
     st.header("Hasil Prediksi")
     # st.table(data)
-    st.table(data.head(10))
+    st.table(reverse_data.head(10))
 
     # Menampilkan tombol "Download File CSV"
     if st.button('Download Here - All Data', key='download_all'):
