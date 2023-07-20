@@ -277,11 +277,28 @@ def visualize_data_batch(data):
     # area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
 
-    # Plot pie chart for Data Not Churned
+    # Sort the DataFrame by 'Data Churned' in descending order
+    df = area_data_merge.sort_values(by='Count Churned', ascending=False)
+
+    # Select the top 5 rows
+    top_5 = area_data_merge.head(5)
+
+    # Calculate the sum of 'Data Churned' for the remaining rows
+    remaining_sum = area_data_merge.iloc[5:]['Count Churned'].sum()
+
+    # Add the 'dll' row to the DataFrame
+    dll_row = {'Area Name': 'dll', 'Count Churned': remaining_sum}
+    top_5 = top_5.append(dll_row, ignore_index=True)
+
+    # Plot the pie chart
     plt.figure(figsize=(6, 6))
-    plt.pie(area_data_merge['Count Not Churned'], labels=area_data_merge['Area Name'], autopct='%1.1f%%', startangle=140)
-    plt.title('Data Not Churned')
+    plt.pie(top_5['Count Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
+    plt.title('Top 5 Count Churned by Area Name')
     plt.axis('equal')
+
+    # Display the pie chart using st.pyplot(fig)
+    fig = plt.gcf()  # Get the current figure
+    st.pyplot(fig)
 
     # # Mengambil 5 data terbanyak dari Data Churned dan sisanya diubah menjadi "dll"
     # top_5_churned = area_data_merge.nlargest(5, 'Count Churned')
