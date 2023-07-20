@@ -888,16 +888,23 @@ def run():
         
         user_df_data = [[user_area,user_plan,tv_plan,adv_promo,comp_cs,comp_email,comp_socmed,comp_tel,comp_wa,comp_wic]]
         user_df_colnames = ["Area Name","Plan","Tv Plan","Advance Promo","Complaint by Customer Service","Complaint by Email","Complaint by Social Media","Complaint by Telegram","Complaint by Whatsapp","Complaint by WIC"]
-        
+
         if st.button("Predict"):
             input_df = pd.DataFrame(user_df_data,columns = user_df_colnames)
             data, reverse_data = predict_churn(input_df)
             # result_df = predict_churn(input_df)
-            if data.iloc[0]['Churn'] == 0:
-                st.success(f' The customer will be Not Churn')
-            elif data.iloc[0]['Churn']== 1:
-            # else:
-                st.success(f'The customer will be Churn')
+            # if data.iloc[0]['Churn'] == 0:
+            #     st.success(f' The customer will be Not Churn')
+            # elif data.iloc[0]['Churn']== 1:
+            # # else:
+            #     st.success(f'The customer will be Churn')
+            
+            churn_value = reverse_data.iloc[0]['Churn']
+
+            if churn_value == 0:
+                st.success('The customer will not churn.')
+            elif churn_value == 1:
+                st.success('The customer will churn.')
 
     elif add_selectbox == 'Batch':
         file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
