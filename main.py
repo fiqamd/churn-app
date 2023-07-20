@@ -271,6 +271,11 @@ def visualize_data_batch(data):
     option = st.selectbox('Pilih data yang ingin ditampilkan:',
                           ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo']
                           )
+    # Preprocess the DataFrame by dropping rows with NaN values in 'Count Churned' and 'Count Not Churned' columns
+    area_data_merge.dropna(subset=['Count Churned', 'Count Not Churned'], inplace=True)
+    plan_data_merge.dropna(subset=['Count Churned', 'Count Not Churned'], inplace=True)
+    tvplan_data_merge.dropna(subset=['Count Churned', 'Count Not Churned'], inplace=True)
+    adv_data_merge.dropna(subset=['Count Churned', 'Count Not Churned'], inplace=True)
     if option == 'Area Name':
         # Sort the DataFrame by 'Data Churned' in descending order
         area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
