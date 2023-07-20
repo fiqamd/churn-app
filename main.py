@@ -276,30 +276,37 @@ def visualize_data_batch(data):
     # Mengurutkan data berdasarkan jumlah Churned secara descending
     area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
-    # Menggabungkan data menjadi satu list
-    data_combined = zip(area_data_merge['Area Name'], area_data_merge['Count Churned'], area_data_merge['Count Not Churned'])
+    # Menggabungkan data churned dan not churned
+    total_data = [area_data_merge['Count Churned'][i] + area_data_merge['Count Not Churned'][i] for i in range(len(area_data_merge['Area Name']))]
 
-    # Mengurutkan data berdasarkan jumlah Data Churned secara menurun
-    sorted_data = sorted(data_combined, key=lambda x: x[1], reverse=True)
+    # Mengurutkan data berdasarkan total_data secara descending
+    sorted_data = sorted(zip(area_data_merge['Area Name'], total_data), key=lambda x: x[1], reverse=True)
 
     # Mengambil top 5 data
     top_5_data = sorted_data[:5]
 
-    # Memisahkan data menjadi tiga list terpisah
-    top_5_area_names = [item[0] for item in top_5_data]
-    top_5_data_churned = [item[1] for item in top_5_data]
-    top_5_data_not_churned = [item[2] for item in top_5_data]
+    # Mengambil sisanya
+    remaining_data = sorted_data[5:]
+
+    # Menghitung total sisanya
+    total_remaining = sum(data for _, data in remaining_data)
+
+    # Menggabungkan data sisanya dengan "dll"
+    top_5_data.append(("dll", total_remaining))
+
+    # Memisahkan data dan labels
+    labels, sizes = zip(*top_5_data)
+
+    # Menyiapkan warna untuk pie chart
+    colors = plt.cm.Paired(range(len(labels)))
 
     # Menyiapkan pie chart
-    labels = top_5_area_names
-    sizes = top_5_data_churned
-
     fig, ax = plt.subplots()
+    ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
 
-    # Menambahkan pie chart
-    ax.pie(sizes, labels=labels, autopct='%1.1f%%')
-    ax.set(aspect="equal")
-    ax.set_title("Top 5 Area Churned")
+    # Menandai persentase di dalam pie chart
+    ax.axis('equal')
+    ax.set_title("Top 5 Areas with 'dll' Category")
 
     st.pyplot(fig)
 
