@@ -278,7 +278,7 @@ def visualize_data_batch(data):
 
 
     # Sort the DataFrame by 'Data Churned' in descending order
-    df = area_data_merge.sort_values(by='Count Churned', ascending=False)
+    area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
     # Select the top 5 rows
     top_5 = area_data_merge.head(5)
@@ -300,78 +300,27 @@ def visualize_data_batch(data):
     fig = plt.gcf()  # Get the current figure
     st.pyplot(fig)
 
-    # # Mengambil 5 data terbanyak dari Data Churned dan sisanya diubah menjadi "dll"
-    # top_5_churned = area_data_merge.nlargest(5, 'Count Churned')
-    # other_churned_total = area_data_merge['Count Churned'].sum() - top_5_churned['Count Churned'].sum()
-    # top_5_churned.loc[5] = ['dll', other_churned_total, 0]
+    # Sort the DataFrame by 'Data Churned' in descending order
+    area_data_merge = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
-    # # Mengambil 5 data terbanyak dari Data Not Churned dan sisanya diubah menjadi "dll"
-    # top_5_not_churned = area_data_merge.nlargest(5, 'Count Not Churned')
-    # other_not_churned_total = area_data_merge['Count Not Churned'].sum() - top_5_not_churned['Count Not Churned'].sum()
-    # top_5_not_churned.loc[5] = ['dll', other_not_churned_total, 0]
+    # Select the top 5 rows
+    top_5 = area_data_merge.head(5)
 
-    # # Membuat nested pie chart
-    # fig, ax = plt.subplots()
+    # Calculate the sum of 'Data Churned' for the remaining rows
+    remaining_sum = area_data_merge.iloc[5:]['Count Not Churned'].sum()
 
-    # # Outer pie chart (Data Churned)
-    # ax.pie(top_5_churned['Count Churned'], labels=top_5_churned['Area Name'], autopct='%1.1f%%', startangle=90)
-    # ax.set_aspect('equal')
-    # ax.set_title('Count Churned')
+    # Add the 'dll' row to the DataFrame
+    dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
+    top_5 = top_5.append(dll_row, ignore_index=True)
 
-    # # Inner pie chart (Data Not Churned)
-    # ax_inner = plt.axes([0.5, 0.5, 0.35, 0.35])
-    # ax_inner.pie(top_5_not_churned['Count Not Churned'], labels=top_5_not_churned['Area Name'], autopct='%1.1f%%', startangle=90)
-    # ax_inner.set_aspect('equal')
-    # ax_inner.set_title('Count Not Churned')
+    # Plot the pie chart
+    plt.figure(figsize=(6, 6))
+    plt.pie(top_5['Count Not Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
+    plt.title('Top 5 Count Not Churned by Area Name')
+    plt.axis('equal')
 
-    # # Menyiapkan nested pie chart
-    # outer_labels = area_data_merge['Area Name']
-    # inner_labels = ['Churned', 'Not Churned']
-    # sizes = [area_data_merge['Count Churned'], area_data_merge['Count Not Churned']]
-
-    # fig, ax = plt.subplots()
-
-    # # Menambahkan pie chart luar
-    # ax.pie(sizes[0], labels=outer_labels, radius=1, wedgeprops=dict(width=0.3, edgecolor='w'))
-
-    # # Menambahkan pie chart dalam
-    # ax.pie(sizes[1], radius=0.7, wedgeprops=dict(width=0.3, edgecolor='w'))
-
-    # # Menandai persentase di dalam pie chart
-    # ax.set(aspect="equal")
-    # ax.set_title("Nested Pie Chart")
-
-    # # Menggabungkan data churned dan not churned
-    # total_data = [area_data_merge['Count Churned'][i] + area_data_merge['Count Not Churned'][i] for i in range(len(area_data_merge['Area Name']))]
-
-    # # Mengurutkan data berdasarkan total_data secara descending
-    # sorted_data = sorted(zip(area_data_merge['Area Name'], total_data), key=lambda x: x[1], reverse=True)
-
-    # # Mengambil top 5 data
-    # top_5_data = sorted_data[:5]
-
-    # # Mengambil sisanya
-    # remaining_data = sorted_data[5:]
-
-    # # Menghitung total sisanya
-    # total_remaining = sum(data for _, data in remaining_data)
-
-    # # Menggabungkan data sisanya dengan "dll"
-    # top_5_data.append(("dll", total_remaining))
-
-    # # Memisahkan data dan labels
-    # labels, sizes = zip(*top_5_data)
-
-    # # Menyiapkan warna untuk pie chart
-    # colors = plt.cm.Paired(range(len(labels)))
-
-    # # Menyiapkan pie chart
-    # fig, ax = plt.subplots()
-    # ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
-
-    # # Menandai persentase di dalam pie chart
-    # ax.axis('equal')
-    # ax.set_title("Top 5 Areas with 'dll' Category")
+    # Display the pie chart using st.pyplot(fig)
+    fig = plt.gcf()  # Get the current figure
 
     st.pyplot(fig)
 
