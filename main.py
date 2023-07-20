@@ -278,7 +278,7 @@ def visualize_data_batch(data):
 
      # Plot pie chart untuk Data Churned berdasarkan Area Name
     fig, ax = plt.subplots()
-    ax.pie(area_data_merge['Data Churned'], labels=area_data_merge['Area Name'], autopct='%1.1f%%', startangle=140)
+    ax.pie(area_data_merge['Count Churned'], labels=area_data_merge['Area Name'], autopct='%1.1f%%', startangle=140)
     ax.axis('equal')
 
     st.pyplot(fig)
