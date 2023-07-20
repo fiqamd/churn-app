@@ -276,37 +276,54 @@ def visualize_data_batch(data):
     # Mengurutkan data berdasarkan jumlah Churned secara descending
     area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
-    # Menggabungkan data churned dan not churned
-    total_data = [area_data_merge['Count Churned'][i] + area_data_merge['Count Not Churned'][i] for i in range(len(area_data_merge['Area Name']))]
+    # Menyiapkan nested pie chart
+    outer_labels = area_data_merge['Area Name']
+    inner_labels = ['Churned', 'Not Churned']
+    sizes = [area_data_merge['Count Churned'], area_data_merge['Count Not Churned']]
 
-    # Mengurutkan data berdasarkan total_data secara descending
-    sorted_data = sorted(zip(area_data_merge['Area Name'], total_data), key=lambda x: x[1], reverse=True)
-
-    # Mengambil top 5 data
-    top_5_data = sorted_data[:5]
-
-    # Mengambil sisanya
-    remaining_data = sorted_data[5:]
-
-    # Menghitung total sisanya
-    total_remaining = sum(data for _, data in remaining_data)
-
-    # Menggabungkan data sisanya dengan "dll"
-    top_5_data.append(("dll", total_remaining))
-
-    # Memisahkan data dan labels
-    labels, sizes = zip(*top_5_data)
-
-    # Menyiapkan warna untuk pie chart
-    colors = plt.cm.Paired(range(len(labels)))
-
-    # Menyiapkan pie chart
     fig, ax = plt.subplots()
-    ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+
+    # Menambahkan pie chart luar
+    ax.pie(sizes[0], labels=outer_labels, radius=1, wedgeprops=dict(width=0.3, edgecolor='w'))
+
+    # Menambahkan pie chart dalam
+    ax.pie(sizes[1], radius=0.7, wedgeprops=dict(width=0.3, edgecolor='w'))
 
     # Menandai persentase di dalam pie chart
-    ax.axis('equal')
-    ax.set_title("Top 5 Areas with 'dll' Category")
+    ax.set(aspect="equal")
+    ax.set_title("Nested Pie Chart")
+
+    # # Menggabungkan data churned dan not churned
+    # total_data = [area_data_merge['Count Churned'][i] + area_data_merge['Count Not Churned'][i] for i in range(len(area_data_merge['Area Name']))]
+
+    # # Mengurutkan data berdasarkan total_data secara descending
+    # sorted_data = sorted(zip(area_data_merge['Area Name'], total_data), key=lambda x: x[1], reverse=True)
+
+    # # Mengambil top 5 data
+    # top_5_data = sorted_data[:5]
+
+    # # Mengambil sisanya
+    # remaining_data = sorted_data[5:]
+
+    # # Menghitung total sisanya
+    # total_remaining = sum(data for _, data in remaining_data)
+
+    # # Menggabungkan data sisanya dengan "dll"
+    # top_5_data.append(("dll", total_remaining))
+
+    # # Memisahkan data dan labels
+    # labels, sizes = zip(*top_5_data)
+
+    # # Menyiapkan warna untuk pie chart
+    # colors = plt.cm.Paired(range(len(labels)))
+
+    # # Menyiapkan pie chart
+    # fig, ax = plt.subplots()
+    # ax.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+
+    # # Menandai persentase di dalam pie chart
+    # ax.axis('equal')
+    # ax.set_title("Top 5 Areas with 'dll' Category")
 
     st.pyplot(fig)
 
