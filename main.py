@@ -918,8 +918,10 @@ def run():
                     raise ValueError('Terdapat satu / beberapa kolom yang dibutuhkan, tidak ada pada file upload!')
 
                 # visualize_df = 
-                result_df = predict_churn(data)
-                visualize_data_batch(data)
+                # result_df = predict_churn(data)
+                result_df = reverse(data)
+                visualize_data_batch(result_df)
+                # visualize_data_batch(data)
             except ValueError as ve:
                 st.error(f'Error: {ve}')
             except Exception as e:
