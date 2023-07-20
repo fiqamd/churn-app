@@ -77,18 +77,7 @@ def preprocess_input(input_df):
 
     return input_df
 
-def predict_churn(data):
-    data = preprocess_input(data)
-    predictions = model.predict(data)
-    data["Churn"] = predictions
-    # df = data
-
-    # reverse_data = reverse(data)
-    return data
-    # return data
-
 def reverse(df):
-    df = predict_churn(df)
     inverse_dict_areaname = {v: k for k, v in area_dict.items()}
     inverse_dict_plan = {v: k for k, v in plan_dict.items()}
     inverse_dict_tvplan = {v: k for k, v in dict_tvplan.items()}
@@ -102,6 +91,13 @@ def reverse(df):
     df['Churn'] = df['Churn'].map(inverse_dict_churn)
 
     return(df)
+
+def predict_churn(data):
+    data = preprocess_input(data)
+    predictions = model.predict(data)
+    data["Churn"] = predictions
+    reverse_data = reverse(data)
+    return data, reverse_data
 
 def load_churned(data):
     data = data[data['Churn'] == 'Churn']
@@ -216,10 +212,8 @@ def load_non_churned(data):
 
 
 def visualize_data_batch(data):
-    predicted_data = predict_churn(data)
-
-    data = reverse(predicted_data)
-    # data = reverse(data)
+    # reverse_data = predict_churn(data)
+    # data = reverse_data
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
@@ -478,16 +472,9 @@ def visualize_data_batch(data):
     st.table(area_data_merge.head(10))
     if st.button('Download Here - Area Name', key='download_area_name'):
         csv_area_name = area_data_merge.to_csv(index=False)
-        b64 = base64.b64encode(csv_area_name.encode()).decode()  # Encode the CSV data to base64.
-        href = f'<a href="data:file/csv;base64,{b64}" download="area_data_merge.csv">Download File CSV</a>'
+        href = f'<a href="area_data_merge:file/csv;charset=utf-8,{csv_area_name}" download="area_data_merge.csv">Download File CSV</a>'
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href, unsafe_allow_html=True)
-
-    # if st.button('Download Here - Area Name', key='download_area_name'):
-    #     csv_area_name = area_data_merge.to_csv(index=False)
-    #     href = f'<a href="area_data_merge:file/csv;charset=utf-8,{csv_area_name}" download="area_data_merge.csv">Download File CSV</a>'
-    #     st.markdown("Untuk mendownload file seluruh:")
-    #     st.markdown(href, unsafe_allow_html=True)
 
     # # Mengurutkan data berdasarkan jumlah Churned secara descending
     # area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
@@ -918,10 +905,8 @@ def run():
                     raise ValueError('Terdapat satu / beberapa kolom yang dibutuhkan, tidak ada pada file upload!')
 
                 # visualize_df = 
-                # result_df = predict_churn(data)
-                result_df = reverse(data)
-                visualize_data_batch(result_df)
-                # visualize_data_batch(data)
+                result_df = predict_churn(data)
+                visualize_data_batch(data)
             except ValueError as ve:
                 st.error(f'Error: {ve}')
             except Exception as e:
