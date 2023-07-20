@@ -901,9 +901,9 @@ def run():
             
             churn_value = reverse_data.iloc[0]['Churn']
 
-            if churn_value == 0:
+            if churn_value == "Not Churn":
                 st.success('The customer will not churn.')
-            elif churn_value == 1:
+            elif churn_value == "Churn":
                 st.success('The customer will churn.')
 
     elif add_selectbox == 'Batch':
