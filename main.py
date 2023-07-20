@@ -284,6 +284,7 @@ def visualize_data_batch(data):
 
     # Display the pie chart
     plt.show()
+    st.pyplot(fig)
 
     # Plot pie chart for Data Not Churned
     plt.figure(figsize=(6, 6))
