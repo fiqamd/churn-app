@@ -97,7 +97,8 @@ def predict_churn(data):
     predictions = model.predict(data)
     data["Churn"] = predictions
     reverse_data = reverse(data)
-    return data, reverse_data
+    # return data, reverse_data
+    return data
 
 def load_churned(data):
     data = data[data['Churn'] == 'Churn']
