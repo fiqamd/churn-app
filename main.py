@@ -893,8 +893,8 @@ def run():
             result_df = predict_churn(input_df)
             if result_df.iloc[0]['Churn'] == 0:
                 st.success(f' The customer will be Not Churn')
-            elif result_df.iloc[0]['Churn']== 1:
-            # else:
+            # elif result_df.iloc[0]['Churn']== 1:
+            else:
                 st.success(f'The customer will be Churn')
 
     elif add_selectbox == 'Batch':
