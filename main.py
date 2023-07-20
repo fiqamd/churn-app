@@ -276,9 +276,26 @@ def visualize_data_batch(data):
     # # Mengurutkan data berdasarkan jumlah Churned secara descending
     # area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
-     # Plot pie chart untuk Data Churned berdasarkan Area Name
+    # Menggabungkan data kurang dari 5 menjadi "dll"
+    n = 5
+    if len(area_data_merge) > n:
+        df_combined = area_data_merge.nlargest(n, 'Count Churned')
+        df_combined = df_combined.append({
+            'Area Name': 'Others',
+            'Data Churned': area_data_merge['Count Churned'].sum() - df_combined['Count Churned'].sum()
+        }, ignore_index=True)
+    else:
+        df_combined = area_data_merge
+
+    # # Tampilan aplikasi web menggunakan Streamlit
+    # st.title('Top 5 Data Churned berdasarkan Area Name')
+
+    # st.write('Data Churned:')
+    # st.dataframe(df)
+
+    # Plot pie chart untuk Data Churned berdasarkan Area Name
     fig, ax = plt.subplots()
-    ax.pie(area_data_merge['Count Churned'], labels=area_data_merge['Area Name'], autopct='%1.1f%%', startangle=140)
+    ax.pie(df_combined['Count Churned'], labels=df_combined['Area Name'], autopct='%1.1f%%', startangle=140)
     ax.axis('equal')
 
     st.pyplot(fig)
