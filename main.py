@@ -885,8 +885,6 @@ def run():
         comp_tel = st.slider('Complaint by Telegram', min_value = 0.0, max_value = 100.0 ,step=1.0)
         comp_wa = st.slider('Complaint by Whatsapp', min_value = 0.0, max_value = 400.0 ,step=1.0)
         comp_wic = st.slider('Complaint by WIC', min_value = 0.0, max_value = 150.0 ,step=1.0)
-        output=""
-        output1=""
         
         user_df_data = [[user_area,user_plan,tv_plan,adv_promo,comp_cs,comp_email,comp_socmed,comp_tel,comp_wa,comp_wic]]
         user_df_colnames = ["Area Name","Plan","Tv Plan","Advance Promo","Complaint by Customer Service","Complaint by Email","Complaint by Social Media","Complaint by Telegram","Complaint by Whatsapp","Complaint by WIC"]
@@ -894,7 +892,7 @@ def run():
         input_df = pd.DataFrame(user_df_data,columns = user_df_colnames)
         
         if st.button("Predict"):
-            data, reverse_data = predict_churn(data)
+            data, reverse_data = predict_churn(input_df)
             # result_df = predict_churn(input_df)
             if data.iloc[0]['Churn'] == 0:
                 st.success(f' The customer will be Not Churn')
