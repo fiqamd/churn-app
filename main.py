@@ -273,8 +273,8 @@ def visualize_data_batch(data):
         st.markdown("Untuk mendownload file seluruh:")
         st.markdown(href, unsafe_allow_html=True)
 
-    # Mengurutkan data berdasarkan jumlah Churned secara descending
-    area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
+    # # Mengurutkan data berdasarkan jumlah Churned secara descending
+    # area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
     # Plot pie chart untuk Data Churned berdasarkan Area Name
     plt.figure(figsize=(6, 6))
