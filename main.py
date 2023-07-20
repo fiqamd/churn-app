@@ -77,7 +77,18 @@ def preprocess_input(input_df):
 
     return input_df
 
+def predict_churn(data):
+    data = preprocess_input(data)
+    predictions = model.predict(data)
+    data["Churn"] = predictions
+    # df = data
+
+    # reverse_data = reverse(data)
+    return data
+    # return data
+
 def reverse(df):
+    df = predict_churn(df)
     inverse_dict_areaname = {v: k for k, v in area_dict.items()}
     inverse_dict_plan = {v: k for k, v in plan_dict.items()}
     inverse_dict_tvplan = {v: k for k, v in dict_tvplan.items()}
@@ -91,16 +102,6 @@ def reverse(df):
     df['Churn'] = df['Churn'].map(inverse_dict_churn)
 
     return(df)
-
-def predict_churn(data):
-    data = preprocess_input(data)
-    predictions = model.predict(data)
-    data["Churn"] = predictions
-    df = data
-
-    reverse_data = reverse(data)
-    return df, reverse_data
-    # return data
 
 def load_churned(data):
     data = data[data['Churn'] == 'Churn']
@@ -215,8 +216,7 @@ def load_non_churned(data):
 
 
 def visualize_data_batch(data):
-    df, reverse_data = predict_churn(df)
-    data = df
+    data = reverse(data)
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
