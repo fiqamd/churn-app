@@ -282,10 +282,10 @@ def visualize_data_batch(data):
         area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
         # Select the top 5 rows
-        top_5 = area_data_merge.head(5)
+        top_5 = area_data_merge.head(10)
 
         # Calculate the sum of 'Data Churned' for the remaining rows
-        remaining_sum = area_data_merge.iloc[5:]['Count Churned'].sum()
+        remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Area Name': 'dll', 'Count Churned': remaining_sum}
@@ -294,7 +294,7 @@ def visualize_data_batch(data):
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
         plt.pie(top_5['Count Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
-        plt.title('Top 5 Count Churned by Area Name')
+        plt.title('Top 10 Count Churned by Area Name')
         plt.axis('equal')
 
         # Display the pie chart using st.pyplot(fig)
@@ -305,10 +305,10 @@ def visualize_data_batch(data):
         area_data_merge = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
         # Select the top 5 rows
-        top_5 = area_data_merge.head(5)
+        top_5 = area_data_merge.head(10)
 
         # Calculate the sum of 'Data Churned' for the remaining rows
-        remaining_sum = area_data_merge.iloc[5:]['Count Not Churned'].sum()
+        remaining_sum = area_data_merge.iloc[10:]['Count Not Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
@@ -317,7 +317,7 @@ def visualize_data_batch(data):
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
         plt.pie(top_5['Count Not Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
-        plt.title('Top 5 Count Not Churned by Area Name')
+        plt.title('Top 10 Count Not Churned by Area Name')
         plt.axis('equal')
 
         # Display the pie chart using st.pyplot(fig)
@@ -329,10 +329,10 @@ def visualize_data_batch(data):
         plan_data_merge = plan_data_merge.sort_values(by='Count Churned', ascending=False)
 
         # Select the top 5 rows
-        top_5 = plan_data_merge.head(5)
+        top_5 = plan_data_merge.head(10)
 
         # Calculate the sum of 'Data Churned' for the remaining rows
-        remaining_sum = plan_data_merge.iloc[5:]['Count Churned'].sum()
+        remaining_sum = plan_data_merge.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Plan': 'dll', 'Count Churned': remaining_sum}
@@ -341,7 +341,7 @@ def visualize_data_batch(data):
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
         plt.pie(top_5['Count Churned'], labels=top_5['Plan'], autopct='%1.1f%%', startangle=140)
-        plt.title('Top 5 Count Churned by Plan')
+        plt.title('Top 10 Count Churned by Plan')
         plt.axis('equal')
 
         # Display the pie chart using st.pyplot(fig)
@@ -352,10 +352,10 @@ def visualize_data_batch(data):
         plan_data_merge = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
         # Select the top 5 rows
-        top_5 = plan_data_merge.head(5)
+        top_5 = plan_data_merge.head(10)
 
         # Calculate the sum of 'Data Churned' for the remaining rows
-        remaining_sum = plan_data_merge.iloc[5:]['Count Not Churned'].sum()
+        remaining_sum = plan_data_merge.iloc[10:]['Count Not Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Plan': 'dll', 'Count Not Churned': remaining_sum}
@@ -364,7 +364,7 @@ def visualize_data_batch(data):
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
         plt.pie(top_5['Count Not Churned'], labels=top_5['Plan'], autopct='%1.1f%%', startangle=140)
-        plt.title('Top 5 Count Not Churned by Plan')
+        plt.title('Top 10 Count Not Churned by Plan')
         plt.axis('equal')
 
         # Display the pie chart using st.pyplot(fig)
@@ -376,10 +376,10 @@ def visualize_data_batch(data):
         tvplan_data_merge = tvplan_data_merge.sort_values(by='Count Churned', ascending=False)
 
         # Select the top 5 rows
-        top_5 = tvplan_data_merge.head(5)
+        top_5 = tvplan_data_merge.head(10)
 
         # Calculate the sum of 'Data Churned' for the remaining rows
-        remaining_sum = tvplan_data_merge.iloc[5:]['Count Churned'].sum()
+        remaining_sum = tvplan_data_merge.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Tv Plan': 'dll', 'Count Churned': remaining_sum}
@@ -388,7 +388,7 @@ def visualize_data_batch(data):
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
         plt.pie(top_5['Count Churned'], labels=top_5['Tv Plan'], autopct='%1.1f%%', startangle=140)
-        plt.title('Top 5 Count Churned by Plan')
+        plt.title('Top 10 Count Churned by Plan')
         plt.axis('equal')
 
         # Display the pie chart using st.pyplot(fig)
@@ -399,10 +399,10 @@ def visualize_data_batch(data):
         tvplan_data_merge = tvplan_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
         # Select the top 5 rows
-        top_5 = tvplan_data_merge.head(5)
+        top_5 = tvplan_data_merge.head(10)
 
         # Calculate the sum of 'Data Churned' for the remaining rows
-        remaining_sum = tvplan_data_merge.iloc[5:]['Count Not Churned'].sum()
+        remaining_sum = tvplan_data_merge.iloc[10:]['Count Not Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Tv Plan': 'dll', 'Count Not Churned': remaining_sum}
@@ -411,7 +411,7 @@ def visualize_data_batch(data):
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
         plt.pie(top_5['Count Not Churned'], labels=top_5['Tv Plan'], autopct='%1.1f%%', startangle=140)
-        plt.title('Top 5 Count Not Churned by Plan')
+        plt.title('Top 10 Count Not Churned by Plan')
         plt.axis('equal')
 
         # Display the pie chart using st.pyplot(fig)
@@ -423,10 +423,10 @@ def visualize_data_batch(data):
         adv_data_merge = adv_data_merge.sort_values(by='Count Churned', ascending=False)
 
         # Select the top 5 rows
-        top_5 = adv_data_merge.head(5)
+        top_5 = adv_data_merge.head(10)
 
         # Calculate the sum of 'Data Churned' for the remaining rows
-        remaining_sum = adv_data_merge.iloc[5:]['Count Churned'].sum()
+        remaining_sum = adv_data_merge.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Advance Promo': 'dll', 'Count Churned': remaining_sum}
@@ -435,7 +435,7 @@ def visualize_data_batch(data):
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
         plt.pie(top_5['Count Churned'], labels=top_5['Advance Promo'], autopct='%1.1f%%', startangle=140)
-        plt.title('Top 5 Count Churned by Plan')
+        plt.title('Top 10 Count Churned by Plan')
         plt.axis('equal')
 
         # Display the pie chart using st.pyplot(fig)
@@ -446,10 +446,10 @@ def visualize_data_batch(data):
         adv_data_merge = adv_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
         # Select the top 5 rows
-        top_5 = adv_data_merge.head(5)
+        top_5 = adv_data_merge.head(10)
 
         # Calculate the sum of 'Data Churned' for the remaining rows
-        remaining_sum = adv_data_merge.iloc[5:]['Count Not Churned'].sum()
+        remaining_sum = adv_data_merge.iloc[10:]['Count Not Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Advance Promo': 'dll', 'Count Not Churned': remaining_sum}
@@ -458,7 +458,7 @@ def visualize_data_batch(data):
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
         plt.pie(top_5['Count Not Churned'], labels=top_5['Advance Promo'], autopct='%1.1f%%', startangle=140)
-        plt.title('Top 5 Count Not Churned by Plan')
+        plt.title('Top 10 Count Not Churned by Plan')
         plt.axis('equal')
 
         # Display the pie chart using st.pyplot(fig)
