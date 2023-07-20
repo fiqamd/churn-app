@@ -279,12 +279,12 @@ def visualize_data_batch(data):
     # Mengambil 5 data terbanyak dari Data Churned dan sisanya diubah menjadi "dll"
     top_5_churned = area_data_merge.nlargest(5, 'Count Churned')
     other_churned_total = area_data_merge['Count Churned'].sum() - top_5_churned['Count Churned'].sum()
-    top_5_churned.loc[5] = ['dll', other_churned_total]
+    top_5_churned.loc[5] = ['dll', other_churned_total, 0]
 
     # Mengambil 5 data terbanyak dari Data Not Churned dan sisanya diubah menjadi "dll"
     top_5_not_churned = area_data_merge.nlargest(5, 'Count Not Churned')
     other_not_churned_total = area_data_merge['Count Not Churned'].sum() - top_5_not_churned['Count Not Churned'].sum()
-    top_5_not_churned.loc[5] = ['dll', other_not_churned_total]
+    top_5_not_churned.loc[5] = ['dll', other_not_churned_total, 0]
 
     # Membuat nested pie chart
     fig, ax = plt.subplots()
