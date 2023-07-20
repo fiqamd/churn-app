@@ -96,7 +96,7 @@ def predict_churn(data):
     data = preprocess_input(data)
     predictions = model.predict(data)
     data["Churn"] = predictions
-    data = reverse(data)
+    # data = reverse(data)
 
     return data
 
