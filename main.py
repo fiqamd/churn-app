@@ -215,9 +215,9 @@ def load_non_churned(data):
 def visualize_data_batch(data):
     # reverse_data = predict_churn(data)
     # data = reverse_data
-    data = predict_churn(data)
-    df = reverse(data)
-    reverse_data = df
+    # data = predict_churn(data)
+    # df = reverse(data)
+    # reverse_data = df
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
