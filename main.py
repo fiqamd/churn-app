@@ -96,9 +96,9 @@ def predict_churn(data):
     data = preprocess_input(data)
     predictions = model.predict(data)
     data["Churn"] = predictions
-    # data = reverse(data)
-    reverse_data = reverse(data)
-    return data, reverse_data
+    data = reverse(data)
+    # reverse_data = reverse(data)
+    # return data, reverse_data
 
 def load_churned(data):
     data = data[data['Churn'] == 'Churn']
@@ -213,8 +213,8 @@ def load_non_churned(data):
 
 
 def visualize_data_batch(data):
-    reverse_data = predict_churn(data)
-    data = reverse_data
+    # reverse_data = predict_churn(data)
+    # data = reverse_data
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
@@ -891,9 +891,9 @@ def run():
         
         if st.button("Predict"):
             result_df = predict_churn(input_df)
-            if result_df.iloc[0]['Churn'] == 0:
+            if result_df.iloc[0]['Churn'] == "Not Churn":
                 st.success(f' The customer will be Not Churn')
-            elif result_df.iloc[0]['Churn']==1:
+            elif result_df.iloc[0]['Churn']=="Churn":
                 st.success(f'The customer will be Churn')
 
     elif add_selectbox == 'Batch':
