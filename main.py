@@ -367,13 +367,13 @@ def visualize_data_batch(data):
         remaining_sum = plan_data_merge.iloc[5:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
-        dll_row = {'Area Name': 'dll', 'Count Churned': remaining_sum}
+        dll_row = {'Plan': 'dll', 'Count Churned': remaining_sum}
         top_5 = top_5.append(dll_row, ignore_index=True)
 
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
-        plt.pie(top_5['Count Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
-        plt.title('Top 5 Count Churned by Area Name')
+        plt.pie(top_5['Count Churned'], labels=top_5['Plan'], autopct='%1.1f%%', startangle=140)
+        plt.title('Top 5 Count Churned by Plan')
         plt.axis('equal')
 
         # Display the pie chart using st.pyplot(fig)
