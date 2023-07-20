@@ -236,7 +236,7 @@ def visualize_data_batch(data):
 
     st.header("Hasil Prediksi")
     # st.table(data)
-    st.table(reverse_data.head(10))
+    st.table(data.head(10))
 
     # Menampilkan tombol "Download File CSV"
     if st.button('Download Here - All Data', key='download_all'):
