@@ -277,28 +277,28 @@ def visualize_data_batch(data):
     area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
     # Mengambil 5 data terbanyak dari Data Churned dan sisanya diubah menjadi "dll"
-    top_5_churned = area_data_merge.nlargest(5, 'Data Churned')
-    other_churned_total = area_data_merge['Data Churned'].sum() - top_5_churned['Data Churned'].sum()
+    top_5_churned = area_data_merge.nlargest(5, 'Count Churned')
+    other_churned_total = area_data_merge['Count Churned'].sum() - top_5_churned['Count Churned'].sum()
     top_5_churned.loc[5] = ['dll', other_churned_total]
 
     # Mengambil 5 data terbanyak dari Data Not Churned dan sisanya diubah menjadi "dll"
-    top_5_not_churned = area_data_merge.nlargest(5, 'Data Not Churned')
-    other_not_churned_total = area_data_merge['Data Not Churned'].sum() - top_5_not_churned['Data Not Churned'].sum()
+    top_5_not_churned = area_data_merge.nlargest(5, 'Count Not Churned')
+    other_not_churned_total = area_data_merge['Count Not Churned'].sum() - top_5_not_churned['Count Not Churned'].sum()
     top_5_not_churned.loc[5] = ['dll', other_not_churned_total]
 
     # Membuat nested pie chart
     fig, ax = plt.subplots()
 
     # Outer pie chart (Data Churned)
-    ax.pie(top_5_churned['Data Churned'], labels=top_5_churned['Area Name'], autopct='%1.1f%%', startangle=90)
+    ax.pie(top_5_churned['Count Churned'], labels=top_5_churned['Area Name'], autopct='%1.1f%%', startangle=90)
     ax.set_aspect('equal')
-    ax.set_title('Data Churned')
+    ax.set_title('Count Churned')
 
     # Inner pie chart (Data Not Churned)
     ax_inner = plt.axes([0.5, 0.5, 0.35, 0.35])
-    ax_inner.pie(top_5_not_churned['Data Not Churned'], labels=top_5_not_churned['Area Name'], autopct='%1.1f%%', startangle=90)
+    ax_inner.pie(top_5_not_churned['Count Not Churned'], labels=top_5_not_churned['Area Name'], autopct='%1.1f%%', startangle=90)
     ax_inner.set_aspect('equal')
-    ax_inner.set_title('Data Not Churned')
+    ax_inner.set_title('Count Not Churned')
 
     # # Menyiapkan nested pie chart
     # outer_labels = area_data_merge['Area Name']
