@@ -363,7 +363,7 @@ def visualize_data_batch(data):
 
         # Sort the DataFrame by 'Data Churned' in descending order
         area_data_merge = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
-
+        area_data_merge.fillna(0, inplace=True)
         # Select the top 5 rows
         top_5 = area_data_merge.head(10)
 
