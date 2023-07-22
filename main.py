@@ -744,7 +744,7 @@ def visualize_data_batch(data):
     #Advance Promo Data Churned
     adv_adv_churned = adv_data_churned.reset_index(drop=True)
     total = adv_data_churned["Count Churned"].sum()
-    adv_data_churned["Persentase Dari Data Not Churn"] = adv_data_churned["Count Churned"]/total*100
+    adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Count Churned"]/total*100
     # Format the percentage column with "%" sign
     adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
     st.table(adv_data_churned.head(10))
