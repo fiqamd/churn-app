@@ -643,7 +643,7 @@ def visualize_data_batch(data):
                           )
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
-    
+
     if option_chart == 'Area Name':
         st.title("Churn and Area Name")
         for area_names in unique_area_name:
@@ -656,7 +656,7 @@ def visualize_data_batch(data):
         # print(f'Proportions of not churn and churn in area code {area_names} = {churn0_proportion}, {churn1_proportion} respectively')
 
         # Visualisasi menggunakan Seaborn
-        churn_area = sns.catplot(x="churn", kind="count", hue="area_names", palette="magma", data=df, height=8)
+        churn_area = sns.catplot(x="churn", kind="count", hue="area_names", palette="magma", data=data, height=8)
         for ax in churn_area.axes.flat:
             for c in ax.containers:
                 ax.bar_label(c)
