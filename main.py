@@ -342,10 +342,10 @@ def visualize_data_batch(data):
         top_5.fillna(0, inplace=True)
         # Calculate the sum of 'Data Churned' for the remaining rows
         remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
-        remaining_sum.fillna(0, inplace=True)
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Area Name': 'dll', 'Count Churned': remaining_sum}
+        dll_row.fillna(0, inplace=True)
         top_5 = top_5.append(dll_row, ignore_index=True)
 
         # Plot the pie chart
