@@ -270,7 +270,7 @@ def visualize_data_batch(data):
     data_churned = data[data['Churn'] == 'Churn']
 
     option = st.selectbox('Pilih data yang ingin ditampilkan:',
-                          ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo']
+                          ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo'], key= 'piechart_data'
                           )
     # Preprocess the DataFrame by dropping rows with NaN values in 'Count Churned' and 'Count Not Churned' columns
     # Preprocess the DataFrame to handle missing values
@@ -639,10 +639,11 @@ def visualize_data_batch(data):
     columns = data.columns.to_list()
     
     option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
-                          ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo']
+                          ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo'], key= 'komparasi_churn'
                           )
     unique_area_name = sorted(data['Area Name'].unique())
-
+    area_name_counts = data['Area Name'].value_counts()
+    
     if option_chart == 'Area Name':
         st.title("Churn and Area Name")
         for area_names in unique_area_name:
