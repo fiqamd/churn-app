@@ -374,6 +374,7 @@ def visualize_data_batch(data):
         # Add the 'dll' row to the DataFrame
         dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
         top_5 = top_5.append(dll_row, ignore_index=True)
+        top_5.fillna(0, inplace=True)
 
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
