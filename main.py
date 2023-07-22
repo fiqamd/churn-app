@@ -238,8 +238,9 @@ def visualize_data_batch(data):
         csv_data = data.to_csv(index=False)
         href = f'<a href="data:file/csv;charset=utf-8,{csv_data}" download="data.csv">Download File CSV</a>'
         # st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href, unsafe_allow_html=True)
         download_data()
+        st.markdown(href, unsafe_allow_html=True)
+        # download_data()
 
     st.header("Churn Distribution")
     fig, ax = plt.subplots()
