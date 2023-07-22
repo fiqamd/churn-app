@@ -511,7 +511,7 @@ def visualize_data_batch(data):
         churn_data = pd.DataFrame({'Area Name': unique_area_name,
                                 'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
                                 'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
-        st.table(churn_data)
+        st.table(churn_data.head(10))
 
         if st.button('Download Here - Area Name Proportion Data', key='download_area_name_prop'):
             csv_area_name_prop = churn_data.to_csv(index=False)
@@ -549,7 +549,7 @@ def visualize_data_batch(data):
         churn_data = pd.DataFrame({'Plan': unique_plan,
                                 'Churn': [churn_counts.get(area, 0) for area in unique_plan],
                                 'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
-        st.table(churn_data)
+        st.table(churn_data.head(10))
 
         if st.button('Download Here - Plan Proportion Data', key='download_plan_prop'):
             csv_plan_prop = churn_data.to_csv(index=False)
@@ -585,7 +585,7 @@ def visualize_data_batch(data):
         churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
                                 'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
                                 'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
-        st.table(churn_data)
+        st.table(churn_data.head(10))
 
         if st.button('Download Here - Tv Plan Proportion Data', key='download_tvplan_prop'):
             csv_tvplan_prop = churn_data.to_csv(index=False)
@@ -621,7 +621,7 @@ def visualize_data_batch(data):
         churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
                                 'Churn': [churn_counts.get(area, 0) for area in unique_adv_promo],
                                 'Not Churn': [not_churn_counts.get(area, 0) for area in unique_adv_promo]})
-        st.table(churn_data)
+        st.table(churn_data.head(10))
 
         if st.button('Download Here - Tv Plan Proportion Data', key='download_advpromo_prop'):
             csv_advpromo_prop = churn_data.to_csv(index=False)
