@@ -236,10 +236,12 @@ def visualize_data_batch(data):
     # Menampilkan tombol "Download File CSV"
     if st.button('Download Here - All Data', key='download_all'):
         csv_data = data.to_csv(index=False)
-        href = f'<a href="data:file/csv;charset=utf-8,{csv_data}" download="data.csv">Download File CSV</a>'
-        # st.markdown("Untuk mendownload file seluruh:")
-        download_data()
-        st.markdown(href, unsafe_allow_html=True)
+        st.download_button("Download CSV", data=csv_data, mime='csv')
+
+        # href = f'<a href="data:file/csv;charset=utf-8,{csv_data}" download="data.csv">Download File CSV</a>'
+        # # st.markdown("Untuk mendownload file seluruh:")
+        # download_data()
+        # st.markdown(href, unsafe_allow_html=True)
         # download_data()
 
     st.header("Churn Distribution")
