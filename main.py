@@ -47,6 +47,7 @@ def load_model(bucket_name, model_path):
 
     return model
 
+
 # # Anda dapat menggunakan fungsi ini untuk meload model Anda
 model = load_model("model_churn", "model.pkl")
 # Set max upload size to 500 MB
@@ -222,8 +223,12 @@ def visualize_data_batch(data):
     adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
     com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
 
-    pdf_path = "Churn Predict.pdf"
-    pdf_pages = PdfPages(pdf_path)
+    pdf_bucket_name = 'pdf_saving'
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(pdf_bucket_name)
+
+    pdf_filename = 'Churn Analysist Plot.pdf'
+    pdf_pages = PdfPages(pdf_filename)
     
     area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
     plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Plan", how="outer")
@@ -233,6 +238,7 @@ def visualize_data_batch(data):
     st.header("Hasil Prediksi")
     # st.table(data)
     st.table(data.head(10))
+
     #DOWNLOAD HERE
     result_all_data = data
     current_date = datetime.now().strftime("%Y%m%d")
@@ -241,22 +247,6 @@ def visualize_data_batch(data):
 
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - All Data", data=csv_data, mime='text/csv', file_name=filename)
-
-    # # Menampilkan tombol "Download File CSV"
-    # if st.button('Download Here - All Data', key='download_all'):
-    #     result_all_data = data
-    #     current_date = datetime.now().strftime("%Y%m%d")
-    #     result_all_data.name = "Hasil Data Keseluruhan"
-    #     filename = f"{result_all_data.name}_{current_date}.csv"
-
-    #     csv_data = result_all_data.to_csv(index=False)
-    #     st.download_button("Download CSV", data=csv_data, mime='text/csv', file_name=filename)
-
-        # href = f'<a href="data:file/csv;charset=utf-8,{csv_data}" download="data.csv">Download File CSV</a>'
-        # # st.markdown("Untuk mendownload file seluruh:")
-        # download_data()
-        # st.markdown(href, unsafe_allow_html=True)
-        # download_data()
 
     st.header("Churn Distribution")
     fig, ax = plt.subplots()
@@ -282,7 +272,7 @@ def visualize_data_batch(data):
     data_counts['Persentase'] = data_counts['Jumlah Data'].apply(lambda x: f"{(x / data.shape[0]) * 100:.2f}%")
 
     st.table(data_counts)
-    pdf_pages.savefig(fig)
+    pdf_pages.savefig()
 
     option = st.selectbox('Pilih data yang ingin ditampilkan:',
                           ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo'], key= 'piechart_data'
@@ -321,7 +311,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-
+        # pdf_pages.savefig()
         # Sort the DataFrame by 'Count Churned' in descending order
         area_data_merge_notchurned = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
@@ -347,6 +337,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
+        pdf_pages.savefig()
     elif option == 'Plan':
         st.title("Proportion Churn & Not Churn - Plan")
         # Sort the DataFrame by 'Count Churned' in descending order
@@ -374,6 +365,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
+        # pdf_pages.savefig(fig)
 
         # Sort the DataFrame by 'Count Churned' in descending order
         plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
@@ -400,6 +392,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
+        pdf_pages.savefig()
     elif option == 'Tv Plan':
         st.title("Proportion Churn & Not Churn - Tv Plan")
         # Sort the DataFrame by 'Count Churned' in descending order
@@ -427,6 +420,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
+        # pdf_pages.savefig(fig)
 
         # Sort the DataFrame by 'Count Churned' in descending order
         tvplan_data_merge_notchurned = tvplan_data_merge.sort_values(by='Count Not Churned', ascending=False)
@@ -453,6 +447,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
+        pdf_pages.savefig()
     elif option == 'Advance Promo':
         st.title("Proportion Churn & Not Churn - Advance Promo")
         # Sort the DataFrame by 'Count Churned' in descending order
@@ -480,6 +475,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
+        # pdf_pages.savefig(fig)
 
         # Sort the DataFrame by 'Count Churned' in descending order
         adv_data_merge_notchurned = adv_data_merge.sort_values(by='Count Not Churned', ascending=False)
@@ -506,6 +502,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
+        pdf_pages.savefig()
     
     st.title("Data Bar Chart Proportion")
     option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
@@ -544,6 +541,7 @@ def visualize_data_batch(data):
         plt.ylabel('Jumlah')
         plt.xticks(rotation=90)
         st.pyplot(plt)
+        pdf_pages.savefig(fig)
 
         # Tampilkan jumlah data churn untuk setiap Area Name
         st.write("Jumlah data churn untuk setiap Area Name:")
@@ -556,7 +554,7 @@ def visualize_data_batch(data):
         #DOWNLOAD HERE
         result_all_data = churn_data
         current_date = datetime.now().strftime("%Y%m%d")
-        result_all_data.name = "Data Area Name Proporsi"
+        result_all_data.name = "Data Proporsi Area Name "
         filename = f"{result_all_data.name}_{current_date}.csv"
 
         csv_data = result_all_data.to_csv(index=False)
@@ -595,7 +593,7 @@ def visualize_data_batch(data):
         #DOWNLOAD HERE
         result_all_data = churn_data
         current_date = datetime.now().strftime("%Y%m%d")
-        result_all_data.name = "Data Plan Proporsi"
+        result_all_data.name = "Data Proporsi Plan"
         filename = f"{result_all_data.name}_{current_date}.csv"
 
         csv_data = result_all_data.to_csv(index=False)
@@ -634,7 +632,7 @@ def visualize_data_batch(data):
         #DOWNLOAD HERE
         result_all_data = churn_data
         current_date = datetime.now().strftime("%Y%m%d")
-        result_all_data.name = "Data Tv Plan Proporsi"
+        result_all_data.name = "Data Proporsi Tv Plan"
         filename = f"{result_all_data.name}_{current_date}.csv"
 
         csv_data = result_all_data.to_csv(index=False)
@@ -673,7 +671,7 @@ def visualize_data_batch(data):
         #DOWNLOAD HERE
         result_all_data = churn_data
         current_date = datetime.now().strftime("%Y%m%d")
-        result_all_data.name = "Data Advance Promo Proporsi"
+        result_all_data.name = "Data Proporsi Advance Promo"
         filename = f"{result_all_data.name}_{current_date}.csv"
 
         csv_data = result_all_data.to_csv(index=False)
@@ -696,6 +694,8 @@ def visualize_data_batch(data):
     area_data_churned = area_data_churned.reset_index(drop=True)
     total = area_data_churned["Count Churned"].sum()
     area_data_churned["Persentase Dari Data Churn"] = area_data_churned["Count Churned"]/total*100
+    # Format the percentage column with "%" sign
+    area_data_churned["Persentase Dari Data Churn"] = area_data_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
     st.table(area_data_churned.head(10))
 
     #DOWNLOAD HERE
@@ -711,6 +711,8 @@ def visualize_data_batch(data):
     plan_data_churned = plan_data_churned.reset_index(drop=True)
     total = plan_data_churned["Count Churned"].sum()
     plan_data_churned["Persentase Dari Data Churn"] = plan_data_churned["Count Churned"]/total*100
+    # Format the percentage column with "%" sign
+    plan_data_churned["Persentase Dari Data Churn"] = plan_data_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
     st.table(plan_data_churned.head(10))
 
     #DOWNLOAD HERE
@@ -726,6 +728,8 @@ def visualize_data_batch(data):
     tvplan_data_churned = tvplan_data_churned.reset_index(drop=True)
     total = tvplan_data_churned["Count Churned"].sum()
     tvplan_data_churned["Persentase Dari Data Churn"] = tvplan_data_churned["Count Churned"]/total*100
+    # Format the percentage column with "%" sign
+    tvplan_data_churned["Persentase Dari Data Churn"] = tvplan_data_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
     st.table(tvplan_data_churned.head(10))
 
     #DOWNLOAD HERE
@@ -741,6 +745,8 @@ def visualize_data_batch(data):
     adv_adv_churned = adv_data_churned.reset_index(drop=True)
     total = adv_data_churned["Count Churned"].sum()
     adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Count Churned"]/total*100
+    # Format the percentage column with "%" sign
+    adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
     st.table(adv_data_churned.head(10))
 
     #DOWNLOAD HERE
@@ -769,6 +775,8 @@ def visualize_data_batch(data):
     area_data_non_churned = area_data_non_churned.reset_index(drop=True)
     total = area_data_non_churned["Count Not Churned"].sum()
     area_data_non_churned["Persentase Dari Data Not Churn"] = area_data_non_churned["Count Not Churned"]/total*100
+    # Format the percentage column with "%" sign
+    area_data_non_churned["Persentase Dari Data Churn"] = area_data_non_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
     st.table(area_data_non_churned.head(10))
 
     #DOWNLOAD HERE
@@ -784,6 +792,8 @@ def visualize_data_batch(data):
     plan_data_non_churned = plan_data_non_churned.reset_index(drop=True)
     total = plan_data_non_churned["Count Not Churned"].sum()
     plan_data_non_churned["Persentase Dari Data Not Churn"] = plan_data_non_churned["Count Not Churned"]/total*100
+    # Format the percentage column with "%" sign
+    plan_data_non_churned["Persentase Dari Data Churn"] = plan_data_non_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
     st.table(plan_data_non_churned.head(10))
 
     #DOWNLOAD HERE
@@ -799,6 +809,8 @@ def visualize_data_batch(data):
     tvplan_data_non_churned = tvplan_data_non_churned.reset_index(drop=True)
     total = tvplan_data_non_churned["Count Not Churned"].sum()
     tvplan_data_non_churned["Persentase Dari Data Not Churn"] = tvplan_data_non_churned["Count Not Churned"]/total*100
+    # Format the percentage column with "%" sign
+    tvplan_data_non_churned["Persentase Dari Data Churn"] = tvplan_data_non_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
     st.table(tvplan_data_non_churned.head(10))
 
     #DOWNLOAD HERE
@@ -814,6 +826,8 @@ def visualize_data_batch(data):
     adv_data_non_churned = adv_data_non_churned.reset_index(drop=True)
     total = adv_data_non_churned["Count Not Churned"].sum()
     adv_data_non_churned["Persentase Dari Data Not Churn"] = adv_data_non_churned["Count Not Churned"]/total*100
+    # Format the percentage column with "%" sign
+    adv_data_non_churned["Persentase Dari Data Churn"] = adv_data_non_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
     st.table(adv_data_non_churned.head(10))
 
     #DOWNLOAD HERE
@@ -842,6 +856,9 @@ def visualize_data_batch(data):
     columns = data.columns.to_list()
 
     pdf_pages.close()
+    # Display the PDF download link
+    pdf_url = f"https://storage.googleapis.com/{bucket_name}/{pdf_filename}"
+    st.markdown(f"File PDF disimpan di GCS. Silakan unduh di sini: [{pdf_filename}]({pdf_url})")
     st.success("PDF Report Created. Check your directory")
 
 def run():
