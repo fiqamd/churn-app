@@ -678,8 +678,13 @@ def visualize_data_batch(data):
 
         # Tampilkan jumlah data churn untuk setiap Area Name
         st.write("Jumlah data churn untuk setiap Area Name:")
-        for area_name, count in area_name_counts.items():
-            st.write(f"{area_name}: {count} data churn")
+        # Tampilkan tabel jumlah data churn untuk setiap Area Name
+        churn_table = pd.DataFrame(area_name_counts, columns=['Jumlah Data Churn']).reset_index()
+        churn_table.columns = ['Area Name', 'Jumlah Data Churn']
+        st.write("Tabel Jumlah Data Churn untuk Setiap Area Name:")
+        st.table(churn_table)
+        # for area_name, count in area_name_counts.items():
+        #     st.write(f"{area_name}: {count} data churn")
 
     elif option_chart == 'Plan':
         st.title("Proportion Churn & Not Churn - Plan")
