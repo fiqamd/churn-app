@@ -708,6 +708,14 @@ def visualize_data_batch(data):
         plt.xticks(rotation=90)
         st.pyplot(plt)
 
+        # Tampilkan jumlah data churn untuk setiap Plan
+        st.write("Jumlah data churn untuk setiap Plan:")
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Plan': unique_plan,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_plan],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
+        st.table(churn_data)
+
     elif option_chart == 'Tv Plan':
         st.title("Proportion Churn & Not Churn - Tv Plan")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
@@ -730,6 +738,14 @@ def visualize_data_batch(data):
         plt.xticks(rotation=90)
         st.pyplot(plt)
 
+        # Tampilkan jumlah data churn untuk setiap Tv Plan
+        st.write("Jumlah data churn untuk setiap Tv Plan:")
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
+        st.table(churn_data)
+
     elif option_chart == 'Advance Promo':
         st.title("Proportion Churn & Not Churn - Advance Promo")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
@@ -751,6 +767,14 @@ def visualize_data_batch(data):
         plt.ylabel('Jumlah')
         plt.xticks(rotation=90)
         st.pyplot(plt)
+
+        # Tampilkan jumlah data churn untuk setiap Advance Promo
+        st.write("Jumlah data churn untuk setiap Advance Promo:")
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
+        st.table(churn_data)
 
         # st.title(unique_area_name)
         # for area_names in unique_area_name:
