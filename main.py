@@ -644,8 +644,18 @@ def visualize_data_batch(data):
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
 
+    unique_plan = sorted(data['Plan'].unique())
+    plan_counts = data['Plan'].value_counts()
+
+    unique_tvplan = sorted(data['Tv Plan'].unique())
+    tvplan_counts = data['Tv Plan'].value_counts()
+
+    unique_adv_promo = sorted(data['Advance Promo'].unique())
+    adv_promo_counts = data['Advance Promo'].value_counts()
+
+
     if option_chart == 'Area Name':
-        st.title("Churn and Area Name")
+        st.title("Proportion Churn & Not Churn - Area Name")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
         churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
         not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -665,6 +675,73 @@ def visualize_data_batch(data):
         plt.ylabel('Jumlah')
         plt.xticks(rotation=90)
         st.pyplot(plt)
+
+    elif option_chart == 'Plan':
+        st.title("Proportion Churn & Not Churn - Plan")
+        # Hitung jumlah Churn dan Not Churn untuk setiap area
+        churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
+        not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
+
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Plan': unique_plan,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_plan],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
+
+        # Membuat plot menggunakan sns.catplot
+        sns.set(style="whitegrid")
+        plt.figure(figsize=(12, 6))
+        sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
+                    kind='bar', height=6, aspect=2.5, palette='magma')
+        plt.title('Proporsi Churn dan Not Churn berdasarkan Plan')
+        plt.xlabel('Plan')
+        plt.ylabel('Jumlah')
+        plt.xticks(rotation=90)
+        st.pyplot(plt)
+
+    elif option_chart == 'Tv Plan':
+        st.title("Proportion Churn & Not Churn - Tv Plan")
+        # Hitung jumlah Churn dan Not Churn untuk setiap area
+        churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
+        not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
+
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
+
+        # Membuat plot menggunakan sns.catplot
+        sns.set(style="whitegrid")
+        plt.figure(figsize=(12, 6))
+        sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
+                    kind='bar', height=6, aspect=2.5, palette='magma')
+        plt.title('Proporsi Churn dan Not Churn berdasarkan Tv Plan')
+        plt.xlabel('Tv Plan')
+        plt.ylabel('Jumlah')
+        plt.xticks(rotation=90)
+        st.pyplot(plt)
+
+    elif option_chart == 'Advance Promo':
+        st.title("Proportion Churn & Not Churn - Advance Promo")
+        # Hitung jumlah Churn dan Not Churn untuk setiap area
+        churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
+        not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
+
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Advance Promo': unique_adv_proo,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_adv_proo],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_adv_proo]})
+
+        # Membuat plot menggunakan sns.catplot
+        sns.set(style="whitegrid")
+        plt.figure(figsize=(12, 6))
+        sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
+                    kind='bar', height=6, aspect=2.5, palette='magma')
+        plt.title('Proporsi Churn dan Not Churn berdasarkan Advance Promo')
+        plt.xlabel('Advance Promo')
+        plt.ylabel('Jumlah')
+        plt.xticks(rotation=90)
+        st.pyplot(plt)
+
         # st.title(unique_area_name)
         # for area_names in unique_area_name:
         #     churn0_count = data[(data['Churn'] == 0) & (data['Area Name'] == area_names)].shape[0]
