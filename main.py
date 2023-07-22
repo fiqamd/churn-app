@@ -366,7 +366,7 @@ def visualize_data_batch(data):
         area_data_merge = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
         
         # Select the top 5 rows
-        top_5 = area_data_merge.head(10)
+        top_5 = area_data_merge.sort_values(by='Count Not Churned', ascending=False).head(10)
 
         # Calculate the sum of 'Data Churned' for the remaining rows
         remaining_sum = area_data_merge.iloc[10:]['Count Not Churned'].sum()
