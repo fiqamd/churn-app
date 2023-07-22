@@ -656,14 +656,14 @@ def visualize_data_batch(data):
         
         # print(f'Proportions of not churn and churn in area code {area_names} = {churn0_proportion}, {churn1_proportion} respectively')
 
-        # Visualisasi menggunakan Seaborn
-        churn_area = sns.catplot(x="Churn", kind="count", hue="Area Name", palette="magma", data=data[data['Area Name'] == area_names], height=8)
-        for ax in churn_area.axes.flat:
-            for c in ax.containers:
-                ax.bar_label(c)
+            # Visualisasi menggunakan Seaborn
+            churn_area = sns.catplot(x="Churn", kind="count", hue="Area Name", palette="magma", data=data[data['Area Name'] == area_names], height=8)
+            for ax in churn_area.axes.flat:
+                for c in ax.containers:
+                    ax.bar_label(c)
 
-        plt.title("Churn and Area Name")
-        st.pyplot(plt)
+            plt.title("Churn and Area Name")
+            st.pyplot(plt)
 
     #Area Name
     palette_area = sns.color_palette('crest')
