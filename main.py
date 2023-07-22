@@ -676,6 +676,11 @@ def visualize_data_batch(data):
         plt.xticks(rotation=90)
         st.pyplot(plt)
 
+        # Tampilkan jumlah data churn untuk setiap Area Name
+        st.write("Jumlah data churn untuk setiap Area Name:")
+        for area_name, count in area_name_counts.items():
+            st.write(f"{area_name}: {count} data churn")
+
     elif option_chart == 'Plan':
         st.title("Proportion Churn & Not Churn - Plan")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
