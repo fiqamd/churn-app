@@ -823,7 +823,7 @@ def visualize_data_batch(data):
 
     #Plan Data Not Churned
     plan_data_non_churned = plan_data_non_churned.reset_index(drop=True)
-    total = plan_data_non_churned["Count Not Churned "].sum()
+    total = plan_data_non_churned["Count Not Churned"].sum()
     plan_data_non_churned["Persentase Dari Data Not Churn"] = plan_data_non_churned["Count Not Churned"]/total*100
     st.table(plan_data_non_churned.head(10))
 
