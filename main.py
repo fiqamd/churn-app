@@ -296,7 +296,7 @@ def visualize_data_batch(data):
 
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
-        patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)))
+        patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
         plt.title('Top 10 Count Churned by Area Name')
         plt.axis('equal')
         
@@ -322,7 +322,7 @@ def visualize_data_batch(data):
 
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
-        patches, texts, autotexts = plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)))
+        patches, texts, autotexts = plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
         plt.title('Top 10 Count Not Churned by Area Name')
         plt.axis('equal')
         
