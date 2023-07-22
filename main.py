@@ -659,7 +659,7 @@ def visualize_data_batch(data):
         sns.set(style="whitegrid")
         plt.figure(figsize=(12, 6))
         sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
-                    kind='bar', height=6, aspect=2.5, palette='colorblind')
+                    kind='bar', height=6, aspect=2.5, palette='magma')
         plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
         plt.xlabel('Area Name')
         plt.ylabel('Jumlah')
