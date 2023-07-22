@@ -279,15 +279,68 @@ def visualize_data_batch(data):
     tvplan_data_merge.fillna(0, inplace=True)
     adv_data_merge.fillna(0, inplace=True)
     
+    # if option == 'Area Name':
+    #     st.title("Proportion Churn & Not Churn - Area Name")
+    #     # Sort the DataFrame by 'Count Churned' in descending order
+    #     area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
+
+    #     # Select the top 5 rows
+    #     top_5 = area_data_merge.head(10)
+
+    #     # Calculate the sum of 'Count Churned' for the remaining rows
+    #     remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
+
+    #     # Add the 'dll' row to the DataFrame
+    #     dll_row = {'Area Name': 'dll', 'Count Churned': remaining_sum}
+    #     top_5 = top_5.append(dll_row, ignore_index=True)
+
+    #     # Plot the pie chart
+    #     plt.figure(figsize=(6, 6))
+    #     patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140)
+    #     plt.title('Top 10 Count Churned by Area Name')
+    #     plt.axis('equal')
+        
+    #     # Tambahkan legend dengan menggunakan 'Area Name' dari DataFrame 'top_5'
+    #     plt.legend(patches, top_5['Area Name'], loc='best')
+
+    #     # Display the pie chart using st.pyplot(fig)
+    #     fig = plt.gcf()  # Get the current figure
+    #     st.pyplot(fig)
+
+    #     # Sort the DataFrame by 'Count Churned' in descending order
+    #     area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
+
+    #     # Select the top 5 rows
+    #     top_5 = area_data_merge.head(10)
+
+    #     # Calculate the sum of 'Count Not Churned' for the remaining rows
+    #     remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
+
+    #     # Add the 'dll' row to the DataFrame
+    #     dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
+    #     top_5 = top_5.append(dll_row, ignore_index=True)
+
+    #     # Plot the pie chart
+    #     plt.figure(figsize=(6, 6))
+    #     patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140)
+    #     plt.title('Top 10 Count Not Churned by Area Name')
+    #     plt.axis('equal')
+        
+    #     # Tambahkan legend dengan menggunakan 'Area Name' dari DataFrame 'top_5'
+    #     plt.legend(patches, top_5['Area Name'], loc='best')
+
+    #     # Display the pie chart using st.pyplot(fig)
+    #     fig = plt.gcf()  # Get the current figure
+    #     st.pyplot(fig)
+
     if option == 'Area Name':
-        st.title("Proportion Churn & Not Churn - Area Name")
-        # Sort the DataFrame by 'Count Churned' in descending order
+        # Sort the DataFrame by 'Data Churned' in descending order
         area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
         # Select the top 5 rows
         top_5 = area_data_merge.head(10)
 
-        # Calculate the sum of 'Count Churned' for the remaining rows
+        # Calculate the sum of 'Data Churned' for the remaining rows
         remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
@@ -297,24 +350,25 @@ def visualize_data_batch(data):
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
         patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140)
+
+        # plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140)
         plt.title('Top 10 Count Churned by Area Name')
         plt.axis('equal')
-        
-        # Tambahkan legend dengan menggunakan 'Area Name' dari DataFrame 'top_5'
         plt.legend(patches, top_5['Area Name'], loc='best')
+        # plt.legend(title="Area Name", loc="best")
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
 
-        # Sort the DataFrame by 'Count Churned' in descending order
-        area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
+        # Sort the DataFrame by 'Data Churned' in descending order
+        area_data_merge = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
         # Select the top 5 rows
         top_5 = area_data_merge.head(10)
 
-        # Calculate the sum of 'Count Not Churned' for the remaining rows
-        remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
+        # Calculate the sum of 'Data Churned' for the remaining rows
+        remaining_sum = area_data_merge.iloc[10:]['Count Not Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
@@ -323,65 +377,16 @@ def visualize_data_batch(data):
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
         patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140)
+        # plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140)
         plt.title('Top 10 Count Not Churned by Area Name')
         plt.axis('equal')
-        
-        # Tambahkan legend dengan menggunakan 'Area Name' dari DataFrame 'top_5'
         plt.legend(patches, top_5['Area Name'], loc='best')
+        # plt.legend(title="Area Name", loc="best")
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
+
         st.pyplot(fig)
-
-    # if option == 'Area Name':
-    #     # Sort the DataFrame by 'Data Churned' in descending order
-    #     area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
-
-    #     # Select the top 5 rows
-    #     top_5 = area_data_merge.head(10)
-
-    #     # Calculate the sum of 'Data Churned' for the remaining rows
-    #     remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
-
-    #     # Add the 'dll' row to the DataFrame
-    #     dll_row = {'Area Name': 'dll', 'Count Churned': remaining_sum}
-    #     top_5 = top_5.append(dll_row, ignore_index=True)
-
-    #     # Plot the pie chart
-    #     plt.figure(figsize=(6, 6))
-    #     plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140)
-    #     plt.title('Top 10 Count Churned by Area Name')
-    #     plt.axis('equal')
-    #     plt.legend(title="Area Name", loc="best")
-
-    #     # Display the pie chart using st.pyplot(fig)
-    #     fig = plt.gcf()  # Get the current figure
-    #     st.pyplot(fig)
-
-    #     # Sort the DataFrame by 'Data Churned' in descending order
-    #     area_data_merge = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
-
-    #     # Select the top 5 rows
-    #     top_5 = area_data_merge.head(10)
-
-    #     # Calculate the sum of 'Data Churned' for the remaining rows
-    #     remaining_sum = area_data_merge.iloc[10:]['Count Not Churned'].sum()
-
-    #     # Add the 'dll' row to the DataFrame
-    #     dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
-    #     top_5 = top_5.append(dll_row, ignore_index=True)
-
-    #     # Plot the pie chart
-    #     plt.figure(figsize=(6, 6))
-    #     plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140)
-    #     plt.title('Top 10 Count Not Churned by Area Name')
-    #     plt.axis('equal')
-    #     plt.legend(title="Area Name", loc="best")
-
-    #     # Display the pie chart using st.pyplot(fig)
-    #     fig = plt.gcf()  # Get the current figure
-
-    #     st.pyplot(fig)
     elif option == 'Plan':
         # Sort the DataFrame by 'Data Churned' in descending order
         plan_data_merge = plan_data_merge.sort_values(by='Count Churned', ascending=False)
