@@ -278,14 +278,15 @@ def visualize_data_batch(data):
     plan_data_merge.fillna(0, inplace=True)
     tvplan_data_merge.fillna(0, inplace=True)
     adv_data_merge.fillna(0, inplace=True)
-    if option == 'Area Name':
-        # Sort the DataFrame by 'Data Churned' in descending order
+    if option_chart == 'Area Name':
+        st.title("Proportion Churn & Not Churn - Area Name")
+        # Sort the DataFrame by 'Count Churned' in descending order
         area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
         # Select the top 5 rows
         top_5 = area_data_merge.head(10)
 
-        # Calculate the sum of 'Data Churned' for the remaining rows
+        # Calculate the sum of 'Count Churned' for the remaining rows
         remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
@@ -297,19 +298,20 @@ def visualize_data_batch(data):
         plt.pie(top_5['Count Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
         plt.title('Top 10 Count Churned by Area Name')
         plt.axis('equal')
+        plt.legend(title="Area Name", loc="best")  # Tambahkan legenda
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
 
-        # Sort the DataFrame by 'Data Churned' in descending order
-        area_data_merge = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
+        # Sort the DataFrame by 'Count Churned' in descending order
+        area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
         # Select the top 5 rows
         top_5 = area_data_merge.head(10)
 
-        # Calculate the sum of 'Data Churned' for the remaining rows
-        remaining_sum = area_data_merge.iloc[10:]['Count Not Churned'].sum()
+        # Calculate the sum of 'Count Not Churned' for the remaining rows
+        remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
@@ -317,14 +319,62 @@ def visualize_data_batch(data):
 
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
-        plt.pie(top_5['Count Not Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
+        plt.pie(top_5['Count Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
         plt.title('Top 10 Count Not Churned by Area Name')
         plt.axis('equal')
+        plt.legend(title="Area Name", loc="best")  # Tambahkan legenda
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
-
         st.pyplot(fig)
+
+    # if option == 'Area Name':
+    #     # Sort the DataFrame by 'Data Churned' in descending order
+    #     area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
+
+    #     # Select the top 5 rows
+    #     top_5 = area_data_merge.head(10)
+
+    #     # Calculate the sum of 'Data Churned' for the remaining rows
+    #     remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
+
+    #     # Add the 'dll' row to the DataFrame
+    #     dll_row = {'Area Name': 'dll', 'Count Churned': remaining_sum}
+    #     top_5 = top_5.append(dll_row, ignore_index=True)
+
+    #     # Plot the pie chart
+    #     plt.figure(figsize=(6, 6))
+    #     plt.pie(top_5['Count Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
+    #     plt.title('Top 10 Count Churned by Area Name')
+    #     plt.axis('equal')
+
+    #     # Display the pie chart using st.pyplot(fig)
+    #     fig = plt.gcf()  # Get the current figure
+    #     st.pyplot(fig)
+
+    #     # Sort the DataFrame by 'Data Churned' in descending order
+    #     area_data_merge = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
+
+    #     # Select the top 5 rows
+    #     top_5 = area_data_merge.head(10)
+
+    #     # Calculate the sum of 'Data Churned' for the remaining rows
+    #     remaining_sum = area_data_merge.iloc[10:]['Count Not Churned'].sum()
+
+    #     # Add the 'dll' row to the DataFrame
+    #     dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
+    #     top_5 = top_5.append(dll_row, ignore_index=True)
+
+    #     # Plot the pie chart
+    #     plt.figure(figsize=(6, 6))
+    #     plt.pie(top_5['Count Not Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
+    #     plt.title('Top 10 Count Not Churned by Area Name')
+    #     plt.axis('equal')
+
+    #     # Display the pie chart using st.pyplot(fig)
+    #     fig = plt.gcf()  # Get the current figure
+
+    #     st.pyplot(fig)
     elif option == 'Plan':
         # Sort the DataFrame by 'Data Churned' in descending order
         plan_data_merge = plan_data_merge.sort_values(by='Count Churned', ascending=False)
@@ -629,56 +679,6 @@ def visualize_data_batch(data):
             st.markdown("Untuk mendownload file seluruh:")
             st.markdown(href_not_churned, unsafe_allow_html=True)
 
-
-    #Area Name
-    area_data_merge = area_data_merge.fillna(0)
-    st.table(area_data_merge.head(10))
-    if st.button('Download Here - Area Name', key='download_area_name'):
-        csv_area_name = area_data_merge.to_csv(index=False)
-        href = f'<a href="area_data_merge:file/csv;charset=utf-8,{csv_area_name}" download="area_data_merge.csv">Download File CSV</a>'
-        st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href, unsafe_allow_html=True)
-
-    # # Mengurutkan data berdasarkan jumlah Churned secara descending
-    # area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
-
-    #Plan
-    plan_data_merge = plan_data_merge.fillna(0)
-    st.table(plan_data_merge.head(10))
-    if st.button('Download Here - Plan', key='download_plan'):
-        csv_plan = plan_data_merge.to_csv(index=False)
-        href = f'<a href="plan_data_merge:file/csv;charset=utf-8,{csv_plan}" download="plan_data_merge.csv">Download File CSV</a>'
-        st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href, unsafe_allow_html=True)
-
-    #Tv Plan
-    tvplan_data_merge = tvplan_data_merge.fillna(0)
-    st.table(tvplan_data_merge.head(10))
-    if st.button('Download Here - Tv Plan', key='download_tv_plan'):
-        csv_tv_plan = tvplan_data_merge.to_csv(index=False)
-        href = f'<a href="tvplan_data_merge:file/csv;charset=utf-8,{csv_tv_plan}" download="tvplan_data_merge.csv">Download File CSV</a>'
-        st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href, unsafe_allow_html=True)
-
-    #Advance Promo
-    adv_data_merge = adv_data_merge.fillna(0)
-    st.table(adv_data_merge.head(10))
-    if st.button('Download Here - Advance Promo', key='download_adv_promo'):
-        csv_adv_promo = adv_data_merge.to_csv(index=False)
-        href = f'<a href="adv_data_merge:file/csv;charset=utf-8,{csv_adv_promo}" download="adv_data_merge.csv">Download File CSV</a>'
-        st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href, unsafe_allow_html=True)
-
-    
-    st.header('Churned Data')
-    st.table(data_churned.head(10))
-    # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - Churned Data', key='download_churned'):
-        csv_data_churned = data_churned.to_csv(index=False)
-        href_churned = f'<a href="data:file/csv;charset=utf-8,{csv_data_churned}" download="data_churned.csv">Download File CSV</a>'
-        st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href_churned, unsafe_allow_html=True)
-
     #Area Data Churned
     area_data_churned = area_data_churned.reset_index(drop=True)
     total = area_data_churned["Count Churned"].sum()
@@ -801,186 +801,6 @@ def visualize_data_batch(data):
     data_churn = data[data["Churn"] == "Churn"]
     columns = data.columns.to_list()
     
-    option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
-                          ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo'], key= 'komparasi_churn'
-                          )
-    unique_area_name = sorted(data['Area Name'].unique())
-    area_name_counts = data['Area Name'].value_counts()
-
-    unique_plan = sorted(data['Plan'].unique())
-    plan_counts = data['Plan'].value_counts()
-
-    unique_tvplan = sorted(data['Tv Plan'].unique())
-    tvplan_counts = data['Tv Plan'].value_counts()
-
-    unique_adv_promo = sorted(data['Advance Promo'].unique())
-    adv_promo_counts = data['Advance Promo'].value_counts()
-
-
-    if option_chart == 'Area Name':
-        st.title("Proportion Churn & Not Churn - Area Name")
-        # Hitung jumlah Churn dan Not Churn untuk setiap area
-        churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
-        not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
-
-        # Membuat dataframe untuk menyimpan hasil perhitungan
-        churn_data = pd.DataFrame({'Area Name': unique_area_name,
-                                'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
-                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
-
-        # Membuat plot menggunakan sns.catplot
-        sns.set(style="whitegrid")
-        plt.figure(figsize=(12, 6))
-        sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
-                    kind='bar', height=6, aspect=2.5, palette='magma')
-        plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-        plt.xlabel('Area Name')
-        plt.ylabel('Jumlah')
-        plt.xticks(rotation=90)
-        st.pyplot(plt)
-
-        # Tampilkan jumlah data churn untuk setiap Area Name
-        st.write("Jumlah data churn untuk setiap Area Name:")
-        # Membuat dataframe untuk menyimpan hasil perhitungan
-        churn_data = pd.DataFrame({'Area Name': unique_area_name,
-                                'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
-                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
-        st.table(churn_data)
-
-        if st.button('Download Here - Area Name Proportion Data', key='download_area_name_prop'):
-            csv_area_name_prop = churn_data.to_csv(index=False)
-            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_area_name_prop}" download="churn_data.csv">Download File CSV</a>'
-            st.markdown("Untuk mendownload file seluruh:")
-            st.markdown(href_not_churned, unsafe_allow_html=True)
-        # for area_name, count in area_name_counts.items():
-        #     st.write(f"{area_name}: {count} data churn")
-
-    elif option_chart == 'Plan':
-        st.title("Proportion Churn & Not Churn - Plan")
-        # Hitung jumlah Churn dan Not Churn untuk setiap area
-        churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
-        not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
-
-        # Membuat dataframe untuk menyimpan hasil perhitungan
-        churn_data = pd.DataFrame({'Plan': unique_plan,
-                                'Churn': [churn_counts.get(area, 0) for area in unique_plan],
-                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
-
-        # Membuat plot menggunakan sns.catplot
-        sns.set(style="whitegrid")
-        plt.figure(figsize=(12, 6))
-        sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
-                    kind='bar', height=6, aspect=2.5, palette='magma')
-        plt.title('Proporsi Churn dan Not Churn berdasarkan Plan')
-        plt.xlabel('Plan')
-        plt.ylabel('Jumlah')
-        plt.xticks(rotation=90)
-        st.pyplot(plt)
-
-        # Tampilkan jumlah data churn untuk setiap Plan
-        st.write("Jumlah data churn untuk setiap Plan:")
-        # Membuat dataframe untuk menyimpan hasil perhitungan
-        churn_data = pd.DataFrame({'Plan': unique_plan,
-                                'Churn': [churn_counts.get(area, 0) for area in unique_plan],
-                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
-        st.table(churn_data)
-
-        if st.button('Download Here - Plan Proportion Data', key='download_plan_prop'):
-            csv_plan_prop = churn_data.to_csv(index=False)
-            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_plan_prop}" download="churn_data.csv">Download File CSV</a>'
-            st.markdown("Untuk mendownload file seluruh:")
-            st.markdown(href_not_churned, unsafe_allow_html=True)
-
-    elif option_chart == 'Tv Plan':
-        st.title("Proportion Churn & Not Churn - Tv Plan")
-        # Hitung jumlah Churn dan Not Churn untuk setiap area
-        churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
-        not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
-
-        # Membuat dataframe untuk menyimpan hasil perhitungan
-        churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
-                                'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
-                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
-
-        # Membuat plot menggunakan sns.catplot
-        sns.set(style="whitegrid")
-        plt.figure(figsize=(12, 6))
-        sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
-                    kind='bar', height=6, aspect=2.5, palette='magma')
-        plt.title('Proporsi Churn dan Not Churn berdasarkan Tv Plan')
-        plt.xlabel('Tv Plan')
-        plt.ylabel('Jumlah')
-        plt.xticks(rotation=90)
-        st.pyplot(plt)
-
-        # Tampilkan jumlah data churn untuk setiap Tv Plan
-        st.write("Jumlah data churn untuk setiap Tv Plan:")
-        # Membuat dataframe untuk menyimpan hasil perhitungan
-        churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
-                                'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
-                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
-        st.table(churn_data)
-
-        if st.button('Download Here - Tv Plan Proportion Data', key='download_tvplan_prop'):
-            csv_tvplan_prop = churn_data.to_csv(index=False)
-            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_tvplan_prop}" download="churn_data.csv">Download File CSV</a>'
-            st.markdown("Untuk mendownload file seluruh:")
-            st.markdown(href_not_churned, unsafe_allow_html=True)
-
-    elif option_chart == 'Advance Promo':
-        st.title("Proportion Churn & Not Churn - Advance Promo")
-        # Hitung jumlah Churn dan Not Churn untuk setiap area
-        churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
-        not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
-
-        # Membuat dataframe untuk menyimpan hasil perhitungan
-        churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
-                                'Churn': [churn_counts.get(area, 0) for area in unique_adv_promo],
-                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_adv_promo]})
-
-        # Membuat plot menggunakan sns.catplot
-        sns.set(style="whitegrid")
-        plt.figure(figsize=(12, 6))
-        sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
-                    kind='bar', height=6, aspect=2.5, palette='magma')
-        plt.title('Proporsi Churn dan Not Churn berdasarkan Advance Promo')
-        plt.xlabel('Advance Promo')
-        plt.ylabel('Jumlah')
-        plt.xticks(rotation=90)
-        st.pyplot(plt)
-
-        # Tampilkan jumlah data churn untuk setiap Advance Promo
-        st.write("Jumlah data churn untuk setiap Advance Promo:")
-        # Membuat dataframe untuk menyimpan hasil perhitungan
-        churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
-                                'Churn': [churn_counts.get(area, 0) for area in unique_adv_promo],
-                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_adv_promo]})
-        st.table(churn_data)
-
-        if st.button('Download Here - Tv Plan Proportion Data', key='download_advpromo_prop'):
-            csv_advpromo_prop = churn_data.to_csv(index=False)
-            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_advpromo_prop}" download="churn_data.csv">Download File CSV</a>'
-            st.markdown("Untuk mendownload file seluruh:")
-            st.markdown(href_not_churned, unsafe_allow_html=True)
-
-        # st.title(unique_area_name)
-        # for area_names in unique_area_name:
-        #     churn0_count = data[(data['Churn'] == 0) & (data['Area Name'] == area_names)].shape[0]
-        #     churn1_count = data[(data['Churn'] == 1) & (data['Area Name'] == area_names)].shape[0]
-            
-        #     churn0_proportion = round(churn0_count / area_name_counts[area_names], 2)
-        #     churn1_proportion = round(churn1_count / area_name_counts[area_names], 2)
-        
-        # # print(f'Proportions of not churn and churn in area code {area_names} = {churn0_proportion}, {churn1_proportion} respectively')
-
-        #     # Visualisasi menggunakan Seaborn
-        #     churn_area = sns.catplot(x="Churn", kind="count", hue="Area Name", palette="magma", data=data[data['Area Name'] == area_names], height=8)
-        #     for ax in churn_area.axes.flat:
-        #         for c in ax.containers:
-        #             ax.bar_label(c)
-
-        #     plt.title("Churn and Area Name")
-        #     st.pyplot(plt)
 
     #Area Name
     palette_area = sns.color_palette('crest')
