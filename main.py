@@ -678,11 +678,11 @@ def visualize_data_batch(data):
 
         # Tampilkan jumlah data churn untuk setiap Area Name
         st.write("Jumlah data churn untuk setiap Area Name:")
-        # Tampilkan tabel jumlah data churn untuk setiap Area Name
-        churn_table = pd.DataFrame(area_name_counts, columns=['Jumlah Data Churn']).reset_index()
-        churn_table.columns = ['Area Name', 'Jumlah Data Churn']
-        st.write("Tabel Jumlah Data Churn untuk Setiap Area Name:")
-        st.table(churn_table)
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Area Name': unique_area_name,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
+        st.table(churn_data)
         # for area_name, count in area_name_counts.items():
         #     st.write(f"{area_name}: {count} data churn")
 
