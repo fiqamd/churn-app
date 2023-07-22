@@ -49,7 +49,7 @@ def load_model(bucket_name, model_path):
 # # Anda dapat menggunakan fungsi ini untuk meload model Anda
 model = load_model("model_churn", "model.pkl")
 # Set max upload size to 500 MB
-st.set_option('server.maxUploadSize', 500)
+# st.set_option('server.maxUploadSize', 500)
 
 area_dict = {'Bali': 0, 'Bandung': 1, 'Bekasi': 2, 'Bogor': 3, 'Cibubur': 4, 'Cilegon': 5, 'Cirebon': 6, 'Depok': 7, 'Jakarta': 8, 'Jambi': 9, 'Karawang': 10, 'Lampung': 11, 'Makassar': 12, 'Malang': 13, 'Medan': 14, 'Palembang': 15, 'Pekanbaru': 16, 'Purwokerto': 17, 'Semarang': 18, 'Serang': 19, 'Solo': 20, 'Surabaya': 21, 'Tangerang': 22, 'Tegal': 23}
 
