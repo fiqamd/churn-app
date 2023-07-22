@@ -322,7 +322,7 @@ def visualize_data_batch(data):
 
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
-        patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140)
+        patches, texts, autotexts = plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140)
         plt.title('Top 10 Count Not Churned by Area Name')
         plt.axis('equal')
         
