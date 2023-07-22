@@ -21,6 +21,7 @@ import matplotlib.patches as mpatches
 import base64
 import numpy as np
 import time
+from datetime import datetime
 
 from matplotlib.backends.backend_pdf import PdfPages
 from google.cloud import storage
@@ -235,8 +236,12 @@ def visualize_data_batch(data):
 
     # Menampilkan tombol "Download File CSV"
     if st.button('Download Here - All Data', key='download_all'):
-        csv_data = data.to_csv(index=False)
-        st.download_button("Download CSV", data=csv_data, mime='text/csv')
+        result_all_data = data
+        current_date = datetime.now().strftime("%Y%m%d")
+        filename = f"{result_all_data}_{current_date}.csv"
+
+        csv_data = result_all_data.to_csv(index=False)
+        st.download_button("Download CSV", data=csv_data, mime='text/csv', file_name=filename)
 
         # href = f'<a href="data:file/csv;charset=utf-8,{csv_data}" download="data.csv">Download File CSV</a>'
         # # st.markdown("Untuk mendownload file seluruh:")
