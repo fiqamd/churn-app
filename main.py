@@ -556,19 +556,11 @@ def visualize_data_batch(data):
         #DOWNLOAD HERE
         result_all_data = churn_data
         current_date = datetime.now().strftime("%Y%m%d")
-        result_all_data.name = "Data Churned Plan"
+        result_all_data.name = "Data Area Name Proporsi"
         filename = f"{result_all_data.name}_{current_date}.csv"
 
         csv_data = result_all_data.to_csv(index=False)
-        st.download_button("Download Here - Churned Plan Data", data=csv_data, mime='text/csv', file_name=filename)
-
-        # if st.button('Download Here - Area Name Proportion Data', key='download_area_name_prop'):
-        #     csv_area_name_prop = churn_data.to_csv(index=False)
-        #     href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_area_name_prop}" download="churn_data.csv">Download File CSV</a>'
-        #     st.markdown("Untuk mendownload file seluruh:")
-        #     st.markdown(href_not_churned, unsafe_allow_html=True)
-        # for area_name, count in area_name_counts.items():
-        #     st.write(f"{area_name}: {count} data churn")
+        st.download_button("Download Here - Area Name Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
     elif option_chart == 'Plan':
         st.subheader("Proportion Churn & Not Churn - Plan")
@@ -600,11 +592,14 @@ def visualize_data_batch(data):
                                 'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
         st.table(churn_data.head(10))
 
-        if st.button('Download Here - Plan Proportion Data', key='download_plan_prop'):
-            csv_plan_prop = churn_data.to_csv(index=False)
-            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_plan_prop}" download="churn_data.csv">Download File CSV</a>'
-            st.markdown("Untuk mendownload file seluruh:")
-            st.markdown(href_not_churned, unsafe_allow_html=True)
+        #DOWNLOAD HERE
+        result_all_data = churn_data
+        current_date = datetime.now().strftime("%Y%m%d")
+        result_all_data.name = "Data Plan Proporsi"
+        filename = f"{result_all_data.name}_{current_date}.csv"
+
+        csv_data = result_all_data.to_csv(index=False)
+        st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
     elif option_chart == 'Tv Plan':
         st.subheader("Proportion Churn & Not Churn - Tv Plan")
@@ -636,11 +631,14 @@ def visualize_data_batch(data):
                                 'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
         st.table(churn_data.head(10))
 
-        if st.button('Download Here - Tv Plan Proportion Data', key='download_tvplan_prop'):
-            csv_tvplan_prop = churn_data.to_csv(index=False)
-            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_tvplan_prop}" download="churn_data.csv">Download File CSV</a>'
-            st.markdown("Untuk mendownload file seluruh:")
-            st.markdown(href_not_churned, unsafe_allow_html=True)
+        #DOWNLOAD HERE
+        result_all_data = churn_data
+        current_date = datetime.now().strftime("%Y%m%d")
+        result_all_data.name = "Data Tv Plan Proporsi"
+        filename = f"{result_all_data.name}_{current_date}.csv"
+
+        csv_data = result_all_data.to_csv(index=False)
+        st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
     elif option_chart == 'Advance Promo':
         st.subheader("Proportion Churn & Not Churn - Advance Promo")
@@ -672,11 +670,14 @@ def visualize_data_batch(data):
                                 'Not Churn': [not_churn_counts.get(area, 0) for area in unique_adv_promo]})
         st.table(churn_data.head(10))
 
-        if st.button('Download Here - Tv Plan Proportion Data', key='download_advpromo_prop'):
-            csv_advpromo_prop = churn_data.to_csv(index=False)
-            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_advpromo_prop}" download="churn_data.csv">Download File CSV</a>'
-            st.markdown("Untuk mendownload file seluruh:")
-            st.markdown(href_not_churned, unsafe_allow_html=True)
+        #DOWNLOAD HERE
+        result_all_data = churn_data
+        current_date = datetime.now().strftime("%Y%m%d")
+        result_all_data.name = "Data Advance Promo Proporsi"
+        filename = f"{result_all_data.name}_{current_date}.csv"
+
+        csv_data = result_all_data.to_csv(index=False)
+        st.download_button("Download Here - Advance Promo Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
     data_churned = data[data['Churn'] == 'Churn']
     st.header('Churned Data')
@@ -706,13 +707,6 @@ def visualize_data_batch(data):
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Churned Area Name Data", data=csv_data, mime='text/csv', file_name=filename)
 
-    # Menampilkan tombol "Download File CSV"
-    # if st.button('Download Here - Area Name Churned Data', key='download__area_churned'):
-    #     csv_area_data_churned = data_churned.to_csv(index=False)
-    #     href_churned = f'<a href="area_data_churned:file/csv;charset=utf-8,{csv_data_churned}" download="area_data_churned.csv">Download File CSV</a>'
-    #     st.markdown("Untuk mendownload file seluruh:")
-    #     st.markdown(href_churned, unsafe_allow_html=True)
-
     #Plan Data Churned
     plan_data_churned = plan_data_churned.reset_index(drop=True)
     total = plan_data_churned["Count Churned"].sum()
@@ -727,13 +721,6 @@ def visualize_data_batch(data):
 
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Churned Plan Data", data=csv_data, mime='text/csv', file_name=filename)
-
-    # # Menampilkan tombol "Download File CSV"
-    # if st.button('Download Here - Plan Churned Data', key='download__plan_churned'):
-    #     csv_plan_churned = plan_data_churned.to_csv(index=False)
-    #     href_churned = f'<a href="plan_data_churned:file/csv;charset=utf-8,{csv_plan_churned}" download="plan_data_churned.csv">Download File CSV</a>'
-    #     st.markdown("Untuk mendownload file seluruh:")
-    #     st.markdown(href_churned, unsafe_allow_html=True)
 
     #Tv Plan Data Churned
     tvplan_data_churned = tvplan_data_churned.reset_index(drop=True)
@@ -750,13 +737,6 @@ def visualize_data_batch(data):
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Churned Tv Plan Data", data=csv_data, mime='text/csv', file_name=filename)
 
-    # # Menampilkan tombol "Download File CSV"
-    # if st.button('Download Here - Tv Plan Churned Data', key='download__tv_churned'):
-    #     csv_tvplan_churned = tvplan_data_churned.to_csv(index=False)
-    #     href_churned = f'<a href="tvplan_data_churned:file/csv;charset=utf-8,{csv_tvplan_churned}" download="tvplan_data_churned.csv">Download File CSV</a>'
-    #     st.markdown("Untuk mendownload file seluruh:")
-    #     st.markdown(href_churned, unsafe_allow_html=True)
-
     #Advance Promo Data Churned
     adv_adv_churned = adv_data_churned.reset_index(drop=True)
     total = adv_data_churned["Count Churned"].sum()
@@ -772,13 +752,6 @@ def visualize_data_batch(data):
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Churned Advance Promo Data", data=csv_data, mime='text/csv', file_name=filename)
 
-    # # Menampilkan tombol "Download File CSV"
-    # if st.button('Download Here - Tv Plan Churned Data', key='download__adv_promo_churned'):
-    #     csv_adv_churned = adv_adv_churned.to_csv(index=False)
-    #     href_churned = f'<a href="adv_adv_churned:file/csv;charset=utf-8,{csv_adv_churned}" download="adv_adv_churned.csv">Download File CSV</a>'
-    #     st.markdown("Untuk mendownload file seluruh:")
-    #     st.markdown(href_churned, unsafe_allow_html=True)
-
     data_not_churned = data[data['Churn'] == 'Not Churn']
     st.header('Not Churned Data')
     st.table(data_not_churned.head(10))
@@ -791,13 +764,6 @@ def visualize_data_batch(data):
 
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Not Churned Data", data=csv_data, mime='text/csv', file_name=filename)
-    
-    # # Menampilkan tombol "Download File CSV"
-    # if st.button('Download Here - Not Churned Data', key='download_not_churned'):
-    #     csv_data_not_churned = data_not_churned.to_csv(index=False)
-    #     href_not_churned = f'<a href="data_not_churned:file/csv;charset=utf-8,{csv_data_not_churned}" download="data_not_churned.csv">Download File CSV</a>'
-    #     st.markdown("Untuk mendownload file seluruh:")
-    #     st.markdown(href_not_churned, unsafe_allow_html=True)
 
     #Area Data Not Churned
     area_data_non_churned = area_data_non_churned.reset_index(drop=True)
@@ -814,13 +780,6 @@ def visualize_data_batch(data):
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Not Churned Area Name Data", data=csv_data, mime='text/csv', file_name=filename)
 
-    # # Menampilkan tombol "Download File CSV"
-    # if st.button('Download Here - Area Not Churned Data', key='download_area_not_churned'):
-    #     csv_area_not_churned = area_data_non_churned.to_csv(index=False)
-    #     href_not_churned = f'<a href="area_data_non_churned:file/csv;charset=utf-8,{csv_area_not_churned}" download="area_data_non_churned.csv">Download File CSV</a>'
-    #     st.markdown("Untuk mendownload file seluruh:")
-    #     st.markdown(href_not_churned, unsafe_allow_html=True)
-
     #Plan Data Not Churned
     plan_data_non_churned = plan_data_non_churned.reset_index(drop=True)
     total = plan_data_non_churned["Count Not Churned"].sum()
@@ -835,13 +794,6 @@ def visualize_data_batch(data):
 
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Not Churned Plan Data", data=csv_data, mime='text/csv', file_name=filename)
-
-    # # Menampilkan tombol "Download File CSV"
-    # if st.button('Download Here - Plan Not Churned Data', key='download_plan_not_churned'):
-    #     csv_plan_not_churned = plan_data_non_churned.to_csv(index=False)
-    #     href_not_churned = f'<a href="plan_data_non_churned:file/csv;charset=utf-8,{csv_plan_not_churned}" download="plan_data_non_churned.csv">Download File CSV</a>'
-    #     st.markdown("Untuk mendownload file seluruh:")
-    #     st.markdown(href_not_churned, unsafe_allow_html=True)
 
     #Tv Plan Data Not Churned
     tvplan_data_non_churned = tvplan_data_non_churned.reset_index(drop=True)
@@ -858,13 +810,6 @@ def visualize_data_batch(data):
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Not Churned Tv Plan Data", data=csv_data, mime='text/csv', file_name=filename)
 
-    # # Menampilkan tombol "Download File CSV"
-    # if st.button('Download Here - Tv Plan Not Churned Data', key='download_tvplan_not_churned'):
-    #     csv_tvplan_not_churned = tvplan_data_non_churned.to_csv(index=False)
-    #     href_not_churned = f'<a href="tvplan_data_non_churned:file/csv;charset=utf-8,{csv_tvplan_not_churned}" download="tvplan_data_non_churned.csv">Download File CSV</a>'
-    #     st.markdown("Untuk mendownload file seluruh:")
-    #     st.markdown(href_not_churned, unsafe_allow_html=True)
-
     #Advance Promo Data Not Churned
     adv_data_non_churned = adv_data_non_churned.reset_index(drop=True)
     total = adv_data_non_churned["Count Not Churned"].sum()
@@ -879,13 +824,6 @@ def visualize_data_batch(data):
 
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Not Churned Advance Promo Data", data=csv_data, mime='text/csv', file_name=filename)
-    
-    # # Menampilkan tombol "Download File CSV"
-    # if st.button('Download Here - Advance Promo Not Churned Data', key='download_advpromo_not_churned'):
-    #     csv_advpromo_not_churned = adv_data_non_churned.to_csv(index=False)
-    #     href_not_churned = f'<a href="adv_data_non_churned:file/csv;charset=utf-8,{csv_advpromo_not_churned}" download="adv_data_non_churned.csv">Download File CSV</a>'
-    #     st.markdown("Untuk mendownload file seluruh:")
-    #     st.markdown(href_not_churned, unsafe_allow_html=True)
 
     # Menghitung jumlah data Churn ##BARUU 18 JULI 2023
     churn_data = data[data['Churn'] == 'Churn']
@@ -902,215 +840,6 @@ def visualize_data_batch(data):
 
     data_churn = data[data["Churn"] == "Churn"]
     columns = data.columns.to_list()
-    
-
-    #Area Name
-    palette_area = sns.color_palette('crest')
-
-    top_val = data["Area Name"].value_counts().nlargest(5)
-    fig = plt.figure(figsize=(10, 5))
-    sns.barplot(x=data["Area Name"].value_counts().values, y=top_val.index, palette=palette_area)
-    plt.title(f"Top 10 Area Name - Churned")
-    plt.xlabel("Total Customer")
-    plt.ylabel("Area Name")
-
-    # Membuat legenda dengan warna yang sama
-    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_area[i % len(palette_area)]) for i in range(len(top_val.index))]
-    labels = [value for value in top_val.index]
-    plt.legend(handles, labels)
-
-    plt.grid(False)
-    pdf_pages.savefig(fig)
-    st.pyplot(fig)
-
-    #Plan
-    palette_plan = sns.color_palette('flare')
-
-    top_val = data["Plan"].value_counts().nlargest(5)
-    fig = plt.figure(figsize=(10, 5))
-    sns.barplot(x=data["Plan"].value_counts().values, y=top_val.index, palette=palette_plan)
-    plt.title(f"Top 10 Plan - Churned")
-    plt.xlabel("Total Customer")
-    plt.ylabel("Plan")
-
-    # Membuat legenda dengan warna yang sama
-    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_plan[i % len(palette_plan)]) for i in range(len(top_val.index))]
-    labels = [value for value in top_val.index]
-    plt.legend(handles, labels)
-
-    plt.grid(False)
-    pdf_pages.savefig(fig)
-    st.pyplot(fig)
-
-    #TV Plan
-    palette_tvplan = sns.color_palette(["#43C6AC", "#F8FFAE"], n_colors=10)
-
-    top_val = data["Plan"].value_counts().nlargest(5)
-    fig = plt.figure(figsize=(10, 5))
-    sns.barplot(x=data["Plan"].value_counts().values, y=top_val.index, palette=palette_tvplan)
-    plt.title(f"Top 10 Plan - Churned")
-    plt.xlabel("Total Customer")
-    plt.ylabel("Plan")
-
-    # Membuat legenda dengan warna yang sama
-    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_tvplan[i % len(palette_tvplan)]) for i in range(len(top_val.index))]
-    labels = [value for value in top_val.index]
-    plt.legend(handles, labels)
-
-    plt.grid(False)
-    pdf_pages.savefig(fig)
-    st.pyplot(fig)
-
-    #Advance Promo
-    palette_advpromo = sns.color_palette(["#000C40", "#F0F2F0"], n_colors=10)
-
-    top_val = data["Plan"].value_counts().nlargest(5)
-    fig = plt.figure(figsize=(10, 5))
-    sns.barplot(x=data["Plan"].value_counts().values, y=top_val.index, palette=palette_advpromo)
-    plt.title(f"Top 10 Plan - Churned")
-    plt.xlabel("Total Customer")
-    plt.ylabel("Plan")
-
-    # Membuat legenda dengan warna yang sama
-    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_advpromo[i % len(palette_advpromo)]) for i in range(len(top_val.index))]
-    labels = [value for value in top_val.index]
-    plt.legend(handles, labels)
-
-    plt.grid(False)
-    pdf_pages.savefig(fig)
-    st.pyplot(fig)
-    
-    #Complaint by Customer Service
-    fig = plt.figure(figsize=(10, 5))
-    top_val = data["Complaint by Customer Service"].value_counts().nlargest(10)
-
-    palette_cs = sns.color_palette(["#C5796D", "#DBE6F6"], n_colors=10)
-    ax = sns.countplot(x="Complaint by Customer Service", data=data, order=top_val.index, palette=palette_cs)
-
-    # Setting title, labels, and grid
-    plt.title(f"Top 10 Complaint by Customer Service - Churned")
-    plt.xlabel("Value")
-    plt.ylabel("Count")
-    plt.grid(False)
-
-    # Membuat legenda dengan warna yang sama
-    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_cs[i]) for i in range(len(top_val.index))]
-    labels = [value for value in top_val.index]
-    plt.legend(handles, labels)
-    plt.grid(False)
-
-    pdf_pages.savefig(fig)
-    st.pyplot(fig)
-
-    #Complaint by Email
-    fig = plt.figure(figsize=(10, 5))
-    top_val = data["Complaint by Email"].value_counts().nlargest(10)
-
-    palette_e = sns.color_palette(["#67B26F", "#4ca2cd"], n_colors=10)
-    ax = sns.countplot(x="Complaint by Email", data=data, order=top_val.index, palette=palette_e)
-
-    # Setting title, labels, and grid
-    plt.title(f"Top 10 Complaint by Email - Churned")
-    plt.xlabel("Value")
-    plt.ylabel("Count")
-    plt.grid(False)
-
-    # Membuat legenda dengan warna yang sama
-    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_e[i]) for i in range(len(top_val.index))]
-    labels = [value for value in top_val.index]
-    plt.legend(handles, labels)
-    plt.grid(False)
-
-    pdf_pages.savefig(fig)
-    st.pyplot(fig)
-
-    #Complaint by Social Media
-    fig = plt.figure(figsize=(10, 5))
-    top_val = data["Complaint by Social Media"].value_counts().nlargest(10)
-
-    palette_sm = sns.color_palette(["#F3904F", "#3B4371"], n_colors=10)
-    ax = sns.countplot(x="Complaint by Social Media", data=data, order=top_val.index, palette=palette_sm)
-
-    # Setting title, labels, and grid
-    plt.title(f"Top 10 Complaint by Social Media - Churned")
-    plt.xlabel("Value")
-    plt.ylabel("Count")
-    plt.grid(False)
-
-    # Membuat legenda dengan warna yang sama
-    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_sm[i]) for i in range(len(top_val.index))]
-    labels = [value for value in top_val.index]
-    plt.legend(handles, labels)
-    plt.grid(False)
-
-    pdf_pages.savefig(fig)
-    st.pyplot(fig)
-
-    #Complaint by Telegram
-    fig = plt.figure(figsize=(10, 5))
-    top_val = data["Complaint by Telegram"].value_counts().nlargest(10)
-
-    palette_tele = sns.color_palette(["#A770EF", "#CF8BF3", "#FDB99B"], n_colors=10)
-    ax = sns.countplot(x="Complaint by Telegram", data=data, order=top_val.index, palette=palette_tele)
-
-    # Setting title, labels, and grid
-    plt.title(f"Top 10 Complaint by Telegram - Churned")
-    plt.xlabel("Value")
-    plt.ylabel("Count")
-    plt.grid(False)
-
-    # Membuat legenda dengan warna yang sama
-    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_tele[i]) for i in range(len(top_val.index))]
-    labels = [value for value in top_val.index]
-    plt.legend(handles, labels)
-    plt.grid(False)
-
-    pdf_pages.savefig(fig)
-    st.pyplot(fig)
-
-    #Complaint by Whatsapp
-    fig = plt.figure(figsize=(10, 5))
-    top_val = data["Complaint by Whatsapp"].value_counts().nlargest(10)
-
-    palette_wa = sns.color_palette(["#FF00CC", "#333399"], n_colors=10)
-    ax = sns.countplot(x="Complaint by Whatsapp", data=data, order=top_val.index, palette=palette_wa)
-
-    # Setting title, labels, and grid
-    plt.title(f"Top 10 Complaint by Whatsapp - Churned")
-    plt.xlabel("Value")
-    plt.ylabel("Count")
-    plt.grid(False)
-
-    # Membuat legenda dengan warna yang sama
-    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_wa[i]) for i in range(len(top_val.index))]
-    labels = [value for value in top_val.index]
-    plt.legend(handles, labels)
-    plt.grid(False)
-
-    pdf_pages.savefig(fig)
-    st.pyplot(fig)
-
-    #Complaint by WIC
-    fig = plt.figure(figsize=(10, 5))
-    top_val = data["Complaint by WIC"].value_counts().nlargest(10)
-
-    palette_wic = sns.color_palette(["#BE93C5", "#7BC6CC"], n_colors=10)
-    ax = sns.countplot(x="Complaint by WIC", data=data, order=top_val.index, palette=palette_wic)
-
-    # Setting title, labels, and grid
-    plt.title(f"Top 10 Complaint by WIC - Churned")
-    plt.xlabel("Value")
-    plt.ylabel("Count")
-    plt.grid(False)
-
-    # Membuat legenda dengan warna yang sama
-    handles = [plt.Rectangle((0, 0), 1, 1, fc=palette_wic[i]) for i in range(len(top_val.index))]
-    labels = [value for value in top_val.index]
-    plt.legend(handles, labels)
-    plt.grid(False)
-
-    pdf_pages.savefig(fig)
-    st.pyplot(fig)
 
     pdf_pages.close()
     st.success("PDF Report Created. Check your directory")
