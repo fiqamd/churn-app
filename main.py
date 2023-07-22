@@ -646,24 +646,24 @@ def visualize_data_batch(data):
 
     if option_chart == 'Area Name':
         st.title("Churn and Area Name")
-        st.title(unique_area_name)
-        # for area_names in unique_area_name:
-        #     churn0_count = data[(data['Churn'] == 0) & (data['Area Name'] == area_names)].shape[0]
-        #     churn1_count = data[(data['Churn'] == 1) & (data['Area Name'] == area_names)].shape[0]
+        # st.title(unique_area_name)
+        for area_names in unique_area_name:
+            churn0_count = data[(data['Churn'] == 0) & (data['Area Name'] == area_names)].shape[0]
+            churn1_count = data[(data['Churn'] == 1) & (data['Area Name'] == area_names)].shape[0]
             
-        #     churn0_proportion = round(churn0_count / area_name_counts[area_names], 2)
-        #     churn1_proportion = round(churn1_count / area_name_counts[area_names], 2)
+            churn0_proportion = round(churn0_count / area_name_counts[area_names], 2)
+            churn1_proportion = round(churn1_count / area_name_counts[area_names], 2)
         
-        # # print(f'Proportions of not churn and churn in area code {area_names} = {churn0_proportion}, {churn1_proportion} respectively')
+        # print(f'Proportions of not churn and churn in area code {area_names} = {churn0_proportion}, {churn1_proportion} respectively')
 
-        # # Visualisasi menggunakan Seaborn
-        # churn_area = sns.catplot(x="Churn", kind="count", hue="area_names", palette="magma", data=data[data['Area Name']], height=8)
-        # for ax in churn_area.axes.flat:
-        #     for c in ax.containers:
-        #         ax.bar_label(c)
+        # Visualisasi menggunakan Seaborn
+        churn_area = sns.catplot(x="Churn", kind="count", hue="Area Name", palette="magma", data=data[data['Area Name'] == area_names], height=8)
+        for ax in churn_area.axes.flat:
+            for c in ax.containers:
+                ax.bar_label(c)
 
-        # plt.title("Churn and Area Name")
-        # st.pyplot(plt)
+        plt.title("Churn and Area Name")
+        st.pyplot(plt)
 
     #Area Name
     palette_area = sns.color_palette('crest')
