@@ -308,13 +308,13 @@ def visualize_data_batch(data):
         st.pyplot(fig)
 
         # Sort the DataFrame by 'Count Churned' in descending order
-        area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
+        area_data_merge_notchurned = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
         # Select the top 5 rows
-        top_5 = area_data_merge.head(10)
+        top_5 = area_data_merge_notchurned.head(10)
 
         # Calculate the sum of 'Count Not Churned' for the remaining rows
-        remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
+        remaining_sum = area_data_merge_notchurned.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
