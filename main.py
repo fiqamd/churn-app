@@ -744,7 +744,7 @@ def visualize_data_batch(data):
     #Advance Promo Data Churned
     adv_adv_churned = adv_data_churned.reset_index(drop=True)
     total = adv_data_churned["Count Churned"].sum()
-    adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Count Churned"]/total*100
+    adv_data_churned["Persentase Dari Data Not Churn"] = adv_data_churned["Count Churned"]/total*100
     # Format the percentage column with "%" sign
     adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
     st.table(adv_data_churned.head(10))
@@ -776,7 +776,7 @@ def visualize_data_batch(data):
     total = area_data_non_churned["Count Not Churned"].sum()
     area_data_non_churned["Persentase Dari Data Not Churn"] = area_data_non_churned["Count Not Churned"]/total*100
     # Format the percentage column with "%" sign
-    area_data_non_churned["Persentase Dari Data Churn"] = area_data_non_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
+    area_data_non_churned["Persentase Dari Data Not Churn"] = area_data_non_churned["Persentase Dari Data Not Churn"].map("{:.2f}%".format)
     st.table(area_data_non_churned.head(10))
 
     #DOWNLOAD HERE
@@ -793,7 +793,7 @@ def visualize_data_batch(data):
     total = plan_data_non_churned["Count Not Churned"].sum()
     plan_data_non_churned["Persentase Dari Data Not Churn"] = plan_data_non_churned["Count Not Churned"]/total*100
     # Format the percentage column with "%" sign
-    plan_data_non_churned["Persentase Dari Data Churn"] = plan_data_non_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
+    plan_data_non_churned["Persentase Dari Data Not Churn"] = plan_data_non_churned["Persentase Dari Data Not Churn"].map("{:.2f}%".format)
     st.table(plan_data_non_churned.head(10))
 
     #DOWNLOAD HERE
@@ -810,7 +810,7 @@ def visualize_data_batch(data):
     total = tvplan_data_non_churned["Count Not Churned"].sum()
     tvplan_data_non_churned["Persentase Dari Data Not Churn"] = tvplan_data_non_churned["Count Not Churned"]/total*100
     # Format the percentage column with "%" sign
-    tvplan_data_non_churned["Persentase Dari Data Churn"] = tvplan_data_non_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
+    tvplan_data_non_churned["Persentase Dari Data Not Churn"] = tvplan_data_non_churned["Persentase Dari Data Not Churn"].map("{:.2f}%".format)
     st.table(tvplan_data_non_churned.head(10))
 
     #DOWNLOAD HERE
@@ -827,7 +827,7 @@ def visualize_data_batch(data):
     total = adv_data_non_churned["Count Not Churned"].sum()
     adv_data_non_churned["Persentase Dari Data Not Churn"] = adv_data_non_churned["Count Not Churned"]/total*100
     # Format the percentage column with "%" sign
-    adv_data_non_churned["Persentase Dari Data Churn"] = adv_data_non_churned["Persentase Dari Data Churn"].map("{:.2f}%".format)
+    adv_data_non_churned["Persentase Dari Data Not Churn"] = adv_data_non_churned["Persentase Dari Data Not Churn"].map("{:.2f}%".format)
     st.table(adv_data_non_churned.head(10))
 
     #DOWNLOAD HERE
