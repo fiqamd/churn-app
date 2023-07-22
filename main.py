@@ -484,7 +484,7 @@ def visualize_data_batch(data):
     adv_promo_counts = data['Advance Promo'].value_counts()
 
     if option_chart == 'Area Name':
-        st.title("Proportion Churn & Not Churn - Area Name")
+        st.subheader("Proportion Churn & Not Churn - Area Name")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
         churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
         not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -522,7 +522,7 @@ def visualize_data_batch(data):
         #     st.write(f"{area_name}: {count} data churn")
 
     elif option_chart == 'Plan':
-        st.title("Proportion Churn & Not Churn - Plan")
+        st.subheader("Proportion Churn & Not Churn - Plan")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
         churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
         not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
@@ -558,7 +558,7 @@ def visualize_data_batch(data):
             st.markdown(href_not_churned, unsafe_allow_html=True)
 
     elif option_chart == 'Tv Plan':
-        st.title("Proportion Churn & Not Churn - Tv Plan")
+        st.subheader("Proportion Churn & Not Churn - Tv Plan")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
         churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
         not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
@@ -594,7 +594,7 @@ def visualize_data_batch(data):
             st.markdown(href_not_churned, unsafe_allow_html=True)
 
     elif option_chart == 'Advance Promo':
-        st.title("Proportion Churn & Not Churn - Advance Promo")
+        st.subheader("Proportion Churn & Not Churn - Advance Promo")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
         churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
         not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
