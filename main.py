@@ -727,9 +727,9 @@ def visualize_data_batch(data):
         not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
 
         # Membuat dataframe untuk menyimpan hasil perhitungan
-        churn_data = pd.DataFrame({'Advance Promo': unique_adv_proo,
-                                'Churn': [churn_counts.get(area, 0) for area in unique_adv_proo],
-                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_adv_proo]})
+        churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_adv_promo],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_adv_promo]})
 
         # Membuat plot menggunakan sns.catplot
         sns.set(style="whitegrid")
