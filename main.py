@@ -380,7 +380,7 @@ def visualize_data_batch(data):
         # plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140)
         plt.title('Top 10 Count Not Churned by Area Name')
         plt.axis('equal')
-        plt.legend(patches, top_5['Area Name'], loc='best')
+        plt.legend(top_5['Area Name'], loc='best')
         # plt.legend(title="Area Name", loc="best")
 
         # Display the pie chart using st.pyplot(fig)
