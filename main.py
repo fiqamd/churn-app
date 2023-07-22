@@ -301,7 +301,7 @@ def visualize_data_batch(data):
         plt.axis('equal')
         
         # Tambahkan legend dengan menggunakan 'Area Name' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Area Name'], loc='best')
+        plt.legend(patches, top_5['Area Name'], loc='lower left', bbox_to_anchor=(0.0, 1.0))
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
@@ -327,7 +327,7 @@ def visualize_data_batch(data):
         plt.axis('equal')
         
         # Tambahkan legend dengan menggunakan 'Area Name' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Area Name'], loc='best')
+        plt.legend(patches, top_5['Area Name'], loc='lower left', bbox_to_anchor=(0.0, 1.0))
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
@@ -354,7 +354,7 @@ def visualize_data_batch(data):
         plt.axis('equal')
         
         # Tambahkan legend dengan menggunakan 'Plan' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Plan'], loc='best')
+        plt.legend(patches, top_5['Plan'], loc='lower left', bbox_to_anchor=(0.0, 1.0))
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
@@ -380,7 +380,7 @@ def visualize_data_batch(data):
         plt.axis('equal')
         
         # Tambahkan legend dengan menggunakan 'Plan' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Plan'], loc='best')
+        plt.legend(patches, top_5['Plan'], loc='lower left', bbox_to_anchor=(0.0, 1.0))
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
@@ -407,7 +407,7 @@ def visualize_data_batch(data):
         plt.axis('equal')
         
         # Tambahkan legend dengan menggunakan 'Tv Plan' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Tv Plan'], loc='best')
+        plt.legend(patches, top_5['Tv Plan'], loc='lower left', bbox_to_anchor=(0.0, 1.0))
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
@@ -433,7 +433,7 @@ def visualize_data_batch(data):
         plt.axis('equal')
         
         # Tambahkan legend dengan menggunakan 'Tv Plan' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Tv Plan'], loc='best')
+        plt.legend(patches, top_5['Tv Plan'], loc='lower left', bbox_to_anchor=(0.0, 1.0))
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
@@ -460,7 +460,7 @@ def visualize_data_batch(data):
         plt.axis('equal')
         
         # Tambahkan legend dengan menggunakan 'Advance Promo' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Advance Promo'], loc='best')
+        plt.legend(patches, top_5['Advance Promo'], loc='lower left', bbox_to_anchor=(0.0, 1.0))
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
@@ -486,7 +486,7 @@ def visualize_data_batch(data):
         plt.axis('equal')
         
         # Tambahkan legend dengan menggunakan 'Advance Promo' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Advance Promo'], loc='best')
+        plt.legend(patches, top_5['Advance Promo'], loc='lower left', bbox_to_anchor=(0.0, 1.0))
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
