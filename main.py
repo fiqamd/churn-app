@@ -508,7 +508,7 @@ def visualize_data_batch(data):
 
     
     st.header('Churned Data')
-    st.table(data_churned)
+    st.table(data_churned.head(10))
     # Menampilkan tombol "Download File CSV"
     if st.button('Download Here - Churned Data', key='download_churned'):
         csv_data_churned = data_churned.to_csv(index=False)
