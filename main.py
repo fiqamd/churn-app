@@ -467,6 +467,154 @@ def visualize_data_batch(data):
 
         st.pyplot(fig)
     
+    
+    if option_chart == 'Area Name':
+        st.title("Proportion Churn & Not Churn - Area Name")
+        # Hitung jumlah Churn dan Not Churn untuk setiap area
+        churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
+        not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
+
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Area Name': unique_area_name,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
+
+        # Membuat plot menggunakan sns.catplot
+        sns.set(style="whitegrid")
+        plt.figure(figsize=(12, 6))
+        sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
+                    kind='bar', height=6, aspect=2.5, palette='magma')
+        plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+        plt.xlabel('Area Name')
+        plt.ylabel('Jumlah')
+        plt.xticks(rotation=90)
+        st.pyplot(plt)
+
+        # Tampilkan jumlah data churn untuk setiap Area Name
+        st.write("Jumlah data churn untuk setiap Area Name:")
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Area Name': unique_area_name,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
+        st.table(churn_data)
+
+        if st.button('Download Here - Area Name Proportion Data', key='download_area_name_prop'):
+            csv_area_name_prop = churn_data.to_csv(index=False)
+            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_area_name_prop}" download="churn_data.csv">Download File CSV</a>'
+            st.markdown("Untuk mendownload file seluruh:")
+            st.markdown(href_not_churned, unsafe_allow_html=True)
+        # for area_name, count in area_name_counts.items():
+        #     st.write(f"{area_name}: {count} data churn")
+
+    elif option_chart == 'Plan':
+        st.title("Proportion Churn & Not Churn - Plan")
+        # Hitung jumlah Churn dan Not Churn untuk setiap area
+        churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
+        not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
+
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Plan': unique_plan,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_plan],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
+
+        # Membuat plot menggunakan sns.catplot
+        sns.set(style="whitegrid")
+        plt.figure(figsize=(12, 6))
+        sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
+                    kind='bar', height=6, aspect=2.5, palette='magma')
+        plt.title('Proporsi Churn dan Not Churn berdasarkan Plan')
+        plt.xlabel('Plan')
+        plt.ylabel('Jumlah')
+        plt.xticks(rotation=90)
+        st.pyplot(plt)
+
+        # Tampilkan jumlah data churn untuk setiap Plan
+        st.write("Jumlah data churn untuk setiap Plan:")
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Plan': unique_plan,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_plan],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
+        st.table(churn_data)
+
+        if st.button('Download Here - Plan Proportion Data', key='download_plan_prop'):
+            csv_plan_prop = churn_data.to_csv(index=False)
+            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_plan_prop}" download="churn_data.csv">Download File CSV</a>'
+            st.markdown("Untuk mendownload file seluruh:")
+            st.markdown(href_not_churned, unsafe_allow_html=True)
+
+    elif option_chart == 'Tv Plan':
+        st.title("Proportion Churn & Not Churn - Tv Plan")
+        # Hitung jumlah Churn dan Not Churn untuk setiap area
+        churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
+        not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
+
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
+
+        # Membuat plot menggunakan sns.catplot
+        sns.set(style="whitegrid")
+        plt.figure(figsize=(12, 6))
+        sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
+                    kind='bar', height=6, aspect=2.5, palette='magma')
+        plt.title('Proporsi Churn dan Not Churn berdasarkan Tv Plan')
+        plt.xlabel('Tv Plan')
+        plt.ylabel('Jumlah')
+        plt.xticks(rotation=90)
+        st.pyplot(plt)
+
+        # Tampilkan jumlah data churn untuk setiap Tv Plan
+        st.write("Jumlah data churn untuk setiap Tv Plan:")
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
+        st.table(churn_data)
+
+        if st.button('Download Here - Tv Plan Proportion Data', key='download_tvplan_prop'):
+            csv_tvplan_prop = churn_data.to_csv(index=False)
+            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_tvplan_prop}" download="churn_data.csv">Download File CSV</a>'
+            st.markdown("Untuk mendownload file seluruh:")
+            st.markdown(href_not_churned, unsafe_allow_html=True)
+
+    elif option_chart == 'Advance Promo':
+        st.title("Proportion Churn & Not Churn - Advance Promo")
+        # Hitung jumlah Churn dan Not Churn untuk setiap area
+        churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
+        not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
+
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_adv_promo],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_adv_promo]})
+
+        # Membuat plot menggunakan sns.catplot
+        sns.set(style="whitegrid")
+        plt.figure(figsize=(12, 6))
+        sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
+                    kind='bar', height=6, aspect=2.5, palette='magma')
+        plt.title('Proporsi Churn dan Not Churn berdasarkan Advance Promo')
+        plt.xlabel('Advance Promo')
+        plt.ylabel('Jumlah')
+        plt.xticks(rotation=90)
+        st.pyplot(plt)
+
+        # Tampilkan jumlah data churn untuk setiap Advance Promo
+        st.write("Jumlah data churn untuk setiap Advance Promo:")
+        # Membuat dataframe untuk menyimpan hasil perhitungan
+        churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
+                                'Churn': [churn_counts.get(area, 0) for area in unique_adv_promo],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_adv_promo]})
+        st.table(churn_data)
+
+        if st.button('Download Here - Tv Plan Proportion Data', key='download_advpromo_prop'):
+            csv_advpromo_prop = churn_data.to_csv(index=False)
+            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_advpromo_prop}" download="churn_data.csv">Download File CSV</a>'
+            st.markdown("Untuk mendownload file seluruh:")
+            st.markdown(href_not_churned, unsafe_allow_html=True)
+
+
     #Area Name
     area_data_merge = area_data_merge.fillna(0)
     st.table(area_data_merge.head(10))
@@ -683,6 +831,12 @@ def visualize_data_batch(data):
                                 'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
                                 'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
         st.table(churn_data)
+
+        if st.button('Download Here - Area Name Proportion Data', key='download_area_name_prop'):
+            csv_area_name_prop = churn_data.to_csv(index=False)
+            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_area_name_prop}" download="churn_data.csv">Download File CSV</a>'
+            st.markdown("Untuk mendownload file seluruh:")
+            st.markdown(href_not_churned, unsafe_allow_html=True)
         # for area_name, count in area_name_counts.items():
         #     st.write(f"{area_name}: {count} data churn")
 
@@ -716,6 +870,12 @@ def visualize_data_batch(data):
                                 'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
         st.table(churn_data)
 
+        if st.button('Download Here - Plan Proportion Data', key='download_plan_prop'):
+            csv_plan_prop = churn_data.to_csv(index=False)
+            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_plan_prop}" download="churn_data.csv">Download File CSV</a>'
+            st.markdown("Untuk mendownload file seluruh:")
+            st.markdown(href_not_churned, unsafe_allow_html=True)
+
     elif option_chart == 'Tv Plan':
         st.title("Proportion Churn & Not Churn - Tv Plan")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
@@ -746,6 +906,12 @@ def visualize_data_batch(data):
                                 'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
         st.table(churn_data)
 
+        if st.button('Download Here - Tv Plan Proportion Data', key='download_tvplan_prop'):
+            csv_tvplan_prop = churn_data.to_csv(index=False)
+            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_tvplan_prop}" download="churn_data.csv">Download File CSV</a>'
+            st.markdown("Untuk mendownload file seluruh:")
+            st.markdown(href_not_churned, unsafe_allow_html=True)
+
     elif option_chart == 'Advance Promo':
         st.title("Proportion Churn & Not Churn - Advance Promo")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
@@ -772,9 +938,15 @@ def visualize_data_batch(data):
         st.write("Jumlah data churn untuk setiap Advance Promo:")
         # Membuat dataframe untuk menyimpan hasil perhitungan
         churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
-                                'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
-                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
+                                'Churn': [churn_counts.get(area, 0) for area in unique_adv_promo],
+                                'Not Churn': [not_churn_counts.get(area, 0) for area in unique_adv_promo]})
         st.table(churn_data)
+
+        if st.button('Download Here - Tv Plan Proportion Data', key='download_advpromo_prop'):
+            csv_advpromo_prop = churn_data.to_csv(index=False)
+            href_not_churned = f'<a href="churn_data:file/csv;charset=utf-8,{csv_advpromo_prop}" download="churn_data.csv">Download File CSV</a>'
+            st.markdown("Untuk mendownload file seluruh:")
+            st.markdown(href_not_churned, unsafe_allow_html=True)
 
         # st.title(unique_area_name)
         # for area_names in unique_area_name:
