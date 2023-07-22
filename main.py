@@ -227,7 +227,7 @@ def visualize_data_batch(data):
     storage_client = storage.Client()
     bucket = storage_client.bucket(pdf_bucket_name)
 
-    pdf_filename = 'Churn Analysist Plot.pdf'
+    pdf_filename = 'Churn_Analysist_Plot.pdf'
     pdf_pages = PdfPages(pdf_filename)
     
     area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
