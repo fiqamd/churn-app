@@ -857,9 +857,9 @@ def visualize_data_batch(data):
 
     pdf_pages.close()
     # Display the PDF download link
-    pdf_url = f"https://storage.googleapis.com/{bucket_name}/{pdf_filename}"
+    pdf_url = f"https://storage.googleapis.com/{pdf_bucket_name}/{pdf_filename}"
     st.markdown(f"File PDF disimpan di GCS. Silakan unduh di sini: [{pdf_filename}]({pdf_url})")
-    st.success("PDF Report Created. Check your directory")
+    # st.success("PDF Report Created. Check your directory")
 
 def run():
     add_selectbox = st.sidebar.selectbox(
