@@ -467,7 +467,22 @@ def visualize_data_batch(data):
 
         st.pyplot(fig)
     
-    
+    st.title("Data Bar Chart Proportion")
+    option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
+                          ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo'], key= 'komparasi_churn'
+                          )
+    unique_area_name = sorted(data['Area Name'].unique())
+    area_name_counts = data['Area Name'].value_counts()
+
+    unique_plan = sorted(data['Plan'].unique())
+    plan_counts = data['Plan'].value_counts()
+
+    unique_tvplan = sorted(data['Tv Plan'].unique())
+    tvplan_counts = data['Tv Plan'].value_counts()
+
+    unique_adv_promo = sorted(data['Advance Promo'].unique())
+    adv_promo_counts = data['Advance Promo'].value_counts()
+
     if option_chart == 'Area Name':
         st.title("Proportion Churn & Not Churn - Area Name")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
