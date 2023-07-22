@@ -233,16 +233,24 @@ def visualize_data_batch(data):
     st.header("Hasil Prediksi")
     # st.table(data)
     st.table(data.head(10))
+    #DOWNLOAD HERE
+    result_all_data = data
+    current_date = datetime.now().strftime("%Y%m%d")
+    result_all_data.name = "Hasil Data Keseluruhan"
+    filename = f"{result_all_data.name}_{current_date}.csv"
 
-    # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - All Data', key='download_all'):
-        result_all_data = data
-        current_date = datetime.now().strftime("%Y%m%d")
-        result_all_data.name = "Hasil Data Keseluruhan"
-        filename = f"{result_all_data.name}_{current_date}.csv"
+    csv_data = result_all_data.to_csv(index=False)
+    st.download_button("Download Here - All Data", data=csv_data, mime='text/csv', file_name=filename)
 
-        csv_data = result_all_data.to_csv(index=False)
-        st.download_button("Download CSV", data=csv_data, mime='text/csv', file_name=filename)
+    # # Menampilkan tombol "Download File CSV"
+    # if st.button('Download Here - All Data', key='download_all'):
+    #     result_all_data = data
+    #     current_date = datetime.now().strftime("%Y%m%d")
+    #     result_all_data.name = "Hasil Data Keseluruhan"
+    #     filename = f"{result_all_data.name}_{current_date}.csv"
+
+    #     csv_data = result_all_data.to_csv(index=False)
+    #     st.download_button("Download CSV", data=csv_data, mime='text/csv', file_name=filename)
 
         # href = f'<a href="data:file/csv;charset=utf-8,{csv_data}" download="data.csv">Download File CSV</a>'
         # # st.markdown("Untuk mendownload file seluruh:")
@@ -668,48 +676,88 @@ def visualize_data_batch(data):
     total = area_data_churned["Count Churned"].sum()
     area_data_churned["Persentase Dari Data Churn"] = area_data_churned["Count Churned"]/total*100
     st.table(area_data_churned.head(10))
+
+    #DOWNLOAD HERE
+    result_all_data = area_data_churned
+    current_date = datetime.now().strftime("%Y%m%d")
+    result_all_data.name = "Data Churn Area Name"
+    filename = f"{result_all_data.name}_{current_date}.csv"
+
+    csv_data = result_all_data.to_csv(index=False)
+    st.download_button("Download Here - Churned Area Name Data", data=csv_data, mime='text/csv', file_name=filename)
+
     # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - Area Name Churned Data', key='download__area_churned'):
-        csv_area_data_churned = data_churned.to_csv(index=False)
-        href_churned = f'<a href="area_data_churned:file/csv;charset=utf-8,{csv_data_churned}" download="area_data_churned.csv">Download File CSV</a>'
-        st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href_churned, unsafe_allow_html=True)
+    # if st.button('Download Here - Area Name Churned Data', key='download__area_churned'):
+    #     csv_area_data_churned = data_churned.to_csv(index=False)
+    #     href_churned = f'<a href="area_data_churned:file/csv;charset=utf-8,{csv_data_churned}" download="area_data_churned.csv">Download File CSV</a>'
+    #     st.markdown("Untuk mendownload file seluruh:")
+    #     st.markdown(href_churned, unsafe_allow_html=True)
 
     #Plan Data Churned
     plan_data_churned = plan_data_churned.reset_index(drop=True)
     total = plan_data_churned["Count Churned"].sum()
     plan_data_churned["Persentase Dari Data Churn"] = plan_data_churned["Count Churned"]/total*100
     st.table(plan_data_churned.head(10))
-    # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - Plan Churned Data', key='download__plan_churned'):
-        csv_plan_churned = plan_data_churned.to_csv(index=False)
-        href_churned = f'<a href="plan_data_churned:file/csv;charset=utf-8,{csv_plan_churned}" download="plan_data_churned.csv">Download File CSV</a>'
-        st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href_churned, unsafe_allow_html=True)
+
+    #DOWNLOAD HERE
+    result_all_data = plan_data_churned
+    current_date = datetime.now().strftime("%Y%m%d")
+    result_all_data.name = "Data Churn Plan"
+    filename = f"{result_all_data.name}_{current_date}.csv"
+
+    csv_data = result_all_data.to_csv(index=False)
+    st.download_button("Download Here - Churned Plan Data", data=csv_data, mime='text/csv', file_name=filename)
+
+    # # Menampilkan tombol "Download File CSV"
+    # if st.button('Download Here - Plan Churned Data', key='download__plan_churned'):
+    #     csv_plan_churned = plan_data_churned.to_csv(index=False)
+    #     href_churned = f'<a href="plan_data_churned:file/csv;charset=utf-8,{csv_plan_churned}" download="plan_data_churned.csv">Download File CSV</a>'
+    #     st.markdown("Untuk mendownload file seluruh:")
+    #     st.markdown(href_churned, unsafe_allow_html=True)
 
     #Tv Plan Data Churned
     tvplan_data_churned = tvplan_data_churned.reset_index(drop=True)
     total = tvplan_data_churned["Count Churned"].sum()
     tvplan_data_churned["Persentase Dari Data Churn"] = tvplan_data_churned["Count Churned"]/total*100
     st.table(tvplan_data_churned.head(10))
-    # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - Tv Plan Churned Data', key='download__tv_churned'):
-        csv_tvplan_churned = tvplan_data_churned.to_csv(index=False)
-        href_churned = f'<a href="tvplan_data_churned:file/csv;charset=utf-8,{csv_tvplan_churned}" download="tvplan_data_churned.csv">Download File CSV</a>'
-        st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href_churned, unsafe_allow_html=True)
+
+    #DOWNLOAD HERE
+    result_all_data = tvplan_data_churned
+    current_date = datetime.now().strftime("%Y%m%d")
+    result_all_data.name = "Data Churn Tv Plan"
+    filename = f"{result_all_data.name}_{current_date}.csv"
+
+    csv_data = result_all_data.to_csv(index=False)
+    st.download_button("Download Here - Churned Tv Plan Data", data=csv_data, mime='text/csv', file_name=filename)
+
+    # # Menampilkan tombol "Download File CSV"
+    # if st.button('Download Here - Tv Plan Churned Data', key='download__tv_churned'):
+    #     csv_tvplan_churned = tvplan_data_churned.to_csv(index=False)
+    #     href_churned = f'<a href="tvplan_data_churned:file/csv;charset=utf-8,{csv_tvplan_churned}" download="tvplan_data_churned.csv">Download File CSV</a>'
+    #     st.markdown("Untuk mendownload file seluruh:")
+    #     st.markdown(href_churned, unsafe_allow_html=True)
 
     #Advance Promo Data Churned
     adv_adv_churned = adv_data_churned.reset_index(drop=True)
     total = adv_data_churned["Count Churned"].sum()
     adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Count Churned"]/total*100
     st.table(adv_data_churned.head(10))
-    # Menampilkan tombol "Download File CSV"
-    if st.button('Download Here - Tv Plan Churned Data', key='download__adv_promo_churned'):
-        csv_adv_churned = adv_adv_churned.to_csv(index=False)
-        href_churned = f'<a href="adv_adv_churned:file/csv;charset=utf-8,{csv_adv_churned}" download="adv_adv_churned.csv">Download File CSV</a>'
-        st.markdown("Untuk mendownload file seluruh:")
-        st.markdown(href_churned, unsafe_allow_html=True)
+
+    #DOWNLOAD HERE
+    result_all_data = adv_data_churned
+    current_date = datetime.now().strftime("%Y%m%d")
+    result_all_data.name = "Data Churn Advance Promo"
+    filename = f"{result_all_data.name}_{current_date}.csv"
+
+    csv_data = result_all_data.to_csv(index=False)
+    st.download_button("Download Here - Churned Advance Promo Data", data=csv_data, mime='text/csv', file_name=filename)
+
+    # # Menampilkan tombol "Download File CSV"
+    # if st.button('Download Here - Tv Plan Churned Data', key='download__adv_promo_churned'):
+    #     csv_adv_churned = adv_adv_churned.to_csv(index=False)
+    #     href_churned = f'<a href="adv_adv_churned:file/csv;charset=utf-8,{csv_adv_churned}" download="adv_adv_churned.csv">Download File CSV</a>'
+    #     st.markdown("Untuk mendownload file seluruh:")
+    #     st.markdown(href_churned, unsafe_allow_html=True)
 
     data_not_churned = data[data['Churn'] == 'Not Churn']
     st.header('Not Churned Data')
