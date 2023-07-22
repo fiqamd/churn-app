@@ -278,7 +278,7 @@ def visualize_data_batch(data):
     plan_data_merge.fillna(0, inplace=True)
     tvplan_data_merge.fillna(0, inplace=True)
     adv_data_merge.fillna(0, inplace=True)
-    if option_chart == 'Area Name':
+    if option == 'Area Name':
         st.title("Proportion Churn & Not Churn - Area Name")
         # Sort the DataFrame by 'Count Churned' in descending order
         area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
