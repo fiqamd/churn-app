@@ -238,6 +238,7 @@ def visualize_data_batch(data):
     if st.button('Download Here - All Data', key='download_all'):
         result_all_data = data
         current_date = datetime.now().strftime("%Y%m%d")
+        result_all_data.name = "Hasil Data Keseluruhan"
         filename = f"{result_all_data.name}_{current_date}.csv"
 
         csv_data = result_all_data.to_csv(index=False)
