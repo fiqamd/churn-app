@@ -295,7 +295,7 @@ def visualize_data_batch(data):
 
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
-        plt.pie(top_5['Count Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
+        plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140)
         plt.title('Top 10 Count Churned by Area Name')
         plt.axis('equal')
         plt.legend(title="Area Name", loc="best")
@@ -319,7 +319,7 @@ def visualize_data_batch(data):
 
         # Plot the pie chart
         plt.figure(figsize=(6, 6))
-        plt.pie(top_5['Count Not Churned'], labels=top_5['Area Name'], autopct='%1.1f%%', startangle=140)
+        plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140)
         plt.title('Top 10 Count Not Churned by Area Name')
         plt.axis('equal')
         plt.legend(title="Area Name", loc="best")
