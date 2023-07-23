@@ -223,9 +223,9 @@ def visualize_data_batch(data):
     adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
     com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
 
-    pdf_bucket_name = 'pdf_saving'
-    storage_client = storage.Client()
-    bucket = storage_client.bucket(pdf_bucket_name)
+    bucket_name = 'pdf_saving'
+    client = storage.Client()
+    bucket = client.get_bucket(bucket_name)
 
     pdf_filename = 'Churn_Analysist_Plot.pdf'
     pdf_pages = PdfPages(pdf_filename)
@@ -856,9 +856,12 @@ def visualize_data_batch(data):
     columns = data.columns.to_list()
 
     pdf_pages.close()
+
+    blob = bucket.blob(pdf_filename)
+    blob.upload_from_filename(pdf_filename)
     # Display the PDF download link
-    pdf_url = f"https://storage.googleapis.com/{pdf_bucket_name}/{pdf_filename}"
-    st.markdown(f"File PDF disimpan di GCS. Silakan unduh di sini: [{pdf_filename}]({pdf_url})")
+    st.success("PDF File URL:", blob.public_url)
+    pdf_url = f"https://storage.googleapis.com/{bucket_name}/{pdf_filename}"
     # st.success("PDF Report Created. Check your directory")
 
 def run():
