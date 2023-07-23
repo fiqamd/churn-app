@@ -377,7 +377,6 @@ def visualize_data_batch(data):
             st.download_button(label="Download Propotion Churn & Not Churn - Area Name PDF", data=pdf_bytes, file_name=pdf_file2)
             # f.close()
     elif option == 'Plan':
-        # pdf_pages = PdfPages("propotion_churn&notchurn_plan.pdf")
         pdf_pages3 = PdfPages(pdf_file3)
         
         st.title("Proportion Churn & Not Churn - Plan")
@@ -394,40 +393,40 @@ def visualize_data_batch(data):
         dll_row = {'Plan': 'dll', 'Count Churned': remaining_sum}
         top_5 = top_5.append(dll_row, ignore_index=True)
 
-        # Plot the pie chart
+        # Plot the pie chart for Count Churned
         plt.figure(figsize=(6, 6))
         patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
         plt.title('Top 10 Count Churned by Plan')
         plt.axis('equal')
         
-        # Tambahkan legend dengan menggunakan 'Plan' dari DataFrame 'top_5'
+        # Add legend using 'Plan' from the DataFrame 'top_5'
         plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-        # pdf_pages3.savefig(fig)
-
-        # Sort the DataFrame by 'Count Churned' in descending order
+        pdf_pages3.savefig(fig)
+        
+        # Sort the DataFrame by 'Count Not Churned' in descending order
         plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
         # Select the top 5 rows
         top_5 = plan_data_merge_notchurned.head(10)
 
         # Calculate the sum of 'Count Not Churned' for the remaining rows
-        remaining_sum = plan_data_merge_notchurned.iloc[10:]['Count Churned'].sum()
+        remaining_sum = plan_data_merge_notchurned.iloc[10:]['Count Not Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
         dll_row = {'Plan': 'dll', 'Count Not Churned': remaining_sum}
         top_5 = top_5.append(dll_row, ignore_index=True)
 
-        # Plot the pie chart
+        # Plot the pie chart for Count Not Churned
         plt.figure(figsize=(6, 6))
         patches, texts, autotexts = plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
         plt.title('Top 10 Count Not Churned by Plan')
         plt.axis('equal')
         
-        # Tambahkan legend dengan menggunakan 'Plan' dari DataFrame 'top_5'
+        # Add legend using 'Plan' from the DataFrame 'top_5'
         plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
         # Display the pie chart using st.pyplot(fig)
@@ -441,21 +440,7 @@ def visualize_data_batch(data):
         with open(pdf_file3, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name=pdf_file3)
-            
-        # File PDF sudah ada sekarang, baru kita bisa menggunakan st.download_button
-        # with open(pdf_file3, "rb") as f:
-        #     pdf_bytes = f.read()
-        #     st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name=pdf_file3)
 
-        #  #DOWNLOAD BUTTON setelah menyimpan file
-        # with open(pdf_file3, "rb") as f:
-        #     pdf_bytes = f.read()
-        #     st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name=pdf_file3)
-
-        # #DOWNLOAD BUTTON
-        # with open(pdf_file3, "rb") as f:
-        #     pdf_bytes = f.read()
-        #     st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name=pdf_file3)
     elif option == 'Tv Plan':
         # pdf_pages = PdfPages("propotion_churn&notchurn_tvplan.pdf")pdf_file3
         pdf_pages4 = PdfPages(pdf_file4)
