@@ -950,14 +950,14 @@ def visualize_data_batch(data):
     columns = data.columns.to_list()
 
     # Daftar file PDF yang ingin digabungkan
-    pdf_files = [pdf_file1, pdf_file2, pdf_file3, pdf_file4, pdf_file5, pdf_file6, pdf_file7, pdf_file8, pdf_file9]
+    files_pdf = [pdf_file1, pdf_file2, pdf_file3, pdf_file4, pdf_file5, pdf_file6, pdf_file7, pdf_file8, pdf_file9]
 
     # Nama file PDF akhir
     output_pdf_file = "Churn Prediction Report.pdf"
 
     # Gabungkan file PDF
     merger = PyPDF2.PdfMerger()
-    for pdf in pdf_files:
+    for pdf in files_pdf:
         merger.append(pdf)
 
     # Simpan hasil penggabungan ke file baru
