@@ -375,7 +375,7 @@ def visualize_data_batch(data):
         with open(pdf_file2, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Propotion Churn & Not Churn - Area Name PDF", data=pdf_bytes, file_name=pdf_file2)
-            f.close()
+            # f.close()
     elif option == 'Plan':
         # pdf_pages = PdfPages("propotion_churn&notchurn_plan.pdf")
         pdf_pages3 = PdfPages(pdf_file3)
@@ -437,11 +437,20 @@ def visualize_data_batch(data):
 
         pdf_pages3.close()
 
-        #DOWNLOAD BUTTON
+        # File PDF sudah ada sekarang, baru kita bisa menggunakan st.download_button
         with open(pdf_file3, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name=pdf_file3)
-            f.close()
+            
+        #  #DOWNLOAD BUTTON setelah menyimpan file
+        # with open(pdf_file3, "rb") as f:
+        #     pdf_bytes = f.read()
+        #     st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name=pdf_file3)
+
+        # #DOWNLOAD BUTTON
+        # with open(pdf_file3, "rb") as f:
+        #     pdf_bytes = f.read()
+        #     st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name=pdf_file3)
     elif option == 'Tv Plan':
         # pdf_pages = PdfPages("propotion_churn&notchurn_tvplan.pdf")pdf_file3
         pdf_pages4 = PdfPages(pdf_file4)
