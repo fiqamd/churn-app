@@ -218,7 +218,7 @@ def visualize_data_batch(data):
     # data = reverse_data
     pdf_file1 = "pie_chart_churn&notchurn.pdf"
 
-    pdf_file2 = "propotion_churn&notchurn_area-name.pdf"
+    pdf_file2 = "propotion_churn&notchurn_area_name.pdf"
     pdf_file3 = "propotion_churn&notchurn_plan.pdf"
     pdf_file4 = "propotion_churn&notchurn_tvplan.pdf"
     pdf_file5 = "propotion_churn&notchurn_adv.pdf"
@@ -375,6 +375,7 @@ def visualize_data_batch(data):
         with open(pdf_file2, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Propotion Churn & Not Churn - Area Name PDF", data=pdf_bytes, file_name=pdf_file2)
+        f.close()
     elif option == 'Plan':
         # pdf_pages = PdfPages("propotion_churn&notchurn_plan.pdf")
         pdf_pages3 = PdfPages(pdf_file3)
@@ -440,6 +441,7 @@ def visualize_data_batch(data):
         with open(pdf_file3, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name=pdf_file3)
+        f.close()
     elif option == 'Tv Plan':
         # pdf_pages = PdfPages("propotion_churn&notchurn_tvplan.pdf")pdf_file3
         pdf_pages4 = PdfPages(pdf_file4)
@@ -503,6 +505,7 @@ def visualize_data_batch(data):
         with open(pdf_file4, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Propotion Churn & Not Churn - Tv Plan PDF", data=pdf_bytes, file_name=pdf_file4)
+        f.close()
     elif option == 'Advance Promo':
         # pdf_pages = PdfPages("propotion_churn&notchurn_adv.pdf")pdf_file4
         pdf_pages5 = PdfPages(pdf_file5)
@@ -565,6 +568,7 @@ def visualize_data_batch(data):
         with open(pdf_file5, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Propotion Churn & Not Churn - Advance Promo PDF", data=pdf_bytes, file_name=pdf_file5)
+        f.close()
     
     st.title("Data Bar Chart Proportion")
     option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
@@ -612,6 +616,7 @@ def visualize_data_batch(data):
         with open(pdf_file6, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Bar Chart Area Proportion PDF", data=pdf_bytes, file_name=pdf_file6)
+        f.close()
 
         # Tampilkan jumlah data churn untuk setiap Area Name
         st.write("Jumlah data churn untuk setiap Area Name:")
@@ -659,6 +664,7 @@ def visualize_data_batch(data):
         with open(pdf_file7, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Bar Chart Plan Proportion PDF", data=pdf_bytes, file_name=pdf_file7)
+        f.close()
 
         # Tampilkan jumlah data churn untuk setiap Plan
         st.write("Jumlah data churn untuk setiap Plan:")
@@ -706,6 +712,7 @@ def visualize_data_batch(data):
         with open(pdf_file8, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Bar Chart Tv Plan Proportion PDF", data=pdf_bytes, file_name=pdf_file8)
+        f.close()
 
         # Tampilkan jumlah data churn untuk setiap Tv Plan
         st.write("Jumlah data churn untuk setiap Tv Plan:")
@@ -753,6 +760,7 @@ def visualize_data_batch(data):
         with open(pdf_file9, "rb") as f:
             pdf_bytes = f.read()
             st.download_button(label="Download Bar Chart Advance Promo Proportion PDF", data=pdf_bytes, file_name=pdf_file9)
+        f.close()
 
         # Tampilkan jumlah data churn untuk setiap Advance Promo
         st.write("Jumlah data churn untuk setiap Advance Promo:")
