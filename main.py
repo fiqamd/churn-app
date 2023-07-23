@@ -860,7 +860,7 @@ def visualize_data_batch(data):
     blob = bucket.blob(pdf_filename)
     blob.upload_from_filename(pdf_filename)
     # Display the PDF download link
-    st.success("PDF File URL:", blob.public_url)
+    st.success("PDF File URL:"+ blob.public_url)
     # pdf_url = f"https://storage.googleapis.com/{bucket_name}/{pdf_filename}"
     # st.success("PDF Report Created. Check your directory")
 
