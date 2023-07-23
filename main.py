@@ -216,17 +216,17 @@ def load_non_churned(data):
 def visualize_data_batch(data):
     # reverse_data = predict_churn(data)
     # data = reverse_data
-    pdf_file1 = "pie_chart_churn&notchurn.pdf"
+    # pdf_file1 = "pie_chart_churn&notchurn.pdf"
 
-    pdf_file2 = "propotion_churn&notchurn_area_name.pdf"
+    # pdf_file2 = "propotion_churn&notchurn_area_name.pdf"
     # pdf_file3 = "propotion_churn&notchurn_plan.pdf"
-    pdf_file4 = "propotion_churn&notchurn_tvplan.pdf"
-    pdf_file5 = "propotion_churn&notchurn_adv.pdf"
+    # pdf_file4 = "propotion_churn&notchurn_tvplan.pdf"
+    # pdf_file5 = "propotion_churn&notchurn_adv.pdf"
 
-    pdf_file6 = "bar_chart_proportion_area.pdf"
-    pdf_file7 = "bar_chart_proportion_plan.pdf"
-    pdf_file8 = "bar_chart_proportion_tvplan.pdf"
-    pdf_file9 = "bar_chart_proportion_adv.pdf"
+    # pdf_file6 = "bar_chart_proportion_area.pdf"
+    # pdf_file7 = "bar_chart_proportion_plan.pdf"
+    # pdf_file8 = "bar_chart_proportion_tvplan.pdf"
+    # pdf_file9 = "bar_chart_proportion_adv.pdf"
 
 
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -264,7 +264,7 @@ def visualize_data_batch(data):
 
     #PIE CHART
     # pdf_pages = PdfPages('pie_chart_churn&notchurn.pdf')
-    pdf_pages1 = PdfPages(pdf_file1)
+    pdf_pages1 = PdfPages("pie_chart_churn&notchurn.pdf")
     st.header("Churn Distribution")
     fig, ax = plt.subplots()
     palette_color = sns.color_palette('rocket_r')
@@ -282,9 +282,9 @@ def visualize_data_batch(data):
     pdf_pages1.savefig(fig)
     pdf_pages1.close()
     #DOWNLOAD BUTTON
-    with open(pdf_file1, "rb") as f:
+    with open("pie_chart_churn&notchurn.pdf", "rb") as f:
         pdf_bytes = f.read()
-        st.download_button(label="Download Pie Chart Churn & Not Churn PDF", data=pdf_bytes, file_name=pdf_file1)
+        st.download_button(label="Download Pie Chart Churn & Not Churn PDF", data=pdf_bytes, file_name="pie_chart_churn&notchurn.pdf")
 
     #TABEL
     churn_counts = data['Churn'].value_counts()
@@ -311,7 +311,7 @@ def visualize_data_batch(data):
     
     if option == 'Area Name':
         # pdf_pages = PdfPages("propotion_churn&notchurn_area-name.pdf")
-        pdf_pages2 = PdfPages(pdf_file2)
+        pdf_pages2 = PdfPages("propotion_churn&notchurn_area_name.pdf")
         
         st.title("Proportion Churn & Not Churn - Area Name")
         # Sort the DataFrame by 'Count Churned' in descending order
@@ -372,9 +372,9 @@ def visualize_data_batch(data):
         pdf_pages2.close()
 
         #DOWNLOAD BUTTON
-        with open(pdf_file2, "rb") as f:
+        with open("propotion_churn&notchurn_area_name.pdf", "rb") as f:
             pdf_bytes = f.read()
-            st.download_button(label="Download Propotion Churn & Not Churn - Area Name PDF", data=pdf_bytes, file_name=pdf_file2)
+            st.download_button(label="Download Propotion Churn & Not Churn - Area Name PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_area_name.pdf")
             # f.close()
     elif option == 'Plan':
         # pdf_file3 = "propotion_churn&notchurn_plan.pdf"
@@ -446,7 +446,7 @@ def visualize_data_batch(data):
 
     elif option == 'Tv Plan':
         # pdf_pages = PdfPages("propotion_churn&notchurn_tvplan.pdf")pdf_file3
-        pdf_pages4 = PdfPages(pdf_file4)
+        pdf_pages4 = PdfPages("propotion_churn&notchurn_tvplan.pdf")
         st.title("Proportion Churn & Not Churn - Tv Plan")
         # Sort the DataFrame by 'Count Churned' in descending order
         tvplan_data_merge = tvplan_data_merge.sort_values(by='Count Churned', ascending=False)
@@ -504,13 +504,13 @@ def visualize_data_batch(data):
 
         pdf_pages4.close()
         #DOWNLOAD BUTTON
-        with open(pdf_file4, "rb") as f:
+        with open("propotion_churn&notchurn_tvplan.pdf", "rb") as f:
             pdf_bytes = f.read()
-            st.download_button(label="Download Propotion Churn & Not Churn - Tv Plan PDF", data=pdf_bytes, file_name=pdf_file4)
+            st.download_button(label="Download Propotion Churn & Not Churn - Tv Plan PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_tvplan.pdf")
             f.close()
     elif option == 'Advance Promo':
         # pdf_pages = PdfPages("propotion_churn&notchurn_adv.pdf")pdf_file4
-        pdf_pages5 = PdfPages(pdf_file5)
+        pdf_pages5 = PdfPages("propotion_churn&notchurn_adv.pdf")
         st.title("Proportion Churn & Not Churn - Advance Promo")
         # Sort the DataFrame by 'Count Churned' in descending order
         adv_data_merge = adv_data_merge.sort_values(by='Count Churned', ascending=False)
@@ -567,9 +567,9 @@ def visualize_data_batch(data):
         pdf_pages5.savefig(fig)
 
         #DOWNLOAD BUTTON
-        with open(pdf_file5, "rb") as f:
+        with open("propotion_churn&notchurn_adv.pdf", "rb") as f:
             pdf_bytes = f.read()
-            st.download_button(label="Download Propotion Churn & Not Churn - Advance Promo PDF", data=pdf_bytes, file_name=pdf_file5)
+            st.download_button(label="Download Propotion Churn & Not Churn - Advance Promo PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_adv.pdf")
             f.close()
     
     st.title("Data Bar Chart Proportion")
@@ -590,7 +590,7 @@ def visualize_data_batch(data):
 
     if option_chart == 'Area Name':
         # pdf_pages = PdfPages('bar_chart_proportion_area.pdf')pdf_file5
-        pdf_pages6 = PdfPages(pdf_file6)
+        pdf_pages6 = PdfPages("bar_chart_proportion_area.pdf")
         st.subheader("Proportion Churn & Not Churn - Area Name")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
         churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
@@ -615,9 +615,9 @@ def visualize_data_batch(data):
         pdf_pages6.close()
 
         #DOWNLOAD BUTTON
-        with open(pdf_file6, "rb") as f:
+        with open("bar_chart_proportion_area.pdf", "rb") as f:
             pdf_bytes = f.read()
-            st.download_button(label="Download Bar Chart Area Proportion PDF", data=pdf_bytes, file_name=pdf_file6)
+            st.download_button(label="Download Bar Chart Area Proportion PDF", data=pdf_bytes, file_name="bar_chart_proportion_area.pdf")
         f.close()
 
         # Tampilkan jumlah data churn untuk setiap Area Name
@@ -639,7 +639,7 @@ def visualize_data_batch(data):
 
     elif option_chart == 'Plan':
         # pdf_pages = PdfPages('bar_chart_proportion_plan.pdf')pdf_file6
-        pdf_pages7 = PdfPages(pdf_file7)
+        pdf_pages7 = PdfPages("bar_chart_proportion_plan.pdf")
         st.subheader("Proportion Churn & Not Churn - Plan")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
         churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -663,9 +663,9 @@ def visualize_data_batch(data):
         pdf_pages7.savefig(fig)
         pdf_pages7.close()
         #DOWNLOAD BUTTON
-        with open(pdf_file7, "rb") as f:
+        with open("bar_chart_proportion_plan.pdf", "rb") as f:
             pdf_bytes = f.read()
-            st.download_button(label="Download Bar Chart Plan Proportion PDF", data=pdf_bytes, file_name=pdf_file7)
+            st.download_button(label="Download Bar Chart Plan Proportion PDF", data=pdf_bytes, file_name="bar_chart_proportion_plan.pdf")
             f.close()
 
         # Tampilkan jumlah data churn untuk setiap Plan
@@ -687,7 +687,7 @@ def visualize_data_batch(data):
 
     elif option_chart == 'Tv Plan':
         # pdf_pages = PdfPages('bar_chart_proportion_tvplan.pdf')pdf_file7
-        pdf_pages8 = PdfPages(pdf_file8)
+        pdf_pages8 = PdfPages("bar_chart_proportion_tvplan.pdf")
         st.subheader("Proportion Churn & Not Churn - Tv Plan")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
         churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
@@ -711,9 +711,9 @@ def visualize_data_batch(data):
         pdf_pages8.savefig(fig)
         pdf_pages8.close()
         #DOWNLOAD BUTTON
-        with open(pdf_file8, "rb") as f:
+        with open("bar_chart_proportion_tvplan.pdf", "rb") as f:
             pdf_bytes = f.read()
-            st.download_button(label="Download Bar Chart Tv Plan Proportion PDF", data=pdf_bytes, file_name=pdf_file8)
+            st.download_button(label="Download Bar Chart Tv Plan Proportion PDF", data=pdf_bytes, file_name="bar_chart_proportion_tvplan.pdf")
             f.close()
 
         # Tampilkan jumlah data churn untuk setiap Tv Plan
@@ -735,7 +735,7 @@ def visualize_data_batch(data):
 
     elif option_chart == 'Advance Promo':
         # pdf_pages = PdfPages('bar_chart_proportion_adv.pdf')pdf_file8
-        pdf_pages9 = PdfPages(pdf_file9)
+        pdf_pages9 = PdfPages("bar_chart_proportion_adv.pdf")
         st.subheader("Proportion Churn & Not Churn - Advance Promo")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
         churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
@@ -759,9 +759,9 @@ def visualize_data_batch(data):
         pdf_pages9.savefig(fig)
         pdf_pages9.close()
         #DOWNLOAD BUTTON
-        with open(pdf_file9, "rb") as f:
+        with open("bar_chart_proportion_adv.pdf", "rb") as f:
             pdf_bytes = f.read()
-            st.download_button(label="Download Bar Chart Advance Promo Proportion PDF", data=pdf_bytes, file_name=pdf_file9)
+            st.download_button(label="Download Bar Chart Advance Promo Proportion PDF", data=pdf_bytes, file_name="bar_chart_proportion_adv.pdf")
             f.close()
 
         # Tampilkan jumlah data churn untuk setiap Advance Promo
@@ -960,7 +960,7 @@ def visualize_data_batch(data):
     columns = data.columns.to_list()
 
     # Daftar file PDF yang ingin digabungkan
-    files_pdf = [pdf_file1, pdf_file2, pdf_file3, pdf_file4, pdf_file5, pdf_file6, pdf_file7, pdf_file8, pdf_file9]
+    files_pdf = ["pie_chart_churn&notchurn.pdf", "propotion_churn&notchurn_area_name.pdf", "propotion_churn&notchurn_plan.pdf", "propotion_churn&notchurn_tvplan.pdf", "propotion_churn&notchurn_adv.pdf", "bar_chart_proportion_area.pdf", "bar_chart_proportion_plan.pdf", "bar_chart_proportion_tvplan.pdf", "bar_chart_proportion_adv.pdf"]
 
     # Nama file PDF akhir
     output_pdf_file = "Churn Prediction Report.pdf"
@@ -968,14 +968,15 @@ def visualize_data_batch(data):
     # Gabungkan file PDF
     merger = PyPDF2.PdfMerger()
     for pdf in files_pdf:
-        merger.append(pdf)
+        with open(pdf, 'rb' as f):
+            merger.append(f)
 
     # Simpan hasil penggabungan ke file baru
     with open(output_pdf_file, "wb") as output:
         merger.write(output)
 
     # Tambahkan tombol download pada Streamlit
-    st.download_button("Download Churn Prediction Report PDF", data=open(output_pdf_file, "rb"), file_name=output_pdf_file)
+    st.download_button(label="Download Merged Charts PDF", data=open(output_pdf_file, "rb").read(), file_name="report_churn_prediction.pdf")
     # pdf_pages.close()
 
     # blob = bucket.blob(pdf_filename)
