@@ -337,7 +337,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-        pdf_pages.savefig(fig)
+        pdf_pages.savefig()
     elif option == 'Plan':
         st.title("Proportion Churn & Not Churn - Plan")
         # Sort the DataFrame by 'Count Churned' in descending order
@@ -365,7 +365,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-        pdf_pages.savefig(fig)
+        pdf_pages.savefig()
 
         # Sort the DataFrame by 'Count Churned' in descending order
         plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
@@ -392,7 +392,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-        pdf_pages.savefig(fig)
+        pdf_pages.savefig()
     elif option == 'Tv Plan':
         st.title("Proportion Churn & Not Churn - Tv Plan")
         # Sort the DataFrame by 'Count Churned' in descending order
@@ -420,7 +420,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-        pdf_pages.savefig(fig)
+        pdf_pages.savefig()
 
         # Sort the DataFrame by 'Count Churned' in descending order
         tvplan_data_merge_notchurned = tvplan_data_merge.sort_values(by='Count Not Churned', ascending=False)
@@ -447,7 +447,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-        pdf_pages.savefig(fig)
+        pdf_pages.savefig()
     elif option == 'Advance Promo':
         st.title("Proportion Churn & Not Churn - Advance Promo")
         # Sort the DataFrame by 'Count Churned' in descending order
@@ -475,7 +475,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-        pdf_pages.savefig(fig)
+        pdf_pages.savefig()
 
         # Sort the DataFrame by 'Count Churned' in descending order
         adv_data_merge_notchurned = adv_data_merge.sort_values(by='Count Not Churned', ascending=False)
@@ -502,7 +502,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-        pdf_pages.savefig(fig)
+        pdf_pages.savefig()
     
     st.title("Data Bar Chart Proportion")
     option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
@@ -541,7 +541,7 @@ def visualize_data_batch(data):
         plt.ylabel('Jumlah')
         plt.xticks(rotation=90)
         st.pyplot(plt)
-        pdf_pages.savefig(fig)
+        pdf_pages.savefig()
 
         # Tampilkan jumlah data churn untuk setiap Area Name
         st.write("Jumlah data churn untuk setiap Area Name:")
@@ -581,6 +581,7 @@ def visualize_data_batch(data):
         plt.ylabel('Jumlah')
         plt.xticks(rotation=90)
         st.pyplot(plt)
+        pdf_pages.savefig()
 
         # Tampilkan jumlah data churn untuk setiap Plan
         st.write("Jumlah data churn untuk setiap Plan:")
@@ -620,6 +621,7 @@ def visualize_data_batch(data):
         plt.ylabel('Jumlah')
         plt.xticks(rotation=90)
         st.pyplot(plt)
+        pdf_pages.savefig()
 
         # Tampilkan jumlah data churn untuk setiap Tv Plan
         st.write("Jumlah data churn untuk setiap Tv Plan:")
@@ -659,6 +661,7 @@ def visualize_data_batch(data):
         plt.ylabel('Jumlah')
         plt.xticks(rotation=90)
         st.pyplot(plt)
+        pdf_pages.savefig()
 
         # Tampilkan jumlah data churn untuk setiap Advance Promo
         st.write("Jumlah data churn untuk setiap Advance Promo:")
