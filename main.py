@@ -219,7 +219,7 @@ def visualize_data_batch(data):
     pdf_file1 = "pie_chart_churn&notchurn.pdf"
 
     pdf_file2 = "propotion_churn&notchurn_area_name.pdf"
-    pdf_file3 = "propotion_churn&notchurn_plan.pdf"
+    # pdf_file3 = "propotion_churn&notchurn_plan.pdf"
     pdf_file4 = "propotion_churn&notchurn_tvplan.pdf"
     pdf_file5 = "propotion_churn&notchurn_adv.pdf"
 
@@ -377,8 +377,8 @@ def visualize_data_batch(data):
             st.download_button(label="Download Propotion Churn & Not Churn - Area Name PDF", data=pdf_bytes, file_name=pdf_file2)
             # f.close()
     elif option == 'Plan':
-        pdf_file3 = "propotion_churn&notchurn_plan.pdf"
-        pdf_pages3 = PdfPages(pdf_file3)
+        # pdf_file3 = "propotion_churn&notchurn_plan.pdf"
+        pdf_pages3 = PdfPages("propotion_churn&notchurn_plan.pdf")
         
         st.title("Proportion Churn & Not Churn - Plan")
         # Sort the DataFrame by 'Count Churned' in descending order
@@ -437,12 +437,12 @@ def visualize_data_batch(data):
         pdf_pages3.close()
 
         # Pastikan direktori untuk menyimpan file PDF sudah ada atau buat jika belum ada
-        os.makedirs(os.path.dirname(pdf_file3), exist_ok=True)
+        # os.makedirs(os.path.dirname(pdf_file3), exist_ok=True)
 
         # File PDF sudah ada sekarang, baru kita bisa menggunakan st.download_button
-        with open(pdf_file3, "rb") as f:
+        with open("propotion_churn&notchurn_plan.pdf", "rb") as f:
             pdf_bytes = f.read()
-            st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name=pdf_file3)
+            st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_plan.pdf")
 
     elif option == 'Tv Plan':
         # pdf_pages = PdfPages("propotion_churn&notchurn_tvplan.pdf")pdf_file3
