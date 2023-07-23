@@ -377,6 +377,7 @@ def visualize_data_batch(data):
             st.download_button(label="Download Propotion Churn & Not Churn - Area Name PDF", data=pdf_bytes, file_name=pdf_file2)
             # f.close()
     elif option == 'Plan':
+        pdf_file3 = "propotion_churn&notchurn_plan.pdf"
         pdf_pages3 = PdfPages(pdf_file3)
         
         st.title("Proportion Churn & Not Churn - Plan")
