@@ -960,7 +960,9 @@ def visualize_data_batch(data):
     columns = data.columns.to_list()
 
     # Daftar file PDF yang ingin digabungkan
-    files_pdf = ["pie_chart_churn&notchurn.pdf", "propotion_churn&notchurn_area_name.pdf", "propotion_churn&notchurn_plan.pdf", "propotion_churn&notchurn_tvplan.pdf", "propotion_churn&notchurn_adv.pdf", "bar_chart_proportion_area.pdf", "bar_chart_proportion_plan.pdf", "bar_chart_proportion_tvplan.pdf", "bar_chart_proportion_adv.pdf"]
+    # files_pdf = ["pie_chart_churn&notchurn.pdf", "propotion_churn&notchurn_area_name.pdf", "propotion_churn&notchurn_plan.pdf", "propotion_churn&notchurn_tvplan.pdf", "propotion_churn&notchurn_adv.pdf", "bar_chart_proportion_area.pdf", "bar_chart_proportion_plan.pdf", "bar_chart_proportion_tvplan.pdf", "bar_chart_proportion_adv.pdf"]
+    files_pdf = [pdf_pages1,pdf_pages2,pdf_pages3,pdf_pages4,pdf_pages5,pdf_pages6,pdf_pages7,pdf_pages8,pdf_pages9]
+    # pdf_pages6
 
     # Nama file PDF akhir
     output_pdf_file = "Churn Prediction Report.pdf"
