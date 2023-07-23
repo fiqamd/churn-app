@@ -968,7 +968,7 @@ def visualize_data_batch(data):
     # Gabungkan file PDF
     merger = PyPDF2.PdfMerger()
     for pdf in files_pdf:
-        with open(pdf, 'rb' as f):
+        with open(pdf, 'rb') as f:
             merger.append(f)
 
     # Simpan hasil penggabungan ke file baru
