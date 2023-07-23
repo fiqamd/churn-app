@@ -433,8 +433,10 @@ def visualize_data_batch(data):
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
         pdf_pages3.savefig(fig)
-
         pdf_pages3.close()
+
+        # Pastikan direktori untuk menyimpan file PDF sudah ada atau buat jika belum ada
+        os.makedirs(os.path.dirname(pdf_file3), exist_ok=True)
 
         # File PDF sudah ada sekarang, baru kita bisa menggunakan st.download_button
         with open(pdf_file3, "rb") as f:
