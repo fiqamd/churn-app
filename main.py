@@ -742,7 +742,7 @@ def visualize_data_batch(data):
     st.download_button("Download Here - Churned Tv Plan Data", data=csv_data, mime='text/csv', file_name=filename)
 
     #Advance Promo Data Churned
-    adv_adv_churned = adv_data_churned.reset_index(drop=True)
+    adv_data_churned = adv_data_churned.reset_index(drop=True)
     total = adv_data_churned["Count Churned"].sum()
     adv_data_churned["Persentase Dari Data Churn"] = adv_data_churned["Count Churned"]/total*100
     # Format the percentage column with "%" sign
