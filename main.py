@@ -340,7 +340,7 @@ def visualize_data_batch(data):
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
         #SAVE PDF
-        pdf_pages2.savefig(fig)
+        # pdf_pages2.savefig(fig)
         # Sort the DataFrame by 'Count Churned' in descending order
         area_data_merge_notchurned = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
@@ -406,7 +406,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-        pdf_pages3.savefig(fig)
+        # pdf_pages3.savefig(fig)
 
         # Sort the DataFrame by 'Count Churned' in descending order
         plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
