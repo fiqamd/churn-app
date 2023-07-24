@@ -280,6 +280,7 @@ def visualize_data_batch(data):
 
     st.pyplot(fig)
     plt.savefig(pdf_pages1, format='pdf')
+    plt.close()
     pdf_pages1.savefig(fig)
     pdf_pages1.close()
     #DOWNLOAD BUTTON
@@ -340,6 +341,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         plt.savefig(pdf_pages2, format='pdf')
+        plt.close()
         st.pyplot(fig)
         #SAVE PDF
         # pdf_pages2.savefig(fig)
@@ -368,6 +370,7 @@ def visualize_data_batch(data):
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         plt.savefig(pdf_pages2, format='pdf')
+        plt.close()
         st.pyplot(fig)
         #SAVING PDF
         pdf_pages2.savefig(fig)
@@ -406,11 +409,13 @@ def visualize_data_batch(data):
         # Add legend using 'Plan' from the DataFrame 'top_5'
         plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
         plt.savefig(pdf_pages3, format='pdf')
+        plt.close()
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
         pdf_pages3.savefig(fig)
+
         
         # Sort the DataFrame by 'Count Not Churned' in descending order
         plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
@@ -434,12 +439,14 @@ def visualize_data_batch(data):
         # Add legend using 'Plan' from the DataFrame 'top_5'
         plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
         plt.savefig(pdf_pages3, format='pdf')
+        plt.close()
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
         pdf_pages3.savefig(fig)
         pdf_pages3.close()
+        
 
         # Pastikan direktori untuk menyimpan file PDF sudah ada atau buat jika belum ada
         # os.makedirs(os.path.dirname(pdf_file3), exist_ok=True)
