@@ -279,6 +279,7 @@ def visualize_data_batch(data):
     ax.set_title("Churn Distribution", loc='center')
 
     st.pyplot(fig)
+    plt.savefig(pdf_pages1, format='pdf')
     pdf_pages1.savefig(fig)
     pdf_pages1.close()
     #DOWNLOAD BUTTON
@@ -338,6 +339,7 @@ def visualize_data_batch(data):
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
+        plt.savefig(pdf_pages2, format='pdf')
         st.pyplot(fig)
         #SAVE PDF
         # pdf_pages2.savefig(fig)
@@ -365,6 +367,7 @@ def visualize_data_batch(data):
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
+        plt.savefig(pdf_pages2, format='pdf')
         st.pyplot(fig)
         #SAVING PDF
         pdf_pages2.savefig(fig)
@@ -402,6 +405,7 @@ def visualize_data_batch(data):
         
         # Add legend using 'Plan' from the DataFrame 'top_5'
         plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+        plt.savefig(pdf_pages3, format='pdf')
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
@@ -429,6 +433,7 @@ def visualize_data_batch(data):
         
         # Add legend using 'Plan' from the DataFrame 'top_5'
         plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+        plt.savefig(pdf_pages3, format='pdf')
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
