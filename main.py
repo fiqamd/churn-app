@@ -279,8 +279,8 @@ def visualize_data_batch(data):
     ax.set_title("Churn Distribution", loc='center')
 
     st.pyplot(fig)
-    plt.savefig(pdf_pages1, format='pdf')
-    plt.close()
+    # plt.savefig(pdf_pages1, format='pdf')
+    # plt.close()
     pdf_pages1.savefig(fig)
     pdf_pages1.close()
     #DOWNLOAD BUTTON
@@ -340,8 +340,8 @@ def visualize_data_batch(data):
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
-        plt.savefig(pdf_pages2, format='pdf')
-        plt.close()
+        # plt.savefig(pdf_pages2, format='pdf')
+        # plt.close()
         st.pyplot(fig)
         #SAVE PDF
         # pdf_pages2.savefig(fig)
@@ -369,8 +369,8 @@ def visualize_data_batch(data):
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
-        plt.savefig(pdf_pages2, format='pdf')
-        plt.close()
+        # plt.savefig(pdf_pages2, format='pdf')
+        # plt.close()
         st.pyplot(fig)
         #SAVING PDF
         pdf_pages2.savefig(fig)
@@ -408,13 +408,11 @@ def visualize_data_batch(data):
         
         # Add legend using 'Plan' from the DataFrame 'top_5'
         plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
-        plt.savefig(pdf_pages3, format='pdf')
-        plt.close()
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
-        pdf_pages3.savefig(fig)
+        # pdf_pages3.savefig(fig)
 
         
         # Sort the DataFrame by 'Count Not Churned' in descending order
@@ -438,18 +436,14 @@ def visualize_data_batch(data):
         
         # Add legend using 'Plan' from the DataFrame 'top_5'
         plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
-        plt.savefig(pdf_pages3, format='pdf')
-        plt.close()
+        # plt.savefig(pdf_pages3, format='pdf')
+        # plt.close()
 
         # Display the pie chart using st.pyplot(fig)
         fig = plt.gcf()  # Get the current figure
         st.pyplot(fig)
         pdf_pages3.savefig(fig)
         pdf_pages3.close()
-        
-
-        # Pastikan direktori untuk menyimpan file PDF sudah ada atau buat jika belum ada
-        # os.makedirs(os.path.dirname(pdf_file3), exist_ok=True)
 
         # File PDF sudah ada sekarang, baru kita bisa menggunakan st.download_button
         with open("propotion_churn&notchurn_plan.pdf", "rb") as f:
@@ -971,36 +965,6 @@ def visualize_data_batch(data):
     data_churn = data[data["Churn"] == "Churn"]
     columns = data.columns.to_list()
 
-    # Daftar file PDF yang ingin digabungkan
-    # files_pdf = ["pie_chart_churn&notchurn.pdf", "propotion_churn&notchurn_area_name.pdf", "propotion_churn&notchurn_plan.pdf", "propotion_churn&notchurn_tvplan.pdf", "propotion_churn&notchurn_adv.pdf", "bar_chart_proportion_area.pdf", "bar_chart_proportion_plan.pdf", "bar_chart_proportion_tvplan.pdf", "bar_chart_proportion_adv.pdf"]
-    files_pdf = ["pie_chart_churn&notchurn.pdf", "propotion_churn&notchurn_area_name.pdf", "propotion_churn&notchurn_plan.pdf"]
-    # pdf_pages6
-
-    # Nama file PDF akhir
-    output_pdf_file = "Churn Prediction Report.pdf"
-
-    # Gabungkan file PDF
-    merger = PyPDF2.PdfMerger()
-
-    for pdf in files_pdf:
-        merger.append(pdf)
-        # with open(pdf, 'rb') as f:
-        #     merger.append(f)
-
-    # Simpan hasil penggabungan ke file baru
-    with open(output_pdf_file, "wb") as output:
-        merger.write(output)
-
-    # Tambahkan tombol download pada Streamlit
-    st.download_button(label="Download Merged Charts PDF", data=open(output_pdf_file, "rb").read(), file_name="report_churn_prediction.pdf")
-    # pdf_pages.close()
-
-    # blob = bucket.blob(pdf_filename)
-    # blob.upload_from_filename(pdf_filename)
-    # # Display the PDF download link
-    # st.success("PDF File URL:"+ blob.public_url)
-    # pdf_url = f"https://storage.googleapis.com/{bucket_name}/{pdf_filename}"
-    # st.success("PDF Report Created. Check your directory")
 
 def run():
     add_selectbox = st.sidebar.selectbox(
