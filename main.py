@@ -965,8 +965,8 @@ def visualize_data_batch(data):
     st.subheader("Jumlah Data Not Churn")
     st.table(not_churn_data.count())
 
-    data_churn = data[data["Churn"] == "Churn"]
-    columns = data.columns.to_list()
+    # data_churn = data[data["Churn"] == "Churn"]
+    # columns = data.columns.to_list()
 
 
 def run():
