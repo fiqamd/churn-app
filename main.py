@@ -951,11 +951,14 @@ def visualize_data_batch(data):
 
     # Menghitung jumlah data Churn ##BARUU 18 JULI 2023
     churn_data = data[data['Churn'] == 'Churn']
+    churn_data = churn_data.drop('Churn')
+
     st.header("Data Churn")
     st.subheader("Jumlah Data Churn")
     st.table(churn_data.count())
 
     not_churn_data = data[data['Churn'] == 'Not Churn']
+    not_churn_data = not_churn_data.drop('Churn')
     not_churn_counts = not_churn_data.shape[0]
 
     st.header("Data Not Churn")
