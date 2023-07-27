@@ -1049,6 +1049,14 @@ def run():
     expected_columns = ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo', 'Complaint by Customer Service', 'Complaint by Email', 'Complaint by Social Media', 'Complaint by Telegram', 'Complaint by Whatsapp', 'Complaint by WIC']
 
     if add_selectbox == 'Single Prediction':
+        # Mengatur lebar halaman menjadi 80%
+        st.markdown('<style>body{width: 80%;margin: 0 auto;}</style>', unsafe_allow_html=True)
+
+        # Judul aplikasi
+        st.title("Aplikasi Prediksi")
+
+        # Subheader di tengah halaman
+        st.markdown("<h2 style='text-align: center;'>- Single Prediction -</h2>", unsafe_allow_html=True)
         st.subheader("- Single Prediction")
         # st.title("- Single Prediction")
         user_area = st.selectbox('Area Name', 
