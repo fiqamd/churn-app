@@ -979,7 +979,7 @@ def run():
     # Menentukan nama kolom yang diharapkan
     expected_columns = ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo', 'Complaint by Customer Service', 'Complaint by Email', 'Complaint by Social Media', 'Complaint by Telegram', 'Complaint by Whatsapp', 'Complaint by WIC']
 
-    if add_selectbox == 'Online':        
+    if add_selectbox == 'Single Prediction':        
         user_area = st.selectbox('Area Name', 
                                         ('Bali', 'Bandung', 'Bekasi', 'Bogor', 'Cibubur', 'Cilegon', 'Cirebon', 'Depok', 'Jakarta', 'Jambi', 'Karawang', 'Lampung', 'Makassar', 'Malang', 'Medan', 'Palembang', 'Pekanbaru', 'Purwokerto', 'Semarang', 'Serang', 'Solo', 'Surabaya', 'Tangerang', 'Tegal')
                                         )
@@ -1014,7 +1014,7 @@ def run():
             elif churn_value == "Churn":
                 st.success('The customer will Churn.')
 
-    elif add_selectbox == 'Batch':
+    elif add_selectbox == 'Batch Prediction':
         file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
         if file_upload is not None:
             try:
