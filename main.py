@@ -680,23 +680,23 @@ def visualize_data_batch(data):
     elif option_chart == 'Plan':
         pdf_pages7 = PdfPages("bar_chart_proportion_plan.pdf")
 
-        st.subheader("Proportion Churn & Not Churn - Area Name")
+        st.subheader("Proportion Churn & Not Churn - Plan")
         # Hitung jumlah Churn dan Not Churn untuk setiap area
-        churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
-        not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
+        churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
+        not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
 
         # Membuat dataframe untuk menyimpan hasil perhitungan
         churn_data = pd.DataFrame({'Plan': unique_plan,
-                                    'Churn': [churn_counts.get(area, 0) for area in unique_plan],
-                                    'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
+                                    'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
+                                    'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
 
         # Membuat plot menggunakan sns.catplot
         sns.set(style="whitegrid")
         plt.figure(figsize=(12, 6))
-        sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
+        sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
                     kind='bar', height=6, aspect=2.5, palette='magma')
         plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-        plt.xlabel('Area Name')
+        plt.xlabel('Plan')
         plt.ylabel('Jumlah')
         plt.xticks(rotation=90)
 
