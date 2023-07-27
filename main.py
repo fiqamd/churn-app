@@ -334,6 +334,8 @@ def visualize_data_batch(data):
         plt.axis('equal')
         plt.legend(patches, top_10_churn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
+        fig = plt.gcf()
+
         # Save the churn pie chart to PDF
         pdf_pages = PdfPages("propotion_churn_area-name.pdf")
         pdf_pages.savefig(plt.gcf())
@@ -358,6 +360,8 @@ def visualize_data_batch(data):
         plt.title('Top 10 Count Not Churned by Area Name')
         plt.axis('equal')
         plt.legend(patches, top_10_notchurn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+        fig = plt.gcf()
 
         # Save the not churned pie chart to PDF
         pdf_pages2 = PdfPages("propotion_notchurn_area-name.pdf")
