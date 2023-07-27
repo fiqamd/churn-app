@@ -236,13 +236,6 @@ def visualize_data_batch(data):
     area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, \
     adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
     com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
-
-    # bucket_name = 'pdf_saving'
-    # client = storage.Client()
-    # bucket = client.get_bucket(bucket_name)
-
-    # pdf_filename = 'Churn_Analysist_Plot.pdf'
-    # pdf_pages = PdfPages(pdf_filename)
     
     area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
     plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Plan", how="outer")
@@ -1055,7 +1048,8 @@ def run():
     # Menentukan nama kolom yang diharapkan
     expected_columns = ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo', 'Complaint by Customer Service', 'Complaint by Email', 'Complaint by Social Media', 'Complaint by Telegram', 'Complaint by Whatsapp', 'Complaint by WIC']
 
-    if add_selectbox == 'Single Prediction':        
+    if add_selectbox == 'Single Prediction':
+        st.title("- Single Prediction")
         user_area = st.selectbox('Area Name', 
                                         ('Bali', 'Bandung', 'Bekasi', 'Bogor', 'Cibubur', 'Cilegon', 'Cirebon', 'Depok', 'Jakarta', 'Jambi', 'Karawang', 'Lampung', 'Makassar', 'Malang', 'Medan', 'Palembang', 'Pekanbaru', 'Purwokerto', 'Semarang', 'Serang', 'Solo', 'Surabaya', 'Tangerang', 'Tegal')
                                         )
@@ -1091,6 +1085,7 @@ def run():
                 st.success('The customer will Churn.')
 
     elif add_selectbox == 'Batch Prediction':
+        st.title("- Batch Prediction")
         file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
         if file_upload is not None:
             try:
