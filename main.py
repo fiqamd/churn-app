@@ -1118,6 +1118,12 @@ def run():
             # visualize_data_batch(data)
 
     elif add_selectbox == 'About The App':
+        # Mengatur lebar halaman menjadi 80%
+        st.markdown('<style>body{width: 80%;margin: 0 auto;}</style>', unsafe_allow_html=True)
+
+        # Subheader di tengah halaman
+        st.markdown("<h2 style='text-align: center;'>- Single Prediction -</h2>", unsafe_allow_html=True)
+        
         st.subheader("Customer Churn Prediction & Reporting")
         st.subheader("Taufiq Ahmadi")
         st.subheader("https://www.linkedin.com/in/amd-taufiq/")
