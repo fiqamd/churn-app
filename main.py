@@ -468,72 +468,156 @@ def visualize_data_batch(data):
         #     st.download_button(label="Download Propotion Churn & Not Churn - Area Name PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_area_name.pdf")
         #     # f.close()
     elif option == 'Plan':
-        # pdf_file3 = "propotion_churn&notchurn_plan.pdf"
-        pdf_pages3 = PdfPages("propotion_churn&notchurn_plan.pdf")
-        
         st.title("Proportion Churn & Not Churn - Plan")
         # Sort the DataFrame by 'Count Churned' in descending order
         plan_data_merge = plan_data_merge.sort_values(by='Count Churned', ascending=False)
 
-        # Select the top 5 rows
-        top_5 = plan_data_merge.head(10)
+        # Select the top 10 rows
+        top_10_churn = plan_data_merge.head(10)
 
         # Calculate the sum of 'Count Churned' for the remaining rows
-        remaining_sum = plan_data_merge.iloc[10:]['Count Churned'].sum()
+        remaining_sum_churn = plan_data_merge.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
-        dll_row = {'Plan': 'dll', 'Count Churned': remaining_sum}
-        top_5 = top_5.append(dll_row, ignore_index=True)
+        dll_row_churn = {'Plan': 'dll', 'Count Churned': remaining_sum_churn}
+        top_10_churn = top_10_churn.append(dll_row_churn, ignore_index=True)
 
         # Plot the pie chart for Count Churned
         plt.figure(figsize=(6, 6))
-        patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
         plt.title('Top 10 Count Churned by Plan')
         plt.axis('equal')
-        
-        # Add legend using 'Plan' from the DataFrame 'top_5'
-        plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+        plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
-        # Display the pie chart using st.pyplot(fig)
-        fig = plt.gcf()  # Get the current figure
-        st.pyplot(fig)
-        # pdf_pages3.savefig(fig)
+        # Save the churn pie chart to PDF
+        pdf_pages1 = PdfPages("propotion_churn_plan.pdf")
+        pdf_pages1.savefig(plt.gcf())
+        pdf_pages1.close()
 
-        
+        # Display the churn pie chart using st.pyplot()
+        st.pyplot(plt.gcf())
+
         # Sort the DataFrame by 'Count Not Churned' in descending order
         plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
-        # Select the top 5 rows
-        top_5 = plan_data_merge_notchurned.head(10)
+        # Select the top 10 rows
+        top_10_notchurn = plan_data_merge_notchurned.head(10)
 
         # Calculate the sum of 'Count Not Churned' for the remaining rows
-        remaining_sum = plan_data_merge_notchurned.iloc[10:]['Count Not Churned'].sum()
+        remaining_sum_notchurn = plan_data_merge_notchurned.iloc[10:]['Count Not Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
-        dll_row = {'Plan': 'dll', 'Count Not Churned': remaining_sum}
-        top_5 = top_5.append(dll_row, ignore_index=True)
+        dll_row_notchurn = {'Plan': 'dll', 'Count Not Churned': remaining_sum_notchurn}
+        top_10_notchurn = top_10_notchurn.append(dll_row_notchurn, ignore_index=True)
 
         # Plot the pie chart for Count Not Churned
         plt.figure(figsize=(6, 6))
-        patches, texts, autotexts = plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
         plt.title('Top 10 Count Not Churned by Plan')
         plt.axis('equal')
-        
-        # Add legend using 'Plan' from the DataFrame 'top_5'
-        plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
-        # plt.savefig(pdf_pages3, format='pdf')
-        # plt.close()
+        plt.legend(patches, top_10_notchurn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
-        # Display the pie chart using st.pyplot(fig)
-        fig = plt.gcf()  # Get the current figure
-        st.pyplot(fig)
-        pdf_pages3.savefig(fig)
-        pdf_pages3.close()
+        # Save the not churned pie chart to PDF
+        pdf_pages2 = PdfPages("propotion_notchurn_plan.pdf")
+        pdf_pages2.savefig(plt.gcf())
+        pdf_pages2.close()
+
+        # Display the not churned pie chart using st.pyplot()
+        st.pyplot(plt.gcf())
+
+        # Combine both PDFs into a single PDF
+        merged_pdf = "combined_pie_charts_plan.pdf"
+        pdf_churn = open("propotion_churn_plan.pdf", 'rb')
+        pdf_notchurn = open("propotion_notchurn_plan.pdf", 'rb')
+
+        pdf_reader_churn = PyPDF2.PdfReader(pdf_churn)
+        pdf_reader_notchurn = PyPDF2.PdfReader(pdf_notchurn)
+        pdf_writer = PyPDF2.PdfWriter()
+
+        for page_num in range(len(pdf_reader_churn.pages)):
+            page = pdf_reader_churn.pages[page_num]
+            pdf_writer.add_page(page)
+
+        for page_num in range(len(pdf_reader_notchurn.pages)):
+            page = pdf_reader_notchurn.pages[page_num]
+            pdf_writer.add_page(page)
+
+        with open(merged_pdf, 'wb') as f:
+            pdf_writer.write(f)
+
+        # Close the opened PDF files
+        pdf_churn.close()
+        pdf_notchurn.close()
+
+        # Display the download button for the combined PDF
+        with open(merged_pdf, "rb") as f:
+            st.download_button("Download Combined Pie Charts (PDF)", f, file_name=merged_pdf)
+        # pdf_file3 = "propotion_churn&notchurn_plan.pdf"
+        # pdf_pages3 = PdfPages("propotion_churn&notchurn_plan.pdf")
+        
+        # st.title("Proportion Churn & Not Churn - Plan")
+        # # Sort the DataFrame by 'Count Churned' in descending order
+        # plan_data_merge = plan_data_merge.sort_values(by='Count Churned', ascending=False)
+
+        # # Select the top 5 rows
+        # top_5 = plan_data_merge.head(10)
+
+        # # Calculate the sum of 'Count Churned' for the remaining rows
+        # remaining_sum = plan_data_merge.iloc[10:]['Count Churned'].sum()
+
+        # # Add the 'dll' row to the DataFrame
+        # dll_row = {'Plan': 'dll', 'Count Churned': remaining_sum}
+        # top_5 = top_5.append(dll_row, ignore_index=True)
+
+        # # Plot the pie chart for Count Churned
+        # plt.figure(figsize=(6, 6))
+        # patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        # plt.title('Top 10 Count Churned by Plan')
+        # plt.axis('equal')
+        
+        # # Add legend using 'Plan' from the DataFrame 'top_5'
+        # plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+        # # Display the pie chart using st.pyplot(fig)
+        # fig = plt.gcf()  # Get the current figure
+        # st.pyplot(fig)
+        # # pdf_pages3.savefig(fig)
+
+        
+        # # Sort the DataFrame by 'Count Not Churned' in descending order
+        # plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
+
+        # # Select the top 5 rows
+        # top_5 = plan_data_merge_notchurned.head(10)
+
+        # # Calculate the sum of 'Count Not Churned' for the remaining rows
+        # remaining_sum = plan_data_merge_notchurned.iloc[10:]['Count Not Churned'].sum()
+
+        # # Add the 'dll' row to the DataFrame
+        # dll_row = {'Plan': 'dll', 'Count Not Churned': remaining_sum}
+        # top_5 = top_5.append(dll_row, ignore_index=True)
+
+        # # Plot the pie chart for Count Not Churned
+        # plt.figure(figsize=(6, 6))
+        # patches, texts, autotexts = plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        # plt.title('Top 10 Count Not Churned by Plan')
+        # plt.axis('equal')
+        
+        # # Add legend using 'Plan' from the DataFrame 'top_5'
+        # plt.legend(patches, top_5['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+        # # plt.savefig(pdf_pages3, format='pdf')
+        # # plt.close()
+
+        # # Display the pie chart using st.pyplot(fig)
+        # fig = plt.gcf()  # Get the current figure
+        # st.pyplot(fig)
+        # pdf_pages3.savefig(fig)
+        # pdf_pages3.close()
 
         # File PDF sudah ada sekarang, baru kita bisa menggunakan st.download_button
-        with open("propotion_churn&notchurn_plan.pdf", "rb") as f:
-            pdf_bytes = f.read()
-            st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_plan.pdf")
+        # with open("propotion_churn&notchurn_plan.pdf", "rb") as f:
+        #     pdf_bytes = f.read()
+        #     st.download_button(label="Download Propotion Churn & Not Churn - Plan PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_plan.pdf")
 
     elif option == 'Tv Plan':
         # pdf_pages = PdfPages("propotion_churn&notchurn_tvplan.pdf")pdf_file3
