@@ -1090,7 +1090,11 @@ def run():
                 st.success('The customer will Churn.')
 
     elif add_selectbox == 'Batch Prediction':
-        st.subheader("- Batch Prediction")
+        # Mengatur lebar halaman menjadi 80%
+        st.markdown('<style>body{width: 80%;margin: 0 auto;}</style>', unsafe_allow_html=True)
+
+        # Subheader di tengah halaman
+        st.markdown("<h2 style='text-align: center;'>- Batch Prediction -</h2>", unsafe_allow_html=True)
         # st.title("- Batch Prediction")
         file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
         if file_upload is not None:
