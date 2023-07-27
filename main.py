@@ -363,6 +363,7 @@ def visualize_data_batch(data):
         pdf_pages2 = PdfPages("propotion_notchurn_area-name.pdf")
         pdf_pages2.savefig(plt.gcf())
         pdf_pages2.close()
+        st.pyplot(fig)
 
         # Combine both PDFs into a single PDF
         merged_pdf = "combined_pie_charts.pdf"
