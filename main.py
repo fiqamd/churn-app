@@ -1036,7 +1036,7 @@ def run():
             # result_df = predict_churn(data)
             # visualize_data_batch(data)
 
-    elif add_selectbox == 'About':
+    elif add_selectbox == 'About The App':
         st.subheader("Customer Churn Prediction & Reporting")
         st.subheader("Taufiq Ahmadi")
         st.subheader("https://www.linkedin.com/in/amd-taufiq/")
