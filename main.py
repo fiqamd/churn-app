@@ -373,13 +373,13 @@ def visualize_data_batch(data):
         pdf_reader_notchurn = PyPDF2.PdfReader(pdf_notchurn)
         pdf_writer = PyPDF2.PdfWriter()
 
-        for page_num in range(pdf_reader_churn.getNumPages()):
-            page = pdf_reader_churn.getPage(page_num)
-            pdf_writer.addPage(page)
+        for page_num in range(len(pdf_reader_churn.pages)):
+            page = pdf_reader_churn.pages[page_num]
+            pdf_writer.add_page(page)
 
-        for page_num in range(pdf_reader_notchurn.getNumPages()):
-            page = pdf_reader_notchurn.getPage(page_num)
-            pdf_writer.addPage(page)
+        for page_num in range(len(pdf_reader_notchurn.pages)):
+            page = pdf_reader_notchurn.pages[page_num]
+            pdf_writer.add_page(page)
 
         with open(merged_pdf, 'wb') as f:
             pdf_writer.write(f)
