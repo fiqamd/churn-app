@@ -738,7 +738,7 @@ def visualize_data_batch(data):
         not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
 
         # Membuat dataframe untuk menyimpan hasil perhitungan
-        churn_data = pd.DataFrame({'Tv Plan': unique_plan,
+        churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
                                     'Churn': [churn_counts.get(tvplan, 0) for tvplan in unique_tvplan],
                                     'Not Churn': [not_churn_counts.get(tvplan, 0) for tvplan in unique_tvplan]})
 
