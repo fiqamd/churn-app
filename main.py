@@ -340,6 +340,7 @@ def visualize_data_batch(data):
         pdf_pages = PdfPages("propotion_churn_area-name.pdf")
         pdf_pages.savefig(plt.gcf())
         pdf_pages.close()
+        st.pyplot(fig)
 
         # Sort the DataFrame by 'Count Not Churned' in descending order
         area_data_merge_notchurned = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
