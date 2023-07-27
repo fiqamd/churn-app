@@ -214,21 +214,6 @@ def load_non_churned(data):
 
 
 def visualize_data_batch(data):
-    # reverse_data = predict_churn(data)
-    # data = reverse_data
-    # pdf_file1 = "pie_chart_churn&notchurn.pdf"
-
-    # pdf_file2 = "propotion_churn&notchurn_area_name.pdf"
-    # pdf_file3 = "propotion_churn&notchurn_plan.pdf"
-    # pdf_file4 = "propotion_churn&notchurn_tvplan.pdf"
-    # pdf_file5 = "propotion_churn&notchurn_adv.pdf"
-
-    # pdf_file6 = "bar_chart_proportion_area.pdf"
-    # pdf_file7 = "bar_chart_proportion_plan.pdf"
-    # pdf_file8 = "bar_chart_proportion_tvplan.pdf"
-    # pdf_file9 = "bar_chart_proportion_adv.pdf"
-
-
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
@@ -1124,9 +1109,21 @@ def run():
         # Subheader di tengah halaman
         st.markdown("<h2 style='text-align: center;'>- About -</h2>", unsafe_allow_html=True)
 
-        st.subheader("Customer Churn Prediction & Reporting")
-        st.subheader("Taufiq Ahmadi")
-        st.subheader("https://www.linkedin.com/in/amd-taufiq/")
+        view_selectbox = st.selectbox('Pilihlah hal yang ingin anda ketahui:',
+                          ['Model', 'Creator'], key= 'view_select'
+                          )
+        
+        if view_selectbox == 'Model':
+            st.subheader("Model Explanation")
+        elif view_selectbox == 'Creator':
+            st.subheader("Name")
+            st.write("Taufiq Ahmadi")
+
+            st.subheader('Linkedin')
+            st.write("https://www.linkedin.com/in/amd-taufiq/")
+
+            st.subheader('Email')
+            st.write("taufiqahmadi1122@gmail.com")
         st.button("Re-run")
 
 if __name__ == '__main__':
