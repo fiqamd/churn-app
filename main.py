@@ -680,27 +680,27 @@ def visualize_data_batch(data):
     elif option_chart == 'Plan':
         pdf_pages7 = PdfPages("bar_chart_proportion_plan.pdf")
 
-        st.subheader("Proportion Churn & Not Churn - Plan")
-        # Hitung jumlah Churn dan Not Churn untuk setiap plan
-        churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
-        not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
+        st.subheader("Proportion Churn & Not Churn - Area Name")
+        # Hitung jumlah Churn dan Not Churn untuk setiap area
+        churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
+        not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
 
         # Membuat dataframe untuk menyimpan hasil perhitungan
         churn_data = pd.DataFrame({'Plan': unique_plan,
-                                'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
-                                'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
+                                    'Churn': [churn_counts.get(area, 0) for area in unique_plan],
+                                    'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
 
         # Membuat plot menggunakan sns.catplot
         sns.set(style="whitegrid")
         plt.figure(figsize=(12, 6))
-        sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
+        sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
                     kind='bar', height=6, aspect=2.5, palette='magma')
-        plt.title('Proporsi Churn dan Not Churn berdasarkan Plan')
-        plt.xlabel('Plan')
+        plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+        plt.xlabel('Area Name')
         plt.ylabel('Jumlah')
         plt.xticks(rotation=90)
 
-        # Save the bar chart to PDF with adjusted bounding box
+        # Save the bar chart to PDF
         pdf_pages7.savefig(plt.gcf(), bbox_inches='tight')
 
         # Display the bar chart using st.pyplot()
@@ -711,6 +711,40 @@ def visualize_data_batch(data):
         # Display the download button for the generated PDF
         with open("bar_chart_proportion_plan.pdf", "rb") as f:
             st.download_button("Download Proportion Churn & Not Churn - Plan (PDF)", f, file_name="bar_chart_proportion_plan.pdf")
+
+        # pdf_pages7 = PdfPages("bar_chart_proportion_plan.pdf")
+
+        # st.subheader("Proportion Churn & Not Churn - Plan")
+        # # Hitung jumlah Churn dan Not Churn untuk setiap plan
+        # churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
+        # not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
+
+        # # Membuat dataframe untuk menyimpan hasil perhitungan
+        # churn_data = pd.DataFrame({'Plan': unique_plan,
+        #                         'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
+        #                         'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
+
+        # # Membuat plot menggunakan sns.catplot
+        # sns.set(style="whitegrid")
+        # plt.figure(figsize=(12, 6))
+        # sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
+        #             kind='bar', height=6, aspect=2.5, palette='magma')
+        # plt.title('Proporsi Churn dan Not Churn berdasarkan Plan')
+        # plt.xlabel('Plan')
+        # plt.ylabel('Jumlah')
+        # plt.xticks(rotation=90)
+
+        # # Save the bar chart to PDF with adjusted bounding box
+        # pdf_pages7.savefig(plt.gcf(), bbox_inches='tight')
+
+        # # Display the bar chart using st.pyplot()
+        # st.pyplot(plt.gcf())
+
+        # pdf_pages7.close()
+
+        # # Display the download button for the generated PDF
+        # with open("bar_chart_proportion_plan.pdf", "rb") as f:
+        #     st.download_button("Download Proportion Churn & Not Churn - Plan (PDF)", f, file_name="bar_chart_proportion_plan.pdf")
 
         # pdf_pages = PdfPages('bar_chart_proportion_plan.pdf')pdf_file6
         # pdf_pages7 = PdfPages("bar_chart_proportion_plan.pdf")
