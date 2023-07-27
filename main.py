@@ -369,8 +369,8 @@ def visualize_data_batch(data):
         pdf_churn = open("propotion_churn_area-name.pdf", 'rb')
         pdf_notchurn = open("propotion_notchurn_area-name.pdf", 'rb')
 
-        pdf_reader_churn = PyPDF2.PdfFileReader(pdf_churn)
-        pdf_reader_notchurn = PyPDF2.PdfFileReader(pdf_notchurn)
+        pdf_reader_churn = PyPDF2.PdfReader(pdf_churn)
+        pdf_reader_notchurn = PyPDF2.PdfReader(pdf_notchurn)
         pdf_writer = PyPDF2.PdfFileWriter()
 
         for page_num in range(pdf_reader_churn.getNumPages()):
