@@ -469,6 +469,7 @@ def visualize_data_batch(data):
         #     # f.close()
     elif option == 'Plan':
         st.title("Proportion Churn & Not Churn - Plan")
+
         # Sort the DataFrame by 'Count Churned' in descending order
         plan_data_merge = plan_data_merge.sort_values(by='Count Churned', ascending=False)
 
@@ -491,7 +492,7 @@ def visualize_data_batch(data):
 
         # Save the churn pie chart to PDF
         pdf_pages1 = PdfPages("propotion_churn_plan.pdf")
-        pdf_pages1.savefig(plt.gcf())
+        pdf_pages1.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
         pdf_pages1.close()
 
         # Display the churn pie chart using st.pyplot()
@@ -519,7 +520,7 @@ def visualize_data_batch(data):
 
         # Save the not churned pie chart to PDF
         pdf_pages2 = PdfPages("propotion_notchurn_plan.pdf")
-        pdf_pages2.savefig(plt.gcf())
+        pdf_pages2.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
         pdf_pages2.close()
 
         # Display the not churned pie chart using st.pyplot()
@@ -552,6 +553,92 @@ def visualize_data_batch(data):
         # Display the download button for the combined PDF
         with open(merged_pdf, "rb") as f:
             st.download_button("Download Combined Pie Charts (PDF)", f, file_name=merged_pdf)
+        # st.title("Proportion Churn & Not Churn - Plan")
+        # # Sort the DataFrame by 'Count Churned' in descending order
+        # plan_data_merge = plan_data_merge.sort_values(by='Count Churned', ascending=False)
+
+        # # Select the top 10 rows
+        # top_10_churn = plan_data_merge.head(10)
+
+        # # Calculate the sum of 'Count Churned' for the remaining rows
+        # remaining_sum_churn = plan_data_merge.iloc[10:]['Count Churned'].sum()
+
+        # # Add the 'dll' row to the DataFrame
+        # dll_row_churn = {'Plan': 'dll', 'Count Churned': remaining_sum_churn}
+        # top_10_churn = top_10_churn.append(dll_row_churn, ignore_index=True)
+
+        # # Plot the pie chart for Count Churned
+        # plt.figure(figsize=(6, 6))
+        # patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
+        # plt.title('Top 10 Count Churned by Plan')
+        # plt.axis('equal')
+        # plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+        # # Save the churn pie chart to PDF
+        # pdf_pages1 = PdfPages("propotion_churn_plan.pdf")
+        # pdf_pages1.savefig(plt.gcf())
+        # pdf_pages1.close()
+
+        # # Display the churn pie chart using st.pyplot()
+        # st.pyplot(plt.gcf())
+
+        # # Sort the DataFrame by 'Count Not Churned' in descending order
+        # plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
+
+        # # Select the top 10 rows
+        # top_10_notchurn = plan_data_merge_notchurned.head(10)
+
+        # # Calculate the sum of 'Count Not Churned' for the remaining rows
+        # remaining_sum_notchurn = plan_data_merge_notchurned.iloc[10:]['Count Not Churned'].sum()
+
+        # # Add the 'dll' row to the DataFrame
+        # dll_row_notchurn = {'Plan': 'dll', 'Count Not Churned': remaining_sum_notchurn}
+        # top_10_notchurn = top_10_notchurn.append(dll_row_notchurn, ignore_index=True)
+
+        # # Plot the pie chart for Count Not Churned
+        # plt.figure(figsize=(6, 6))
+        # patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
+        # plt.title('Top 10 Count Not Churned by Plan')
+        # plt.axis('equal')
+        # plt.legend(patches, top_10_notchurn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+        # # Save the not churned pie chart to PDF
+        # pdf_pages2 = PdfPages("propotion_notchurn_plan.pdf")
+        # pdf_pages2.savefig(plt.gcf())
+        # pdf_pages2.close()
+
+        # # Display the not churned pie chart using st.pyplot()
+        # st.pyplot(plt.gcf())
+
+        # # Combine both PDFs into a single PDF
+        # merged_pdf = "combined_pie_charts_plan.pdf"
+        # pdf_churn = open("propotion_churn_plan.pdf", 'rb')
+        # pdf_notchurn = open("propotion_notchurn_plan.pdf", 'rb')
+
+        # pdf_reader_churn = PyPDF2.PdfReader(pdf_churn)
+        # pdf_reader_notchurn = PyPDF2.PdfReader(pdf_notchurn)
+        # pdf_writer = PyPDF2.PdfWriter()
+
+        # for page_num in range(len(pdf_reader_churn.pages)):
+        #     page = pdf_reader_churn.pages[page_num]
+        #     pdf_writer.add_page(page)
+
+        # for page_num in range(len(pdf_reader_notchurn.pages)):
+        #     page = pdf_reader_notchurn.pages[page_num]
+        #     pdf_writer.add_page(page)
+
+        # with open(merged_pdf, 'wb') as f:
+        #     pdf_writer.write(f)
+
+        # # Close the opened PDF files
+        # pdf_churn.close()
+        # pdf_notchurn.close()
+
+        # # Display the download button for the combined PDF
+        # with open(merged_pdf, "rb") as f:
+        #     st.download_button("Download Combined Pie Charts (PDF)", f, file_name=merged_pdf)
+
+
         # pdf_file3 = "propotion_churn&notchurn_plan.pdf"
         # pdf_pages3 = PdfPages("propotion_churn&notchurn_plan.pdf")
         
