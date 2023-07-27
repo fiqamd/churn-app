@@ -1049,7 +1049,8 @@ def run():
     expected_columns = ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo', 'Complaint by Customer Service', 'Complaint by Email', 'Complaint by Social Media', 'Complaint by Telegram', 'Complaint by Whatsapp', 'Complaint by WIC']
 
     if add_selectbox == 'Single Prediction':
-        st.title("- Single Prediction")
+        st.subheader("- Single Prediction")
+        # st.title("- Single Prediction")
         user_area = st.selectbox('Area Name', 
                                         ('Bali', 'Bandung', 'Bekasi', 'Bogor', 'Cibubur', 'Cilegon', 'Cirebon', 'Depok', 'Jakarta', 'Jambi', 'Karawang', 'Lampung', 'Makassar', 'Malang', 'Medan', 'Palembang', 'Pekanbaru', 'Purwokerto', 'Semarang', 'Serang', 'Solo', 'Surabaya', 'Tangerang', 'Tegal')
                                         )
@@ -1085,7 +1086,8 @@ def run():
                 st.success('The customer will Churn.')
 
     elif add_selectbox == 'Batch Prediction':
-        st.title("- Batch Prediction")
+        st.subheader("- Batch Prediction")
+        # st.title("- Batch Prediction")
         file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
         if file_upload is not None:
             try:
