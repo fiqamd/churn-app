@@ -972,7 +972,7 @@ def visualize_data_batch(data):
 def run():
     add_selectbox = st.sidebar.selectbox(
         "How would you like to predict?",
-        ("Online", "Batch","About"))
+        ("Single Prediction", "Batch Prediction","About The App"))
     st.sidebar.info('This app is created to customer churn prediction')
     st.title("Customer Churn Prediction")
     
