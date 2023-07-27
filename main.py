@@ -648,7 +648,7 @@ def visualize_data_batch(data):
         plt.xticks(rotation=90)
 
         # Save the bar chart to PDF
-        pdf_pages6.savefig(plt.gcf())
+        pdf_pages6.savefig(plt.gcf(), bbox_inches='tight')
 
         # Display the bar chart using st.pyplot()
         st.pyplot(plt.gcf())
