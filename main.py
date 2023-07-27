@@ -396,7 +396,7 @@ def visualize_data_batch(data):
 
         # Display the download button for the combined PDF
         with open(merged_pdf, "rb") as f:
-            st.download_button("Download Combined Pie Charts (PDF)", f, file_name=merged_pdf)
+            st.download_button("Download Proportion Churn & Not Churn - Area Name (PDF)", f, file_name=merged_pdf)
     elif option == 'Plan':
         st.title("Proportion Churn & Not Churn - Plan")
 
@@ -482,7 +482,7 @@ def visualize_data_batch(data):
 
         # Display the download button for the combined PDF
         with open(merged_pdf, "rb") as f:
-            st.download_button("Download Combined Pie Charts (PDF)", f, file_name=merged_pdf)
+            st.download_button("Download Proportion Churn & Not Churn - Plan (PDF)", f, file_name=merged_pdf)
 
     elif option == 'Tv Plan':
         pdf_pages4 = PdfPages("propotion_churn&notchurn_tvplan.pdf")
@@ -609,68 +609,128 @@ def visualize_data_batch(data):
         #     st.download_button(label="Download Propotion Churn & Not Churn - Tv Plan PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_tvplan.pdf")
         #     f.close()
     elif option == 'Advance Promo':
-        # pdf_pages = PdfPages("propotion_churn&notchurn_adv.pdf")pdf_file4
         pdf_pages5 = PdfPages("propotion_churn&notchurn_adv.pdf")
+
         st.title("Proportion Churn & Not Churn - Advance Promo")
+
         # Sort the DataFrame by 'Count Churned' in descending order
         adv_data_merge = adv_data_merge.sort_values(by='Count Churned', ascending=False)
 
-        # Select the top 5 rows
-        top_5 = adv_data_merge.head(10)
+        # Select the top 10 rows
+        top_10_churn = adv_data_merge.head(10)
 
         # Calculate the sum of 'Count Churned' for the remaining rows
-        remaining_sum = adv_data_merge.iloc[10:]['Count Churned'].sum()
+        remaining_sum_churn = adv_data_merge.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
-        dll_row = {'Advance Promo': 'dll', 'Count Churned': remaining_sum}
-        top_5 = top_5.append(dll_row, ignore_index=True)
+        dll_row_churn = {'Advance Promo': 'dll', 'Count Churned': remaining_sum_churn}
+        top_10_churn = top_10_churn.append(dll_row_churn, ignore_index=True)
 
-        # Plot the pie chart
+        # Plot the pie chart for Count Churned
         plt.figure(figsize=(6, 6))
-        patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
         plt.title('Top 10 Count Churned by Advance Promo')
         plt.axis('equal')
-        
-        # Tambahkan legend dengan menggunakan 'Advance Promo' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+        plt.legend(patches, top_10_churn['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
-        # Display the pie chart using st.pyplot(fig)
-        fig = plt.gcf()  # Get the current figure
-        st.pyplot(fig)
-        pdf_pages5.savefig(fig)
+        # Save the churn pie chart to PDF
+        pdf_pages5.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
 
-        # Sort the DataFrame by 'Count Churned' in descending order
+        # Display the churn pie chart using st.pyplot()
+        st.pyplot(plt.gcf())
+
+        # Sort the DataFrame by 'Count Not Churned' in descending order
         adv_data_merge_notchurned = adv_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
-        # Select the top 5 rows
-        top_5 = adv_data_merge_notchurned.head(10)
+        # Select the top 10 rows
+        top_10_notchurn = adv_data_merge_notchurned.head(10)
 
         # Calculate the sum of 'Count Not Churned' for the remaining rows
-        remaining_sum = adv_data_merge_notchurned.iloc[10:]['Count Churned'].sum()
+        remaining_sum_notchurn = adv_data_merge_notchurned.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
-        dll_row = {'Advance Promo': 'dll', 'Count Not Churned': remaining_sum}
-        top_5 = top_5.append(dll_row, ignore_index=True)
+        dll_row_notchurn = {'Advance Promo': 'dll', 'Count Not Churned': remaining_sum_notchurn}
+        top_10_notchurn = top_10_notchurn.append(dll_row_notchurn, ignore_index=True)
 
-        # Plot the pie chart
+        # Plot the pie chart for Count Not Churned
         plt.figure(figsize=(6, 6))
-        patches, texts, autotexts = plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
         plt.title('Top 10 Count Not Churned by Advance Promo')
         plt.axis('equal')
-        
-        # Tambahkan legend dengan menggunakan 'Advance Promo' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+        plt.legend(patches, top_10_notchurn['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
-        # Display the pie chart using st.pyplot(fig)
-        fig = plt.gcf()  # Get the current figure
-        st.pyplot(fig)
-        pdf_pages5.savefig(fig)
+        # Save the not churned pie chart to PDF
+        pdf_pages5.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+        pdf_pages5.close()
 
-        #DOWNLOAD BUTTON
+        # Display the not churned pie chart using st.pyplot()
+        st.pyplot(plt.gcf())
+
+        # Display the download button for the generated PDF
         with open("propotion_churn&notchurn_adv.pdf", "rb") as f:
-            pdf_bytes = f.read()
-            st.download_button(label="Download Propotion Churn & Not Churn - Advance Promo PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_adv.pdf")
-            f.close()
+            st.download_button("Download Proportion Churn & Not Churn - Advance Promo (PDF)", f, file_name="propotion_churn&notchurn_adv.pdf")
+        # # pdf_pages = PdfPages("propotion_churn&notchurn_adv.pdf")pdf_file4
+        # pdf_pages5 = PdfPages("propotion_churn&notchurn_adv.pdf")
+        # st.title("Proportion Churn & Not Churn - Advance Promo")
+        # # Sort the DataFrame by 'Count Churned' in descending order
+        # adv_data_merge = adv_data_merge.sort_values(by='Count Churned', ascending=False)
+
+        # # Select the top 5 rows
+        # top_5 = adv_data_merge.head(10)
+
+        # # Calculate the sum of 'Count Churned' for the remaining rows
+        # remaining_sum = adv_data_merge.iloc[10:]['Count Churned'].sum()
+
+        # # Add the 'dll' row to the DataFrame
+        # dll_row = {'Advance Promo': 'dll', 'Count Churned': remaining_sum}
+        # top_5 = top_5.append(dll_row, ignore_index=True)
+
+        # # Plot the pie chart
+        # plt.figure(figsize=(6, 6))
+        # patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        # plt.title('Top 10 Count Churned by Advance Promo')
+        # plt.axis('equal')
+        
+        # # Tambahkan legend dengan menggunakan 'Advance Promo' dari DataFrame 'top_5'
+        # plt.legend(patches, top_5['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+        # # Display the pie chart using st.pyplot(fig)
+        # fig = plt.gcf()  # Get the current figure
+        # st.pyplot(fig)
+        # pdf_pages5.savefig(fig)
+
+        # # Sort the DataFrame by 'Count Churned' in descending order
+        # adv_data_merge_notchurned = adv_data_merge.sort_values(by='Count Not Churned', ascending=False)
+
+        # # Select the top 5 rows
+        # top_5 = adv_data_merge_notchurned.head(10)
+
+        # # Calculate the sum of 'Count Not Churned' for the remaining rows
+        # remaining_sum = adv_data_merge_notchurned.iloc[10:]['Count Churned'].sum()
+
+        # # Add the 'dll' row to the DataFrame
+        # dll_row = {'Advance Promo': 'dll', 'Count Not Churned': remaining_sum}
+        # top_5 = top_5.append(dll_row, ignore_index=True)
+
+        # # Plot the pie chart
+        # plt.figure(figsize=(6, 6))
+        # patches, texts, autotexts = plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        # plt.title('Top 10 Count Not Churned by Advance Promo')
+        # plt.axis('equal')
+        
+        # # Tambahkan legend dengan menggunakan 'Advance Promo' dari DataFrame 'top_5'
+        # plt.legend(patches, top_5['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+        # # Display the pie chart using st.pyplot(fig)
+        # fig = plt.gcf()  # Get the current figure
+        # st.pyplot(fig)
+        # pdf_pages5.savefig(fig)
+
+        # #DOWNLOAD BUTTON
+        # with open("propotion_churn&notchurn_adv.pdf", "rb") as f:
+        #     pdf_bytes = f.read()
+        #     st.download_button(label="Download Propotion Churn & Not Churn - Advance Promo PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_adv.pdf")
+        #     f.close()
     
     st.title("Data Bar Chart Proportion")
     option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
