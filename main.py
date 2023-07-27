@@ -312,76 +312,155 @@ def visualize_data_batch(data):
     adv_data_merge.fillna(0, inplace=True)
     
     if option == 'Area Name':
-        # pdf_pages = PdfPages("propotion_churn&notchurn_area-name.pdf")
-        pdf_pages2 = PdfPages("propotion_churn&notchurn_area_name.pdf")
-        
         st.title("Proportion Churn & Not Churn - Area Name")
+
         # Sort the DataFrame by 'Count Churned' in descending order
         area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
-        # Select the top 5 rows
-        top_5 = area_data_merge.head(10)
+        # Select the top 10 rows
+        top_10_churn = area_data_merge.head(10)
 
         # Calculate the sum of 'Count Churned' for the remaining rows
-        remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
+        remaining_sum_churn = area_data_merge.iloc[10:]['Count Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
-        dll_row = {'Area Name': 'dll', 'Count Churned': remaining_sum}
-        top_5 = top_5.append(dll_row, ignore_index=True)
+        dll_row_churn = {'Area Name': 'dll', 'Count Churned': remaining_sum_churn}
+        top_10_churn = top_10_churn.append(dll_row_churn, ignore_index=True)
 
-        # Plot the pie chart
+        # Plot the pie chart for churned
         plt.figure(figsize=(6, 6))
-        patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
         plt.title('Top 10 Count Churned by Area Name')
         plt.axis('equal')
-        
-        # Tambahkan legend dengan menggunakan 'Area Name' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+        plt.legend(patches, top_10_churn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
-        # Display the pie chart using st.pyplot(fig)
-        fig = plt.gcf()  # Get the current figure
-        # plt.savefig(pdf_pages2, format='pdf')
-        # plt.close()
-        st.pyplot(fig)
-        #SAVE PDF
-        # pdf_pages2.savefig(fig)
-        # Sort the DataFrame by 'Count Churned' in descending order
+        # Save the churn pie chart to PDF
+        pdf_pages = PdfPages("propotion_churn_area-name.pdf")
+        pdf_pages.savefig(plt.gcf())
+        pdf_pages.close()
+
+        # Sort the DataFrame by 'Count Not Churned' in descending order
         area_data_merge_notchurned = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
-        # Select the top 5 rows
-        top_5 = area_data_merge_notchurned.head(10)
+        # Select the top 10 rows
+        top_10_notchurn = area_data_merge_notchurned.head(10)
 
         # Calculate the sum of 'Count Not Churned' for the remaining rows
-        remaining_sum = area_data_merge_notchurned.iloc[10:]['Count Churned'].sum()
+        remaining_sum_notchurn = area_data_merge_notchurned.iloc[10:]['Count Not Churned'].sum()
 
         # Add the 'dll' row to the DataFrame
-        dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
-        top_5 = top_5.append(dll_row, ignore_index=True)
+        dll_row_notchurn = {'Area Name': 'dll', 'Count Not Churned': remaining_sum_notchurn}
+        top_10_notchurn = top_10_notchurn.append(dll_row_notchurn, ignore_index=True)
 
-        # Plot the pie chart
+        # Plot the pie chart for not churned
         plt.figure(figsize=(6, 6))
-        patches, texts, autotexts = plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
         plt.title('Top 10 Count Not Churned by Area Name')
         plt.axis('equal')
-        
-        # Tambahkan legend dengan menggunakan 'Area Name' dari DataFrame 'top_5'
-        plt.legend(patches, top_5['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+        plt.legend(patches, top_10_notchurn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
-        # Display the pie chart using st.pyplot(fig)
-        fig = plt.gcf()  # Get the current figure
-        # plt.savefig(pdf_pages2, format='pdf')
-        # plt.close()
-        st.pyplot(fig)
-        #SAVING PDF
-        pdf_pages2.savefig(fig)
-
+        # Save the not churned pie chart to PDF
+        pdf_pages2 = PdfPages("propotion_notchurn_area-name.pdf")
+        pdf_pages2.savefig(plt.gcf())
         pdf_pages2.close()
 
-        #DOWNLOAD BUTTON
-        with open("propotion_churn&notchurn_area_name.pdf", "rb") as f:
-            pdf_bytes = f.read()
-            st.download_button(label="Download Propotion Churn & Not Churn - Area Name PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_area_name.pdf")
-            # f.close()
+        # Combine both PDFs into a single PDF
+        merged_pdf = "combined_pie_charts.pdf"
+        pdf_churn = open("propotion_churn_area-name.pdf", 'rb')
+        pdf_notchurn = open("propotion_notchurn_area-name.pdf", 'rb')
+
+        pdf_reader_churn = PyPDF2.PdfFileReader(pdf_churn)
+        pdf_reader_notchurn = PyPDF2.PdfFileReader(pdf_notchurn)
+        pdf_writer = PyPDF2.PdfFileWriter()
+
+        for page_num in range(pdf_reader_churn.getNumPages()):
+            page = pdf_reader_churn.getPage(page_num)
+            pdf_writer.addPage(page)
+
+        for page_num in range(pdf_reader_notchurn.getNumPages()):
+            page = pdf_reader_notchurn.getPage(page_num)
+            pdf_writer.addPage(page)
+
+        with open(merged_pdf, 'wb') as f:
+            pdf_writer.write(f)
+
+        # Close the opened PDF files
+        pdf_churn.close()
+        pdf_notchurn.close()
+
+        # Display the download button for the combined PDF
+        with open(merged_pdf, "rb") as f:
+            st.download_button("Download Combined Pie Charts (PDF)", f, file_name=merged_pdf)
+        # # pdf_pages = PdfPages("propotion_churn&notchurn_area-name.pdf")
+        # pdf_pages2 = PdfPages("propotion_churn&notchurn_area_name.pdf")
+        
+        # st.title("Proportion Churn & Not Churn - Area Name")
+        # # Sort the DataFrame by 'Count Churned' in descending order
+        # area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
+
+        # # Select the top 5 rows
+        # top_5 = area_data_merge.head(10)
+
+        # # Calculate the sum of 'Count Churned' for the remaining rows
+        # remaining_sum = area_data_merge.iloc[10:]['Count Churned'].sum()
+
+        # # Add the 'dll' row to the DataFrame
+        # dll_row = {'Area Name': 'dll', 'Count Churned': remaining_sum}
+        # top_5 = top_5.append(dll_row, ignore_index=True)
+
+        # # Plot the pie chart
+        # plt.figure(figsize=(6, 6))
+        # patches, texts, autotexts = plt.pie(top_5['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        # plt.title('Top 10 Count Churned by Area Name')
+        # plt.axis('equal')
+        
+        # # Tambahkan legend dengan menggunakan 'Area Name' dari DataFrame 'top_5'
+        # plt.legend(patches, top_5['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+        # # Display the pie chart using st.pyplot(fig)
+        # fig = plt.gcf()  # Get the current figure
+        # # plt.savefig(pdf_pages2, format='pdf')
+        # # plt.close()
+        # st.pyplot(fig)
+        # #SAVE PDF
+        # # pdf_pages2.savefig(fig)
+        # # Sort the DataFrame by 'Count Churned' in descending order
+        # area_data_merge_notchurned = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
+
+        # # Select the top 5 rows
+        # top_5 = area_data_merge_notchurned.head(10)
+
+        # # Calculate the sum of 'Count Not Churned' for the remaining rows
+        # remaining_sum = area_data_merge_notchurned.iloc[10:]['Count Churned'].sum()
+
+        # # Add the 'dll' row to the DataFrame
+        # dll_row = {'Area Name': 'dll', 'Count Not Churned': remaining_sum}
+        # top_5 = top_5.append(dll_row, ignore_index=True)
+
+        # # Plot the pie chart
+        # plt.figure(figsize=(6, 6))
+        # patches, texts, autotexts = plt.pie(top_5['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_5)), textprops={'color': 'white'})
+        # plt.title('Top 10 Count Not Churned by Area Name')
+        # plt.axis('equal')
+        
+        # # Tambahkan legend dengan menggunakan 'Area Name' dari DataFrame 'top_5'
+        # plt.legend(patches, top_5['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+        # # Display the pie chart using st.pyplot(fig)
+        # fig = plt.gcf()  # Get the current figure
+        # # plt.savefig(pdf_pages2, format='pdf')
+        # # plt.close()
+        # st.pyplot(fig)
+        # #SAVING PDF
+        # pdf_pages2.savefig(fig)
+
+        # pdf_pages2.close()
+
+        # #DOWNLOAD BUTTON
+        # with open("propotion_churn&notchurn_area_name.pdf", "rb") as f:
+        #     pdf_bytes = f.read()
+        #     st.download_button(label="Download Propotion Churn & Not Churn - Area Name PDF", data=pdf_bytes, file_name="propotion_churn&notchurn_area_name.pdf")
+        #     # f.close()
     elif option == 'Plan':
         # pdf_file3 = "propotion_churn&notchurn_plan.pdf"
         pdf_pages3 = PdfPages("propotion_churn&notchurn_plan.pdf")
