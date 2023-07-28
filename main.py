@@ -959,7 +959,7 @@ def visualize_data_batch(data):
             sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
 
             # Get the top 5 areas with the highest total churn + not churn counts
-            top_10_areas = sorted_churn_data.head(5)
+            top_10_areas = sorted_churn_data.head(10)
             top_10_areas = top_10_areas.drop(columns=['Total Churn + Not Churn'])
 
             churn_data = top_10_areas
