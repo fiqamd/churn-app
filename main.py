@@ -670,7 +670,17 @@ def visualize_data_batch(data):
             churn_data = pd.DataFrame({'Area Name': unique_area_name,
                                         'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
                                         'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
-            churn_data = churn_data.nlargest(5, 'Churn')
+            
+            # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
+            churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
+
+            # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
+            sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
+
+            # Get the top 5 areas with the highest total churn + not churn counts
+            top_5_areas = sorted_churn_data.head(5)
+
+            churn_data = top_5_areas
             # Membuat plot menggunakan sns.catplot
             sns.set(style="whitegrid")
             plt.figure(figsize=(12, 6))
@@ -700,7 +710,19 @@ def visualize_data_batch(data):
             churn_data = pd.DataFrame({'Area Name': unique_area_name,
                                     'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
                                     'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
-            st.table(churn_data.head(10))
+            
+            # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
+            churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
+
+            # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
+            sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
+
+            # Get the top 5 areas with the highest total churn + not churn counts
+            top_5_areas = sorted_churn_data.head(5)
+
+            churn_data = top_5_areas
+
+            st.table(churn_data)
 
             #DOWNLOAD HERE
             result_all_data = churn_data
