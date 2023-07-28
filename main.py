@@ -1074,15 +1074,15 @@ def visualize_data_batch(data):
         elif top_chart == 'Top 5':
             pdf_pages8_1 = PdfPages("bar_chart_proportion_tvplan_top5.pdf")
 
-            st.subheader("Proportion Churn & Not Churn - Plan")
+            st.subheader("Proportion Churn & Not Churn - Tv Plan")
             # Hitung jumlah Churn dan Not Churn untuk setiap area
-            churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
-            not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
+            churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
+            not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
 
             # Membuat dataframe untuk menyimpan hasil perhitungan
-            churn_data = pd.DataFrame({'Plan': unique_plan,
-                                        'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
-                                        'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
+            churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
+                                        'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
+                                        'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
             
             # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
             churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
@@ -1099,10 +1099,10 @@ def visualize_data_batch(data):
             # Membuat plot menggunakan sns.catplot
             sns.set(style="whitegrid")
             plt.figure(figsize=(12, 6))
-            sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
+            sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
             plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            plt.xlabel('Plan')
+            plt.xlabel('Tv Plan')
             plt.ylabel('Jumlah')
             plt.xticks(rotation=90)
 
@@ -1121,9 +1121,9 @@ def visualize_data_batch(data):
             # Tampilkan jumlah data churn untuk setiap Plan
             st.write("Jumlah data churn untuk setiap Plan:")
             # Membuat dataframe untuk menyimpan hasil perhitungan
-            churn_data = pd.DataFrame({'Plan': unique_plan,
-                                    'Churn': [churn_counts.get(area, 0) for area in unique_plan],
-                                    'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
+            churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
+                                    'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
+                                    'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
             # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
             churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
 
@@ -1141,24 +1141,24 @@ def visualize_data_batch(data):
             #DOWNLOAD HERE
             result_all_data = churn_data
             current_date = datetime.now().strftime("%Y%m%d")
-            result_all_data.name = "Data Proporsi Plan"
+            result_all_data.name = "Data Proporsi Tv Plan"
             filename = f"{result_all_data.name}_{current_date}.csv"
 
             csv_data = result_all_data.to_csv(index=False)
-            st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
+            st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
             pdf_pages8_2 = PdfPages("bar_chart_proportion_tvplan_top10.pdf")
 
-            st.subheader("Proportion Churn & Not Churn - Plan")
+            st.subheader("Proportion Churn & Not Churn - Tv Plan")
             # Hitung jumlah Churn dan Not Churn untuk setiap area
-            churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
-            not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
+            churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
+            not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
 
             # Membuat dataframe untuk menyimpan hasil perhitungan
-            churn_data = pd.DataFrame({'Plan': unique_plan,
-                                        'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
-                                        'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
+            churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
+                                        'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
+                                        'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
             
             # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
             churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
@@ -1175,10 +1175,10 @@ def visualize_data_batch(data):
             # Membuat plot menggunakan sns.catplot
             sns.set(style="whitegrid")
             plt.figure(figsize=(12, 6))
-            sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
+            sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
             plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            plt.xlabel('Plan')
+            plt.xlabel('Tv Plan')
             plt.ylabel('Jumlah')
             plt.xticks(rotation=90)
 
@@ -1192,14 +1192,14 @@ def visualize_data_batch(data):
 
             # Display the download button for the generated PDF
             with open("bar_chart_proportion_tvplan_top10.pdf", "rb") as f:
-                st.download_button("Download Proportion Churn & Not Churn - Plan (PDF)", f, file_name="bar_chart_proportion_tvplan_top10.pdf")
+                st.download_button("Download Proportion Churn & Not Churn - Tv Plan (PDF)", f, file_name="bar_chart_proportion_tvplan_top10.pdf")
 
             # Tampilkan jumlah data churn untuk setiap Plan
-            st.write("Jumlah data churn untuk setiap Plan:")
+            st.write("Jumlah data churn untuk setiap Tv Plan:")
             # Membuat dataframe untuk menyimpan hasil perhitungan
-            churn_data = pd.DataFrame({'Plan': unique_plan,
-                                    'Churn': [churn_counts.get(area, 0) for area in unique_plan],
-                                    'Not Churn': [not_churn_counts.get(area, 0) for area in unique_plan]})
+            churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
+                                    'Churn': [churn_counts.get(area, 0) for area in unique_tvplan],
+                                    'Not Churn': [not_churn_counts.get(area, 0) for area in unique_tvplan]})
             # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
             churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
 
@@ -1217,11 +1217,11 @@ def visualize_data_batch(data):
             #DOWNLOAD HERE
             result_all_data = churn_data
             current_date = datetime.now().strftime("%Y%m%d")
-            result_all_data.name = "Data Proporsi Plan"
+            result_all_data.name = "Data Proporsi Tv Plan"
             filename = f"{result_all_data.name}_{current_date}.csv"
 
             csv_data = result_all_data.to_csv(index=False)
-            st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
+            st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
             
     elif option_chart == 'Advance Promo':
         pdf_pages9 = PdfPages("bar_chart_proportion_adv.pdf")
