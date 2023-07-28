@@ -679,6 +679,7 @@ def visualize_data_batch(data):
 
             # Get the top 5 areas with the highest total churn + not churn counts
             top_5_areas = sorted_churn_data.head(5)
+            top_5_areas = top_5_areas.drop('Total Churn + Not Churn')
 
             churn_data = top_5_areas
             # Membuat plot menggunakan sns.catplot
