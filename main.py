@@ -359,7 +359,7 @@ def tvplan_proportion(data):
     adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
     com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
 
-    tvplan_data_merge = pd.merge(tvplan_data_churned, tvplan_data_non_churned, on="Plan", how="outer")
+    tvplan_data_merge = pd.merge(tvplan_data_churned, tvplan_data_non_churned, on="Tv Plan", how="outer")
 
     # Sort the DataFrame by 'Count Churned' in descending order
     tvplan_data_merge = tvplan_data_merge.sort_values(by='Count Churned', ascending=False)
@@ -416,7 +416,7 @@ def advpro_proportion(data):
     adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
     com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
 
-    adv_data_merge = pd.merge(adv_data_churned, adv_data_non_churned, on="Plan", how="outer")
+    adv_data_merge = pd.merge(adv_data_churned, adv_data_non_churned, on="Advance Promo", how="outer")
 
     # Sort the DataFrame by 'Count Churned' in descending order
     adv_data_merge = adv_data_merge.sort_values(by='Count Churned', ascending=False)
