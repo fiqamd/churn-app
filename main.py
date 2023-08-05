@@ -212,6 +212,235 @@ def load_non_churned(data):
 
     return area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned
 
+def dis_churn(data):
+    pdf_pages1 = PdfPages("pie_chart_churn&notchurn.pdf")
+    st.header("Churn Distribution")
+    fig, ax = plt.subplots()
+    palette_color = sns.color_palette('rocket_r')
+
+    churn_counts = data['Churn'].value_counts()
+    ax = churn_counts.plot(kind='pie', autopct='%1.1f%%', colors=palette_color)
+    ax.set_ylabel('')
+
+    ax.legend(churn_counts.index)
+    
+    # Mengatur judul di tengah pie chart
+    ax.set_title("Churn Distribution", loc='center')
+
+    st.pyplot(fig)
+
+def area_proportion(data):
+    area_data_churned = load_churned(data)
+    area_data_non_churned = load_non_churned(data)
+    
+    area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
+    # Sort the DataFrame by 'Count Churned' in descending order
+    area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
+
+    # Select the top 10 rows
+    top_10_churn = area_data_merge.head(10)
+
+    # Calculate the sum of 'Count Churned' for the remaining rows
+    remaining_sum_churn = area_data_merge.iloc[10:]['Count Churned'].sum()
+
+    # Add the 'dll' row to the DataFrame
+    dll_row_churn = {'Area Name': 'dll', 'Count Churned': remaining_sum_churn}
+    top_10_churn = top_10_churn.append(dll_row_churn, ignore_index=True)
+
+    # Plot the pie chart for churned
+    plt.figure(figsize=(6, 6))
+    patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%11f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
+    plt.title('Top 10 Count Churned by Area Name')
+    plt.axis('equal')
+    plt.legend(patches, top_10_churn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+    fig = plt.gcf()
+
+    st.pyplot(fig)
+
+    # Sort the DataFrame by 'Count Not Churned' in descending order
+    area_data_merge_notchurned = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
+
+    # Select the top 10 rows
+    top_10_notchurn = area_data_merge_notchurned.head(10)
+
+    # Calculate the sum of 'Count Not Churned' for the remaining rows
+    remaining_sum_notchurn = area_data_merge_notchurned.iloc[10:]['Count Not Churned'].sum()
+
+    # Add the 'dll' row to the DataFrame
+    dll_row_notchurn = {'Area Name': 'dll', 'Count Not Churned': remaining_sum_notchurn}
+    top_10_notchurn = top_10_notchurn.append(dll_row_notchurn, ignore_index=True)
+
+    # Plot the pie chart for not churned
+    plt.figure(figsize=(6, 6))
+    patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None,autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)),textprops={'color': 'white'})
+    plt.title('Top 10 Count Not Churned by Area Name')
+    plt.axis('equal')
+    plt.legend(patches, top_10_notchurn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+    fig = plt.gcf()
+    st.pyplot(fig)
+
+def plan_proportion(data):
+    plan_data_churned = load_churned(data)
+    plan_data_non_churned = load_non_churned(data)
+
+    plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Plan", how="outer")
+
+    # Sort the DataFrame by 'Count Churned' in descending order
+    plan_data_merge = plan_data_merge.sort_values(by='Count Churned', ascending=False)
+
+    # Select the top 10 rows
+    top_10_churn = plan_data_merge.head(10)
+
+    # Calculate the sum of 'Count Churned' for the remaining rows
+    remaining_sum_churn = plan_data_merge.iloc[10:]['Count Churned'].sum()
+
+    # Add the 'dll' row to the DataFrame
+    dll_row_churn = {'Plan': 'dll', 'Count Churned': remaining_sum_churn}
+    top_10_churn = top_10_churn.append(dll_row_churn, ignore_index=True)
+
+    # Plot the pie chart for Count Churned
+    plt.figure(figsize=(6, 6))
+    patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
+    plt.title('Top 10 Count Churned by Plan')
+    plt.axis('equal')
+    plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+    # Save the churn pie chart to PDF
+    pdf_pages1 = PdfPages("propotion_churn_plan.pdf")
+    pdf_pages1.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages1.close()
+
+    # Display the churn pie chart using st.pyplot()
+    st.pyplot(plt.gcf())
+
+    # Sort the DataFrame by 'Count Not Churned' in descending order
+    plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
+
+    # Select the top 10 rows
+    top_10_notchurn = plan_data_merge_notchurned.head(10)
+
+    # Calculate the sum of 'Count Not Churned' for the remaining rows
+    remaining_sum_notchurn = plan_data_merge_notchurned.iloc[10:]['Count Not Churned'].sum()
+
+    # Add the 'dll' row to the DataFrame
+    dll_row_notchurn = {'Plan': 'dll', 'Count Not Churned': remaining_sum_notchurn}
+    top_10_notchurn = top_10_notchurn.append(dll_row_notchurn, ignore_index=True)
+
+    # Plot the pie chart for Count Not Churned
+    plt.figure(figsize=(6, 6))
+    patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
+    plt.title('Top 10 Count Not Churned by Plan')
+    plt.axis('equal')
+    plt.legend(patches, top_10_notchurn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+    # Display the not churned pie chart using st.pyplot()
+    st.pyplot(plt.gcf())
+
+def tvplan_proportion(data):
+    tvplan_data_churned = load_churned(data)
+    tvplan_data_non_churned = load_non_churned(data)
+
+    tvplan_data_merge = pd.merge(tvplan_data_churned, tvplan_data_non_churned, on="Plan", how="outer")
+
+    # Sort the DataFrame by 'Count Churned' in descending order
+    tvplan_data_merge = tvplan_data_merge.sort_values(by='Count Churned', ascending=False)
+
+    # Select the top 10 rows
+    top_10_churn = tvplan_data_merge.head(10)
+
+    # Calculate the sum of 'Count Churned' for the remaining rows
+    remaining_sum_churn = tvplan_data_merge.iloc[10:]['Count Churned'].sum()
+
+    # Add the 'dll' row to the DataFrame
+    dll_row_churn = {'Tv Plan': 'dll', 'Count Churned': remaining_sum_churn}
+    top_10_churn = top_10_churn.append(dll_row_churn, ignore_index=True)
+
+    # Plot the pie chart for Count Churned
+    plt.figure(figsize=(6, 6))
+    patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
+    plt.title('Top 10 Count Churned by Tv Plan')
+    plt.axis('equal')
+    plt.legend(patches, top_10_churn['Tv Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+    # Display the churn pie chart using st.pyplot()
+    st.pyplot(plt.gcf())
+
+    # Sort the DataFrame by 'Count Not Churned' in descending order
+    tvplan_data_merge_notchurned = tvplan_data_merge.sort_values(by='Count Not Churned', ascending=False)
+
+    # Select the top 10 rows
+    top_10_notchurn = tvplan_data_merge_notchurned.head(10)
+
+    # Calculate the sum of 'Count Not Churned' for the remaining rows
+    remaining_sum_notchurn = tvplan_data_merge_notchurned.iloc[10:]['Count Churned'].sum()
+
+    # Add the 'dll' row to the DataFrame
+    dll_row_notchurn = {'Tv Plan': 'dll', 'Count Not Churned': remaining_sum_notchurn}
+    top_10_notchurn = top_10_notchurn.append(dll_row_notchurn, ignore_index=True)
+
+    # Plot the pie chart for Count Not Churned
+    plt.figure(figsize=(6, 6))
+    patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
+    plt.title('Top 10 Count Not Churned by Tv Plan')
+    plt.axis('equal')
+    plt.legend(patches, top_10_notchurn['Tv Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+    # Display the not churned pie chart using st.pyplot()
+    st.pyplot(plt.gcf())
+
+def advpro_proportion(data):
+    adv_data_churned = load_churned(data)
+    adv_data_non_churned = load_non_churned(data)
+
+    adv_data_merge = pd.merge(adv_data_churned, adv_data_non_churned, on="Plan", how="outer")
+
+    # Sort the DataFrame by 'Count Churned' in descending order
+    adv_data_merge = adv_data_merge.sort_values(by='Count Churned', ascending=False)
+
+    # Select the top 10 rows
+    top_10_churn = adv_data_merge.head(10)
+
+    # Calculate the sum of 'Count Churned' for the remaining rows
+    remaining_sum_churn = adv_data_merge.iloc[10:]['Count Churned'].sum()
+
+    # Add the 'dll' row to the DataFrame
+    dll_row_churn = {'Advance Promo': 'dll', 'Count Churned': remaining_sum_churn}
+    top_10_churn = top_10_churn.append(dll_row_churn, ignore_index=True)
+
+    # Plot the pie chart for Count Churned
+    plt.figure(figsize=(6, 6))
+    patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
+    plt.title('Top 10 Count Churned by Advance Promo')
+    plt.axis('equal')
+    plt.legend(patches, top_10_churn['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+    # Display the churn pie chart using st.pyplot()
+    st.pyplot(plt.gcf())
+
+    # Sort the DataFrame by 'Count Not Churned' in descending order
+    adv_data_merge_notchurned = adv_data_merge.sort_values(by='Count Not Churned', ascending=False)
+
+    # Select the top 10 rows
+    top_10_notchurn = adv_data_merge_notchurned.head(10)
+
+    # Calculate the sum of 'Count Not Churned' for the remaining rows
+    remaining_sum_notchurn = adv_data_merge_notchurned.iloc[10:]['Count Churned'].sum()
+
+    # Add the 'dll' row to the DataFrame
+    dll_row_notchurn = {'Advance Promo': 'dll', 'Count Not Churned': remaining_sum_notchurn}
+    top_10_notchurn = top_10_notchurn.append(dll_row_notchurn, ignore_index=True)
+
+    # Plot the pie chart for Count Not Churned
+    plt.figure(figsize=(6, 6))
+    patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
+    plt.title('Top 10 Count Not Churned by Advance Promo')
+    plt.axis('equal')
+    plt.legend(patches, top_10_notchurn['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+
+    # Display the not churned pie chart using st.pyplot()
+    st.pyplot(plt.gcf())
 
 def visualize_data_batch(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -240,31 +469,32 @@ def visualize_data_batch(data):
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - All Data", data=csv_data, mime='text/csv', file_name=filename)
 
-    #PIE CHART
-    # pdf_pages = PdfPages('pie_chart_churn&notchurn.pdf')
-    pdf_pages1 = PdfPages("pie_chart_churn&notchurn.pdf")
-    st.header("Churn Distribution")
-    fig, ax = plt.subplots()
-    palette_color = sns.color_palette('rocket_r')
+    dis_churn(data)
+    # #PIE CHART
+    # # pdf_pages = PdfPages('pie_chart_churn&notchurn.pdf')
+    # pdf_pages1 = PdfPages("pie_chart_churn&notchurn.pdf")
+    # st.header("Churn Distribution")
+    # fig, ax = plt.subplots()
+    # palette_color = sns.color_palette('rocket_r')
 
-    churn_counts = data['Churn'].value_counts()
-    ax = churn_counts.plot(kind='pie', autopct='%1.1f%%', colors=palette_color)
-    ax.set_ylabel('')
+    # churn_counts = data['Churn'].value_counts()
+    # ax = churn_counts.plot(kind='pie', autopct='%1.1f%%', colors=palette_color)
+    # ax.set_ylabel('')
 
-    ax.legend(churn_counts.index)
+    # ax.legend(churn_counts.index)
     
-    # Mengatur judul di tengah pie chart
-    ax.set_title("Churn Distribution", loc='center')
+    # # Mengatur judul di tengah pie chart
+    # ax.set_title("Churn Distribution", loc='center')
 
-    st.pyplot(fig)
-    # plt.savefig(pdf_pages1, format='pdf')
-    # plt.close()
-    pdf_pages1.savefig(fig)
-    pdf_pages1.close()
-    #DOWNLOAD BUTTON
-    with open("pie_chart_churn&notchurn.pdf", "rb") as f:
-        pdf_bytes = f.read()
-        st.download_button(label="Download Pie Chart Churn & Not Churn PDF", data=pdf_bytes, file_name="pie_chart_churn&notchurn.pdf")
+    # st.pyplot(fig)
+    # # plt.savefig(pdf_pages1, format='pdf')
+    # # plt.close()
+    # pdf_pages1.savefig(fig)
+    # pdf_pages1.close()
+    # #DOWNLOAD BUTTON
+    # with open("pie_chart_churn&notchurn.pdf", "rb") as f:
+    #     pdf_bytes = f.read()
+    #     st.download_button(label="Download Pie Chart Churn & Not Churn PDF", data=pdf_bytes, file_name="pie_chart_churn&notchurn.pdf")
 
     #TABEL
     churn_counts = data['Churn'].value_counts()
@@ -278,6 +508,9 @@ def visualize_data_batch(data):
 
     st.table(data_counts)
     # pdf_pages.savefig(fig)
+
+    st.divider()
+    st.subheader('Proportion Churn & Not Churn')
 
     option = st.selectbox('Pilih data yang ingin ditampilkan:',
                           ['Area Name', 'Plan', 'Tv Plan', 'Advance Promo'], key= 'piechart_data'
@@ -603,7 +836,7 @@ def visualize_data_batch(data):
     adv_promo_counts = data['Advance Promo'].value_counts()
 
     if option_chart == 'Area Name':
-        top_chart = st.selectbox('Pilih Data:',
+        top_chart = st.selectbox('Pilih jumlah data yang ingin ditampilkan:',
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_area')
         if top_chart == 'Full Data':
             pdf_pages6 = PdfPages("bar_chart_proportion_area.pdf")
