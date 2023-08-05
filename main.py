@@ -256,7 +256,7 @@ def area_proportion(data):
 
     # Plot the pie chart for churned
     plt.figure(figsize=(6, 6))
-    patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%11f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
+    patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.2f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
     plt.title('Top 10 Count Churned by Area Name')
     plt.axis('equal')
     plt.legend(patches, top_10_churn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
