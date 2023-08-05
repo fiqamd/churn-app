@@ -230,8 +230,13 @@ def dis_churn(data):
     st.pyplot(fig)
 
 def area_proportion(data):
-    area_data_churned = load_churned(data)
-    area_data_non_churned = load_non_churned(data)
+    area_data_churned, plan_data_churned, tvplan_data_churned, \
+    adv_data_churned, com_cs_data_churned, com_e_data_churned, \
+    com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
+
+    area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, \
+    adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
+    com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
     
     area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
 
