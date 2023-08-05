@@ -230,11 +230,13 @@ def dis_churn(data):
     st.pyplot(fig)
 
 def area_proportion(data):
-    # area_data_churned = load_churned(data)
-    # area_data_non_churned = load_non_churned(data)
+    area_data_churned = load_churned(data)
+    area_data_non_churned = load_non_churned(data)
     
-    # area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
+    area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
+
     # Sort the DataFrame by 'Count Churned' in descending order
+    area_data_merge.fillna(0, inplace=True)
     area_data_merge = area_data_merge.sort_values(by='Count Churned', ascending=False)
 
     # Select the top 10 rows
@@ -517,7 +519,7 @@ def visualize_data_batch(data):
                           )
     # Preprocess the DataFrame by dropping rows with NaN values in 'Count Churned' and 'Count Not Churned' columns
     # Preprocess the DataFrame to handle missing values
-    area_data_merge.fillna(0, inplace=True)
+    # area_data_merge.fillna(0, inplace=True)
     plan_data_merge.fillna(0, inplace=True)
     tvplan_data_merge.fillna(0, inplace=True)
     adv_data_merge.fillna(0, inplace=True)
