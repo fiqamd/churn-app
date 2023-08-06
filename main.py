@@ -1629,11 +1629,14 @@ def visualize_data_batch(data):
 
             # pdf_pages8_2.close()
 
-            ten_tvplan(data)
 
-            # Display the download button for the generated PDF
-            with open("bar_chart_proportion_tvplan_top10.pdf", "rb") as f:
-                st.download_button("Download Proportion Churn & Not Churn - Tv Plan (PDF)", f, file_name="bar_chart_proportion_tvplan_top10.pdf")
+            # # Display the download button for the generated PDF
+            # with open("bar_chart_proportion_tvplan_top10.pdf", "rb") as f:
+            #     st.download_button("Download Proportion Churn & Not Churn - Tv Plan (PDF)", f, file_name="bar_chart_proportion_tvplan_top10.pdf")
+
+            # Hitung jumlah Churn dan Not Churn untuk setiap area
+            churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
+            not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
 
             # Tampilkan jumlah data churn untuk setiap Plan
             st.write("Jumlah data churn untuk setiap Tv Plan:")
