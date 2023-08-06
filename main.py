@@ -1049,6 +1049,7 @@ def combine_pdfs():
 #         pdf_writer.write(f)
 
 def visualize_data_batch(data):
+    pdf_pages = ''
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
@@ -1076,7 +1077,7 @@ def visualize_data_batch(data):
     st.download_button("Download Here - All Data", data=csv_data, mime='text/csv', file_name=filename)
 
     #Memanggil Fungsi Pie Churn
-    dis_churn(data)
+    dis_churn(data, pdf_pages)
 
     #TABEL
     churn_counts = data['Churn'].value_counts()
@@ -1106,19 +1107,19 @@ def visualize_data_batch(data):
     
     if option == 'Area Name':
         st.title("Proportion Churn & Not Churn - Area Name")
-        area_proportion(data)
+        area_proportion(data, pdf_pages)
 
     elif option == 'Plan':
         st.title("Proportion Churn & Not Churn - Plan")
-        plan_proportion(data)
+        plan_proportion(data, pdf_pages)
 
     elif option == 'Tv Plan':
         st.title("Proportion Churn & Not Churn - Tv Plan")
-        tvplan_proportion(data)
+        tvplan_proportion(data, pdf_pages)
         
     elif option == 'Advance Promo':
         st.title("Proportion Churn & Not Churn - Advance Promo")
-        advpro_proportion(data)
+        advpro_proportion(data, pdf_pages)
     
     st.title("Data Bar Chart Proportion")
     option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
@@ -1140,7 +1141,7 @@ def visualize_data_batch(data):
         top_chart = st.selectbox('Pilih jumlah data yang ingin ditampilkan:',
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_area')
         if top_chart == 'Full Data':
-            full_area(data)
+            full_area(data, pdf_pages)
             
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -1163,7 +1164,7 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Area Name Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
-            five_area(data)
+            five_area(data, pdf_pages)
             
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -1198,7 +1199,7 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Area Name Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
-            ten_area(data)
+            ten_area(data, pdf_pages)
             
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -1236,7 +1237,7 @@ def visualize_data_batch(data):
         top_chart = st.selectbox('Pilih Data:',
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_plan')
         if top_chart == 'Full Data':
-            full_plan(data)
+            full_plan(data, pdf_pages)
             
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1260,7 +1261,7 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
-            five_plan(data)
+            five_plan(data, pdf_pages)
             
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1296,7 +1297,7 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
-            ten_plan(data)
+            ten_plan(data, pdf_pages)
             
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1336,7 +1337,7 @@ def visualize_data_batch(data):
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_tvplan')
         
         if top_chart == 'Full Data':
-            full_tvplan(data)
+            full_tvplan(data, pdf_pages)
             
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
@@ -1360,7 +1361,7 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
-            five_tvplan(data)
+            five_tvplan(data, pdf_pages)
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
@@ -1396,7 +1397,7 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
-            ten_tvplan(data)
+            ten_tvplan(data, pdf_pages)
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1436,7 +1437,7 @@ def visualize_data_batch(data):
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_tvplan')
         
         if top_chart == 'Full Data':
-            full_adv(data)
+            full_adv(data, pdf_pages)
             
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
@@ -1460,7 +1461,7 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Advance Promo Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
-            five_adv(data)
+            five_adv(data, pdf_pages)
             
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
@@ -1497,7 +1498,7 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Advance Promo Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
-            ten_adv(data)
+            ten_adv(data, pdf_pages)
             
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
