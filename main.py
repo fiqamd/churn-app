@@ -1853,11 +1853,15 @@ def visualize_data_batch(data):
             # pdf_pages9_2.close()
 
             # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-            churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
+            # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
 
-            # Display the download button for the generated PDF
-            with open("bar_chart_proportion_adv_top10.pdf", "rb") as f:
-                st.download_button("Download Proportion Churn & Not Churn - Advance Promo (PDF)", f, file_name="bar_chart_proportion_adv_top10.pdf")
+            # # Display the download button for the generated PDF
+            # with open("bar_chart_proportion_adv_top10.pdf", "rb") as f:
+            #     st.download_button("Download Proportion Churn & Not Churn - Advance Promo (PDF)", f, file_name="bar_chart_proportion_adv_top10.pdf")
+
+            # Hitung jumlah Churn dan Not Churn untuk setiap area
+            churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
+            not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
 
             # Tampilkan jumlah data churn untuk setiap Advance Promo
             st.write("Jumlah data churn untuk setiap Advance Promo:")
