@@ -303,7 +303,7 @@ def area_proportion_1(data):
     fig = plt.gcf()
 
     # Save the churn pie chart to PDF
-    pdf_pages3 = PdfPages("propotion_churn_area.pdf")
+    pdf_pages3 = PdfPages("propotion_churn_area_1.pdf")
     pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages3.close()
 
