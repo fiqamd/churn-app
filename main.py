@@ -1402,16 +1402,15 @@ def visualize_data_batch(data):
             # # Display the bar chart using st.pyplot()
             # st.pyplot(plt.gcf())
 
-            # pdf_pages7_2.close()
+            # pdf_pages7_2.close()            
 
+            # # Display the download button for the generated PDF
+            # with open("bar_chart_proportion_plan_top10.pdf", "rb") as f:
+            #     st.download_button("Download Proportion Churn & Not Churn - Plan (PDF)", f, file_name="bar_chart_proportion_plan_top10.pdf")
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
-
-            # Display the download button for the generated PDF
-            with open("bar_chart_proportion_plan_top10.pdf", "rb") as f:
-                st.download_button("Download Proportion Churn & Not Churn - Plan (PDF)", f, file_name="bar_chart_proportion_plan_top10.pdf")
 
             # Tampilkan jumlah data churn untuk setiap Plan
             st.write("Jumlah data churn untuk setiap Plan:")
