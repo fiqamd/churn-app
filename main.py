@@ -213,8 +213,13 @@ def load_non_churned(data):
 
     return area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned
 
+def generate_pdf(file_name, fig):
+    pdf_pages = PdfPages(file_name)
+    pdf_pages.savefig(fig, bbox_inches='tight')
+    pdf_pages.close()
+
 def dis_churn(data):
-    pdf_pages1 = PdfPages("pie_chart_churn&notchurn.pdf")
+    # pdf_pages1 = PdfPages("pie_chart_churn&notchurn.pdf")
     st.header("Churn Distribution")
     fig, ax = plt.subplots()
     palette_color = sns.color_palette('rocket_r')
@@ -229,6 +234,9 @@ def dis_churn(data):
     ax.set_title("Churn Distribution", loc='center')
 
     st.pyplot(fig)
+    generate_pdf("pie_chart_churn&notchurn.pdf", fig)
+
+    # pdf_pages1.savefig(fig, bbox_inches='tight')
 
 def area_proportion(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -287,11 +295,12 @@ def area_proportion(data):
     plt.legend(patches, top_10_notchurn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
     fig = plt.gcf()
+    generate_pdf("propotion_churn_area.pdf", fig)
 
     # Save the churn pie chart to PDF
-    pdf_pages1 = PdfPages("propotion_churn_area.pdf")
-    pdf_pages1.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages1.close()
+    # pdf_pages1 = PdfPages("propotion_churn_area.pdf")
+    # pdf_pages1.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    # pdf_pages1.close()
 
     st.pyplot(fig)
 
@@ -354,13 +363,15 @@ def plan_proportion(data):
     plt.axis('equal')
     plt.legend(patches, top_10_notchurn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
+    fig = plt.gcf()
     # Display the not churned pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    generate_pdf("propotion_churn_plan.pdf", fig)
+    st.pyplot(fig)
 
-    # Save the churn pie chart to PDF
-    pdf_pages2 = PdfPages("propotion_churn_plan.pdf")
-    pdf_pages2.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages2.close()
+    # # Save the churn pie chart to PDF
+    # pdf_pages2 = PdfPages("propotion_churn_plan.pdf")
+    # pdf_pages2.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    # pdf_pages2.close()
 
 def tvplan_proportion(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -416,13 +427,16 @@ def tvplan_proportion(data):
     plt.axis('equal')
     plt.legend(patches, top_10_notchurn['Tv Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
-    # Display the not churned pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    fig = plt.gcf()
 
-    # Save the churn pie chart to PDF
-    pdf_pages3 = PdfPages("propotion_churn_tvplan.pdf")
-    pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages3.close()
+    generate_pdf("propotion_churn_tvplan.pdf", fig)
+    # Display the not churned pie chart using st.pyplot()
+    st.pyplot(fig)
+
+    # # Save the churn pie chart to PDF
+    # pdf_pages3 = PdfPages("propotion_churn_tvplan.pdf")
+    # pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    # pdf_pages3.close()
 
 def advpro_proportion(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -478,13 +492,16 @@ def advpro_proportion(data):
     plt.axis('equal')
     plt.legend(patches, top_10_notchurn['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
-    # Display the not churned pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_advpro.pdf", fig)
 
-    # Save the churn pie chart to PDF
-    pdf_pages4 = PdfPages("propotion_churn_advpro.pdf")
-    pdf_pages4.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages4.close()
+    # Display the not churned pie chart using st.pyplot()
+    st.pyplot(fig)
+
+    # # Save the churn pie chart to PDF
+    # pdf_pages4 = PdfPages("propotion_churn_advpro.pdf")
+    # pdf_pages4.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    # pdf_pages4.close()
 
 def full_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
@@ -510,8 +527,11 @@ def full_area(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_fullarea.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
 def five_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
@@ -548,8 +568,11 @@ def five_area(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_fivearea.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
 def ten_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
@@ -586,8 +609,11 @@ def ten_area(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_tenarea.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
 def full_plan(data):
     unique_plan = sorted(data['Plan'].unique())
@@ -600,8 +626,8 @@ def full_plan(data):
 
     # Membuat dataframe untuk menyimpan hasil perhitungan
     churn_data = pd.DataFrame({'Plan': unique_plan,
-                                        'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
-                                        'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
+                               'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
+                               'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
 
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
@@ -613,8 +639,11 @@ def full_plan(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_fullplan.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
 def five_plan(data):
     unique_plan = sorted(data['Plan'].unique())
@@ -627,8 +656,8 @@ def five_plan(data):
 
     # Membuat dataframe untuk menyimpan hasil perhitungan
     churn_data = pd.DataFrame({'Plan': unique_plan,
-                                        'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
-                                        'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
+                               'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
+                               'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
             
     # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
     churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
@@ -652,8 +681,11 @@ def five_plan(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_fiveplan.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
 def ten_plan(data):
     unique_plan = sorted(data['Plan'].unique())
@@ -666,8 +698,8 @@ def ten_plan(data):
 
     # Membuat dataframe untuk menyimpan hasil perhitungan
     churn_data = pd.DataFrame({'Plan': unique_plan,
-                                        'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
-                                        'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
+                               'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
+                               'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
             
     # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
     churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
@@ -691,8 +723,11 @@ def ten_plan(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_tenplan.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
 def full_tvplan(data):
     unique_tvplan = sorted(data['Tv Plan'].unique())
@@ -705,8 +740,8 @@ def full_tvplan(data):
 
     # Membuat dataframe untuk menyimpan hasil perhitungan
     churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
-                                        'Churn': [churn_counts.get(tvplan, 0) for tvplan in unique_tvplan],
-                                        'Not Churn': [not_churn_counts.get(tvplan, 0) for tvplan in unique_tvplan]})
+                               'Churn': [churn_counts.get(tvplan, 0) for tvplan in unique_tvplan],
+                               'Not Churn': [not_churn_counts.get(tvplan, 0) for tvplan in unique_tvplan]})
 
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
@@ -718,8 +753,11 @@ def full_tvplan(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_fulltvplan.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
 def five_tvplan(data):
     unique_tvplan = sorted(data['Tv Plan'].unique())
@@ -732,8 +770,8 @@ def five_tvplan(data):
 
     # Membuat dataframe untuk menyimpan hasil perhitungan
     churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
-                                        'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
-                                        'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
+                               'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
+                               'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
             
     # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
     churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
@@ -757,8 +795,11 @@ def five_tvplan(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_fivetvplan.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
 def ten_tvplan(data):
     unique_tvplan = sorted(data['Tv Plan'].unique())
@@ -771,8 +812,8 @@ def ten_tvplan(data):
 
     # Membuat dataframe untuk menyimpan hasil perhitungan
     churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
-                                        'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
-                                        'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
+                               'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
+                               'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
             
     # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
     churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
@@ -796,8 +837,11 @@ def ten_tvplan(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_tentvplan.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
 def full_adv(data):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
@@ -823,8 +867,11 @@ def full_adv(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_fulladv.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
     
 def five_adv(data):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
@@ -862,8 +909,11 @@ def five_adv(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_fiveadv.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
 def ten_adv(data):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
@@ -901,18 +951,32 @@ def ten_adv(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
+    fig = plt.gcf()
+    generate_pdf("propotion_churn_tenadv.pdf", fig)
+
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
 
-def merge_pdfs(input_files, output_file):
-    pdf_writer = PdfWriter()
-    for input_file in input_files:
-        pdf_reader = PdfReader(input_file)
-        for page_num in range(pdf_reader.getNumPages()):
-            pdf_writer.addPage(pdf_reader.getPage(page_num))
+def combine_pdfs():
+    pdf_files = ["pie_chart_churn&notchurn.pdf", "propotion_churn_area.pdf", "propotion_churn_plan.pdf", "propotion_churn_tvplan.pdf", "propotion_churn_advpro.pdf", "propotion_churn_fullarea.pdf", "propotion_churn_fivearea.pdf", "propotion_churn_tenarea.pdf", "propotion_churn_fullplan.pdf", "propotion_churn_fiveplan.pdf", "propotion_churn_tenplan.pdf", "propotion_churn_fulltvplan.pdf", "propotion_churn_fivetvplan.pdf", "propotion_churn_tentvplan.pdf", "propotion_churn_fulladv.pdf", "propotion_churn_fiveadv.pdf", "propotion_churn_tenadv.pdf"]
 
-    with open(output_file, 'wb') as f:
-        pdf_writer.write(f)
+    with open("combined_charts.pdf", "wb") as output_file:
+        pdf_writer = PyPDF2.PdfMerger()
+        for pdf_file in pdf_files:
+            pdf_writer.append(pdf_file)
+        
+        pdf_writer.write(output_file)
+
+
+# def merge_pdfs(input_files, output_file):
+#     pdf_writer = PdfWriter()
+#     for input_file in input_files:
+#         pdf_reader = PdfReader(input_file)
+#         for page_num in range(pdf_reader.getNumPages()):
+#             pdf_writer.addPage(pdf_reader.getPage(page_num))
+
+#     with open(output_file, 'wb') as f:
+#         pdf_writer.write(f)
 
 def visualize_data_batch(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -1007,40 +1071,7 @@ def visualize_data_batch(data):
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_area')
         if top_chart == 'Full Data':
             full_area(data)
-            # pdf_pages6 = PdfPages("bar_chart_proportion_area.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Area Name")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Area Name': unique_area_name,
-            #                             'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
-            #                             'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
-
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Area Name')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages6.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages6.close()
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_area.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Area Name (PDF)", f, file_name="bar_chart_proportion_area.pdf")
-
+            
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
 
@@ -1063,51 +1094,7 @@ def visualize_data_batch(data):
 
         elif top_chart == 'Top 5':
             five_area(data)
-            # pdf_pages6_1 = PdfPages("bar_chart_proportion_area_top5.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Area Name Top 5")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Area Name': unique_area_name,
-            #                             'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
-            #                             'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
             
-            # # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-            # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-            # # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-            # sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-            # # Get the top 5 areas with the highest total churn + not churn counts
-            # top_5_areas = sorted_churn_data.head(5)
-            # top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
-
-            # churn_data = top_5_areas
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Area Name')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages6_1.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages6_1.close()
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_area_top5.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Area Name (PDF)", f, file_name="bar_chart_proportion_area_top5.pdf")
-
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
 
@@ -1142,51 +1129,7 @@ def visualize_data_batch(data):
 
         elif top_chart == 'Top 10':
             ten_area(data)
-            # pdf_pages6_2 = PdfPages("bar_chart_proportion_area_top10.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Area Name Top 5")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Area Name': unique_area_name,
-            #                             'Churn': [churn_counts.get(area, 0) for area in unique_area_name],
-            #                             'Not Churn': [not_churn_counts.get(area, 0) for area in unique_area_name]})
             
-            # # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-            # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-            # # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-            # sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-            # # Get the top 5 areas with the highest total churn + not churn counts
-            # top_10_areas = sorted_churn_data.head(10)
-            # top_10_areas = top_10_areas.drop(columns=['Total Churn + Not Churn'])
-
-            # churn_data = top_10_areas
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Area Name')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages6_2.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages6_2.close()
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_area_top10.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Area Name (PDF)", f, file_name="bar_chart_proportion_area_top10.pdf")
-
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
 
@@ -1224,40 +1167,7 @@ def visualize_data_batch(data):
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_plan')
         if top_chart == 'Full Data':
             full_plan(data)
-            # pdf_pages7 = PdfPages("bar_chart_proportion_plan.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Plan")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Plan': unique_plan,
-            #                             'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
-            #                             'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
-
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Plan')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages7.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages7.close()
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_plan.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Plan (PDF)", f, file_name="bar_chart_proportion_plan.pdf")
-
+            
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
@@ -1281,52 +1191,7 @@ def visualize_data_batch(data):
 
         elif top_chart == 'Top 5':
             five_plan(data)
-            # pdf_pages7_1 = PdfPages("bar_chart_proportion_plan_top5.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Plan")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Plan': unique_plan,
-            #                             'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
-            #                             'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
             
-            # # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-            # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-            # # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-            # sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-            # # Get the top 5 areas with the highest total churn + not churn counts
-            # top_5_areas = sorted_churn_data.head(5)
-            # top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
-
-            # churn_data = top_5_areas
-
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Plan')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages7_1.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages7_1.close()
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_plan_top5.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Plan (PDF)", f, file_name="bar_chart_proportion_plan_top5.pdf")
-
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
@@ -1362,52 +1227,7 @@ def visualize_data_batch(data):
 
         elif top_chart == 'Top 10':
             ten_plan(data)
-            # pdf_pages7_2 = PdfPages("bar_chart_proportion_plan_top10.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Plan")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Plan': unique_plan,
-            #                             'Churn': [churn_counts.get(plan, 0) for plan in unique_plan],
-            #                             'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_plan]})
             
-            # # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-            # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-            # # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-            # sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-            # # Get the top 5 areas with the highest total churn + not churn counts
-            # top_10_areas = sorted_churn_data.head(10)
-            # top_10_areas = top_10_areas.drop(columns=['Total Churn + Not Churn'])
-
-            # churn_data = top_10_areas
-
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Plan')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages7_2.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages7_2.close()            
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_plan_top10.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Plan (PDF)", f, file_name="bar_chart_proportion_plan_top10.pdf")
-
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
@@ -1447,41 +1267,7 @@ def visualize_data_batch(data):
         
         if top_chart == 'Full Data':
             full_tvplan(data)
-            # pdf_pages8 = PdfPages("bar_chart_proportion_tvplan.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Tv Plan")
-
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
-            #                             'Churn': [churn_counts.get(tvplan, 0) for tvplan in unique_tvplan],
-            #                             'Not Churn': [not_churn_counts.get(tvplan, 0) for tvplan in unique_tvplan]})
-
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Tv Plan')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages8.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages8.close()
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_tvplan.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Tv Plan (PDF)", f, file_name="bar_chart_proportion_tvplan.pdf")
-
+            
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
@@ -1505,52 +1291,6 @@ def visualize_data_batch(data):
 
         elif top_chart == 'Top 5':
             five_tvplan(data)
-
-            # pdf_pages8_1 = PdfPages("bar_chart_proportion_tvplan_top5.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Tv Plan")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
-            #                             'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
-            #                             'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
-            
-            # # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-            # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-            # # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-            # sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-            # # Get the top 5 areas with the highest total churn + not churn counts
-            # top_5_areas = sorted_churn_data.head(5)
-            # top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
-
-            # churn_data = top_5_areas
-
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Tv Plan')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages8_1.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages8_1.close()
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_tvplan_top5.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Plan (PDF)", f, file_name="bar_chart_proportion_tvplan_top5.pdf")
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
@@ -1587,52 +1327,6 @@ def visualize_data_batch(data):
 
         elif top_chart == 'Top 10':
             ten_tvplan(data)
-            # pdf_pages8_2 = PdfPages("bar_chart_proportion_tvplan_top10.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Tv Plan")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
-            #                             'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
-            #                             'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
-            
-            # # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-            # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-            # # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-            # sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-            # # Get the top 5 areas with the highest total churn + not churn counts
-            # top_10_areas = sorted_churn_data.head(10)
-            # top_10_areas = top_10_areas.drop(columns=['Total Churn + Not Churn'])
-
-            # churn_data = top_10_areas
-
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Tv Plan')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages8_2.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages8_2.close()
-
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_tvplan_top10.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Tv Plan (PDF)", f, file_name="bar_chart_proportion_tvplan_top10.pdf")
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1673,40 +1367,7 @@ def visualize_data_batch(data):
         
         if top_chart == 'Full Data':
             full_adv(data)
-            # pdf_pages9 = PdfPages("bar_chart_proportion_adv.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Advance Promo")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
-            #                             'Churn': [churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo],
-            #                             'Not Churn': [not_churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo]})
-
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Advance Promo')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages9.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages9.close()
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_adv.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Advance Promo (PDF)", f, file_name="bar_chart_proportion_adv.pdf")
-
+            
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
@@ -1730,52 +1391,7 @@ def visualize_data_batch(data):
 
         elif top_chart == 'Top 5':
             five_adv(data)
-            # pdf_pages9_1 = PdfPages("bar_chart_proportion_adv_top5.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Advance Promo")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
-            #                             'Churn': [churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo],
-            #                             'Not Churn': [not_churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo]})
             
-            # # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-            # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-            # # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-            # sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-            # # Get the top 5 areas with the highest total churn + not churn counts
-            # top_5_areas = sorted_churn_data.head(5)
-            # top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
-
-            # churn_data = top_5_areas
-
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Advance Promo')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages9_1.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages9_1.close()
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_adv_top5.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Advance Promo (PDF)", f, file_name="bar_chart_proportion_adv_top5.pdf")
-
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
@@ -1812,55 +1428,7 @@ def visualize_data_batch(data):
 
         elif top_chart == 'Top 10':
             ten_adv(data)
-            # pdf_pages9_2 = PdfPages("bar_chart_proportion_adv_top10.pdf")
-
-            # st.subheader("Proportion Churn & Not Churn - Advance Promo")
-            # # Hitung jumlah Churn dan Not Churn untuk setiap area
-            # churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
-            # not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
-
-            # # Membuat dataframe untuk menyimpan hasil perhitungan
-            # churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
-            #                             'Churn': [churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo],
-            #                             'Not Churn': [not_churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo]})
             
-            # # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-            # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-            # # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-            # sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-            # # Get the top 5 areas with the highest total churn + not churn counts
-            # top_10_areas = sorted_churn_data.head(10)
-            # top_10_areas = top_10_areas.drop(columns=['Total Churn + Not Churn'])
-
-            # churn_data = top_10_areas
-
-            # # Membuat plot menggunakan sns.catplot
-            # sns.set(style="whitegrid")
-            # plt.figure(figsize=(12, 6))
-            # sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
-            #             kind='bar', height=6, aspect=2.5, palette='magma')
-            # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-            # plt.xlabel('Advance Promo')
-            # plt.ylabel('Jumlah')
-            # plt.xticks(rotation=90)
-
-            # # Save the bar chart to PDF
-            # pdf_pages9_2.savefig(plt.gcf(), bbox_inches='tight')
-
-            # # Display the bar chart using st.pyplot()
-            # st.pyplot(plt.gcf())
-
-            # pdf_pages9_2.close()
-
-            # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-            # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-            # # Display the download button for the generated PDF
-            # with open("bar_chart_proportion_adv_top10.pdf", "rb") as f:
-            #     st.download_button("Download Proportion Churn & Not Churn - Advance Promo (PDF)", f, file_name="bar_chart_proportion_adv_top10.pdf")
-
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
@@ -2074,8 +1642,10 @@ def visualize_data_batch(data):
     st.subheader("Jumlah Data Not Churn")
     st.table(new_not_churn_data.count())
 
-    # data_churn = data[data["Churn"] == "Churn"]
-    # columns = data.columns.to_list()
+    st.markdown("### Download Report")
+    st.markdown("You can download the report PDF by clicking the link below:")
+    st.download_button(label="Download Charts", data="combined_charts.pdf", file_name="report_churn_prediction.pdf")
+
 
 
 def run():
