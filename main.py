@@ -967,7 +967,7 @@ def combine_pdfs():
         
         pdf_writer.write(output_file)
 
-
+    return "combined_charts.pdf"
 # def merge_pdfs(input_files, output_file):
 #     pdf_writer = PdfWriter()
 #     for input_file in input_files:
@@ -1642,9 +1642,11 @@ def visualize_data_batch(data):
     st.subheader("Jumlah Data Not Churn")
     st.table(new_not_churn_data.count())
 
+    pdf_path = combine_pdfs()
+
     st.markdown("### Download Report")
     st.markdown("You can download the report PDF by clicking the link below:")
-    st.download_button(label="Download Charts", data="combined_charts.pdf", file_name="report_churn_prediction.pdf")
+    st.download_button(label="Download Report", data=open(pdf_path, "rb").read(), file_name="report_churn_prediction.pdf")
 
 
 
