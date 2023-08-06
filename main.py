@@ -1065,6 +1065,14 @@ def combine_pdfs():
 
         pdf_writer.write(output_file)
 
+def download_combined_pdf():
+    # Panggil fungsi untuk melakukan kombinasi PDF
+    combine_pdfs()
+
+    # Tampilkan tombol unduhan dengan st.download_button
+    st.download_button("Download Combined Report", "combined_report.pdf")
+
+
 def visualize_data_batch(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
@@ -1733,11 +1741,7 @@ def visualize_data_batch(data):
     st.subheader("Jumlah Data Not Churn")
     st.table(new_not_churn_data.count())
 
-    combine_pdfs()
-
-    # Create a download button to download the combined PDF
-    st.markdown("### Download Combined Report PDF")
-    st.download_button(label="Download Report PDF", data=open("combined_report.pdf", "rb").read(), file_name="churn_report.pdf")
+    download_combined_pdf()
 
 
 def run():
