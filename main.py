@@ -158,7 +158,6 @@ def load_churned(data):
            adv_data_churned, com_cs_data_churned, com_e_data_churned, \
            com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned
 
-
 def load_non_churned(data):
     data = data[data['Churn'] == 'Not Churn']
     # Area Name
@@ -218,7 +217,7 @@ def generate_pdf(file_name, fig):
     pdf_pages.savefig(fig, bbox_inches='tight')
     pdf_pages.close()
 
-def dis_churn(data):
+def dis_churn(data, pdf_pages):
     # pdf_pages1 = PdfPages("pie_chart_churn&notchurn.pdf")
     st.header("Churn Distribution")
     fig, ax = plt.subplots()
@@ -234,11 +233,12 @@ def dis_churn(data):
     ax.set_title("Churn Distribution", loc='center')
 
     st.pyplot(fig)
-    generate_pdf("pie_chart_churn&notchurn.pdf", fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
     # pdf_pages1.savefig(fig, bbox_inches='tight')
 
-def area_proportion(data):
+def area_proportion(data, pdf_pages):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
@@ -273,6 +273,19 @@ def area_proportion(data):
     fig = plt.gcf()
 
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
+
+def area_proportion_1(data, pdf_pages):
+    area_data_churned, plan_data_churned, tvplan_data_churned, \
+    adv_data_churned, com_cs_data_churned, com_e_data_churned, \
+    com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
+
+    area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, \
+    adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
+    com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
+    
+    area_data_merge = pd.merge(area_data_churned, area_data_non_churned, on="Area Name", how="outer")
 
     # Sort the DataFrame by 'Count Not Churned' in descending order
     area_data_merge_notchurned = area_data_merge.sort_values(by='Count Not Churned', ascending=False)
@@ -295,16 +308,12 @@ def area_proportion(data):
     plt.legend(patches, top_10_notchurn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_area.pdf", fig)
-
-    # Save the churn pie chart to PDF
-    # pdf_pages1 = PdfPages("propotion_churn_area.pdf")
-    # pdf_pages1.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages1.close()
 
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-def plan_proportion(data):
+def plan_proportion(data, pdf_pages):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
@@ -335,14 +344,22 @@ def plan_proportion(data):
     plt.axis('equal')
     plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
-    # # Save the churn pie chart to PDF
-    # pdf_pages1 = PdfPages("propotion_churn_plan.pdf")
-    # pdf_pages1.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages1.close()
+    fig = plt.gcf()
+    
+    st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-    # Display the churn pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
+def plan_proportion_1(data, pdf_pages):
+    area_data_churned, plan_data_churned, tvplan_data_churned, \
+    adv_data_churned, com_cs_data_churned, com_e_data_churned, \
+    com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
 
+    area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, \
+    adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
+    com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
+
+    plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Plan", how="outer")
     # Sort the DataFrame by 'Count Not Churned' in descending order
     plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
 
@@ -364,16 +381,12 @@ def plan_proportion(data):
     plt.legend(patches, top_10_notchurn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
     fig = plt.gcf()
-    # Display the not churned pie chart using st.pyplot()
-    generate_pdf("propotion_churn_plan.pdf", fig)
+    
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-    # # Save the churn pie chart to PDF
-    # pdf_pages2 = PdfPages("propotion_churn_plan.pdf")
-    # pdf_pages2.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages2.close()
-
-def tvplan_proportion(data):
+def tvplan_proportion(data, pdf_pages):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
@@ -405,7 +418,27 @@ def tvplan_proportion(data):
     plt.legend(patches, top_10_churn['Tv Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
     # Display the churn pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
+
+    
+
+    # # Save the churn pie chart to PDF
+    # pdf_pages3 = PdfPages("propotion_churn_tvplan.pdf")
+    # pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    # pdf_pages3.close()
+
+def tvplan_proportion_1(data, pdf_pages):
+    area_data_churned, plan_data_churned, tvplan_data_churned, \
+    adv_data_churned, com_cs_data_churned, com_e_data_churned, \
+    com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
+
+    area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, \
+    adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
+    com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
+
+    tvplan_data_merge = pd.merge(tvplan_data_churned, tvplan_data_non_churned, on="Tv Plan", how="outer")
 
     # Sort the DataFrame by 'Count Not Churned' in descending order
     tvplan_data_merge_notchurned = tvplan_data_merge.sort_values(by='Count Not Churned', ascending=False)
@@ -429,17 +462,11 @@ def tvplan_proportion(data):
 
     fig = plt.gcf()
 
-    generate_pdf("propotion_churn_tvplan.pdf", fig)
-
-    # Display the not churned pie chart using st.pyplot()
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-    # # Save the churn pie chart to PDF
-    # pdf_pages3 = PdfPages("propotion_churn_tvplan.pdf")
-    # pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages3.close()
-
-def advpro_proportion(data):
+def advpro_proportion(data, pdf_pages):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
     com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
@@ -471,7 +498,20 @@ def advpro_proportion(data):
     plt.legend(patches, top_10_churn['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
     # Display the churn pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
+
+def advpro_proportion_1(data, pdf_pages):
+    area_data_churned, plan_data_churned, tvplan_data_churned, \
+    adv_data_churned, com_cs_data_churned, com_e_data_churned, \
+    com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
+
+    area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, \
+    adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
+    com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
+
+    adv_data_merge = pd.merge(adv_data_churned, adv_data_non_churned, on="Advance Promo", how="outer")
 
     # Sort the DataFrame by 'Count Not Churned' in descending order
     adv_data_merge_notchurned = adv_data_merge.sort_values(by='Count Not Churned', ascending=False)
@@ -494,17 +534,12 @@ def advpro_proportion(data):
     plt.legend(patches, top_10_notchurn['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_advpro.pdf", fig)
-
-    # Display the not churned pie chart using st.pyplot()
+    
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-    # # Save the churn pie chart to PDF
-    # pdf_pages4 = PdfPages("propotion_churn_advpro.pdf")
-    # pdf_pages4.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages4.close()
-
-def full_area(data):
+def full_area(data, pdf_pages):
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
 
@@ -529,12 +564,12 @@ def full_area(data):
     plt.xticks(rotation=90)
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_fullarea.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
+    
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-def five_area(data):
+def five_area(data, pdf_pages):
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
 
@@ -570,12 +605,12 @@ def five_area(data):
     plt.xticks(rotation=90)
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_fivearea.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
+    
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-def ten_area(data):
+def ten_area(data, pdf_pages):
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
 
@@ -611,12 +646,12 @@ def ten_area(data):
     plt.xticks(rotation=90)
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_tenarea.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
+    
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-def full_plan(data):
+def full_plan(data, pdf_pages):
     unique_plan = sorted(data['Plan'].unique())
     plan_counts = data['Plan'].value_counts()
 
@@ -641,12 +676,12 @@ def full_plan(data):
     plt.xticks(rotation=90)
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_fullplan.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
+    
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-def five_plan(data):
+def five_plan(data, pdf_pages):
     unique_plan = sorted(data['Plan'].unique())
     plan_counts = data['Plan'].value_counts()
 
@@ -683,12 +718,12 @@ def five_plan(data):
     plt.xticks(rotation=90)
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_fiveplan.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
+    
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-def ten_plan(data):
+def ten_plan(data, pdf_pages):
     unique_plan = sorted(data['Plan'].unique())
     plan_counts = data['Plan'].value_counts()
 
@@ -725,12 +760,12 @@ def ten_plan(data):
     plt.xticks(rotation=90)
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_tenplan.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
+    
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-def full_tvplan(data):
+def full_tvplan(data, pdf_pages):
     unique_tvplan = sorted(data['Tv Plan'].unique())
     tvplan_counts = data['Tv Plan'].value_counts()
 
@@ -755,126 +790,126 @@ def full_tvplan(data):
     plt.xticks(rotation=90)
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_fulltvplan.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
-    st.pyplot(fig)
-
-def five_tvplan(data):
-    unique_tvplan = sorted(data['Tv Plan'].unique())
-    tvplan_counts = data['Tv Plan'].value_counts()
-
-    st.subheader("Proportion Churn & Not Churn - Tv Plan")
-    # Hitung jumlah Churn dan Not Churn untuk setiap area
-    churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
-    not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
-
-    # Membuat dataframe untuk menyimpan hasil perhitungan
-    churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
-                               'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
-                               'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
-            
-    # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-    churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-    # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-    sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-    # Get the top 5 areas with the highest total churn + not churn counts
-    top_5_areas = sorted_churn_data.head(5)
-    top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
-
-    churn_data = top_5_areas
-
-    # Membuat plot menggunakan sns.catplot
-    sns.set(style="whitegrid")
-    plt.figure(figsize=(12, 6))
-    sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
-                        kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-    plt.xlabel('Tv Plan')
-    plt.ylabel('Jumlah')
-    plt.xticks(rotation=90)
-
-    fig = plt.gcf()
-    generate_pdf("propotion_churn_fivetvplan.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
-    st.pyplot(fig)
-
-def ten_tvplan(data):
-    unique_tvplan = sorted(data['Tv Plan'].unique())
-    tvplan_counts = data['Tv Plan'].value_counts()
-
-    st.subheader("Proportion Churn & Not Churn - Tv Plan")
-    # Hitung jumlah Churn dan Not Churn untuk setiap area
-    churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
-    not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
-
-    # Membuat dataframe untuk menyimpan hasil perhitungan
-    churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
-                               'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
-                               'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
-            
-    # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-    churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-    # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-    sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-    # Get the top 5 areas with the highest total churn + not churn counts
-    top_10_areas = sorted_churn_data.head(10)
-    top_10_areas = top_10_areas.drop(columns=['Total Churn + Not Churn'])
-
-    churn_data = top_10_areas
-
-    # Membuat plot menggunakan sns.catplot
-    sns.set(style="whitegrid")
-    plt.figure(figsize=(12, 6))
-    sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
-                        kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-    plt.xlabel('Tv Plan')
-    plt.ylabel('Jumlah')
-    plt.xticks(rotation=90)
-
-    fig = plt.gcf()
-    generate_pdf("propotion_churn_tentvplan.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
-    st.pyplot(fig)
-
-def full_adv(data):
-    unique_adv_promo = sorted(data['Advance Promo'].unique())
-    adv_promo_counts = data['Advance Promo'].value_counts()
-
-    st.subheader("Proportion Churn & Not Churn - Advance Promo")
-    # Hitung jumlah Churn dan Not Churn untuk setiap area
-    churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
-    not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
-
-    # Membuat dataframe untuk menyimpan hasil perhitungan
-    churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
-                                        'Churn': [churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo],
-                                        'Not Churn': [not_churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo]})
-
-    # Membuat plot menggunakan sns.catplot
-    sns.set(style="whitegrid")
-    plt.figure(figsize=(12, 6))
-    sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
-                        kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-    plt.xlabel('Advance Promo')
-    plt.ylabel('Jumlah')
-    plt.xticks(rotation=90)
-
-    fig = plt.gcf()
-    generate_pdf("propotion_churn_fulladv.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
-    st.pyplot(fig)
     
-def five_adv(data):
+    st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
+
+def five_tvplan(data, pdf_pages):
+    unique_tvplan = sorted(data['Tv Plan'].unique())
+    tvplan_counts = data['Tv Plan'].value_counts()
+
+    st.subheader("Proportion Churn & Not Churn - Tv Plan")
+    # Hitung jumlah Churn dan Not Churn untuk setiap area
+    churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
+    not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
+
+    # Membuat dataframe untuk menyimpan hasil perhitungan
+    churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
+                               'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
+                               'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
+            
+    # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
+    churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
+
+    # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
+    sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
+
+    # Get the top 5 areas with the highest total churn + not churn counts
+    top_5_areas = sorted_churn_data.head(5)
+    top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
+
+    churn_data = top_5_areas
+
+    # Membuat plot menggunakan sns.catplot
+    sns.set(style="whitegrid")
+    plt.figure(figsize=(12, 6))
+    sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
+                        kind='bar', height=6, aspect=2.5, palette='magma')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.xlabel('Tv Plan')
+    plt.ylabel('Jumlah')
+    plt.xticks(rotation=90)
+
+    fig = plt.gcf()
+    
+    st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
+
+def ten_tvplan(data, pdf_pages):
+    unique_tvplan = sorted(data['Tv Plan'].unique())
+    tvplan_counts = data['Tv Plan'].value_counts()
+
+    st.subheader("Proportion Churn & Not Churn - Tv Plan")
+    # Hitung jumlah Churn dan Not Churn untuk setiap area
+    churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
+    not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
+
+    # Membuat dataframe untuk menyimpan hasil perhitungan
+    churn_data = pd.DataFrame({'Tv Plan': unique_tvplan,
+                               'Churn': [churn_counts.get(plan, 0) for plan in unique_tvplan],
+                               'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_tvplan]})
+            
+    # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
+    churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
+
+    # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
+    sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
+
+    # Get the top 5 areas with the highest total churn + not churn counts
+    top_10_areas = sorted_churn_data.head(10)
+    top_10_areas = top_10_areas.drop(columns=['Total Churn + Not Churn'])
+
+    churn_data = top_10_areas
+
+    # Membuat plot menggunakan sns.catplot
+    sns.set(style="whitegrid")
+    plt.figure(figsize=(12, 6))
+    sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
+                        kind='bar', height=6, aspect=2.5, palette='magma')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.xlabel('Tv Plan')
+    plt.ylabel('Jumlah')
+    plt.xticks(rotation=90)
+
+    fig = plt.gcf()
+    
+    st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
+
+def full_adv(data, pdf_pages):
+    unique_adv_promo = sorted(data['Advance Promo'].unique())
+    adv_promo_counts = data['Advance Promo'].value_counts()
+
+    st.subheader("Proportion Churn & Not Churn - Advance Promo")
+    # Hitung jumlah Churn dan Not Churn untuk setiap area
+    churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
+    not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
+
+    # Membuat dataframe untuk menyimpan hasil perhitungan
+    churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
+                                        'Churn': [churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo],
+                                        'Not Churn': [not_churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo]})
+
+    # Membuat plot menggunakan sns.catplot
+    sns.set(style="whitegrid")
+    plt.figure(figsize=(12, 6))
+    sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
+                        kind='bar', height=6, aspect=2.5, palette='magma')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.xlabel('Advance Promo')
+    plt.ylabel('Jumlah')
+    plt.xticks(rotation=90)
+
+    fig = plt.gcf()
+    
+    st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
+    
+def five_adv(data, pdf_pages):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
     adv_promo_counts = data['Advance Promo'].value_counts()
 
@@ -911,12 +946,12 @@ def five_adv(data):
     plt.xticks(rotation=90)
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_fiveadv.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
+    
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
 
-def ten_adv(data):
+def ten_adv(data, pdf_pages):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
     adv_promo_counts = data['Advance Promo'].value_counts()
 
@@ -953,22 +988,56 @@ def ten_adv(data):
     plt.xticks(rotation=90)
 
     fig = plt.gcf()
-    generate_pdf("propotion_churn_tenadv.pdf", fig)
-
-    # Display the bar chart using st.pyplot()
+    
     st.pyplot(fig)
+    pdf_pages.savefig(bbox_inches='tight')
+    plt.close()
+
+def generate_report(data):
+    pdf_pages = PdfPages("Report.pdf")
+    
+    text = "CHURN PREDICTION REPORT. \n"
+
+    #PIE CHART
+    text += "Churn Distribution"
+    dis_churn(data, pdf_pages)
+    text += "Pie"
+    area_proportion(data, pdf_pages)
+    area_proportion_1(data, pdf_pages)
+    plan_proportion(data, pdf_pages)
+    plan_proportion_1(data, pdf_pages)
+    tvplan_proportion(data, pdf_pages)
+    tvplan_proportion_1(data, pdf_pages)
+    advpro_proportion(data, pdf_pages)
+    advpro_proportion_1(data, pdf_pages)
+
+    text += "Bar Chart"
+    full_area(data, pdf_pages)
+    full_plan(data, pdf_pages)
+    full_tvplan(data, pdf_pages)
+    full_adv(data, pdf_pages)
+    five_area(data, pdf_pages)
+    five_plan(data, pdf_pages)
+    five_tvplan(data, pdf_pages)
+    five_adv(data, pdf_pages)
+    ten_area(data, pdf_pages)
+    ten_plan(data, pdf_pages)
+    ten_tvplan(data, pdf_pages)
+    ten_adv(data, pdf_pages)
+
+    pdf_pages.close()
 
 def combine_pdfs():
-    pdf_files = ["pie_chart_churn&notchurn.pdf", "propotion_churn_area.pdf", "propotion_churn_plan.pdf", "propotion_churn_tvplan.pdf", "propotion_churn_advpro.pdf", "propotion_churn_fullarea.pdf", "propotion_churn_fivearea.pdf", "propotion_churn_tenarea.pdf", "propotion_churn_fullplan.pdf", "propotion_churn_fiveplan.pdf", "propotion_churn_tenplan.pdf", "propotion_churn_fulltvplan.pdf", "propotion_churn_fivetvplan.pdf", "propotion_churn_tentvplan.pdf", "propotion_churn_fulladv.pdf", "propotion_churn_fiveadv.pdf", "propotion_churn_tenadv.pdf"]
+    pdf_files = ["Report.pdf"]
 
-    with open("combined_charts.pdf", "wb") as output_file:
+    with open("Report.pdf", "wb") as output_file:
         pdf_writer = PyPDF2.PdfMerger()
         for pdf_file in pdf_files:
             pdf_writer.append(pdf_file)
         
         pdf_writer.write(output_file)
 
-    return "combined_charts.pdf"
+    # return "combined_charts.pdf"
 # def merge_pdfs(input_files, output_file):
 #     pdf_writer = PdfWriter()
 #     for input_file in input_files:
@@ -1643,11 +1712,12 @@ def visualize_data_batch(data):
     st.subheader("Jumlah Data Not Churn")
     st.table(new_not_churn_data.count())
 
-    pdf_path = combine_pdfs()
+    # pdf_path = combine_pdfs()
+    combine_pdfs()
 
     st.markdown("### Download Report")
     st.markdown("You can download the report PDF by clicking the link below:")
-    st.download_button(label="Download Report", data=open(pdf_path, "rb").read(), file_name="report_churn_prediction.pdf")
+    st.download_button(label="Download Report", data=open("Report.pdf", "rb").read(), file_name="report_churn_prediction.pdf")
 
 
 def run():
