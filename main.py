@@ -268,8 +268,7 @@ def area_proportion(data):
     pdf_pages2 = PdfPages("propotion_churn_area.pdf")
     pdf_pages2.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages2.close()
-
-    
+ 
 def area_proportion_1(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
@@ -1125,18 +1124,22 @@ def visualize_data_batch(data):
     if option == 'Area Name':
         st.title("Proportion Churn & Not Churn - Area Name")
         area_proportion(data)
+        area_proportion_1(data)
 
     elif option == 'Plan':
         st.title("Proportion Churn & Not Churn - Plan")
         plan_proportion(data)
+        plan_proportion_1(data)
 
     elif option == 'Tv Plan':
         st.title("Proportion Churn & Not Churn - Tv Plan")
         tvplan_proportion(data)
+        tvplan_proportion_1(data)
         
     elif option == 'Advance Promo':
         st.title("Proportion Churn & Not Churn - Advance Promo")
         advpro_proportion(data)
+        advpro_proportion_1(data)
     
     st.title("Data Bar Chart Proportion")
     option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
