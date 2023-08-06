@@ -1041,6 +1041,8 @@ def visualize_data_batch(data):
             # with open("bar_chart_proportion_area.pdf", "rb") as f:
             #     st.download_button("Download Proportion Churn & Not Churn - Area Name (PDF)", f, file_name="bar_chart_proportion_area.pdf")
 
+            churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
+            not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
 
             # Tampilkan jumlah data churn untuk setiap Area Name
             st.write("Jumlah data churn untuk setiap Area Name:")
@@ -1106,6 +1108,8 @@ def visualize_data_batch(data):
             # with open("bar_chart_proportion_area_top5.pdf", "rb") as f:
             #     st.download_button("Download Proportion Churn & Not Churn - Area Name (PDF)", f, file_name="bar_chart_proportion_area_top5.pdf")
 
+            churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
+            not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
 
             # Tampilkan jumlah data churn untuk setiap Area Name
             st.write("Jumlah data churn untuk setiap Area Name:")
@@ -1183,7 +1187,9 @@ def visualize_data_batch(data):
             # with open("bar_chart_proportion_area_top10.pdf", "rb") as f:
             #     st.download_button("Download Proportion Churn & Not Churn - Area Name (PDF)", f, file_name="bar_chart_proportion_area_top10.pdf")
 
-
+            churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
+            not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
+            
             # Tampilkan jumlah data churn untuk setiap Area Name
             st.write("Jumlah data churn untuk setiap Area Name:")
             # Membuat dataframe untuk menyimpan hasil perhitungan
