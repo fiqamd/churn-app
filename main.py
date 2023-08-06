@@ -23,7 +23,7 @@ import numpy as np
 import time
 import PyPDF2
 
-from PyDF2 import PdfWriter, PdfReader
+from PyPDF2 import PdfWriter, PdfReader
 from datetime import datetime
 from matplotlib.backends.backend_pdf import PdfPages
 from google.cloud import storage
