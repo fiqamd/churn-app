@@ -429,7 +429,8 @@ def tvplan_proportion(data):
 
     fig = plt.gcf()
 
-    generate_pdf("propotion_churn_tvplan.pdf", fig)
+    generate_pdf("propotion_churn_tvplan.pdf", fig)  # Uncomment this line to save the pie chart to PDF
+
     # Display the not churned pie chart using st.pyplot()
     st.pyplot(fig)
 
