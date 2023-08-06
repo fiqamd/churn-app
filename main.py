@@ -335,10 +335,10 @@ def plan_proportion(data):
     plt.axis('equal')
     plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
-    # Save the churn pie chart to PDF
-    pdf_pages1 = PdfPages("propotion_churn_plan.pdf")
-    pdf_pages1.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages1.close()
+    # # Save the churn pie chart to PDF
+    # pdf_pages1 = PdfPages("propotion_churn_plan.pdf")
+    # pdf_pages1.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    # pdf_pages1.close()
 
     # Display the churn pie chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -1647,7 +1647,6 @@ def visualize_data_batch(data):
     st.markdown("### Download Report")
     st.markdown("You can download the report PDF by clicking the link below:")
     st.download_button(label="Download Report", data=open(pdf_path, "rb").read(), file_name="report_churn_prediction.pdf")
-
 
 
 def run():
