@@ -409,7 +409,7 @@ def plan_proportion_1(data):
     st.pyplot(plt.gcf())
 
     # Save the churn pie chart to PDF
-    pdf_pages5 = PdfPages("propotion_churn_plan_keedua.pdf")
+    pdf_pages5 = PdfPages("propotion_churn_plan_1.pdf")
     pdf_pages5.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages5.close()
 
@@ -1056,7 +1056,7 @@ def ten_adv(data):
 #         pdf_writer.write(f)
 
 def combine_pdfs():
-    pdf_files = ["propotion_churn_area.pdf", "propotion_churn_area_1.pdf", "propotion_churn_plan.pdf", "propotion_churn_tvplan.pdf", "propotion_churn_tvplan_1.pdf", "propotion_churn_advpro.pdf", "propotion_churn_advpro_1.pdf", "full_area.pdf", "five_area.pdf", "ten_area.pdf", "full_plan.pdf", "five_plan.pdf", "ten_plan.pdf", "full_tvplan.pdf", "five_tvplan.pdf", "ten_tvplan.pdf", "full_adv.pdf", "five_adv.pdf", "ten_adv.pdf"]
+    pdf_files = ["propotion_churn_area.pdf", "propotion_churn_area_1.pdf", "propotion_churn_plan.pdf", "propotion_churn_plan_1.pdf", "propotion_churn_tvplan.pdf", "propotion_churn_tvplan_1.pdf", "propotion_churn_advpro.pdf", "propotion_churn_advpro_1.pdf", "full_area.pdf", "five_area.pdf", "ten_area.pdf", "full_plan.pdf", "five_plan.pdf", "ten_plan.pdf", "full_tvplan.pdf", "five_tvplan.pdf", "ten_tvplan.pdf", "full_adv.pdf", "five_adv.pdf", "ten_adv.pdf"]
 
     with open("combined_report.pdf", "wb") as output_file:
         pdf_writer = PyPDF2.PdfMerger()
@@ -1741,7 +1741,7 @@ def visualize_data_batch(data):
     st.subheader("Jumlah Data Not Churn")
     st.table(new_not_churn_data.count())
 
-    download_combined_pdf()
+    # download_combined_pdf()
 
 
 def run():
