@@ -362,10 +362,10 @@ def plan_proportion(data):
 
     # Plot the pie chart for Count Not Churned
     plt.figure(figsize=(6, 6))
-    patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
-    plt.title('Top 10 Count Not Churned by Plan')
+    patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
+    plt.title('Top 10 Count Churned by Plan')
     plt.axis('equal')
-    plt.legend(patches, top_10_notchurn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+    plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
 
     # Display the not churned pie chart using st.pyplot()
     st.pyplot(plt.gcf())
