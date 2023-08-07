@@ -601,6 +601,7 @@ def five_area(data):
     top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
 
     churn_data = top_5_areas
+    
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
@@ -1049,23 +1050,35 @@ def ten_adv(data):
 
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
-    plt.figure(figsize=(12, 6))
-    plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
-                        kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-    plt.xlabel('Advance Promo')
-    plt.ylabel('Jumlah')
-    plt.xticks(rotation=90)
-
-    # Move the legend to below the bar chart
-    legend = plt.legend(title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
-    plot.fig.subplots_adjust(bottom=0.2)
-
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
-
-    # Display the bar chart using st.pyplot()
+    # Membuat plot pie chart
+    plt.figure(figsize=(8, 8))
+    patches, texts, autotexts = plt.pie(churn_data['Total Churn + Not Churn'], labels=churn_data['Advance Promo'], autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(churn_data)), textprops={'color': 'white'})
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Advance Promo')
+    plt.axis('equal')
+    
+    # Move the legend to below the pie chart
+    legend = plt.legend(patches, churn_data['Advance Promo'], title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
+    
+    # Display the pie chart using st.pyplot()
     st.pyplot(plt.gcf())
+
+    # plt.figure(figsize=(12, 6))
+    # plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
+    #                     kind='bar', height=6, aspect=2.5, palette='magma')
+    # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    # plt.xlabel('Advance Promo')
+    # plt.ylabel('Jumlah')
+    # plt.xticks(rotation=90)
+
+    # # Move the legend to below the bar chart
+    # legend = plt.legend(title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
+    # plot.fig.subplots_adjust(bottom=0.2)
+
+    # # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # # plot._legend.set_title('')
+
+    # # Display the bar chart using st.pyplot()
+    # st.pyplot(plt.gcf())
 
     # Save the churn pie chart to PDF
     pdf_pages20 = PdfPages("ten_adv.pdf")
