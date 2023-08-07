@@ -1007,8 +1007,11 @@ def five_adv(data):
     plt.xticks(rotation=90)
 
     # Move the legend to below the bar chart
-    plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    plot._legend.set_title('')
+    # Move the legend to below the bar chart
+    legend = plt.legend(title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
+    plot.fig.subplots_adjust(bottom=0.2)
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
