@@ -348,72 +348,6 @@ def plan_proportion(data):
 
     st.pyplot(fig)
 
-    # area_data_churned, plan_data_churned, tvplan_data_churned, \
-    # adv_data_churned, com_cs_data_churned, com_e_data_churned, \
-    # com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
-
-    # area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, \
-    # adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
-    # com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
-
-    # plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Plan", how="outer")
-
-    # # Sort the DataFrame by 'Count Churned' in descending order
-    # plan_data_merge = plan_data_merge.sort_values(by='Count Churned', ascending=False)
-
-    # # Select the top 10 rows
-    # top_10_churn = plan_data_merge.head(10)
-
-    # # Calculate the sum of 'Count Churned' for the remaining rows
-    # remaining_sum_churn = plan_data_merge.iloc[10:]['Count Churned'].sum()
-
-    # # Add the 'dll' row to the DataFrame
-    # dll_row_churn = {'Plan': 'dll', 'Count Churned': remaining_sum_churn}
-    # top_10_churn = top_10_churn.append(dll_row_churn, ignore_index=True)
-
-    # # Plot the pie chart for Count Churned
-    # plt.figure(figsize=(6, 6))
-    # patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
-    # plt.title('Top 10 Count Churned by Plan')
-    # plt.axis('equal')
-    # plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
-
-    # # Save the churn pie chart to PDF
-    # pdf_pages1 = PdfPages("propotion_churn_plan.pdf")
-    # pdf_pages1.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages1.close()
-
-    # # Display the churn pie chart using st.pyplot()
-    # st.pyplot(plt.gcf())
-
-    # # Sort the DataFrame by 'Count Not Churned' in descending order
-    # plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
-
-    # # Select the top 10 rows
-    # top_10_notchurn = plan_data_merge_notchurned.head(10)
-
-    # # Calculate the sum of 'Count Not Churned' for the remaining rows
-    # remaining_sum_notchurn = plan_data_merge_notchurned.iloc[10:]['Count Not Churned'].sum()
-
-    # # Add the 'dll' row to the DataFrame
-    # dll_row_notchurn = {'Plan': 'dll', 'Count Not Churned': remaining_sum_notchurn}
-    # top_10_notchurn = top_10_notchurn.append(dll_row_notchurn, ignore_index=True)
-
-    # # Plot the pie chart for Count Not Churned
-    # plt.figure(figsize=(6, 6))
-    # patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
-    # plt.title('Top 10 Count Churned by Plan')
-    # plt.axis('equal')
-    # plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
-
-    # # Display the not churned pie chart using st.pyplot()
-    # st.pyplot(plt.gcf())
-
-    # # Save the churn pie chart to PDF
-    # pdf_pages4 = PdfPages("propotion_churn_plan.pdf")
-    # pdf_pages4.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages4.close()
-
 def plan_proportion_1(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
@@ -447,48 +381,11 @@ def plan_proportion_1(data):
     fig = plt.gcf()
 
     # Save the churn pie chart to PDF
-    pdf_pages3 = PdfPages("propotion_churn_area_1.pdf")
-    pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages3.close()
+    pdf_pages5 = PdfPages("propotion_churn_area_1.pdf")
+    pdf_pages5.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages5.close()
 
     st.pyplot(fig)
-
-    # area_data_churned, plan_data_churned, tvplan_data_churned, \
-    # adv_data_churned, com_cs_data_churned, com_e_data_churned, \
-    # com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned = load_churned(data)
-
-    # area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, \
-    # adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, \
-    # com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned = load_non_churned(data)
-
-    # plan_data_merge = pd.merge(plan_data_churned, plan_data_non_churned, on="Plan", how="outer")
-    # # Sort the DataFrame by 'Count Not Churned' in descending order
-    # plan_data_merge_notchurned = plan_data_merge.sort_values(by='Count Not Churned', ascending=False)
-
-    # # Select the top 10 rows
-    # top_10_notchurn = plan_data_merge_notchurned.head(10)
-
-    # # Calculate the sum of 'Count Not Churned' for the remaining rows
-    # remaining_sum_notchurn = plan_data_merge_notchurned.iloc[10:]['Count Churned'].sum()
-
-    # # Add the 'dll' row to the DataFrame
-    # dll_row_notchurn = {'Plan': 'dll', 'Count Not Churned': remaining_sum_notchurn}
-    # top_10_notchurn = top_10_notchurn.append(dll_row_notchurn, ignore_index=True)
-
-    # # Plot the pie chart for Count Not Churned
-    # plt.figure(figsize=(6, 6))
-    # patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
-    # plt.title('Top 10 Count Not Churned by Plan')
-    # plt.axis('equal')
-    # plt.legend(patches, top_10_notchurn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
-
-    # # Display the not churned pie chart using st.pyplot()
-    # st.pyplot(plt.gcf())
-
-    # # Save the churn pie chart to PDF
-    # pdf_pages5 = PdfPages("propotion_churn_plan_1.pdf")
-    # pdf_pages5.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages5.close()
 
 def tvplan_proportion(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
