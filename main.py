@@ -158,7 +158,6 @@ def load_churned(data):
            adv_data_churned, com_cs_data_churned, com_e_data_churned, \
            com_socmed_data_churned, tele_data_churned, wa_data_churned, wic_data_churned
 
-
 def load_non_churned(data):
     data = data[data['Churn'] == 'Not Churn']
     # Area Name
@@ -260,7 +259,7 @@ def area_proportion(data):
     patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.2f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
     plt.title('Top 10 Count Churned by Area Name')
     plt.axis('equal')
-    plt.legend(patches, top_10_churn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+    plt.legend(patches, top_10_churn['Area Name'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     fig = plt.gcf()
 
@@ -297,7 +296,7 @@ def area_proportion_1(data):
     patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None,autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)),textprops={'color': 'white'})
     plt.title('Top 10 Count Not Churned by Area Name')
     plt.axis('equal')
-    plt.legend(patches, top_10_notchurn['Area Name'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+    plt.legend(patches, top_10_notchurn['Area Name'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     fig = plt.gcf()
 
@@ -338,7 +337,7 @@ def plan_proportion(data):
     patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.2f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
     plt.title('Top 10 Count Churned by Plan')
     plt.axis('equal')
-    plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+    plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     fig = plt.gcf()
 
@@ -376,7 +375,7 @@ def plan_proportion_1(data):
     patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None,autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)),textprops={'color': 'white'})
     plt.title('Top 10 Count Not Churned by Plan')
     plt.axis('equal')
-    plt.legend(patches, top_10_notchurn['Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+    plt.legend(patches, top_10_notchurn['Plan'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     fig = plt.gcf()
 
@@ -416,7 +415,7 @@ def tvplan_proportion(data):
     patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
     plt.title('Top 10 Count Churned by Tv Plan')
     plt.axis('equal')
-    plt.legend(patches, top_10_churn['Tv Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+    plt.legend(patches, top_10_churn['Tv Plan'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     # Display the churn pie chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -454,7 +453,7 @@ def tvplan_proportion_1(data):
     patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
     plt.title('Top 10 Count Not Churned by Tv Plan')
     plt.axis('equal')
-    plt.legend(patches, top_10_notchurn['Tv Plan'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+    plt.legend(patches, top_10_notchurn['Tv Plan'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     # Display the not churned pie chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -493,7 +492,7 @@ def advpro_proportion(data):
     patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
     plt.title('Top 10 Count Churned by Advance Promo')
     plt.axis('equal')
-    plt.legend(patches, top_10_churn['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+    plt.legend(patches, top_10_churn['Advance Promo'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     # Display the churn pie chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -531,7 +530,7 @@ def advpro_proportion_1(data):
     patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
     plt.title('Top 10 Count Not Churned by Advance Promo')
     plt.axis('equal')
-    plt.legend(patches, top_10_notchurn['Advance Promo'], loc='center left', bbox_to_anchor=(-0.7, 0.5))
+    plt.legend(patches, top_10_notchurn['Advance Promo'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     # Display the not churned pie chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -558,12 +557,16 @@ def full_area(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
+    plot = sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Area Name')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -601,12 +604,16 @@ def five_area(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
+    plot = sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Area Name')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -644,12 +651,16 @@ def ten_area(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
+    plot = sns.catplot(x='Area Name', y='value', hue='variable', data=pd.melt(churn_data, ['Area Name']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Area Name')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -676,12 +687,16 @@ def full_plan(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
+    plot = sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -720,12 +735,16 @@ def five_plan(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
+    plot = sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -764,12 +783,16 @@ def ten_plan(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
+    plot = sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -796,12 +819,16 @@ def full_tvplan(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
+    plot = sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Tv Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -840,12 +867,16 @@ def five_tvplan(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
+    plot = sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Tv Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -884,12 +915,16 @@ def ten_tvplan(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
+    plot = sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Tv Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -916,12 +951,16 @@ def full_adv(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
+    plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Advance Promo')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -960,12 +999,16 @@ def five_adv(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
+    plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Advance Promo')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -1004,12 +1047,16 @@ def ten_adv(data):
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
     plt.figure(figsize=(12, 6))
-    sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
+    plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
     plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Advance Promo')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
+
+    # Move the legend to below the bar chart
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     st.pyplot(plt.gcf())
@@ -1018,16 +1065,6 @@ def ten_adv(data):
     pdf_pages20 = PdfPages("ten_adv.pdf")
     pdf_pages20.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages20.close()
-
-# def merge_pdfs(input_files, output_file):
-#     pdf_writer = PdfWriter()
-#     for input_file in input_files:
-#         pdf_reader = PdfReader(input_file)
-#         for page_num in range(pdf_reader.getNumPages()):
-#             pdf_writer.addPage(pdf_reader.getPage(page_num))
-
-#     with open(output_file, 'wb') as f:
-#         pdf_writer.write(f)
 
 def combine_pdfs():
     pdf_files = ["propotion_churn_area.pdf", "propotion_churn_area_1.pdf", "propotion_churn_plan.pdf", "propotion_churn_plan_1.pdf", "propotion_churn_tvplan.pdf", "propotion_churn_tvplan_1.pdf", "propotion_churn_advpro.pdf", "propotion_churn_advpro_1.pdf", "full_area.pdf", "five_area.pdf", "ten_area.pdf", "full_plan.pdf", "five_plan.pdf", "ten_plan.pdf", "full_tvplan.pdf", "five_tvplan.pdf", "ten_tvplan.pdf", "full_adv.pdf", "five_adv.pdf", "ten_adv.pdf"]
