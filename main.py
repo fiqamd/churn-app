@@ -891,13 +891,8 @@ def full_adv(data):
     plot._legend.set_bbox_to_anchor((0.5, -0.15))
     plot._legend.set_title('')
 
-    # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages18 = PdfPages("full_adv.pdf")
-    pdf_pages18.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages18.close()
+    fig = plt.gcf()
+    return fig
     
 def five_adv(data):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
@@ -941,14 +936,8 @@ def five_adv(data):
     plot.fig.subplots_adjust(bottom=0.2)
     # plot._legend.set_bbox_to_anchor((0.5, -0.15))
     # plot._legend.set_title('')
-
-    # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages19 = PdfPages("five_adv.pdf")
-    pdf_pages19.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages19.close()
+    fig = plt.gcf()
+    return fig
 
 def ten_adv(data):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
@@ -986,32 +975,9 @@ def ten_adv(data):
     
     # Move the legend to below the pie chart
     legend = plt.legend(patches, churn_data['Advance Promo'], title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
-    
-    # Display the pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
 
-    # plt.figure(figsize=(12, 6))
-    # plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
-    #                     kind='bar', height=6, aspect=2.5, palette='magma')
-    # plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
-    # plt.xlabel('Advance Promo')
-    # plt.ylabel('Jumlah')
-    # plt.xticks(rotation=90)
-
-    # # Move the legend to below the bar chart
-    # legend = plt.legend(title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
-    # plot.fig.subplots_adjust(bottom=0.2)
-
-    # # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # # plot._legend.set_title('')
-
-    # # Display the bar chart using st.pyplot()
-    # st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages20 = PdfPages("ten_adv.pdf")
-    pdf_pages20.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages20.close()
+    fig = plt.gcf()
+    return fig
 
 def combine_pdfs():
     pdf_files = ["propotion_churn_area.pdf", "propotion_churn_area_1.pdf", "propotion_churn_plan.pdf", "propotion_churn_plan_1.pdf", "propotion_churn_tvplan.pdf", "propotion_churn_tvplan_1.pdf", "propotion_churn_advpro.pdf", "propotion_churn_advpro_1.pdf", "full_area.pdf", "five_area.pdf", "ten_area.pdf", "full_plan.pdf", "five_plan.pdf", "ten_plan.pdf", "full_tvplan.pdf", "five_tvplan.pdf", "ten_tvplan.pdf", "full_adv.pdf", "five_adv.pdf", "ten_adv.pdf"]
@@ -1550,7 +1516,14 @@ def visualize_data_batch(data):
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_tvplan')
         
         if top_chart == 'Full Data':
-            full_adv(data)
+            fig = full_adv(data)
+            # Display the bar chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages18 = PdfPages("full_adv.pdf")
+            # pdf_pages18.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages18.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
@@ -1574,7 +1547,14 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Advance Promo Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
-            five_adv(data)
+            fig = five_adv(data)
+            # Display the bar chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages19 = PdfPages("five_adv.pdf")
+            # pdf_pages19.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages19.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
@@ -1611,7 +1591,14 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Advance Promo Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
-            ten_adv(data)
+            fig = ten_adv(data)
+            # Display the pie chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages20 = PdfPages("ten_adv.pdf")
+            # pdf_pages20.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages20.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
