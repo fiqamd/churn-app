@@ -440,7 +440,6 @@ def tvplan_proportion_1(data):
     fig = plt.gcf()
     return fig, top_10_notchurn
     
-
 def advpro_proportion(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
@@ -472,13 +471,9 @@ def advpro_proportion(data):
     plt.axis('equal')
     plt.legend(patches, top_10_churn['Advance Promo'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
-    # Display the churn pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    fig = plt.gcf()
 
-    # Save the churn pie chart to PDF
-    pdf_pages7 = PdfPages("propotion_churn_advpro.pdf")
-    pdf_pages7.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages7.close()
+    return fig, top_10_churn
     
 def advpro_proportion_1(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -510,13 +505,8 @@ def advpro_proportion_1(data):
     plt.axis('equal')
     plt.legend(patches, top_10_notchurn['Advance Promo'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
-    # Display the not churned pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages8 = PdfPages("propotion_churn_advpro_1.pdf")
-    pdf_pages8.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages8.close()
+    fig = plt.gcf()
+    return fig, top_10_notchurn
 
 def full_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
@@ -1081,7 +1071,6 @@ def download_combined_pdf():
     # Tampilkan tombol unduhan dengan st.download_button
     st.download_button("Download Combined Report", "combined_report.pdf")
 
-
 def visualize_data_batch(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
@@ -1204,8 +1193,22 @@ def visualize_data_batch(data):
 
     elif option == 'Advance Promo':
         st.title("Proportion Churn & Not Churn - Advance Promo")
-        advpro_proportion(data)
-        advpro_proportion_1(data)
+
+        fig, top_10_churn = advpro_proportion(data)
+        st.pyplot(fig)
+
+        # # Save the churn pie chart to PDF
+        # pdf_pages7 = PdfPages("propotion_churn_advpro.pdf")
+        # pdf_pages7.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+        # pdf_pages7.close()
+
+        fig, top_10_notchurn = advpro_proportion_1(data)
+        st.pyplot(fig)
+
+        # # Save the churn pie chart to PDF
+        # pdf_pages8 = PdfPages("propotion_churn_advpro_1.pdf")
+        # pdf_pages8.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+        # pdf_pages8.close()
     
     st.title("Data Bar Chart Proportion")
     option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
