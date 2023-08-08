@@ -620,10 +620,7 @@ def five_area(data):
     # Display the bar chart using st.pyplot()
     # st.pyplot(plt.gcf())
 
-    # Save the churn pie chart to PDF
-    pdf_pages10 = PdfPages("five_area.pdf")
-    pdf_pages10.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages10.close()
+    
     # fig = plt.gcf()
     return plot
 
@@ -1167,8 +1164,15 @@ def visualize_data_batch(data):
     if option == 'Area Name':
         st.title("Proportion Churn & Not Churn - Area Name")
 
-        chart_1 = area_proportion(data)
-        st.pyplot(chart_1.fig)
+        churn_data_plot = five_area(data)  # Memanggil fungsi five_area() dan mendapatkan objek plot
+        # Menampilkan diagram batang menggunakan st.pyplot() di dalam fungsi batch()
+        st.pyplot(churn_data_plot.fig)
+
+        # Save the churn pie chart to PDF
+        pdf_pages10 = PdfPages("five_area.pdf")
+        pdf_pages10.savefig(churn_data_plot.fig, bbox_inches='tight')
+        # pdf_pages10.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+        pdf_pages10.close()
 
         area_proportion_1(data)
 
