@@ -534,8 +534,8 @@ def full_area(data):
     plt.xticks(rotation=90)
 
     # Move the legend to below the bar chart
-    plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    plot._legend.set_title('')
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # plot._legend.set_title('')
 
     fig = plt.gcf()
 
@@ -578,8 +578,8 @@ def five_area(data):
     plt.xticks(rotation=90)
 
     # Move the legend to below the bar chart
-    plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    plot._legend.set_title('')
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
     # st.pyplot(plt.gcf())
@@ -623,8 +623,8 @@ def ten_area(data):
     plt.xticks(rotation=90)
 
     # Move the legend to below the bar chart
-    plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    plot._legend.set_title('')
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # plot._legend.set_title('')
 
     fig = plt.gcf()
     return fig
@@ -654,8 +654,8 @@ def full_plan(data):
     plt.xticks(rotation=90)
 
     # Move the legend to below the bar chart
-    plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    plot._legend.set_title('')
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # plot._legend.set_title('')
 
     fig = plt.gcf()
     return fig
@@ -697,8 +697,8 @@ def five_plan(data):
     plt.xticks(rotation=90)
 
     # Move the legend to below the bar chart
-    plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    plot._legend.set_title('')
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # plot._legend.set_title('')
 
     fig = plt.gcf()
     return fig
@@ -740,8 +740,8 @@ def ten_plan(data):
     plt.xticks(rotation=90)
 
     # Move the legend to below the bar chart
-    plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    plot._legend.set_title('')
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # plot._legend.set_title('')
 
     fig = plt.gcf()
     return fig
@@ -814,8 +814,8 @@ def five_tvplan(data):
     plt.xticks(rotation=90)
 
     # Move the legend to below the bar chart
-    plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    plot._legend.set_title('')
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # plot._legend.set_title('')
 
     fig = plt.gcf()
     return fig
@@ -857,8 +857,8 @@ def ten_tvplan(data):
     plt.xticks(rotation=90)
 
     # Move the legend to below the bar chart
-    plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    plot._legend.set_title('')
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # plot._legend.set_title('')
 
     fig = plt.gcf()
     return fig
