@@ -765,7 +765,7 @@ def full_tvplan(data):
     plt.figure(figsize=(12, 6))
     plot = sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Tv Plan')
     plt.xlabel('Tv Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
@@ -774,13 +774,8 @@ def full_tvplan(data):
     plot._legend.set_bbox_to_anchor((0.5, -0.15))
     plot._legend.set_title('')
 
-    # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages15 = PdfPages("full_tvplan.pdf")
-    pdf_pages15.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages15.close()
+    fig = plt.gcf()
+    return fig
 
 def five_tvplan(data):
     unique_tvplan = sorted(data['Tv Plan'].unique())
@@ -813,7 +808,7 @@ def five_tvplan(data):
     plt.figure(figsize=(12, 6))
     plot = sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Tv Plan')
     plt.xlabel('Tv Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
@@ -822,13 +817,8 @@ def five_tvplan(data):
     plot._legend.set_bbox_to_anchor((0.5, -0.15))
     plot._legend.set_title('')
 
-    # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages16 = PdfPages("five_tvplan.pdf")
-    pdf_pages16.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages16.close()
+    fig = plt.gcf()
+    return fig
 
 def ten_tvplan(data):
     unique_tvplan = sorted(data['Tv Plan'].unique())
@@ -861,7 +851,7 @@ def ten_tvplan(data):
     plt.figure(figsize=(12, 6))
     plot = sns.catplot(x='Tv Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Tv Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Tv Plan')
     plt.xlabel('Tv Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
@@ -870,13 +860,8 @@ def ten_tvplan(data):
     plot._legend.set_bbox_to_anchor((0.5, -0.15))
     plot._legend.set_title('')
 
-    # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages17 = PdfPages("ten_tvplan.pdf")
-    pdf_pages17.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages17.close()
+    fig = plt.gcf()
+    return fig
 
 def full_adv(data):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
@@ -1444,7 +1429,14 @@ def visualize_data_batch(data):
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_tvplan')
         
         if top_chart == 'Full Data':
-            full_tvplan(data)
+            fig = full_tvplan(data)
+            # Display the bar chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages15 = PdfPages("full_tvplan.pdf")
+            # pdf_pages15.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages15.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
@@ -1468,7 +1460,14 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
-            five_tvplan(data)
+            fig = five_tvplan(data)
+            # Display the bar chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages16 = PdfPages("five_tvplan.pdf")
+            # pdf_pages16.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages16.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
@@ -1504,7 +1503,14 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
-            ten_tvplan(data)
+            fig = ten_tvplan(data)
+            # Display the bar chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages17 = PdfPages("ten_tvplan.pdf")
+            # pdf_pages17.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages17.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
