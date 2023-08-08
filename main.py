@@ -944,105 +944,105 @@ def combine_pdfs(data):
     pdf_pages2.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages2.close()
 
-    # fig, top_10_notchurn = area_proportion_1(data)
-    # pdf_pages3 = PdfPages("propotion_churn_area_1.pdf")
-    # pdf_pages3.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages3.close()
+    fig, top_10_notchurn = area_proportion_1(data)
+    pdf_pages3 = PdfPages("propotion_churn_area_1.pdf")
+    pdf_pages3.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages3.close()
 
-    # fig, top_10_churn = plan_proportion(data)
-    # pdf_pages4 = PdfPages("propotion_churn_plan.pdf")
-    # pdf_pages4.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages4.close()
+    fig, top_10_churn = plan_proportion(data)
+    pdf_pages4 = PdfPages("propotion_churn_plan.pdf")
+    pdf_pages4.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages4.close()
 
-    # fig, top_10_notchurn = plan_proportion_1(data)
-    # pdf_pages5 = PdfPages("propotion_churn_plan_1.pdf")
-    # pdf_pages5.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages5.close()
+    fig, top_10_notchurn = plan_proportion_1(data)
+    pdf_pages5 = PdfPages("propotion_churn_plan_1.pdf")
+    pdf_pages5.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages5.close()
 
-    # fig, top_10_churn = tvplan_proportion(data)
-    # pdf_pages6 = PdfPages("propotion_churn_tvplan.pdf")
-    # pdf_pages6.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages6.close()
+    fig, top_10_churn = tvplan_proportion(data)
+    pdf_pages6 = PdfPages("propotion_churn_tvplan.pdf")
+    pdf_pages6.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages6.close()
 
-    # fig, top_10_notchurn = tvplan_proportion_1(data)
-    # pdf_pages7 = PdfPages("propotion_churn_tvplan_1.pdf")
-    # pdf_pages7.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages7.close()
+    fig, top_10_notchurn = tvplan_proportion_1(data)
+    pdf_pages7 = PdfPages("propotion_churn_tvplan_1.pdf")
+    pdf_pages7.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages7.close()
 
-    # fig, top_10_churn = advpro_proportion(data)
-    # pdf_pages8 = PdfPages("propotion_churn_advpro.pdf")
-    # pdf_pages8.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages8.close()
+    fig, top_10_churn = advpro_proportion(data)
+    pdf_pages8 = PdfPages("propotion_churn_advpro.pdf")
+    pdf_pages8.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages8.close()
     
-    # fig, top_10_notchurn = advpro_proportion_1(data)
-    # pdf_pages9 = PdfPages("propotion_churn_advpro_1.pdf")
-    # pdf_pages9.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages9.close()
+    fig, top_10_notchurn = advpro_proportion_1(data)
+    pdf_pages9 = PdfPages("propotion_churn_advpro_1.pdf")
+    pdf_pages9.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages9.close()
 
-    # #####
-    # fig = full_area(data)
-    # pdf_pages10 = PdfPages("full_area.pdf")
-    # pdf_pages10.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages10.close()
+    #####
+    fig = full_area(data)
+    pdf_pages10 = PdfPages("full_area.pdf")
+    pdf_pages10.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages10.close()
 
-    # fig = full_plan(data)
-    # pdf_pages11 = PdfPages("five_area.pdf")
-    # pdf_pages11.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages11.close()
+    fig = full_plan(data)
+    pdf_pages11 = PdfPages("five_area.pdf")
+    pdf_pages11.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages11.close()
 
-    # fig = full_tvplan(data)
-    # pdf_pages12 = PdfPages("ten_area.pdf")
-    # pdf_pages12.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages12.close()
+    fig = full_tvplan(data)
+    pdf_pages12 = PdfPages("ten_area.pdf")
+    pdf_pages12.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages12.close()
 
-    # fig = full_adv(data)
-    # pdf_pages13 = PdfPages("full_plan.pdf")
-    # pdf_pages13.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages13.close()
+    fig = full_adv(data)
+    pdf_pages13 = PdfPages("full_plan.pdf")
+    pdf_pages13.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages13.close()
 
-    # fig = five_area(data)
-    # pdf_pages14 = PdfPages("five_plan.pdf")
-    # pdf_pages14.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages14.close()
+    fig = five_area(data)
+    pdf_pages14 = PdfPages("five_plan.pdf")
+    pdf_pages14.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages14.close()
 
-    # fig = five_plan(data)
-    # pdf_pages15 = PdfPages("ten_plan.pdf")
-    # pdf_pages15.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages15.close()
+    fig = five_plan(data)
+    pdf_pages15 = PdfPages("ten_plan.pdf")
+    pdf_pages15.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages15.close()
 
-    # fig = five_tvplan(data)
-    # pdf_pages16 = PdfPages("full_tvplan.pdf")
-    # pdf_pages16.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages16.close()
+    fig = five_tvplan(data)
+    pdf_pages16 = PdfPages("full_tvplan.pdf")
+    pdf_pages16.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages16.close()
 
-    # fig = five_adv(data)
-    # pdf_pages17 = PdfPages("five_tvplan.pdf")
-    # pdf_pages17.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages17.close()
+    fig = five_adv(data)
+    pdf_pages17 = PdfPages("five_tvplan.pdf")
+    pdf_pages17.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages17.close()
 
-    # fig = ten_area(data)
-    # pdf_pages18 = PdfPages("ten_tvplan.pdf")
-    # pdf_pages18.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages18.close()
+    fig = ten_area(data)
+    pdf_pages18 = PdfPages("ten_tvplan.pdf")
+    pdf_pages18.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages18.close()
     
-    # fig = ten_plan(data)
-    # pdf_pages19 = PdfPages("full_adv.pdf")
-    # pdf_pages19.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages19.close()
+    fig = ten_plan(data)
+    pdf_pages19 = PdfPages("full_adv.pdf")
+    pdf_pages19.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages19.close()
 
-    # fig = ten_tvplan(data)
-    # pdf_pages20 = PdfPages("five_adv.pdf")
-    # pdf_pages20.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages20.close()
+    fig = ten_tvplan(data)
+    pdf_pages20 = PdfPages("five_adv.pdf")
+    pdf_pages20.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages20.close()
 
-    # fig = ten_adv(data)
-    # pdf_pages21 = PdfPages("ten_adv.pdf")
-    # pdf_pages21.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    # pdf_pages21.close()
+    fig = ten_adv(data)
+    pdf_pages21 = PdfPages("ten_adv.pdf")
+    pdf_pages21.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages21.close()
 
-    pdf_files = ["churn_dist.pdf", "propotion_churn_area.pdf"]
+    # pdf_files = ["churn_dist.pdf", "propotion_churn_area.pdf"]
 
-    # pdf_files = ["churn_dist.pdf", "propotion_churn_area.pdf", "propotion_churn_area_1.pdf", "propotion_churn_plan.pdf", "propotion_churn_plan_1.pdf", "propotion_churn_tvplan.pdf", "propotion_churn_tvplan_1.pdf", "propotion_churn_advpro.pdf", "propotion_churn_advpro_1.pdf", "full_area.pdf", "five_area.pdf", "ten_area.pdf", "full_plan.pdf", "five_plan.pdf", "ten_plan.pdf", "full_tvplan.pdf", "five_tvplan.pdf", "ten_tvplan.pdf", "full_adv.pdf", "five_adv.pdf", "ten_adv.pdf"]
+    pdf_files = ["churn_dist.pdf", "propotion_churn_area.pdf", "propotion_churn_area_1.pdf", "propotion_churn_plan.pdf", "propotion_churn_plan_1.pdf", "propotion_churn_tvplan.pdf", "propotion_churn_tvplan_1.pdf", "propotion_churn_advpro.pdf", "propotion_churn_advpro_1.pdf", "full_area.pdf", "five_area.pdf", "ten_area.pdf", "full_plan.pdf", "five_plan.pdf", "ten_plan.pdf", "full_tvplan.pdf", "five_tvplan.pdf", "ten_tvplan.pdf", "full_adv.pdf", "five_adv.pdf", "ten_adv.pdf"]
 
     with open("combined_report.pdf", "wb") as output_file:
         pdf_writer = PyPDF2.PdfMerger()
