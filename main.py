@@ -976,8 +976,8 @@ def ten_adv(data):
     plt.xticks(rotation=90)
 
     # # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
+    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    plot._legend.set_title('')
 
     fig = plt.gcf()
     return fig
