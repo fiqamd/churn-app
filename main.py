@@ -1156,12 +1156,7 @@ def visualize_data_batch(data):
 
         fig, top_10_notchurn = tvplan_proportion_1(data)
         st.pyplot(fig)
-
-        # # Save the churn pie chart to PDF
-        # pdf_pages3 = PdfPages("propotion_churn_tvplan_1.pdf")
-        # pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-        # pdf_pages3.close()
-
+        
     elif option == 'Advance Promo':
         st.title("Proportion Churn & Not Churn - Advance Promo")
 
@@ -1256,15 +1251,6 @@ def visualize_data_batch(data):
 
             st.table(churn_data)
 
-            #DOWNLOAD HERE
-            result_all_data = churn_data
-            current_date = datetime.now().strftime("%Y%m%d")
-            result_all_data.name = "Data Proporsi Area Name "
-            filename = f"{result_all_data.name}_{current_date}.csv"
-
-            csv_data = result_all_data.to_csv(index=False)
-            st.download_button("Download Here - Area Name Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
-
         elif top_chart == 'Top 10':
             st.subheader("Top 10 of Proportion Churn & Not Churn - Area Name")
 
@@ -1294,15 +1280,6 @@ def visualize_data_batch(data):
             churn_data = top_10_areas
 
             st.table(churn_data)
-
-            #DOWNLOAD HERE
-            result_all_data = churn_data
-            current_date = datetime.now().strftime("%Y%m%d")
-            result_all_data.name = "Data Proporsi Area Name "
-            filename = f"{result_all_data.name}_{current_date}.csv"
-
-            csv_data = result_all_data.to_csv(index=False)
-            st.download_button("Download Here - Area Name Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
     elif option_chart == 'Plan':
         top_chart = st.selectbox('Pilih Data:',
@@ -1366,15 +1343,6 @@ def visualize_data_batch(data):
 
             st.table(churn_data)
 
-            #DOWNLOAD HERE
-            result_all_data = churn_data
-            current_date = datetime.now().strftime("%Y%m%d")
-            result_all_data.name = "Data Proporsi Plan"
-            filename = f"{result_all_data.name}_{current_date}.csv"
-
-            csv_data = result_all_data.to_csv(index=False)
-            st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
-
         elif top_chart == 'Top 10':
             st.subheader("Top 10 of Proportion Churn & Not Churn - Plan")
 
@@ -1405,15 +1373,6 @@ def visualize_data_batch(data):
             churn_data = top_10_areas
 
             st.table(churn_data)
-
-            #DOWNLOAD HERE
-            result_all_data = churn_data
-            current_date = datetime.now().strftime("%Y%m%d")
-            result_all_data.name = "Data Proporsi Plan"
-            filename = f"{result_all_data.name}_{current_date}.csv"
-
-            csv_data = result_all_data.to_csv(index=False)
-            st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
     elif option_chart == 'Tv Plan':
         top_chart = st.selectbox('Pilih Data:',
@@ -1478,15 +1437,6 @@ def visualize_data_batch(data):
 
             st.table(churn_data)
 
-            #DOWNLOAD HERE
-            result_all_data = churn_data
-            current_date = datetime.now().strftime("%Y%m%d")
-            result_all_data.name = "Data Proporsi Tv Plan"
-            filename = f"{result_all_data.name}_{current_date}.csv"
-
-            csv_data = result_all_data.to_csv(index=False)
-            st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
-
         elif top_chart == 'Top 10':
             st.subheader("Top 10 of Proportion Churn & Not Churn - Tv Plan")
             fig = ten_tvplan(data)
@@ -1516,15 +1466,6 @@ def visualize_data_batch(data):
             churn_data = top_10_areas
 
             st.table(churn_data)
-
-            #DOWNLOAD HERE
-            result_all_data = churn_data
-            current_date = datetime.now().strftime("%Y%m%d")
-            result_all_data.name = "Data Proporsi Tv Plan"
-            filename = f"{result_all_data.name}_{current_date}.csv"
-
-            csv_data = result_all_data.to_csv(index=False)
-            st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
             
     elif option_chart == 'Advance Promo':
         top_chart = st.selectbox('Pilih Data:',
@@ -1590,15 +1531,6 @@ def visualize_data_batch(data):
 
             st.table(churn_data)
 
-            #DOWNLOAD HERE
-            result_all_data = churn_data
-            current_date = datetime.now().strftime("%Y%m%d")
-            result_all_data.name = "Data Proporsi Advance Promo"
-            filename = f"{result_all_data.name}_{current_date}.csv"
-
-            csv_data = result_all_data.to_csv(index=False)
-            st.download_button("Download Here - Advance Promo Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
-
         elif top_chart == 'Top 10':
             st.subheader("Top 10 of Proportion Churn & Not Churn - Advance Promo")
 
@@ -1630,15 +1562,6 @@ def visualize_data_batch(data):
             churn_data = top_10_areas
 
             st.table(churn_data)
-
-            #DOWNLOAD HERE
-            result_all_data = churn_data
-            current_date = datetime.now().strftime("%Y%m%d")
-            result_all_data.name = "Data Proporsi Advance Promo"
-            filename = f"{result_all_data.name}_{current_date}.csv"
-
-            csv_data = result_all_data.to_csv(index=False)
-            st.download_button("Download Here - Advance Promo Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
     data_churned = data[data['Churn'] == 'Churn']
     st.header('Churned Data')
