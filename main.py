@@ -1061,7 +1061,7 @@ def download_combined_pdf(data):
             st.download_button("Download", pdf_bytes, file_name="combined_report.pdf", key="pdf_download")
 
     # Tampilkan tombol unduhan dengan st.download_button
-    st.download_button("Download Combined Report", "combined_report.pdf")
+    # st.download_button("Download Combined Report", "combined_report.pdf")
 
 def visualize_data_batch(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
