@@ -508,6 +508,7 @@ def advpro_proportion_1(data):
     fig = plt.gcf()
     return fig, top_10_notchurn
 
+#BAR CHART
 def full_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
@@ -536,13 +537,9 @@ def full_area(data):
     plot._legend.set_bbox_to_anchor((0.5, -0.15))
     plot._legend.set_title('')
 
-    # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    fig = plt.gcf()
 
-    # Save the churn pie chart to PDF
-    pdf_pages9 = PdfPages("full_area.pdf")
-    pdf_pages9.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages9.close()
+    return fig
 
 def five_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
@@ -586,12 +583,9 @@ def five_area(data):
 
     # Display the bar chart using st.pyplot()
     # st.pyplot(plt.gcf())
-
     
-    # fig = plt.gcf()
-    return plot
-
-    # return fig
+    fig = plt.gcf()
+    return fig
 
 def ten_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
@@ -1230,7 +1224,15 @@ def visualize_data_batch(data):
         top_chart = st.selectbox('Pilih jumlah data yang ingin ditampilkan:',
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_area')
         if top_chart == 'Full Data':
-            full_area(data)
+            fig = full_area(data)
+            
+            # Display the bar chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages9 = PdfPages("full_area.pdf")
+            # pdf_pages9.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages9.close()
 
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -1253,14 +1255,14 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Area Name Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
-            churn_data_plot = five_area(data)  # Memanggil fungsi five_area() dan mendapatkan objek plot
+            fig = five_area(data)  # Memanggil fungsi five_area() dan mendapatkan objek plot
             # Menampilkan diagram batang menggunakan st.pyplot() di dalam fungsi batch()
-            st.pyplot(churn_data_plot.fig)
+            st.pyplot(fig)
 
-            # Save the churn pie chart to PDF
-            pdf_pages10 = PdfPages("five_area.pdf")
-            pdf_pages10.savefig(churn_data_plot.fig, bbox_inches='tight')
-            pdf_pages10.close()
+            # # Save the churn pie chart to PDF
+            # pdf_pages10 = PdfPages("five_area.pdf")
+            # pdf_pages10.savefig(fig, bbox_inches='tight')
+            # pdf_pages10.close()
             # five_area(data)
 
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
