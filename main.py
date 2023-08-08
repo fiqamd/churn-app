@@ -1156,7 +1156,7 @@ def visualize_data_batch(data):
 
         fig, top_10_notchurn = tvplan_proportion_1(data)
         st.pyplot(fig)
-        
+
     elif option == 'Advance Promo':
         st.title("Proportion Churn & Not Churn - Advance Promo")
 
@@ -1831,11 +1831,14 @@ def run():
         st.markdown("<h2 style='text-align: center;'>- About -</h2>", unsafe_allow_html=True)
 
         view_selectbox = st.selectbox('Pilihlah hal yang ingin anda ketahui:',
-                          ['Model', 'Creator'], key= 'view_select'
+                          ['Website Prediksi Churn', 'Creator'], key= 'view_select'
                           )
         
-        if view_selectbox == 'Model':
-            st.subheader("Model Explanation")
+        if view_selectbox == 'Website Prediksi Churn':
+            st.subheader("Deskripsi")
+
+            st.write("Website prediksi churn merupakan sebuah aplikasi berbasis web yang dibuat dengan tujuan untuk membantu divisi terkait dalam hal analisa dan prediksi kemungkinan churn dari pelanggan. Di dalam website prediksi churn ini juga mempunyai fitur untuk visualisasi data hasil dari proses prediksi yang dilalui. Website ini dapat memprediksi dua jenis data, yaitu data tunggal dan data batch. Pada prediksi data tunggal, kamu dapat memprediksi pelanggan dengan spesifik. Pada fitur prediksi data batch, aplikasi ini dapat memproses data dengan format .csv hingga file berukuran 200MB. Website ini dibuat dengan menggunakan teknologi machine learning. Pemodelan machine learning yang ada pada website ini dibuat dengan menggunakan algoritma Random Forest Classifier.")
+
         elif view_selectbox == 'Creator':
             st.subheader("Name")
             st.write("Taufiq Ahmadi")
