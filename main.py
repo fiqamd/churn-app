@@ -1563,6 +1563,7 @@ def visualize_data_batch(data):
 
             st.table(churn_data)
 
+    st.divider()
     data_churned = data[data['Churn'] == 'Churn']
     st.header('Churned Data')
     st.table(data_churned.head(10))
@@ -1643,6 +1644,8 @@ def visualize_data_batch(data):
 
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Churned Advance Promo Data", data=csv_data, mime='text/csv', file_name=filename)
+
+    st.divider()
 
     data_not_churned = data[data['Churn'] == 'Not Churn']
     st.header('Not Churned Data')
@@ -1728,6 +1731,8 @@ def visualize_data_batch(data):
     # Menghitung jumlah data Churn ##BARUU 18 JULI 2023
     churn_data = data[data['Churn'] == 'Churn']
     new_churn_data = churn_data.drop('Churn', axis=1)
+
+    st.divider()
 
     st.header("Data Churn")
     st.subheader("Jumlah Data Churn")
