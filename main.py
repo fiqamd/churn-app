@@ -626,13 +626,8 @@ def ten_area(data):
     plot._legend.set_bbox_to_anchor((0.5, -0.15))
     plot._legend.set_title('')
 
-    # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages11 = PdfPages("ten_area.pdf")
-    pdf_pages11.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages11.close()
+    fig = plt.gcf()
+    return fig
 
 def full_plan(data):
     unique_plan = sorted(data['Plan'].unique())
@@ -662,13 +657,8 @@ def full_plan(data):
     plot._legend.set_bbox_to_anchor((0.5, -0.15))
     plot._legend.set_title('')
 
-    # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages12 = PdfPages("full_plan.pdf")
-    pdf_pages12.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages12.close()
+    fig = plt.gcf()
+    return fig
 
 def five_plan(data):
     unique_plan = sorted(data['Plan'].unique())
@@ -710,13 +700,8 @@ def five_plan(data):
     plot._legend.set_bbox_to_anchor((0.5, -0.15))
     plot._legend.set_title('')
 
-    # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages13 = PdfPages("five_plan.pdf")
-    pdf_pages13.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages13.close()
+    fig = plt.gcf()
+    return fig
 
 def ten_plan(data):
     unique_plan = sorted(data['Plan'].unique())
@@ -758,13 +743,8 @@ def ten_plan(data):
     plot._legend.set_bbox_to_anchor((0.5, -0.15))
     plot._legend.set_title('')
 
-    # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages14 = PdfPages("ten_plan.pdf")
-    pdf_pages14.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages14.close()
+    fig = plt.gcf()
+    return fig
 
 def full_tvplan(data):
     unique_tvplan = sorted(data['Tv Plan'].unique())
@@ -1298,7 +1278,14 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Area Name Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
-            ten_area(data)
+            fig = ten_area(data)
+            # Display the bar chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages11 = PdfPages("ten_area.pdf")
+            # pdf_pages11.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages11.close()
 
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -1336,7 +1323,14 @@ def visualize_data_batch(data):
         top_chart = st.selectbox('Pilih Data:',
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_plan')
         if top_chart == 'Full Data':
-            full_plan(data)
+            fig = full_plan(data)
+            # Display the bar chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages12 = PdfPages("full_plan.pdf")
+            # pdf_pages12.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages12.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1360,7 +1354,14 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
-            five_plan(data)
+            fig = five_plan(data)
+            # Display the bar chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages13 = PdfPages("five_plan.pdf")
+            # pdf_pages13.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages13.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1396,7 +1397,14 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
-            ten_plan(data)
+            fig = ten_plan(data)
+            # Display the bar chart using st.pyplot()
+            st.pyplot(fig)
+
+            # # Save the churn pie chart to PDF
+            # pdf_pages14 = PdfPages("ten_plan.pdf")
+            # pdf_pages14.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+            # pdf_pages14.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
