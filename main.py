@@ -1167,8 +1167,8 @@ def visualize_data_batch(data):
         st.title("Proportion Churn & Not Churn - Area Name")
 
         chart_1 = area_proportion(data)
-        st.pyplot(chart_1)
-        
+        st.pyplot(chart_1.fig)
+
         area_proportion_1(data)
 
     elif option == 'Plan':
