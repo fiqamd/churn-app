@@ -624,8 +624,9 @@ def five_area(data):
     pdf_pages10 = PdfPages("five_area.pdf")
     pdf_pages10.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages10.close()
+    fig = plt.gcf()
 
-    return plt.gcf()
+    return fig
 
 def ten_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
@@ -1167,6 +1168,7 @@ def visualize_data_batch(data):
 
         chart_1 = area_proportion(data)
         st.pyplot(chart_1)
+        
         area_proportion_1(data)
 
     elif option == 'Plan':
