@@ -513,7 +513,6 @@ def full_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Area Name")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -533,10 +532,6 @@ def full_area(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
-    # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
-
     fig = plt.gcf()
 
     return fig
@@ -545,7 +540,6 @@ def five_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Area Name Top 5")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -584,7 +578,6 @@ def ten_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Area Name Top 5")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -622,7 +615,6 @@ def full_plan(data):
     unique_plan = sorted(data['Plan'].unique())
     plan_counts = data['Plan'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Plan")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
@@ -649,7 +641,6 @@ def five_plan(data):
     unique_plan = sorted(data['Plan'].unique())
     plan_counts = data['Plan'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Plan")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
@@ -1055,10 +1046,10 @@ def download_combined_pdf(data):
     # Panggil fungsi untuk melakukan kombinasi PDF
     combine_pdfs(data)
 
-    if st.button("Download PDF"):
+    if st.button("Download Here"):
         with open("combined_report.pdf", "rb") as file:
             pdf_bytes = file.read()
-            st.download_button("Download", pdf_bytes, file_name="combined_report.pdf", key="pdf_download")
+            st.download_button("Churn Report", pdf_bytes, file_name="churn_report.pdf", key="pdf_download")
 
     # Tampilkan tombol unduhan dengan st.download_button
     # st.download_button("Download Combined Report", "combined_report.pdf")
@@ -1222,15 +1213,10 @@ def visualize_data_batch(data):
         top_chart = st.selectbox('Pilih jumlah data yang ingin ditampilkan:',
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_area')
         if top_chart == 'Full Data':
+            st.subheader("Proportion Churn & Not Churn - Area Name")
             fig = full_area(data)
-            
             # Display the bar chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages9 = PdfPages("full_area.pdf")
-            # pdf_pages9.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages9.close()
 
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -1253,15 +1239,11 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Area Name Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
-            fig = five_area(data)  # Memanggil fungsi five_area() dan mendapatkan objek plot
+            st.subheader("Top 5 of Proportion Churn & Not Churn - Area Name")
+
+            fig = five_area(data)
             # Menampilkan diagram batang menggunakan st.pyplot() di dalam fungsi batch()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages10 = PdfPages("five_area.pdf")
-            # pdf_pages10.savefig(fig, bbox_inches='tight')
-            # pdf_pages10.close()
-            # five_area(data)
 
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -1296,14 +1278,11 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Area Name Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
+            st.subheader("Top 10 of Proportion Churn & Not Churn - Area Name")
+
             fig = ten_area(data)
             # Display the bar chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages11 = PdfPages("ten_area.pdf")
-            # pdf_pages11.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages11.close()
 
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
@@ -1341,14 +1320,11 @@ def visualize_data_batch(data):
         top_chart = st.selectbox('Pilih Data:',
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_plan')
         if top_chart == 'Full Data':
+            st.subheader("Proportion Churn & Not Churn - Plan")
+
             fig = full_plan(data)
             # Display the bar chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages12 = PdfPages("full_plan.pdf")
-            # pdf_pages12.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages12.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1372,14 +1348,11 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
+            st.subheader("Top 5 of Proportion Churn & Not Churn - Plan")
+
             fig = five_plan(data)
             # Display the bar chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages13 = PdfPages("five_plan.pdf")
-            # pdf_pages13.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages13.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1415,14 +1388,11 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
+            st.subheader("Top 10 of Proportion Churn & Not Churn - Plan")
+
             fig = ten_plan(data)
             # Display the bar chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages14 = PdfPages("ten_plan.pdf")
-            # pdf_pages14.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages14.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1462,14 +1432,11 @@ def visualize_data_batch(data):
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_tvplan')
         
         if top_chart == 'Full Data':
+            st.subheader("Proportion Churn & Not Churn - Tv Plan")
+
             fig = full_tvplan(data)
             # Display the bar chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages15 = PdfPages("full_tvplan.pdf")
-            # pdf_pages15.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages15.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
@@ -1493,14 +1460,11 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
+            st.subheader("Top 5 of Proportion Churn & Not Churn - Tv Plan")
+
             fig = five_tvplan(data)
             # Display the bar chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages16 = PdfPages("five_tvplan.pdf")
-            # pdf_pages16.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages16.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
@@ -1536,14 +1500,10 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Tv Plan Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
+            st.subheader("Top 10 of Proportion Churn & Not Churn - Tv Plan")
             fig = ten_tvplan(data)
             # Display the bar chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages17 = PdfPages("ten_tvplan.pdf")
-            # pdf_pages17.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages17.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
@@ -1583,14 +1543,11 @@ def visualize_data_batch(data):
                          ['Full Data','Top 5', 'Top 10'], key='top_chart_tvplan')
         
         if top_chart == 'Full Data':
+            st.subheader("Proportion Churn & Not Churn - Advance Promo")
+
             fig = full_adv(data)
             # Display the bar chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages18 = PdfPages("full_adv.pdf")
-            # pdf_pages18.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages18.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
@@ -1614,14 +1571,11 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Advance Promo Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
+            st.subheader("Top 5 of Proportion Churn & Not Churn - Advance Promo")
+
             fig = five_adv(data)
             # Display the bar chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages19 = PdfPages("five_adv.pdf")
-            # pdf_pages19.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages19.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
@@ -1658,14 +1612,11 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Advance Promo Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 10':
+            st.subheader("Top 10 of Proportion Churn & Not Churn - Advance Promo")
+
             fig = ten_adv(data)
             # Display the pie chart using st.pyplot()
             st.pyplot(fig)
-
-            # # Save the churn pie chart to PDF
-            # pdf_pages20 = PdfPages("ten_adv.pdf")
-            # pdf_pages20.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-            # pdf_pages20.close()
 
             # Hitung jumlah Churn dan Not Churn untuk setiap area
             churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
@@ -1700,7 +1651,6 @@ def visualize_data_batch(data):
 
             csv_data = result_all_data.to_csv(index=False)
             st.download_button("Download Here - Advance Promo Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
-
 
     data_churned = data[data['Churn'] == 'Churn']
     st.header('Churned Data')
