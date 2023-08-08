@@ -212,6 +212,7 @@ def load_non_churned(data):
 
     return area_data_non_churned, plan_data_non_churned, tvplan_data_non_churned, adv_data_non_churned, com_cs_data_non_churned, com_e_data_non_churned, com_socmed_data_non_churned, tele_data_non_churned, wa_data_non_churned, wic_data_non_churned
 
+#Fungsi Penammpilan Chart
 def dis_churn(data):
     pdf_pages1 = PdfPages("pie_chart_churn&notchurn.pdf")
     st.header("Churn Distribution")
@@ -263,10 +264,9 @@ def area_proportion(data):
 
     fig = plt.gcf()
 
-    st.pyplot(fig)
-    pdf_pages2 = PdfPages("propotion_churn_area.pdf")
-    pdf_pages2.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages2.close()
+    return fig, top_10_churn
+
+    
  
 def area_proportion_1(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -576,7 +576,6 @@ def full_area(data):
     pdf_pages9.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages9.close()
 
-#Fungsi Penammpilan Chart
 def five_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
@@ -1163,6 +1162,16 @@ def visualize_data_batch(data):
     
     if option == 'Area Name':
         st.title("Proportion Churn & Not Churn - Area Name")
+
+         # Panggil fungsi area_proportion() untuk mendapatkan objek fig dan DataFrame top_10_churn
+        fig, top_10_churn = area_proportion(data)
+
+        st.pyplot(fig)
+
+        # pdf_pages2 = PdfPages("propotion_churn_area.pdf")
+        # pdf_pages2.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+        # pdf_pages2.close()
+
         area_proportion(data)
         # pdf_pages10.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
 
