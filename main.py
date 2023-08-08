@@ -334,7 +334,7 @@ def plan_proportion(data):
 
     fig = plt.gcf()
 
-    return fig
+    return fig, top_10_churn
 
 def plan_proportion_1(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
