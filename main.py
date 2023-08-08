@@ -1125,7 +1125,6 @@ def visualize_data_batch(data):
     st.download_button("Download Here - All Data", data=csv_data, mime='text/csv', file_name=filename)
 
     #Memanggil Fungsi Pie Churn
-    st.header("Churn Distribution")
     fig = dis_churn(data)
     st.pyplot(fig)
 
