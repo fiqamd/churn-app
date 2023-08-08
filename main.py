@@ -266,8 +266,6 @@ def area_proportion(data):
 
     return fig, top_10_churn
 
-    
- 
 def area_proportion_1(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
     adv_data_churned, com_cs_data_churned, com_e_data_churned, \
@@ -300,12 +298,7 @@ def area_proportion_1(data):
 
     fig = plt.gcf()
 
-    # Save the churn pie chart to PDF
-    pdf_pages3 = PdfPages("propotion_churn_area_1.pdf")
-    pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages3.close()
-
-    st.pyplot(fig)
+    return fig, top_10_notchurn
 
 def plan_proportion(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -1163,19 +1156,27 @@ def visualize_data_batch(data):
     if option == 'Area Name':
         st.title("Proportion Churn & Not Churn - Area Name")
 
-         # Panggil fungsi area_proportion() untuk mendapatkan objek fig dan DataFrame top_10_churn
+        #CHURN DATA
+        # Panggil fungsi area_proportion() untuk mendapatkan objek fig dan DataFrame top_10_churn
         fig, top_10_churn = area_proportion(data)
-
         st.pyplot(fig)
 
         # pdf_pages2 = PdfPages("propotion_churn_area.pdf")
         # pdf_pages2.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
         # pdf_pages2.close()
 
-        area_proportion(data)
+        # area_proportion(data)
         # pdf_pages10.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
 
-        area_proportion_1(data)
+        fig, top_10_not_churn = area_proportion_1(data)
+        st.pyplot(fig)
+
+        # Save the churn pie chart to PDF
+        # pdf_pages3 = PdfPages("propotion_churn_area_1.pdf")
+        # pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+        # pdf_pages3.close()
+
+        # st.pyplot(fig)
 
     elif option == 'Plan':
         st.title("Proportion Churn & Not Churn - Plan")
