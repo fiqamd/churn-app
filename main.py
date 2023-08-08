@@ -576,6 +576,7 @@ def full_area(data):
     pdf_pages9.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages9.close()
 
+#Fungsi Penammpilan Chart
 def five_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
     area_name_counts = data['Area Name'].value_counts()
@@ -617,12 +618,14 @@ def five_area(data):
     plot._legend.set_title('')
 
     # Display the bar chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    # st.pyplot(plt.gcf())
 
     # Save the churn pie chart to PDF
     pdf_pages10 = PdfPages("five_area.pdf")
     pdf_pages10.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages10.close()
+
+    return plt.gcf()
 
 def ten_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
@@ -1161,7 +1164,9 @@ def visualize_data_batch(data):
     
     if option == 'Area Name':
         st.title("Proportion Churn & Not Churn - Area Name")
-        area_proportion(data)
+
+        chart_1 = area_proportion(data)
+        st.pyplot(chart_1)
         area_proportion_1(data)
 
     elif option == 'Plan':
