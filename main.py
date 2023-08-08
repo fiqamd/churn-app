@@ -882,19 +882,55 @@ def full_adv(data):
     plt.figure(figsize=(12, 6))
     plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Advance Promo')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
     plt.xlabel('Advance Promo')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
     # Move the legend to below the bar chart
-    # plot.fig.subplots_adjust(bottom=0.2)
-
     plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
+    plot._legend.set_title('')
 
     fig = plt.gcf()
+
+    # Display the bar chart using st.pyplot()
+    st.pyplot(fig)
     return fig
+
+
+
+
+    # unique_adv_promo = sorted(data['Advance Promo'].unique())
+    # adv_promo_counts = data['Advance Promo'].value_counts()
+
+    # st.subheader("Proportion Churn & Not Churn - Advance Promo")
+    # # Hitung jumlah Churn dan Not Churn untuk setiap area
+    # churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
+    # not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
+
+    # # Membuat dataframe untuk menyimpan hasil perhitungan
+    # churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
+    #                                     'Churn': [churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo],
+    #                                     'Not Churn': [not_churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo]})
+
+    # # Membuat plot menggunakan sns.catplot
+    # sns.set(style="whitegrid")
+    # plt.figure(figsize=(12, 6))
+    # plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
+    #                     kind='bar', height=6, aspect=2.5, palette='magma')
+    # plt.title('Proporsi Churn dan Not Churn berdasarkan Advance Promo')
+    # plt.xlabel('Advance Promo')
+    # plt.ylabel('Jumlah')
+    # plt.xticks(rotation=90)
+
+    # # Move the legend to below the bar chart
+    # # plot.fig.subplots_adjust(bottom=0.2)
+
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # # plot._legend.set_title('')
+
+    # fig = plt.gcf()
+    # return fig
     
 def five_adv(data):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
