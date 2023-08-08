@@ -1749,7 +1749,7 @@ def visualize_data_batch(data):
     st.divider()
 
     st.header("Download Churn Report")
-
+#
     download_combined_pdf(data)
 
 
