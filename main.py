@@ -882,7 +882,7 @@ def full_adv(data):
     plt.figure(figsize=(12, 6))
     plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Advance Promo')
     plt.xlabel('Advance Promo')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
@@ -925,7 +925,7 @@ def five_adv(data):
     plt.figure(figsize=(12, 6))
     plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Advance Promo')
     plt.xlabel('Advance Promo')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
