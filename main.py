@@ -1848,7 +1848,7 @@ def run():
 
             st.subheader('Email')
             st.write("taufiqahmadi1122@gmail.com")
-        st.button("Re-run")
+        # st.button("Re-run")
 
 if __name__ == '__main__':
     # setup(data=pd.DataFrame(input_df), target='Churn')
