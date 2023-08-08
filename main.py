@@ -976,7 +976,7 @@ def ten_adv(data):
     plt.xlabel('Advance Promo')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
-    plt.legend(title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
+    # plt.legend(title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
 
     # Move the legend to below the bar chart
     # Move the legend to below the bar chart
