@@ -228,7 +228,7 @@ def dis_churn(data):
     # Mengatur judul di tengah pie chart
     ax.set_title("Churn Distribution", loc='center')
 
-    st.pyplot(fig)
+    return fig
 
 def area_proportion(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -1125,7 +1125,10 @@ def visualize_data_batch(data):
     st.download_button("Download Here - All Data", data=csv_data, mime='text/csv', file_name=filename)
 
     #Memanggil Fungsi Pie Churn
-    dis_churn(data)
+    st.header("Churn Distribution")
+    fig = dis_churn(data)
+    st.pyplot(fig)
+
 
     #TABEL
     churn_counts = data['Churn'].value_counts()
