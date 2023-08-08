@@ -228,7 +228,7 @@ def dis_churn(data):
     # Mengatur judul di tengah pie chart
     ax.set_title("Churn Distribution", loc='center')
 
-    return fig
+    return fig, churn_counts
 
 def area_proportion(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -934,9 +934,9 @@ def ten_adv(data):
     return fig
 
 def combine_pdfs(data):
-    fig, top_10_churn = dis_churn(data)
+    fig_dis_churn, churn_counts = dis_churn(data)
     pdf_pages1 = PdfPages("churn_dist.pdf")
-    pdf_pages1.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
+    pdf_pages1.savefig(fig_dis_churn, bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages1.close()
 
     fig, top_10_churn = area_proportion(data)
