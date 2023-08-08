@@ -402,12 +402,9 @@ def tvplan_proportion(data):
     plt.legend(patches, top_10_churn['Tv Plan'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     # Display the churn pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
+    fig = plt.gcf()
 
-    # Save the churn pie chart to PDF
-    pdf_pages6 = PdfPages("propotion_churn_tvplan.pdf")
-    pdf_pages6.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages6.close()
+    return fig, top_10_churn
 
 def tvplan_proportion_1(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -440,12 +437,9 @@ def tvplan_proportion_1(data):
     plt.legend(patches, top_10_notchurn['Tv Plan'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
     # Display the not churned pie chart using st.pyplot()
-    st.pyplot(plt.gcf())
-
-    # Save the churn pie chart to PDF
-    pdf_pages3 = PdfPages("propotion_churn_tvplan_1.pdf")
-    pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-    pdf_pages3.close()
+    fig = plt.gcf()
+    return fig, top_10_notchurn
+    
 
 def advpro_proportion(data):
     area_data_churned, plan_data_churned, tvplan_data_churned, \
@@ -1191,9 +1185,23 @@ def visualize_data_batch(data):
 
     elif option == 'Tv Plan':
         st.title("Proportion Churn & Not Churn - Tv Plan")
-        tvplan_proportion(data)
-        tvplan_proportion_1(data)
-        
+
+        fig, top_10_churn = tvplan_proportion(data)
+        st.pyplot(fig)
+
+        # # Save the churn pie chart to PDF
+        # pdf_pages6 = PdfPages("propotion_churn_tvplan.pdf")
+        # pdf_pages6.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+        # pdf_pages6.close()
+
+        fig, top_10_notchurn = tvplan_proportion_1(data)
+        st.pyplot(fig)
+
+        # # Save the churn pie chart to PDF
+        # pdf_pages3 = PdfPages("propotion_churn_tvplan_1.pdf")
+        # pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
+        # pdf_pages3.close()
+
     elif option == 'Advance Promo':
         st.title("Proportion Churn & Not Churn - Advance Promo")
         advpro_proportion(data)
