@@ -679,7 +679,6 @@ def ten_plan(data):
     unique_plan = sorted(data['Plan'].unique())
     plan_counts = data['Plan'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Plan")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Plan'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Plan'].value_counts()
@@ -718,7 +717,6 @@ def full_tvplan(data):
     unique_tvplan = sorted(data['Tv Plan'].unique())
     tvplan_counts = data['Tv Plan'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Tv Plan")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
@@ -745,7 +743,6 @@ def five_tvplan(data):
     unique_tvplan = sorted(data['Tv Plan'].unique())
     tvplan_counts = data['Tv Plan'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Tv Plan")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
@@ -784,7 +781,6 @@ def ten_tvplan(data):
     unique_tvplan = sorted(data['Tv Plan'].unique())
     tvplan_counts = data['Tv Plan'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Tv Plan")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Tv Plan'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Tv Plan'].value_counts()
@@ -823,7 +819,6 @@ def full_adv(data):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
     adv_promo_counts = data['Advance Promo'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Advance Promo")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
@@ -850,7 +845,6 @@ def five_adv(data):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
     adv_promo_counts = data['Advance Promo'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Advance Promo")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
@@ -889,7 +883,6 @@ def ten_adv(data):
     unique_adv_promo = sorted(data['Advance Promo'].unique())
     adv_promo_counts = data['Advance Promo'].value_counts()
 
-    st.subheader("Proportion Churn & Not Churn - Advance Promo")
     # Hitung jumlah Churn dan Not Churn untuk setiap area
     churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
     not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
@@ -1160,11 +1153,6 @@ def visualize_data_batch(data):
 
         fig, top_10_churn = tvplan_proportion(data)
         st.pyplot(fig)
-
-        # # Save the churn pie chart to PDF
-        # pdf_pages6 = PdfPages("propotion_churn_tvplan.pdf")
-        # pdf_pages6.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-        # pdf_pages6.close()
 
         fig, top_10_notchurn = tvplan_proportion_1(data)
         st.pyplot(fig)
