@@ -624,9 +624,10 @@ def five_area(data):
     pdf_pages10 = PdfPages("five_area.pdf")
     pdf_pages10.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
     pdf_pages10.close()
-    fig = plt.gcf()
+    # fig = plt.gcf()
+    return plot
 
-    return fig
+    # return fig
 
 def ten_area(data):
     unique_area_name = sorted(data['Area Name'].unique())
