@@ -890,7 +890,7 @@ def full_adv(data):
     # Move the legend to below the bar chart
     # plot.fig.subplots_adjust(bottom=0.2)
 
-    plot._legend.set_bbox_to_anchor((0.5, -0.15))
+    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
     # plot._legend.set_title('')
 
     fig = plt.gcf()
