@@ -648,7 +648,7 @@ def full_plan(data):
     plt.figure(figsize=(12, 6))
     plot = sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Plan')
     plt.xlabel('Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
@@ -691,7 +691,7 @@ def five_plan(data):
     plt.figure(figsize=(12, 6))
     plot = sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Plan')
     plt.xlabel('Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
@@ -734,7 +734,7 @@ def ten_plan(data):
     plt.figure(figsize=(12, 6))
     plot = sns.catplot(x='Plan', y='value', hue='variable', data=pd.melt(churn_data, ['Plan']),
                         kind='bar', height=6, aspect=2.5, palette='magma')
-    plt.title('Proporsi Churn dan Not Churn berdasarkan Area')
+    plt.title('Proporsi Churn dan Not Churn berdasarkan Plan')
     plt.xlabel('Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
