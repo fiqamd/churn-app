@@ -576,13 +576,6 @@ def five_area(data):
     plt.xlabel('Area Name')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
-
-    # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
-
-    # Display the bar chart using st.pyplot()
-    # st.pyplot(plt.gcf())
     
     fig = plt.gcf()
     return fig
@@ -622,10 +615,6 @@ def ten_area(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
-    # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
-
     fig = plt.gcf()
     return fig
 
@@ -652,10 +641,6 @@ def full_plan(data):
     plt.xlabel('Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
-
-    # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
 
     fig = plt.gcf()
     return fig
@@ -696,10 +681,6 @@ def five_plan(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
-    # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
-
     fig = plt.gcf()
     return fig
 
@@ -739,10 +720,6 @@ def ten_plan(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
-    # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
-
     fig = plt.gcf()
     return fig
 
@@ -769,10 +746,6 @@ def full_tvplan(data):
     plt.xlabel('Tv Plan')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
-
-    # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
 
     fig = plt.gcf()
     return fig
@@ -813,10 +786,6 @@ def five_tvplan(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
-    # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
-
     fig = plt.gcf()
     return fig
 
@@ -856,10 +825,6 @@ def ten_tvplan(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
-    # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
-
     fig = plt.gcf()
     return fig
 
@@ -886,12 +851,6 @@ def full_adv(data):
     plt.xlabel('Advance Promo')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
-
-    # Move the legend to below the bar chart
-    # plot.fig.subplots_adjust(bottom=0.2)
-
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
 
     fig = plt.gcf()
     return fig
@@ -932,12 +891,6 @@ def five_adv(data):
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
 
-    # Move the legend to below the bar chart
-    # Move the legend to below the bar chart
-    # legend = plt.legend(title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
-    # plot.fig.subplots_adjust(bottom=0.2)
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
     fig = plt.gcf()
     return fig
 
@@ -976,103 +929,9 @@ def ten_adv(data):
     plt.xlabel('Advance Promo')
     plt.ylabel('Jumlah')
     plt.xticks(rotation=90)
-    # plt.legend(title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
-
-    # Move the legend to below the bar chart
-    # Move the legend to below the bar chart
-    # legend = plt.legend(title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
-    # plot.fig.subplots_adjust(bottom=0.2)
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
+    
     fig = plt.gcf()
     return fig
-
-
-
-
-
-
-
-    # unique_adv_promo = sorted(data['Advance Promo'].unique())
-    # adv_promo_counts = data['Advance Promo'].value_counts()
-
-    # st.subheader("Proportion Churn & Not Churn - Advance Promo")
-    # # Hitung jumlah Churn dan Not Churn untuk setiap area
-    # churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
-    # not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
-
-    # # Membuat dataframe untuk menyimpan hasil perhitungan
-    # churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
-    #                                     'Churn': [churn_counts.get(plan, 0) for plan in unique_adv_promo],
-    #                                     'Not Churn': [not_churn_counts.get(plan, 0) for plan in unique_adv_promo]})
-            
-    # # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-    # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-    # # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-    # sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-    # # Get the top 5 areas with the highest total churn + not churn counts
-    # top_10_areas = sorted_churn_data.head(10)
-    # top_10_areas = top_10_areas.drop(columns=['Total Churn + Not Churn'])
-
-    # churn_data = top_10_areas
-
-    # # Membuat plot menggunakan sns.catplot
-    # sns.set(style="whitegrid")
-    # plt.figure(figsize=(12, 6))
-    # plot = sns.catplot(x='Advance Promo', y='value', hue='variable', data=pd.melt(churn_data, ['Advance Promo']),
-    #                     kind='bar', height=6, aspect=2.5, palette='magma')
-    # plt.title('Proporsi Churn dan Not Churn berdasarkan Advance Promo')
-    # plt.xlabel('Advance Promo')
-    # plt.ylabel('Jumlah')
-    # plt.xticks(rotation=90)
-
-    # # # Move the legend to below the bar chart
-    # plot._legend.set_bbox_to_anchor((0.5, -0.15))
-    # plot._legend.set_title('')
-
-    # fig = plt.gcf()
-    # return fig
-
-    # unique_adv_promo = sorted(data['Advance Promo'].unique())
-    # adv_promo_counts = data['Advance Promo'].value_counts()
-
-    # st.subheader("Proportion Churn & Not Churn - Advance Promo")
-    # # Hitung jumlah Churn dan Not Churn untuk setiap area
-    # churn_counts = data[data['Churn'] == 'Churn']['Advance Promo'].value_counts()
-    # not_churn_counts = data[data['Churn'] == 'Not Churn']['Advance Promo'].value_counts()
-
-    # # Membuat dataframe untuk menyimpan hasil perhitungan
-    # churn_data = pd.DataFrame({'Advance Promo': unique_adv_promo,
-    #                                     'Churn': [churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo],
-    #                                     'Not Churn': [not_churn_counts.get(adv_promo, 0) for adv_promo in unique_adv_promo]})
-            
-    # # Combine 'Churn' and 'Not Churn' counts to get the total churn + not churn counts
-    # churn_data['Total Churn + Not Churn'] = churn_data['Churn'] + churn_data['Not Churn']
-
-    # # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
-    # sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
-
-    # # Get the top 5 areas with the highest total churn + not churn counts
-    # top_10_areas = sorted_churn_data.head(10)
-    # top_10_areas = top_10_areas.drop(columns=['Total Churn + Not Churn'])
-
-    # churn_data = top_10_areas
-
-    # # Membuat plot menggunakan sns.catplot
-    # sns.set(style="whitegrid")
-    # # Membuat plot pie chart
-    # plt.figure(figsize=(8, 8))
-    # patches, texts, autotexts = plt.pie(churn_data['Total Churn + Not Churn'], labels=churn_data['Advance Promo'], autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(churn_data)), textprops={'color': 'white'})
-    # plt.title('Proporsi Churn dan Not Churn berdasarkan Advance Promo')
-    # plt.axis('equal')
-    
-    # # Move the legend to below the pie chart
-    # legend = plt.legend(patches, churn_data['Advance Promo'], title='', bbox_to_anchor=(0.5, -0.15), loc='upper center')
-
-    # fig = plt.gcf()
-    # return fig
 
 def combine_pdfs():
     pdf_files = ["propotion_churn_area.pdf", "propotion_churn_area_1.pdf", "propotion_churn_plan.pdf", "propotion_churn_plan_1.pdf", "propotion_churn_tvplan.pdf", "propotion_churn_tvplan_1.pdf", "propotion_churn_advpro.pdf", "propotion_churn_advpro_1.pdf", "full_area.pdf", "five_area.pdf", "ten_area.pdf", "full_plan.pdf", "five_plan.pdf", "ten_plan.pdf", "full_tvplan.pdf", "five_tvplan.pdf", "ten_tvplan.pdf", "full_adv.pdf", "five_adv.pdf", "ten_adv.pdf"]
