@@ -1163,16 +1163,8 @@ def visualize_data_batch(data):
     
     if option == 'Area Name':
         st.title("Proportion Churn & Not Churn - Area Name")
-
-        churn_data_plot = five_area(data)  # Memanggil fungsi five_area() dan mendapatkan objek plot
-        # Menampilkan diagram batang menggunakan st.pyplot() di dalam fungsi batch()
-        st.pyplot(churn_data_plot.fig)
-
-        # Save the churn pie chart to PDF
-        pdf_pages10 = PdfPages("five_area.pdf")
-        pdf_pages10.savefig(churn_data_plot.fig, bbox_inches='tight')
+        area_proportion(data)
         # pdf_pages10.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-        pdf_pages10.close()
 
         area_proportion_1(data)
 
@@ -1234,7 +1226,15 @@ def visualize_data_batch(data):
             st.download_button("Download Here - Area Name Proportion Data", data=csv_data, mime='text/csv', file_name=filename)
 
         elif top_chart == 'Top 5':
-            five_area(data)
+            churn_data_plot = five_area(data)  # Memanggil fungsi five_area() dan mendapatkan objek plot
+            # Menampilkan diagram batang menggunakan st.pyplot() di dalam fungsi batch()
+            st.pyplot(churn_data_plot.fig)
+
+            # Save the churn pie chart to PDF
+            pdf_pages10 = PdfPages("five_area.pdf")
+            pdf_pages10.savefig(churn_data_plot.fig, bbox_inches='tight')
+            pdf_pages10.close()
+            # five_area(data)
 
             churn_counts = data[data['Churn'] == 'Churn']['Area Name'].value_counts()
             not_churn_counts = data[data['Churn'] == 'Not Churn']['Area Name'].value_counts()
