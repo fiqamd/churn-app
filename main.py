@@ -215,7 +215,7 @@ def load_non_churned(data):
 #Fungsi Penammpilan Chart
 def dis_churn(data):
     pdf_pages1 = PdfPages("pie_chart_churn&notchurn.pdf")
-    st.header("Churn Distribution")
+    # st.header("Churn Distribution")
     fig, ax = plt.subplots()
     palette_color = sns.color_palette('rocket_r')
 
@@ -1091,6 +1091,7 @@ def visualize_data_batch(data):
     st.download_button("Download Here - All Data", data=csv_data, mime='text/csv', file_name=filename)
 
     #Memanggil Fungsi Pie Churn
+    st.header('Churn Distribution')
     fig, churn_counts = dis_churn(data)
     st.pyplot(fig)
 
