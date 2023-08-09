@@ -559,7 +559,7 @@ def five_area(data):
     top_5_areas = sorted_churn_data.head(5)
     top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
 
-    churn_data = top_5_areas
+    churn_data = top_5_areas.drop(columns=['Total Churn + Not Churn'])
     
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
