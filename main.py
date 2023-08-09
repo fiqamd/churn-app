@@ -555,11 +555,16 @@ def five_area(data):
     # Sort the DataFrame based on the 'Total Churn + Not Churn' column in descending order
     sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
 
-    # Get the top 5 areas with the highest total churn + not churn counts
+    # # Get the top 5 areas with the highest total churn + not churn counts
+    # top_5_areas = sorted_churn_data.head(5)
+    # top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
+
+    # churn_data = top_5_areas.drop(columns=['Total Churn + Not Churn'])
+
     top_5_areas = sorted_churn_data.head(5)
     top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
 
-    churn_data = top_5_areas.drop(columns=['Total Churn + Not Churn'])
+    churn_data = top_5_areas.drop(columns=['Total Churn + Not Churn'])  # Hapus kolom dari churn_data juga
     
     # Membuat plot menggunakan sns.catplot
     sns.set(style="whitegrid")
