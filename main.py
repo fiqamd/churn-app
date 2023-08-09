@@ -258,7 +258,7 @@ def area_proportion(data):
     # Plot the pie chart for churned
     plt.figure(figsize=(6, 6))
     patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.2f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
-    plt.title('Top 10 Count Churned by Area Name')
+    plt.title('Proportion Count Churned by Area Name')
     plt.axis('equal')
     plt.legend(patches, top_10_churn['Area Name'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
@@ -292,7 +292,7 @@ def area_proportion_1(data):
     # Plot the pie chart for not churned
     plt.figure(figsize=(6, 6))
     patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None,autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)),textprops={'color': 'white'})
-    plt.title('Top 10 Count Not Churned by Area Name')
+    plt.title('Proportion Count Not Churned by Area Name')
     plt.axis('equal')
     plt.legend(patches, top_10_notchurn['Area Name'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
@@ -328,7 +328,7 @@ def plan_proportion(data):
     # Plot the pie chart for churned
     plt.figure(figsize=(6, 6))
     patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.2f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
-    plt.title('Top 10 Count Churned by Plan')
+    plt.title('Proportion Count Churned by Plan')
     plt.axis('equal')
     plt.legend(patches, top_10_churn['Plan'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
@@ -362,7 +362,7 @@ def plan_proportion_1(data):
     # Plot the pie chart for not churned
     plt.figure(figsize=(6, 6))
     patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None,autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)),textprops={'color': 'white'})
-    plt.title('Top 10 Count Not Churned by Plan')
+    plt.title('Proportion Count Not Churned by Plan')
     plt.axis('equal')
     plt.legend(patches, top_10_notchurn['Plan'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
@@ -397,7 +397,7 @@ def tvplan_proportion(data):
     # Plot the pie chart for Count Churned
     plt.figure(figsize=(6, 6))
     patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
-    plt.title('Top 10 Count Churned by Tv Plan')
+    plt.title('Proportion Count Churned by Tv Plan')
     plt.axis('equal')
     plt.legend(patches, top_10_churn['Tv Plan'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
@@ -432,7 +432,7 @@ def tvplan_proportion_1(data):
     # Plot the pie chart for Count Not Churned
     plt.figure(figsize=(6, 6))
     patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
-    plt.title('Top 10 Count Not Churned by Tv Plan')
+    plt.title('Proportion Count Not Churned by Tv Plan')
     plt.axis('equal')
     plt.legend(patches, top_10_notchurn['Tv Plan'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
@@ -467,7 +467,7 @@ def advpro_proportion(data):
     # Plot the pie chart for Count Churned
     plt.figure(figsize=(6, 6))
     patches, texts, autotexts = plt.pie(top_10_churn['Count Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_churn)), textprops={'color': 'white'})
-    plt.title('Top 10 Count Churned by Advance Promo')
+    plt.title('Proportion Count Churned by Advance Promo')
     plt.axis('equal')
     plt.legend(patches, top_10_churn['Advance Promo'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
@@ -501,7 +501,7 @@ def advpro_proportion_1(data):
     # Plot the pie chart for Count Not Churned
     plt.figure(figsize=(6, 6))
     patches, texts, autotexts = plt.pie(top_10_notchurn['Count Not Churned'], labels=None, autopct='%1.1f%%', startangle=140, colors=sns.color_palette("magma", len(top_10_notchurn)), textprops={'color': 'white'})
-    plt.title('Top 10 Count Not Churned by Advance Promo')
+    plt.title('Proportion Count Not Churned by Advance Promo')
     plt.axis('equal')
     plt.legend(patches, top_10_notchurn['Advance Promo'], loc='center left', bbox_to_anchor=(0.5, -0.1), ncol=2)
 
@@ -1113,22 +1113,8 @@ def visualize_data_batch(data):
         fig, top_10_churn = area_proportion(data)
         st.pyplot(fig)
 
-        # pdf_pages2 = PdfPages("propotion_churn_area.pdf")
-        # pdf_pages2.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-        # pdf_pages2.close()
-
-        # area_proportion(data)
-        # pdf_pages10.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-
         fig, top_10_not_churn = area_proportion_1(data)
         st.pyplot(fig)
-
-        # Save the churn pie chart to PDF
-        # pdf_pages3 = PdfPages("propotion_churn_area_1.pdf")
-        # pdf_pages3.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-        # pdf_pages3.close()
-
-        # st.pyplot(fig)
 
     elif option == 'Plan':
         st.title("Proportion Churn & Not Churn - Plan")
@@ -1136,17 +1122,8 @@ def visualize_data_batch(data):
         fig, top_10_churn = plan_proportion(data)
         st.pyplot(fig)
 
-        # pdf_pages4 = PdfPages("propotion_churn_area.pdf")
-        # pdf_pages4.savefig(fig, bbox_inches='tight')  # Adjust the bounding box to fit the legend
-        # pdf_pages4.close()
-
         fig, top_10_notchurn = plan_proportion_1(data)
         st.pyplot(fig)
-
-        # Save the churn pie chart to PDF
-        # pdf_pages5 = PdfPages("propotion_churn_area_1.pdf")
-        # pdf_pages5.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-        # pdf_pages5.close()
 
     elif option == 'Tv Plan':
         st.title("Proportion Churn & Not Churn - Tv Plan")
@@ -1163,18 +1140,8 @@ def visualize_data_batch(data):
         fig, top_10_churn = advpro_proportion(data)
         st.pyplot(fig)
 
-        # # Save the churn pie chart to PDF
-        # pdf_pages7 = PdfPages("propotion_churn_advpro.pdf")
-        # pdf_pages7.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-        # pdf_pages7.close()
-
         fig, top_10_notchurn = advpro_proportion_1(data)
         st.pyplot(fig)
-
-        # # Save the churn pie chart to PDF
-        # pdf_pages8 = PdfPages("propotion_churn_advpro_1.pdf")
-        # pdf_pages8.savefig(plt.gcf(), bbox_inches='tight')  # Adjust the bounding box to fit the legend
-        # pdf_pages8.close()
     
     st.title("Data Bar Chart Proportion")
     option_chart = st.selectbox('Pilih data yang ingin ditampilkan:',
