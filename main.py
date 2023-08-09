@@ -556,10 +556,6 @@ def five_area(data):
     sorted_churn_data = churn_data.sort_values(by='Total Churn + Not Churn', ascending=False)
 
     # # Get the top 5 areas with the highest total churn + not churn counts
-    # top_5_areas = sorted_churn_data.head(5)
-    # top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
-
-    # churn_data = top_5_areas.drop(columns=['Total Churn + Not Churn'])
 
     top_5_areas = sorted_churn_data.head(5)
     top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
@@ -1218,6 +1214,7 @@ def visualize_data_batch(data):
 
             # Get the top 5 areas with the highest total churn + not churn counts
             top_5_areas = sorted_churn_data.head(5)
+            top_5_areas = top_5_areas.drop(columns=['Total Churn + Not Churn'])
 
             churn_data = top_5_areas
 
@@ -1248,6 +1245,7 @@ def visualize_data_batch(data):
 
             # Get the top 5 areas with the highest total churn + not churn counts
             top_10_areas = sorted_churn_data.head(10)
+            top_10_areas = top_10_areas.drop(columns=['Total Churn + Not Churn'])
 
             churn_data = top_10_areas
 
