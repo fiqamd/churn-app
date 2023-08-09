@@ -1039,10 +1039,10 @@ def download_combined_pdf(data):
     # Panggil fungsi untuk melakukan kombinasi PDF
     combine_pdfs(data)
 
-    if st.button("Download Here"):
+    if st.button("Click Here"):
         with open("combined_report.pdf", "rb") as file:
             pdf_bytes = file.read()
-            st.download_button("Churn Report", pdf_bytes, file_name="churn_report.pdf", key="pdf_download")
+            st.download_button("Download Churn Report", pdf_bytes, file_name="churn_report.pdf", key="pdf_download")
 
     # Tampilkan tombol unduhan dengan st.download_button
     # st.download_button("Download Combined Report", "combined_report.pdf")
@@ -1740,6 +1740,9 @@ def visualize_data_batch(data):
     st.header("Data Not Churn")
     st.subheader("Jumlah Data Not Churn")
     st.table(new_not_churn_data.count())
+
+    st.divider()
+    st.header("Download Churn Report")
 
     download_combined_pdf(data)
 
