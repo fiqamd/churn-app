@@ -1039,10 +1039,10 @@ def download_combined_pdf(data):
     # Panggil fungsi untuk melakukan kombinasi PDF
     combine_pdfs(data)
 
-    if st.button("Click Here"):
+    if st.button("Download Here"):
         with open("combined_report.pdf", "rb") as file:
             pdf_bytes = file.read()
-            st.download_button("Download Churn Report", pdf_bytes, file_name="churn_report.pdf", key="pdf_download")
+            st.download_button("Churn Report", pdf_bytes, file_name="churn_report.pdf", key="pdf_download")
 
     # Tampilkan tombol unduhan dengan st.download_button
     # st.download_button("Download Combined Report", "combined_report.pdf")
@@ -1563,7 +1563,6 @@ def visualize_data_batch(data):
 
             st.table(churn_data)
 
-    st.divider()
     data_churned = data[data['Churn'] == 'Churn']
     st.header('Churned Data')
     st.table(data_churned.head(10))
@@ -1644,8 +1643,6 @@ def visualize_data_batch(data):
 
     csv_data = result_all_data.to_csv(index=False)
     st.download_button("Download Here - Churned Advance Promo Data", data=csv_data, mime='text/csv', file_name=filename)
-
-    st.divider()
 
     data_not_churned = data[data['Churn'] == 'Not Churn']
     st.header('Not Churned Data')
@@ -1732,8 +1729,6 @@ def visualize_data_batch(data):
     churn_data = data[data['Churn'] == 'Churn']
     new_churn_data = churn_data.drop('Churn', axis=1)
 
-    st.divider()
-
     st.header("Data Churn")
     st.subheader("Jumlah Data Churn")
     st.table(new_churn_data.count())
@@ -1746,10 +1741,6 @@ def visualize_data_batch(data):
     st.subheader("Jumlah Data Not Churn")
     st.table(new_not_churn_data.count())
 
-    st.divider()
-
-    st.header("Download Churn Report")
-#
     download_combined_pdf(data)
 
 
