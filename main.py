@@ -34,7 +34,7 @@ import warnings
 warnings.filterwarnings('ignore')
 sys.modules['sklearn.externals.six'] = six
 
-@st.cache(allow_output_mutation=True)
+@st.cache_data(allow_output_mutation=True)
 def load_model(bucket_name, model_path):
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
